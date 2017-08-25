@@ -3,7 +3,7 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
 Requires at least: 3.7
-Tested up to: 4.7.1
+Tested up to: 4.8.1
 Stable tag: 1.5.2
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
