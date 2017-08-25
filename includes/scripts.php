@@ -13,8 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Register styles
  */
 function zp_register_scripts() {
-	global $zodiacpress_options;
-
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 	wp_register_style( 'zp', ZODIACPRESS_URL . 'assets/css/zp' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
@@ -22,6 +20,31 @@ function zp_register_scripts() {
 	wp_register_style( 'zp-rtl', ZODIACPRESS_URL . 'assets/css/zp-rtl' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array( 'jquery-ui-autocomplete', 'jquery' ) );
 
+	wp_localize_script( 'zp', 'zp_ajax_object', zp_get_script_localization_data() );
+
+}
+	
+add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
+
+/**
+ * Load admin-specific styles.
+ */
+function zp_load_admin_scripts() {
+	if ( ! zp_is_admin_page() ) {
+		return;
+	}
+	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+	wp_register_style( 'zp-admin', ZODIACPRESS_URL . 'assets/css/zp-admin' . $suffix . '.css' );
+	wp_enqueue_style( 'zp-admin' );
+}
+	
+add_action( 'admin_enqueue_scripts', 'zp_load_admin_scripts', 100 );
+
+/**
+ * Get data for wp_localize_script
+ */
+function zp_get_script_localization_data() {
+	global $zodiacpress_options;
 	// If language is other than English, get lang code to tranlsate Autocomplete cities.
 	$wplang = get_locale();
 	$langcode = substr( $wplang, 0, 2 );
@@ -41,22 +64,6 @@ function zp_register_scripts() {
 			'lang'					=> $city_list_lang,
 			'geonames_user'			=> $geonames_username
 		);
-	wp_localize_script( 'zp', 'zp_ajax_object', $data );
 
+	return $data;
 }
-	
-add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
-
-/**
- * Load admin-specific styles.
- */
-function zp_load_admin_scripts() {
-	if ( ! zp_is_admin_page() ) {
-		return;
-	}
-	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-	wp_register_style( 'zp-admin', ZODIACPRESS_URL . 'assets/css/zp-admin' . $suffix . '.css' );
-	wp_enqueue_style( 'zp-admin' );
-}
-	
-add_action( 'admin_enqueue_scripts', 'zp_load_admin_scripts', 100 );
