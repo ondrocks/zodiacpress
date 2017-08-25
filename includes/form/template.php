@@ -206,7 +206,7 @@ function zp_form( $report, $args = array() ) {
 			<p class="zp-birthplace">
 				<label for="place" class="zp-form-label"><?php _e( 'Birth City', 'zodiacpress' ); ?></label>
 				<span class="ui-widget zp-input-text-wrap">
-					<input id="place" name="place" class="zp-input-text" />
+					<input id="place" name="place" value="" class="zp-input-text" />
 				</span>
 			</p>
 			
