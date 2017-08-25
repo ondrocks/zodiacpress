@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * on HTTPS pages, otherwise GeoNames only serves http pages.
  */
 function zp_ajax_autocomplete_cities() {
-
 	if ( empty( $_POST['name_startsWith'] ) ) {
 		return;
 	}
@@ -54,7 +53,6 @@ add_action( 'wp_ajax_nopriv_zp_get_cities_list', 'zp_ajax_autocomplete_cities' )
  * on HTTPS pages, otherwise GeoNames only serves http pages.
  */
 function zp_ajax_get_geonames_timezone_id() {
-
 	$api_params = array(
 		'username'	=> urlencode( sanitize_text_field( $_POST['username'] ) ),
 		'lat'		=> ! empty( $_POST['lat'] ) ? sanitize_text_field( $_POST['lat'] ) : '',
@@ -78,17 +76,14 @@ add_action( 'wp_ajax_nopriv_zp_get_timezone_id', 'zp_ajax_get_geonames_timezone_
  * Handles ajax request to calculate timezone offset and send back to form fields
  */
 function zp_ajax_get_time_offset() {
-
 	parse_str( $_POST['post_data'], $post_data );
 
 	$offset_geo = null;
-
 	$validated = zp_validate_form( $post_data, true );
 
 	if ( ! is_array( $validated )  ) {
 
 		// We have an error
-	
 		echo json_encode( array( 'error' => $validated ) );
 		wp_die();
 
@@ -97,7 +92,7 @@ function zp_ajax_get_time_offset() {
 	$dtstamp = strftime("%Y-%m-%d %H:%M:%S", mktime( $validated['hour'], $validated['minute'], 0, $validated['month'], $validated['day'], $validated['year'] ));
 
 	// get time offset
-	$offset_geo = $validated['geo_timezone_id'] ? zp_get_timezone_offset( $validated['geo_timezone_id'], $dtstamp ) : null;
+	$offset_geo = $validated['geo_timezone_id'] ? zp_get_timezone_offset( $validated['geo_timezone_id'], $dtstamp, $validated['zp_lat_decimal'], $validated['zp_long_decimal'] ) : null;
 
 	echo json_encode( array( 'offset_geo' => $offset_geo ) );
 	wp_die();

@@ -14,11 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @param $timezone_id, Timezone name (or GeoNames timezone ID)
  * @param $datetime, Time stamp string 'YYYY-MM-DD HH:MM'
+ * @param $lat, The latitude decimal
+ * @param $long, The longitude decimal
  * @return mixed Returns offset in hours, or FALSE in case of bad parameters.
  */
-function zp_get_timezone_offset( $timezone_id, $datetime ) {
+function zp_get_timezone_offset( $timezone_id, $datetime, $lat, $long ) {	
+	try {
+		$dt = new DateTime( $datetime, new DateTimeZone( $timezone_id ) );
+	} catch (Exception $e) {
+		// The GeoNames timezone id is a bad timezone, so use the PHP timezone identifier
+		$php_timezone_id = zp_get_php_timezone( $lat, $long );
+		$dt = new DateTime( $datetime, new DateTimeZone( $php_timezone_id ) );
+	}
 
-	$dt = new DateTime( $datetime, new DateTimeZone( $timezone_id ) );
 	$offset_seconds = $dt->getOffset();
 	$out = ( false === $offset_seconds ) ? false : $offset_seconds/3600;
 
@@ -290,4 +298,27 @@ function zp_transliterated_degrees_minutes_seconds( $dms ) {
 
 	return $out;
 
+}
+
+/**
+ * Attempts to find the closest timezone by coordinates using only PHP
+ * @param $lat, latitude decimal
+ * @param $long, longitude decimal
+ * returns zone name according to PHP timezone identifiers
+ */
+function zp_get_php_timezone( $lat, $long ) {
+    $diffs = array();
+    foreach ( DateTimeZone::listIdentifiers() as $timezone_id ) {
+	      $timezone = new DateTimeZone( $timezone_id );
+	      $location = $timezone->getLocation();
+	      $tLat = $location['latitude'];
+	      $tLng = $location['longitude'];
+	      $diffLat = abs( $lat - $tLat );
+	      $diffLng = abs( $long - $tLng );
+	      $diff = $diffLat + $diffLng;
+	      $diffs[ $timezone_id ] = $diff;
+    }
+			
+    $timezone = array_keys( $diffs, min( $diffs ) );// json array = "tid" => $timezone[0]
+	return $timezone[0];
 }
