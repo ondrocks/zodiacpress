@@ -11,7 +11,8 @@ function zp_birthreport_shortcode( $atts ) {
 		'report'		=> 'birthreport',
 		'form_title'	=> $default_title,
 		'sidereal'		=> false,
-		'house_system'	=> false
+		'house_system'	=> false,
+		'sell'			=> false
 	), $atts, 'birthreport' );
 
 	wp_enqueue_style( 'zp' );
@@ -19,6 +20,9 @@ function zp_birthreport_shortcode( $atts ) {
 		wp_enqueue_style( 'zp-rtl' );
 	}
 	wp_enqueue_script( 'zp' );
+	
+	do_action( 'zp_report_shortcode_before', $report_atts );// This hook can be used by addons to swap out the .js
+
 	ob_start();
 	?>
 	<div id="zp-form-wrap">
