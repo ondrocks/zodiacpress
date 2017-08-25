@@ -77,6 +77,7 @@
 .zp-birthtime legend,
 .zp-birthplace label{
 	min-width: 120px;
+	font-weight: normal;
 }
 #zp-birthreport-form .zp-input-text,
 #zp-birthreport-form select{
@@ -136,6 +137,13 @@ form .zp-button:hover, .zp-button:focus{
 
 /* Ajax
 -------------------------------------------------------------- */
+#zp-ajax-loader {
+	margin: 1em auto 2em;
+	display: block;
+	border:none;
+	visibility: hidden;
+}
+
 #zp-fetch-birthreport,
 #zp-report-wrap,
 #zp-offset-wrap,

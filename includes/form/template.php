@@ -223,7 +223,8 @@ function zp_form( $report, $args = array() ) {
 		</p>
 		<?php do_action( 'zp_form_below_person_one_offset', $report, $args ); ?>
 
-		<p>
+		<p id="zp-submit-wrap">
+			<img id="zp-ajax-loader" src="<?php echo esc_url( ZODIACPRESS_URL . 'assets/ajax-loader.gif' ); ?>" />
 			<button id="zp-fetch-offset" class="zp-button"><?php _e('Next', 'zodiacpress'); ?></button>
 			<?php if ( $args['sidereal'] ) { ?>
 				<input type="hidden" name="zp_report_sidereal" value="<?php echo $args['sidereal']; ?>">

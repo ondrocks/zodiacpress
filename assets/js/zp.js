@@ -23,7 +23,7 @@
 					success: function( data ) {
 
 						$( "#zp-fetch-offset" ).prop( 'disabled', true );
-							// disable also submit button in case of changing city after offset is calculated
+						// disable also submit button in case of changing city after offset is calculated
 						$( "#zp-fetch-birthreport" ).prop( 'disabled', true );
 
 						response( $.map( data.geonames, function( item ) {
@@ -41,7 +41,10 @@
 			select: function( event, ui ) {
 
 				$( '.ui-state-error' ).hide();
-	
+
+				// Show loading gif so user will patiently wait for the Next button
+				$( '#zp-ajax-loader' ).css({ 'visibility': 'visible' });
+		
 				// Get timezone id by coordinates from Geonames webservice
 				// timezone id is used to calculate offset
 
@@ -56,7 +59,6 @@
 						username: zp_ajax_object.geonames_user
 					},
 					success: function( response ) {
-
 						// Insert hidden input with Geonames Timezone ID
 						$('<input>').attr({
 							type: 'hidden',
@@ -86,6 +88,7 @@
 						$( '#zp-fetch-birthreport' ).hide();
 						$( '#zp-form-tip' ).hide();
 						$( '#zp-fetch-offset' ).show();
+						$( '#zp-ajax-loader' ).css({ 'visibility': 'hidden' });
 
 						// Enable the button
 						$( "#zp-fetch-offset" ).prop( 'disabled', false );
@@ -130,7 +133,11 @@
 							// Switch buttons
 							$( '#zp-fetch-offset' ).hide();
 							$( '#zp-fetch-birthreport' ).show();
-							$( "#zp-fetch-birthreport" ).prop( 'disabled', false );
+							$( '#zp-fetch-birthreport' ).prop( 'disabled', false );
+
+							// Make the submit button green
+							$( "#zp-fetch-birthreport" ).css({ 'background-color': '#339933', 'border-color': '#339933' });
+
 						}
 					}
 					
