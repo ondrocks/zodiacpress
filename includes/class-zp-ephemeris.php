@@ -122,11 +122,9 @@ class ZP_Ephemeris {
 	 *
 	 */
 	public function query() {
-
 		// Set up Swiss Ephemeris path
 		$sweph = apply_filters( 'zp_sweph_dir', ZODIACPRESS_PATH . 'sweph' );
-		$PATH = '';
-		putenv( "PATH=$PATH:{$sweph}" );
+		putenv( 'PATH=$PATH:' . "$sweph" );
 		$swetest = apply_filters( 'zp_sweph_file', 'swetest' );
 
 		// Query the ephemeris

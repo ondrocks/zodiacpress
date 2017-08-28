@@ -8,12 +8,10 @@ class Test_Ephemeris_Direct extends WP_UnitTestCase {
 	protected $sweph;
 
 	public function setUp() {
-	
 		// Set up Swiss Ephemeris path
 		$this->sweph = ZODIACPRESS_PATH . 'sweph';
-		$PATH = '';
-		putenv( "PATH=$PATH:{$this->sweph}" );
-		
+		putenv( 'PATH=$PATH:' . "{$this->sweph}" );
+	
 	}
 	/**
 	 * Test ephemeris queries
