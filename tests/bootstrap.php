@@ -7,7 +7,17 @@
 /**
  * The path to the WordPress tests
  */
-$_tests_dir = ( strtolower( PHP_SHLIB_SUFFIX ) === 'dll' ) ? 'C:\Apache24\tmp\wordpress-tests-lib' : '/var/tmp/wordpress-tests-lib';
+$_tests_dir = getenv( 'WP_TESTS_DIR' );
+if ( ! $_tests_dir ) {
+	$_tests_dir = '/tmp/wordpress-tests-lib';
+}
+
+/**
+ * When using Windows
+ */
+if ( strtolower( PHP_SHLIB_SUFFIX ) === 'dll' ) {
+	$_tests_dir = 'C:\Apache24\tmp\wordpress-tests-lib';
+}
 
 /**
  * The WordPress tests functions.
@@ -17,6 +27,13 @@ $_tests_dir = ( strtolower( PHP_SHLIB_SUFFIX ) === 'dll' ) ? 'C:\Apache24\tmp\wo
  */
 require_once $_tests_dir . '/includes/functions.php';
 
+
+/****************************************************
+* @todo
+* 
+require_once(/tmp/wordpress-tests-lib/includes/functions.php): failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/zodiacpress/tests/bootstrap.php on line 28
+
+****************************************************/
 /**
  * Manually load the plugin main file.
  *
