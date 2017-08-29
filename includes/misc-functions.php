@@ -15,7 +15,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @return mixed|array|string If key is passed, a string for that ordinal word, otherwise array of ordinal words
  */
 function zp_ordinal_word( $key = '' ) {
-
 	$n = array( 
 		__( 'Zeroth', 'zodiacpress' ),
 		__( 'First', 'zodiacpress' ),
@@ -40,7 +39,6 @@ function zp_ordinal_word( $key = '' ) {
  * @return bool false if disabled, otherwise true
  */
 function zp_is_func_enabled( $function ) {
-
 	if ( function_exists( $function ) &&
 		// AND NOT in the array of disabled functions
 		! in_array( $function, array_map( 'trim', explode( ', ', ini_get( 'disable_functions' ) ) ) ) &&
@@ -92,7 +90,6 @@ function zp_object_to_array( $data ) {
  * @return array
  */
 function zp_get_all_interps_options_names() {
-
 	$option_names = array();
 
 	// Large Interps Tabs get a separate option per section due to large size
@@ -123,7 +120,6 @@ function zp_get_all_interps_options_names() {
  * @return array
  */
 function zp_get_enabled_interps_options_names() {
-
 	$option_names = array();
 	foreach ( zp_get_enabled_interps_sections() as $tab => $sections ) {
 		// go through each section on each tab and get option name
@@ -143,9 +139,14 @@ function zp_get_enabled_interps_options_names() {
  * @return bool true if permission is (or gets set to) 0755, otherwise false
  */
 function zp_is_sweph_executable() {
-
 	$out			= true;
 	$file			= ZODIACPRESS_PATH . 'sweph/swetest';
+
+	if ( ! file_exists( $file ) ) {
+		add_action( 'admin_notices', 'zp_admin_notices_missing_file' );
+		return false;
+	}
+
 	$permissions	= substr( sprintf( '%o', fileperms( $file ) ), -4 );
 
 	if ( '0755' !== $permissions ) {
@@ -198,7 +199,6 @@ function zp_search_array( $value, $column, $array ) {
 add_filter( 'cron_schedules', 'zp_add_cron_schedule' );
 
 function zp_add_cron_schedule( $schedules = array() ) {
-	
 	// Adds once weekly to the existing schedules.
 	$schedules['weekly'] = array(
 		'interval' => 604800,

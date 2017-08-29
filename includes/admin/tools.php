@@ -125,7 +125,6 @@ add_action( 'zp_tools_tab_cleanup', 'zp_tools_cleanup_display' );
  * Display System Tools tab.
  */
 function zp_tools_sysinfo_display() {
-
 	$out = '### Begin System Info ###' . "\n\n";
 	$out .= '-- Server Info' . "\n\n";
 	$out .= 'Server Software:          ' . $_SERVER['SERVER_SOFTWARE'] . "\n";

@@ -24,7 +24,6 @@ add_action( 'admin_init', 'zp_process_actions' );
  * ZP Admin notices
  */
 function zp_admin_notices() {
-
 	// Success notices for ZP Tools.
 	if ( isset( $_GET['zp-done'] ) ) {
 		switch( $_GET['zp-done'] ) {
@@ -84,10 +83,19 @@ function zp_admin_notices_chmod_failed() {
 }
 
 /**
+ * Add admin notice when swetest file is missing.
+ */
+function zp_admin_notices_missing_file() {
+	if ( zp_is_admin_page() ) {
+		$msg = sprintf( __( 'You are missing a file from ZodiacPress. This file is required in order to create astrology reports. <a href="%s" target="_blank" rel="nofollow">See this</a> for more information.', 'zodiacpress' ), 'https://cosmicplugins.com/docs/missing-file/' );
+		printf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', $msg );
+	}
+}
+
+/**
  * Perform cleanup actions for the ZP Cleanup Tools
  */
 function zp_run_cleanup_tools() {
-
 	if ( ! isset( $_GET['zp_cleanup_tool'] ) || ! isset( $_GET['_nonce'] ) ) {
 		return false;
 	}
