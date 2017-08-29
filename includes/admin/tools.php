@@ -129,13 +129,13 @@ function zp_tools_sysinfo_display() {
 	$out .= '-- Server Info' . "\n\n";
 	$out .= 'Server Software:          ' . $_SERVER['SERVER_SOFTWARE'] . "\n";
 	$out .= 'PHP Version:              ' . PHP_VERSION . "\n";
-	$out .= 'GD Support:               ' . ( ( extension_loaded( 'gd' ) && function_exists( 'gd_info' ) ) ? 'Yes' : 'No' ) . "\n";
+	$out .= 'GD Support:               ' . ( ( extension_loaded( 'gd' ) && function_exists( 'gd_info' ) ) ? 'Yes' : 'No!' ) . "\n";
 	$out .= 'PHP_SHLIB_SUFFIX:         ' . PHP_SHLIB_SUFFIX . "\n";
-	$out .= 'exec() Function:          ' . ( zp_is_func_enabled( 'exec' ) ? 'Enabled' : 'Disabled' ) . "\n";
-	$out .= 'chmod() Function:         ' . ( zp_is_func_enabled( 'chmod' ) ? 'Enabled' : 'Disabled' ) . "\n";
+	$out .= 'exec() Function:          ' . ( zp_is_func_enabled( 'exec' ) ? 'Enabled' : 'Disabled!' ) . "\n";
+	$out .= 'chmod() Function:         ' . ( zp_is_func_enabled( 'chmod' ) ? 'Enabled' : 'Disabled!' ) . "\n";
 	$out .= "\n" . '-- ZodiacPress Info' . "\n\n";
-	$out .= 'Ephemeris permissions:    ' . ( zp_is_sweph_executable() ? 'Executable' : 'Not executable' ) . "\n";
-
+	$out .= 'swetest file:             ' . ( file_exists( ZODIACPRESS_PATH . 'sweph/swetest' ) ? 'Okay' : 'Missing!' ) . "\n";
+	$out .= 'Ephemeris permissions:    ' . ( zp_is_sweph_executable() ? 'Executable' : 'Not executable!' ) . "\n";
 	$out .= "\n" . '-- WordPress Info' . "\n\n";
 	$out .= 'WP Version:               ' . get_bloginfo('version') . "\n";
 	$out .= 'Multisite:                ' . ( is_multisite() ? 'Yes' : 'No' ) . "\n";
