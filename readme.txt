@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 4.8.1
+Tested up to: 4.9-alpha-41320
 Requires PHP: 5.4
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,15 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.5.3 =
+* New - Check for missing swetest file. This improves the troubleshooting experience by notifying the user (only on ZodiacPress admin pages) if the file is missing. This is also added to the System Info on the Tools page.
+* New - Now checks for GD image library support. This improves the troubleshooting experience by notifying the user (only on ZodiacPress admin pages) if GD support is missing.  This is also added to the System Info on the Tools page.
+* New - Improved the form submission experience. It will now show a loading .gif while waiting for the "Next" button to become ready. The "Submit" button will now turn green to intuitively let the user know that the "Next" button has transformed into a "Submit" button.
+* Fix - Fixed a bug that was causing the form to be disabled if a city with a modified timezone identifier was entered. This was affecting the form for many Asian cities. Technical: Fix uncaught exception for bad GeoNames timezone IDs. When this happens, it will now use the PHP timezone identifier instead of the GeoNames timezone id.
+* API - Added a new hook, zp_report_shortcode_before, to allow swapping of the ZP JavaScript file by addons.
+* Tweak - Load the plugin textdomain on init rather than on plugins_loaded. This may fix some translation issues.
+* Tweak - Add sweph directory to $PATH correctly.
+
 = 1.5.2 =
 * Tweak - Escaped the chart drawing image src url.
 * Tweak - Sanitized the chart drawing image element in the customizer with wp_kses_post.
@@ -169,6 +178,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.5.3 =
+Fixed a bug that was causing the form to be disabled if a city with a modified timezone identifier was entered.
 
 = 1.5.1 =
 Improved form button styles.
