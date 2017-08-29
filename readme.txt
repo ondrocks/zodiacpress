@@ -40,6 +40,10 @@ The Planets in Houses section of the report will tell you if you have a planet i
 
 Entering your interpretations is not required since you can generate reports without interpretations text. See the [screenshots](https://wordpress.org/plugins/zodiacpress/screenshots/) to see how a basic report **without** interpretations text looks.
 
+**EU GDPR Compliance**
+
+ZodiacPress complies with the EU General Data Protection Regulation (GDPR). ZodiacPress does not store the data that is entered into the form. Once a user submits the form with their birth information, that data is used instantaneously to generate a report, and then the data is lost. It is not saved with cookies or to any database. **So, you can confidently add a notice somewhere on your page (whether under the form, or on the footer of your site) to inform your users that the Birth Report form is not collecting or storing their data.**
+
 **Technical Details**
 
 You get granular control over aspect orbs. It lets you assign different orbs for each planet and each type of aspect.
