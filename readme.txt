@@ -65,10 +65,6 @@ If your website uses Windows hosting, you'll need to use the [ZodiacPress Window
 
 See the full [ZodiacPress documentation](https://cosmicplugins.com/docs/category/zodiacpress/ "ZodiacPress documentation").
 
-**Support**
-
-Need help? I'm glad to help via the plugin's official support forum (link above).
-
 == Installation ==
 
 **Install and Activate**
@@ -96,15 +92,11 @@ If your website is running on a Windows operating system (i.e. using Windows hos
 
 = Why is the birth report not working? =
 
-See these [troubleshooting articles](https://cosmicplugins.com/docs/category/zodiacpress/troubleshooting/ "Troubleshooting ZodiacPress").
+Please do the <a href="https://cosmicplugins.com/docs/pre-support-self-check/">Pre-Support Self-Check</a> to solve common issues. You can also browse these [troubleshooting articles](https://cosmicplugins.com/docs/category/zodiacpress/troubleshooting/ "Troubleshooting ZodiacPress").
 
 = How can I set the house system to be used for the "Planets in Houses" section of the report? =
 
 The Placidus House System is used by default. To change the house system, you can either use the [ZP House Systems](https://cosmicplugins.com/downloads/zodiacpress-house-systems/ "ZP House Systems") extension, or [set the house system](https://cosmicplugins.com/docs/choose-a-house-system/) directly in the shortcode.
-
-= How can I get help or support? =
-
-I'm happy to help via the plugin's official support forum (link above).
 
 = How can I give back? =
 
