@@ -4,6 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZ
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
 Requires at least: 4.7
 Tested up to: 4.8.1
+Requires PHP: 5.4
 Stable tag: 1.5.2
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
