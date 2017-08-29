@@ -27,13 +27,6 @@ if ( strtolower( PHP_SHLIB_SUFFIX ) === 'dll' ) {
  */
 require_once $_tests_dir . '/includes/functions.php';
 
-
-/****************************************************
-* @todo
-* 
-require_once(/tmp/wordpress-tests-lib/includes/functions.php): failed to open stream: No such file or directory in /var/www/html/wp-content/plugins/zodiacpress/tests/bootstrap.php on line 28
-
-****************************************************/
 /**
  * Manually load the plugin main file.
  *
