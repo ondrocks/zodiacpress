@@ -7,6 +7,9 @@
 
 		$( '#place' ).autocomplete({
 			source: function( request, response ) {
+
+				$( '.ui-state-error' ).hide();// Hide the geonames error message, if any, in case they are trying again
+
 				$.ajax({
 					url: zp_ajax_object.autocomplete_ajaxurl,
 					dataType: zp_ajax_object.dataType,
@@ -26,6 +29,14 @@
 						// disable also submit button in case of changing city after offset is calculated
 						$( "#zp-fetch-birthreport" ).prop( 'disabled', true );
 
+						// check for GeoNames exceptions
+						if ( data.status !== undefined ) {
+							var msg = $( '<span />' );
+							msg.attr( 'class', 'ui-state-error' );
+							msg.text( 'ERROR ' + data.status.value + ' - ' + data.status.message );
+							$( '#zp-ajax-birth-data' ).append( msg );
+						}
+						
 						response( $.map( data.geonames, function( item ) {
 							return {
 								value: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName, 
