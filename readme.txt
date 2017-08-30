@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 4.9-alpha-41320
+Tested up to: 4.9-alpha-41322
 Requires PHP: 5.4
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,10 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.5.4 =
+* New - Improved error checking on the form. If there is an error while filling out the form, the user will get an error message with a description of the error. Technical: It now checks for GeoNames exceptions in the ajax response from the GeoNames webservice.
+* New - Improvement for high-traffic sites: form can handle twice as many submissions per day. Each form submission now makes only 1 request to the GeoNames webservices. This means that it uses 1 GeoNames credit rather than 2 credits. The form can now handle a maximum of 30,000 requests per day, rather than 15,000.
+
 = 1.5.3 =
 * New - Check for missing swetest file. This improves the troubleshooting experience by notifying the user (only on ZodiacPress admin pages) if the file is missing. This is also added to the System Info on the Tools page.
 * New - Now checks for GD image library support. This improves the troubleshooting experience by notifying the user (only on ZodiacPress admin pages) if GD support is missing.  This is also added to the System Info on the Tools page.
@@ -178,6 +182,8 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+= 1.5.4 =
+Improved error checking on form. Improvement for high-traffic sites: form can handle twice as many submissions per day.
 
 = 1.5.3 =
 Fixed a bug that was causing the form to be disabled if a city with a modified timezone identifier was entered.
