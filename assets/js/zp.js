@@ -42,7 +42,8 @@
 								value: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName, 
 								label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
 								lngdeci: item.lng,
-								latdeci: item.lat
+								latdeci: item.lat,
+								timezoneid: item.timezone.timeZoneId
 							}
 						}));
 					}
@@ -56,56 +57,39 @@
 				// Show loading gif so user will patiently wait for the Next button
 				$( '#zp-ajax-loader' ).css({ 'visibility': 'visible' });
 		
-				// Get timezone id by coordinates from Geonames webservice
-				// timezone id is used to calculate offset
+				// Insert hidden input with Geonames Timezone ID
+				$('<input>').attr({
+						type: 'hidden',
+						id: 'geo_timezone_id',
+						name: 'geo_timezone_id',
+						value: ui.item.timezoneid
+				}).appendTo( '#zp-timezone-id' );
 
-				$.ajax({
-					url: zp_ajax_object.timezone_ajaxurl,
-					dataType: zp_ajax_object.dataType,
-					type: zp_ajax_object.type,
-					data: {
-						action: zp_ajax_object.timezone_id_action ? zp_ajax_object.timezone_id_action : undefined,
-						lat: ui.item.latdeci,
-						lng: ui.item.lngdeci,
-						username: zp_ajax_object.geonames_user
-					},
-					success: function( response ) {
-						// Insert hidden input with Geonames Timezone ID
-						$('<input>').attr({
-							type: 'hidden',
-							id: 'geo_timezone_id',
-							name: 'geo_timezone_id',
-							value:  response.timezoneId
-						}).appendTo( '#zp-timezone-id' );
+				// Grab the birthplace coordinates
 
-						// Grab the birthplace coordinates
-
-						$('<input>').attr({
-							type: 'hidden',
-							id: 'zp_lat_decimal',
-							name: 'zp_lat_decimal',
-							value:  ui.item.latdeci
-						}).appendTo( '#zp-timezone-id' );
+				$('<input>').attr({
+						type: 'hidden',
+						id: 'zp_lat_decimal',
+						name: 'zp_lat_decimal',
+						value: ui.item.latdeci
+				}).appendTo( '#zp-timezone-id' );
 						
-						$('<input>').attr({
-							type: 'hidden',
-							id: 'zp_long_decimal',
-							name: 'zp_long_decimal',
-							value:  ui.item.lngdeci
-						}).appendTo( '#zp-timezone-id' );
+				$('<input>').attr({
+						type: 'hidden',
+						id: 'zp_long_decimal',
+						name: 'zp_long_decimal',
+						value: ui.item.lngdeci
+				}).appendTo( '#zp-timezone-id' );
 
-						// Reset the Offset section in case of changing city.
-						$( '#zp-offset-wrap' ).hide();
-						$( '#zp-fetch-birthreport' ).hide();
-						$( '#zp-form-tip' ).hide();
-						$( '#zp-fetch-offset' ).show();
-						$( '#zp-ajax-loader' ).css({ 'visibility': 'hidden' });
+				// Reset the Offset section in case of changing city.
+				$( '#zp-offset-wrap' ).hide();
+				$( '#zp-fetch-birthreport' ).hide();
+				$( '#zp-form-tip' ).hide();
+				$( '#zp-fetch-offset' ).show();
+				$( '#zp-ajax-loader' ).css({ 'visibility': 'hidden' });
 
-						// Enable the button
-						$( "#zp-fetch-offset" ).prop( 'disabled', false );
-						
-					}
-				});
+				// Enable the Next button
+				$( "#zp-fetch-offset" ).prop( 'disabled', false );
 			}
 		});
 	

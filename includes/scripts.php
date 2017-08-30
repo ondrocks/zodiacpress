@@ -55,9 +55,7 @@ function zp_get_script_localization_data() {
 	$data = array(
 			'ajaxurl'				=> admin_url( 'admin-ajax.php' ),
 			'autocomplete_ajaxurl'	=> apply_filters( 'zp_autocomplete_ajaxurl', admin_url( 'admin-ajax.php' ) ),
-			'timezone_ajaxurl'		=> apply_filters( 'zp_timezone_ajaxurl', admin_url( 'admin-ajax.php' ) ),
 			'autocomplete_action'	=> apply_filters( 'zp_ajax_geonames_action', 'zp_get_cities_list' ),
-			'timezone_id_action'	=> apply_filters( 'zp_ajax_geonames_action', 'zp_get_timezone_id' ),
 			'dataType'				=> apply_filters( 'zp_ajax_datatype', 'json' ),
 			'type'					=> apply_filters( 'zp_ajax_type', 'POST' ),			
 			'utc'					=> __( 'UTC time offset:', 'zodiacpress' ),
