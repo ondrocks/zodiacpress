@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return mixed|array|string Array of form values if all is valid, otherwise the error string
  */
 function zp_validate_form( $data, $partial = false ) {
-
 	$out			= $data;
 	$month			= ( isset( $data['month'] ) && is_numeric( trim( $data['month'] ) ) ) ? $data['month'] : '';
 	$day			= ( isset( $data['day'] ) && is_numeric( trim( $data['day'] ) ) ) ? trim( $data['day'] ) : '';

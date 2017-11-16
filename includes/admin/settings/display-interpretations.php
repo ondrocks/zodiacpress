@@ -23,7 +23,7 @@ function zp_interpretations_page() {
 	$interps_tabs = empty($interps_tabs) ? array() : $interps_tabs;
 	$active_tab    = isset( $_GET['tab'] ) && array_key_exists( $_GET['tab'], $interps_tabs ) ? sanitize_text_field( $_GET['tab'] ) : 'natal_planets_in_signs';
 	$sections      = zp_get_interps_tab_sections( $active_tab );
-	
+
 	// Get 'main' section which varies depending on which planets are enabled in settings.
 	if ( $sections ) {
 		reset( $sections );

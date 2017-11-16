@@ -62,7 +62,6 @@ function zp_get_tools_tabs() {
  * @return string       URL that triggers the tool function
  */
 function zp_tool_link( $tool ) {
-
 	$args['zp_cleanup_tool']	= $tool;
 	$args['_nonce']				= wp_create_nonce( 'zp_cleanup_tool' );
 
