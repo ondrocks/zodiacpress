@@ -3,7 +3,7 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 4.9-alpha-41322
+Tested up to: 4.9
 Requires PHP: 5.4
 Stable tag: 1.5.4
 License: GNU GPLv2
@@ -23,6 +23,8 @@ The birth report includes three parts:
 2. Planets and Points in The Houses
 3. Aspects
 
+**Birth Report Details**
+
 You can choose which planets and aspects to include in the birth report.
 
 You can choose to add a chart wheel drawing to the report.
@@ -37,23 +39,23 @@ You have the option to allow people with unknown birth times to generate basic n
 
 The Planets in Houses section of the report will tell you if you have a planet in one house, but conjunct the next house (within 1.5 degrees orb; orb can be modified with a filter).
 
+You get granular control over aspect orbs. It lets you assign different orbs for each planet and each type of aspect.
+
+If birth time is unknown, ZP checks for ingress on that day rather than simply using the planet's noon position. If an ingress occurs at any time on that day, it lets the person know that the planet changed signs on that day, and from which sign to which it changed.
+
 **Interpretations Are Optional**
 
 Entering your interpretations is not required since you can generate reports without interpretations text. See the [screenshots](https://wordpress.org/plugins/zodiacpress/screenshots/) to see how a basic report **without** interpretations text looks.
 
-**EU GDPR Compliance**
+**Privacy Policy and EU GDPR Compliance**
 
 ZodiacPress complies with the EU General Data Protection Regulation (GDPR). ZodiacPress does not store the data that is entered into the form. Once a user submits the form with their birth information, that data is used instantaneously to generate a report, and then the data is lost. It is not saved with cookies or to any database. **So, you can confidently add a notice somewhere on your page (whether under the form, or on the footer of your site) to inform your users that the Birth Report form is not storing their data.**
 
 **Technical Details**
 
-You get granular control over aspect orbs. It lets you assign different orbs for each planet and each type of aspect.
+ZodiacPress gets birth place latitude/longitude coordinates from the GeoNames geographical database (via its webservices) which uses the latest revision of World Geodetic System (WGS 84). This is why a GeoNames account is necessary.
 
-If birth time is unknown, ZP checks for ingress on that day rather than simply using the planet's noon position. If an ingress occurs at any time on the that day, it lets the person know that the planet changed signs on that day, and from which sign to which it changed.
-
-ZodiacPress gets birth place latitude/longitude coordinates from the GeoNames geographical database which uses the latest revision of World Geodetic System (WGS 84). 
-
-ZP uses the Swiss Ephemeris (under GNU GPLv2) to get the longitude of the planets/celestial bodies.
+ZP uses the Swiss Ephemeris (under GNU GPLv2) to get the longitude of the planets/celestial bodies. This ephemeris is included inside the plugin.
 
 **Internationalization**
 
@@ -93,6 +95,10 @@ If your website is running on a Windows operating system (i.e. using Windows hos
 = Why is the birth report not working? =
 
 Please do the <a href="https://cosmicplugins.com/docs/pre-support-self-check/">Pre-Support Self-Check</a> to solve common issues. You can also browse these [troubleshooting articles](https://cosmicplugins.com/docs/category/zodiacpress/troubleshooting/ "Troubleshooting ZodiacPress").
+
+= Why must I create a GeoNames account? =
+
+When your visitor enters a birth city into the report form, the plugin will get the latitude/longitude coordinates of that birth city from GeoNames. GeoNames provides this as "web service." GeoNames requires you to have an account on their site in order to use their web service.
 
 = How can I set the house system to be used for the "Planets in Houses" section of the report? =
 
