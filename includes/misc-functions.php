@@ -41,9 +41,7 @@ function zp_ordinal_word( $key = '' ) {
 function zp_is_func_enabled( $function ) {
 	if ( function_exists( $function ) &&
 		// AND NOT in the array of disabled functions
-		! in_array( $function, array_map( 'trim', explode( ', ', ini_get( 'disable_functions' ) ) ) ) &&
-		// AND NOT in safe mode
-		ini_get( 'safe_mode' ) != 1
+		! in_array( $function, array_map( 'trim', explode( ', ', ini_get( 'disable_functions' ) ) ) )
 	) {
 		return true;
 	} else {
