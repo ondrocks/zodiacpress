@@ -180,7 +180,10 @@ form .zp-button:hover, .zp-button:focus{
 	font-weight:bold;
 }
 
-#zp-offset-wrap #zp_offset_geo{padding:0 10px}
+#zp-offset-wrap #zp_offset_geo{
+	padding:0 10px;
+    box-shadow: unset;
+}
 
 /* Report
 -------------------------------------------------------------- */
@@ -213,7 +216,8 @@ form .zp-button:hover, .zp-button:focus{
 	margin:0;
 	padding:0;
 }	
-.zp-report-header td {
+.zp-report-header td,
+.zp-report-header td:first-child {
 	padding: 0 10px;
 	border:0;
 	white-space: nowrap;
