@@ -85,7 +85,7 @@ function zp_ajax_get_birthreport() {
 	}
 	$chart = ZP_Chart::get_instance( $validated );
 	if ( empty( $chart->planets_longitude ) ) {
-		$report = __('The Swiss Ephemeris is not working.', 'zodiacpress' );
+		$report = __( 'Something went wrong.', 'zodiacpress' );
 	} else {
 		$birth_report = new ZP_Birth_Report( $chart, $validated );
 		$report = wp_kses_post( $birth_report->get_report() );

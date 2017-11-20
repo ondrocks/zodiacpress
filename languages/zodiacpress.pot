@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZodiacPress 1.6.alpha.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zodiacpress\n"
-"POT-Creation-Date: 2017-11-20 18:24:43+00:00\n"
+"POT-Creation-Date: 2017-11-20 19:03:44+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -511,7 +511,7 @@ msgid "Please upload a valid ZodiacPress interpretations file"
 msgstr ""
 
 #: includes/ajax-functions.php:88
-msgid "The Swiss Ephemeris is not working."
+msgid "Something went wrong."
 msgstr ""
 
 #: includes/ajax-functions.php:93
