@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 4.9
 Requires PHP: 5.4
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,12 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.5.5 =
+* Tweak - Udpated the .pot language file.
+* Tweak - Updated the error messages.
+* API - Updated the plugin updater class.
+* API - Remove safe_mode checks so as not to set off false positives for PHP7 compatibility checks.
 
 = 1.5.4 =
 * New - Improved error checking on the form. If there is an error while filling out the form, the user will get an error message with a description of the error. Technical: It now checks for GeoNames exceptions in the ajax response from the GeoNames webservice.
