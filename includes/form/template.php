@@ -59,7 +59,7 @@ function zp_year_select_options() {
 	?>
 	<option value=""><?php _e('Year', 'zodiacpress'); ?></option>
 	<?php 
-	$accepted_yrs = range( 1900, 2018);
+	$accepted_yrs = range( 1900, 2019);
 	$labels = zp_i18n_years();
 	$years = array_combine( $accepted_yrs, $labels );
 	arsort( $years );
