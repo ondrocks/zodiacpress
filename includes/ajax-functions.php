@@ -90,8 +90,8 @@ function zp_ajax_get_birthreport() {
 		$birth_report = new ZP_Birth_Report( $chart, $validated );
 		$report = wp_kses_post( $birth_report->get_report() );
 	}
-	$out = ( $report ) ? $report : __( 'Something went wrong. Please try again.', 'zodiacpress' );
-	echo json_encode( array( 'report' => $out ) );
+
+	echo json_encode( array( 'report' => $report ) );
 	wp_die();
 }
 add_action( 'wp_ajax_zp_birthreport', 'zp_ajax_get_birthreport' );
