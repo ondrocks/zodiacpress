@@ -65,3 +65,15 @@ function zp_get_script_localization_data() {
 
 	return $data;
 }
+
+/**
+ * Load block editor script
+ */
+function zp_enqueue_block_editor_assets() {
+	wp_enqueue_script(
+		'zp-birthreport-block',
+		ZODIACPRESS_URL . 'assets/js/block.js',
+		array( 'wp-blocks', 'wp-element' )
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'zp_enqueue_block_editor_assets' );
