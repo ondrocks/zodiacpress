@@ -112,4 +112,3 @@ function zp_ajax_get_customizer_image() {
 	wp_die();
 }
 add_action( 'wp_ajax_zp_customize_preview_image', 'zp_ajax_get_customizer_image' );
-add_action( 'wp_ajax_nopriv_zp_customize_preview_image', 'zp_ajax_get_customizer_image' );
