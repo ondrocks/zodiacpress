@@ -112,3 +112,35 @@ function zp_ajax_get_customizer_image() {
 	wp_die();
 }
 add_action( 'wp_ajax_zp_customize_preview_image', 'zp_ajax_get_customizer_image' );
+
+/****************************************************
+* @todo
+* @test 
+****************************************************/
+function zp_ajax_get_block_editor_form() {
+
+	/****************************************************
+	* @todo validate incoming data, if i need sidereal and house sys var here.
+	* 
+
+	****************************************************/
+    
+    isa_log('isa @test 333');// @todo remove.
+
+    /****************************************************
+    * @todo
+    * sidereal and house system attributes must be gotten from the sidebar. @todo update below.
+    @todo actually, not here but in the PHP server-side rendering is where those atts are needed.
+
+    ****************************************************/
+
+	$out = zp_render_block_birthreport( array(
+		'sidereal'		=> false,
+		'house_system'	=> false
+	) );
+
+    echo json_encode( array( 'form' => $out ) );
+
+    wp_die();
+}
+add_action( 'wp_ajax_zp_get_block_form', 'zp_ajax_get_block_editor_form' );
