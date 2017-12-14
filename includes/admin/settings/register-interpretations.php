@@ -160,6 +160,7 @@ function zp_get_enabled_interps() {
 			foreach ( zp_get_zodiac_signs() as $sign ) {
 
 				$key 	= $planet['id'] . '_' . $sign['id'];
+				/* translators: 1: Planet 2: Zodiac sign */
 				$name 	= sprintf( __( '%1$s in %2$s', 'zodiacpress' ),
 						$planet['label'],
 						$sign['label']
@@ -188,6 +189,7 @@ function zp_get_enabled_interps() {
 			for ( $i = 1; $i < 13; $i++ ) {
 
 				$key 	= $planet['id'] . '_' . $i;
+				/* translators: 1: Planet 2: Order number */
 				$name 	= sprintf( __( '%1$s in The %2$s House', 'zodiacpress' ),
 							$planet['label'],
 							$order[ $i ]

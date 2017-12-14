@@ -96,13 +96,13 @@ class ZP_Birth_Report {
 
 			// append 12-hour formatted time
 			$time .= ' (' . date( 'g:i a', strtotime( $time ) ) . ')';
-
+			/* translators: 1: Time 2: Timezone offset in hours */
 			$birth_time = sprintf( __( '%1$s <span class="zp-mobile-wrap">(time zone = UTC %2$s)</span>', 'zodiacpress' ),
 				$time,
 				$tz
 			);
 		}
-
+		/* translators: 1: Birth date 2: Birth time */
 		$birth_data = sprintf( __( '%1$s at %2$s', 'zodiacpress' ),
 			$birth_date,
 			$birth_time
@@ -373,6 +373,7 @@ class ZP_Birth_Report {
 
 		$next_num	= ( 12 == $house_num ) ? '1' : ( $house_num + 1 );
 		$next_id 	= $planet['id'] . '_' . $next_num;
+		/* translators: 1: Planet 2: Number order */
 		$next_label	= sprintf( __( '%1$s in %2$s House', 'zodiacpress' ),
 					$planet['label'],
 					zp_ordinal_word( $next_num )
