@@ -79,6 +79,7 @@ add_action( 'wp_ajax_nopriv_zp_tz_offset', 'zp_ajax_get_time_offset' );
  */
 function zp_ajax_get_birthreport() {
 	$validated = zp_validate_form( $_POST );
+	$image = '';
 	if ( ! is_array( $validated )  ) {
 		echo json_encode( array( 'error' => $validated ) );
 		wp_die();
@@ -89,9 +90,15 @@ function zp_ajax_get_birthreport() {
 	} else {
 		$birth_report = new ZP_Birth_Report( $chart, $validated );
 		$report = wp_kses_post( $birth_report->get_report() );
+		// get image seperately because wp_kses_post does not allow data uri
+		$image = zp_maybe_get_chart_drawing( $validated, $chart );
 	}
 
-	echo json_encode( array( 'report' => $report ) );
+	echo json_encode( array(
+		'report' => $report,
+		'image' => $image
+	) );
+
 	wp_die();
 }
 add_action( 'wp_ajax_zp_birthreport', 'zp_ajax_get_birthreport' );
@@ -107,7 +114,7 @@ function zp_ajax_get_customizer_image() {
 		$colors[ $k ] = sanitize_hex_color( $color );
 	}
 
-	$image = wp_kses_post( zp_get_sample_chart_drawing( $colors ) );
+	$image = zp_get_sample_chart_drawing( $colors );
 	echo json_encode( array( 'image' => $image ) );
 	wp_die();
 }

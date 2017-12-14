@@ -52,6 +52,8 @@ function zp_get_script_localization_data() {
 
 	$geonames_username = empty( $zodiacpress_options[ 'geonames_user' ] ) ? 'demo' : trim( $zodiacpress_options[ 'geonames_user' ] );
 
+	$draw = isset( $zodiacpress_options['add_drawing_to_birthreport'] ) ? $zodiacpress_options['add_drawing_to_birthreport'] : '';
+
 	$data = array(
 			'ajaxurl'				=> admin_url( 'admin-ajax.php' ),
 			'autocomplete_ajaxurl'	=> apply_filters( 'zp_autocomplete_ajaxurl', admin_url( 'admin-ajax.php' ) ),
@@ -60,7 +62,8 @@ function zp_get_script_localization_data() {
 			'type'					=> apply_filters( 'zp_ajax_type', 'POST' ),			
 			'utc'					=> __( 'UTC time offset:', 'zodiacpress' ),
 			'lang'					=> $city_list_lang,
-			'geonames_user'			=> $geonames_username
+			'geonames_user'			=> $geonames_username,
+			'draw'					=> $draw
 		);
 
 	return $data;

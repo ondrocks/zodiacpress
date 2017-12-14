@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Returns the chart drawing image element
  */
-function zp_get_chart_drawing( $default, $arg, $chart, $colors = '' ) {
+function zp_get_chart_drawing( $chart, $colors = '' ) {
 	global $zodiacpress_options;
 	$i18n = array(
 		'hypothetical'	=> __( 'Hypothetical Time:', 'zodiacpress' ),
@@ -27,7 +27,6 @@ function zp_get_chart_drawing( $default, $arg, $chart, $colors = '' ) {
 	}
 	
 	// Get all orbs settings...
-	
 	$orb_settings = array();
 	foreach ( $zodiacpress_options as $k => $v ) {
 		// No need to pass conjunction orbs
@@ -47,23 +46,35 @@ function zp_get_chart_drawing( $default, $arg, $chart, $colors = '' ) {
 	$o =  rawurlencode( serialize( $orb_settings ) );
 	$u = urlencode( serialize( $chart->unknown_time ) );
 
-	$src = ZODIACPRESS_URL . 'image.php?zpl=' . $l . '&zps=' . $s . '&zpc=' . $c . '&zpi=' . $i . '&zpo=' . $o . '&zpcustom=' . $custom . '&zpu=' . $u;
-	$out = '<img src="' . esc_url( $src ) . '" class="zp-chart-drawing" alt="chart drawing" />';
+	$url = ZODIACPRESS_URL . 'image.php?zpl=' . $l . '&zps=' . $s . '&zpc=' . $c . '&zpi=' . $i . '&zpo=' . $o . '&zpcustom=' . $custom . '&zpu=' . $u;
+	
+	$request = wp_remote_post( $url );
+	if ( is_wp_error( $request ) ) {
+		return false;
+	}
+
+	// See http://ottopress.com/2011/a-good-use-for-base-64-encoding-data-uris/
+	$image_data = base64_encode( wp_remote_retrieve_body( $request ) );
+	$out = '<img src="data:image/png;base64,' . esc_attr( $image_data ) . '" class="zp-chart-drawing" alt="chart drawing" />';
 
 	return $out;
 }
 
 /**
- * Insert chart drawing in the Birth Report, if enabled.
+ * Get the chart drawing only for the Birth Report, if enabled.
+ * @param array $form The validated form data.
+ * @param object $chart The chart object.
+ * @return string The html for the chart image or empty string if not enabled.
+ * @since 1.5.6
  */
-function zp_report_append_drawing( $default, $arg, $chart ) {
-	$report_variation = is_array( $arg ) ? $arg['zp-report-variation'] : $arg;
+function zp_maybe_get_chart_drawing( $form, $chart ) {
+	$image = '';
 
-	if ( 'birthreport' == $report_variation )  {
-		$default .= zp_get_chart_drawing( $default, $arg, $chart );
+	if ( 'birthreport' == $form['zp-report-variation'] )  {
+		$image = zp_get_chart_drawing( $chart );
 	}
 
-	return $default;
+	return $image;
 }
 
 /**
@@ -90,20 +101,5 @@ function zp_get_sample_chart_drawing( $colors = false ) {
 		'house_system'			=> false,
 		'sidereal'				=> false
 	) );
-	return zp_get_chart_drawing( '', '', $chart, $colors );
+	return zp_get_chart_drawing( $chart, $colors );
 }
-
-/*
- * Hook into the birth report to insert the chart drawing, if enabled.
- */
-function zp_insert_chart_drawing() {
-	$zp_options = get_option( 'zodiacpress_settings' );
-	if ( isset( $zp_options['add_drawing_to_birthreport'] ) ) {
-		if ( 'top' == $zp_options['add_drawing_to_birthreport'] ) {
-			add_filter( 'zp_report_header', 'zp_report_append_drawing', 20, 3 );
-		} elseif ( 'bottom' == $zp_options['add_drawing_to_birthreport'] ) {
-			add_filter( 'zp_report_aspects', 'zp_report_append_drawing', 10, 3 );
-		}
-	}
-}
-add_action( 'plugins_loaded', 'zp_insert_chart_drawing' );

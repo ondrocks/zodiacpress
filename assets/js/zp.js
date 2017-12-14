@@ -169,6 +169,30 @@
 							$( '#zp-report-wrap' ).show();
 							$( '#zp-report-content' ).append(reportData.report);
 							$( '#zp-form-wrap' ).hide();
+
+							// Insert the chart image.
+							switch ( zp_ajax_object.draw ) {
+								case 'top':
+
+									// Show image at top
+
+									if ( $( '.zp-report-header' ).length ) {
+										$( '.zp-report-header' ).after( reportData.image );
+									} else {
+										$( '#zp-report-content' ).prepend( reportData.image );
+									}
+
+								break;
+								case 'bottom':
+
+									// show image at end of report
+
+									$( '#zp-report-content' ).append( reportData.image );
+
+								break;
+
+							}
+
 							// Scroll to top of report
 							var distance = $('#zp-report-wrap').offset().top - 70;
 							$( 'html,body' ).animate({

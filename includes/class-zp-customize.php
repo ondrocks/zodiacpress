@@ -126,7 +126,7 @@ class ZP_Customize {
 	 * The shortcode to display a live preview of the chart drawing image in the customizer when it is first opened
 	 */
 	public static function preview_shortcode( $atts ) {
-		return wp_kses_post( zp_get_sample_chart_drawing() );
+		return zp_get_sample_chart_drawing();
 	}
 
 }
