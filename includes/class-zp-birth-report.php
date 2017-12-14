@@ -350,7 +350,7 @@ class ZP_Birth_Report {
 
 				$planets_in_signs[] = array(
 							'id'			=> $planet['id'] . '_' . $signs[ $sign_num ]['id'],
-							'label'			=> $planet['label'] . ' in ' . $signs[ $sign_num ]['label'],
+							'label'			=> sprintf( __( '%1$s in %2$s', 'zodiacpress' ), $planet['label'], $signs[ $sign_num ]['label'] ),
 							'zodiacal_dms'	=> zp_get_zodiac_sign_dms( $this->chart->planets_longitude[ $k ] ) . $retrograde,
 							'ingress_0'		=> isset( $ingress[0] ) ? $signs[ $ingress[0] ]['label'] : '',
 							'ingress_1'		=> isset( $ingress[1] ) ? $signs[ $ingress[1] ]['label'] : '',
