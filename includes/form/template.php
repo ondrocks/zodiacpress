@@ -190,10 +190,10 @@ function zp_form( $report, $args = array() ) {
 					if ( $allow_unknown_bt ) { ?>
 						<p class="zp-unknown-time-field zp-small">
 							<label for="unknown_time" class="screen-reader-text"><?php _e( 'Unknown Birth Time', 'zodiacpress' ); ?></label>
-							<input type="checkbox" id="unknown_time" name="unknown_time" /> <?php echo apply_filters( 'zp_unknown_birth_time_checkbox', 'If birth time is unknown, check this box.', 'zodiacpress' ); ?><strong>*</strong></p>
+							<input type="checkbox" id="unknown_time" name="unknown_time" /> <?php echo apply_filters( 'zp_unknown_birth_time_checkbox', __( 'If birth time is unknown, check this box.', 'zodiacpress' ) ); ?><strong>*</strong></p>
 					<?php } 			
 				
-				} else { 
+				} else {
 
 					echo apply_filters( 'zp_birth_time_required',
 						'<p class="zp-unknown-time-field zp-small">* ' .
