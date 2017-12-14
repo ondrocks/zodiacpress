@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 4.9
+Tested up to: 5.0-alpha-42392
 Requires PHP: 5.4
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,14 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.5.6 =
+* Fix - The chart image was not appearing on some browsers, mainly Safari (iPhone, iPad). This is now fixed by using a base64-encoded data uri instead of the image file.
+* Tweak - move the Next/Submit button up just a bit for a better UX.
+* Tweak - Load form template on backend also to prep for Gutenberg blocks.
+* Tweak - Added the plugin version to the script url for the purpose of cache-busting.
+* Tweak - Updated the birth year field to accept, the latest, 2019. 
+* Optimize - Remove unused wp_ajax_nopriv_zp_customize_preview_image action since only logged-in users will be in the customizer.
+
 = 1.5.5 =
 * Tweak - Udpated the .pot language file.
 * Tweak - Updated the error messages.
@@ -194,6 +202,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+= 1.5.6 =
+Fixed the chart image. It was not appearing on some browsers, mainly Safari (iPhone, iPad).
+
 = 1.5.4 =
 Improved error checking on form. Improvement for high-traffic sites: form can handle twice as many submissions per day.
 
