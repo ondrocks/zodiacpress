@@ -120,7 +120,7 @@ form .zp-button:hover, .zp-button:focus{
 	background-color: #333366;
 }
 #zp-fetch-offset, #zp-fetch-birthreport {
-	margin: 24px 0 36px;
+	margin: 3px 0 36px;
 	width: 100%;
 	cursor: pointer;
 }
@@ -138,7 +138,7 @@ form .zp-button:hover, .zp-button:focus{
 /* Ajax
 -------------------------------------------------------------- */
 #zp-ajax-loader {
-	margin: 1em auto 2em;
+	margin: 1em auto;
 	display: block;
 	border:none;
 	visibility: hidden;
