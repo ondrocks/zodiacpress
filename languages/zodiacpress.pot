@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the ZodiacPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZodiacPress 1.6.alpha.1\n"
+"Project-Id-Version: ZodiacPress 1.5.7.alpha12140140\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zodiacpress\n"
-"POT-Creation-Date: 2017-11-20 19:03:44+00:00\n"
+"POT-Creation-Date: 2017-12-14 08:14:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,7 +91,7 @@ msgstr ""
 msgid "Feedback"
 msgstr ""
 
-#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 1.6.alpha.1)  #-#-#-#-#
+#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 1.5.7.alpha12140140)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: includes/admin/admin-pages.php:17
 #: includes/admin/settings/display-interpretations.php:40
@@ -130,27 +130,30 @@ msgstr ""
 msgid "Natal Interpretations"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:163
+#. translators: 1: Planet 2: Zodiac sign
+#: includes/admin/settings/register-interpretations.php:164
+#: includes/class-zp-birth-report.php:353
 msgid "%1$s in %2$s"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:191
+#. translators: 1: Planet 2: Order number
+#: includes/admin/settings/register-interpretations.php:193
 msgid "%1$s in The %2$s House"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:282
+#: includes/admin/settings/register-interpretations.php:284
 msgid "Interpretations updated."
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:295
+#: includes/admin/settings/register-interpretations.php:297
 msgid "In Signs"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:296
+#: includes/admin/settings/register-interpretations.php:298
 msgid "In Houses"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:297
+#: includes/admin/settings/register-interpretations.php:299
 #: includes/admin/settings/register-settings.php:348
 #: includes/class-zp-birth-report.php:262
 msgid "Aspects"
@@ -510,12 +513,8 @@ msgstr ""
 msgid "Please upload a valid ZodiacPress interpretations file"
 msgstr ""
 
-#: includes/ajax-functions.php:88
+#: includes/ajax-functions.php:89
 msgid "Something went wrong."
-msgstr ""
-
-#: includes/ajax-functions.php:93
-msgid "Something went wrong. Please try again."
 msgstr ""
 
 #: includes/astro-functions.php:27
@@ -741,10 +740,12 @@ msgstr ""
 msgid "unknown birth time"
 msgstr ""
 
+#. translators: 1: Time 2: Timezone offset in hours
 #: includes/class-zp-birth-report.php:100
 msgid "%1$s <span class=\"zp-mobile-wrap\">(time zone = UTC %2$s)</span>"
 msgstr ""
 
+#. translators: 1: Birth date 2: Birth time
 #: includes/class-zp-birth-report.php:106
 msgid "%1$s at %2$s"
 msgstr ""
@@ -794,21 +795,22 @@ msgstr ""
 msgid "Planets and Points in The Houses"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:376
-#: includes/class-zp-birth-report.php:414
+#. translators: 1: Planet 2: Number order
+#: includes/class-zp-birth-report.php:377
+#: includes/class-zp-birth-report.php:415
 msgid "%1$s in %2$s House"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:490
-#: includes/class-zp-birth-report.php:505
+#: includes/class-zp-birth-report.php:491
+#: includes/class-zp-birth-report.php:506
 msgid "orb"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:546
+#: includes/class-zp-birth-report.php:547
 msgid "Introduction"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:557
+#: includes/class-zp-birth-report.php:558
 msgid "Closing"
 msgstr ""
 
@@ -991,6 +993,10 @@ msgstr ""
 msgid "Unknown Birth Time"
 msgstr ""
 
+#: includes/form/template.php:193
+msgid "If birth time is unknown, check this box."
+msgstr ""
+
 #: includes/form/template.php:200
 msgid "Birth time is required for this type of report."
 msgstr ""
@@ -1115,7 +1121,7 @@ msgstr ""
 msgid "Once Weekly"
 msgstr ""
 
-#: includes/scripts.php:61
+#: includes/scripts.php:63
 msgid "UTC time offset:"
 msgstr ""
 
@@ -1669,6 +1675,10 @@ msgstr ""
 
 #: includes/time-functions.php:143
 msgid "2018"
+msgstr ""
+
+#: includes/time-functions.php:143
+msgid "2019"
 msgstr ""
 
 #: includes/time-functions.php:157
