@@ -65,7 +65,6 @@ add_action( 'admin_init', 'zp_register_settings' );
  * @return array
 */
 function zp_get_registered_settings() {
-
 	/**
 	 * 'Whitelisted' ZP settings, filters are provided for each settings
 	 * section to allow extensions to add their own settings
@@ -125,15 +124,9 @@ function zp_get_registered_settings() {
 				'report'	=> array(
 					'report_settings' => array(
 						'id'	=> 'report_settings',
-						'name'	=> '<h3>' . __( 'Report Settings', 'zodiacpress' ) . '</h3>',
+						'name'	=> '<h3>' . __( 'Display Settings', 'zodiacpress' ) . '</h3>',
 						'desc'	=> '',
 						'type'	=> 'header',
-					),
-					'birthreport_allow_unknown_bt' => array(
-						'id'	=> 'birthreport_allow_unknown_bt',
-						'name'	=> __( 'Allow Unknown Birth Time', 'zodiacpress' ),
-						'type'	=> 'checkbox',
-						'desc'	=> __( 'Allow people with unknown birth times to generate a birth report. If enabled, this will allow them to generate a basic report, excluding items that require a birth time (i.e. excluding Houses, Moon, Ascendant, Midheaven, Vertex, and Part of Fortune).', 'zodiacpress' )
 					),
 					'add_drawing_to_birthreport' => array(
 								'id'	=> 'add_drawing_to_birthreport',
@@ -159,7 +152,23 @@ function zp_get_registered_settings() {
 						'type'	=> 'textarea',
 						'desc'	=> __( 'Optional "Closing" text for the Birth Report. This will appear at the end of the report.', 'zodiacpress' )
 					),
+				),
+
+				'technical'	=> array(
+					'tech_settings' => array(
+						'id'	=> 'tech_settings',
+						'name'	=> '<h3>' . __( 'Technical Settings', 'zodiacpress' ) . '</h3>',
+						'desc'	=> '',
+						'type'	=> 'header',
+					),
+					'birthreport_allow_unknown_bt' => array(
+						'id'	=> 'birthreport_allow_unknown_bt',
+						'name'	=> __( 'Allow Unknown Birth Time', 'zodiacpress' ),
+						'type'	=> 'checkbox',
+						'desc'	=> __( 'Allow people with unknown birth times to generate a birth report. If enabled, this will allow them to generate a basic report, excluding items that require a birth time (i.e. excluding Houses, Moon, Ascendant, Midheaven, Vertex, and Part of Fortune).', 'zodiacpress' )
+					),
 				)
+
 			)
 		),
 		'misc' => apply_filters( 'zp_settings_misc',
@@ -283,7 +292,6 @@ add_filter( 'zp_settings_sanitize_text', 'zp_sanitize_text_field', 10, 2 );
  * @return array Sanitizied value
  */
 function zp_sanitize_multicheck_field( $input, $key ) {
-
 	foreach ( $input as $k => $v ) {
 		$out[] = array( 'id' => $k, 'label' => $v );
 	}
@@ -298,7 +306,6 @@ add_filter( 'zp_settings_sanitize_multicheck', 'zp_sanitize_multicheck_field', 1
  * @return array $tabs
  */
 function zp_get_settings_tabs() {
-
 	$settings = zp_get_registered_settings();
 
 	$tabs 			= array();
@@ -318,7 +325,6 @@ function zp_get_settings_tabs() {
  * @return array $section
  */
 function zp_get_settings_tab_sections( $tab = false ) {
-
 	$tabs     = false;
 	$sections = zp_get_registered_settings_sections();
 
@@ -336,7 +342,6 @@ function zp_get_settings_tab_sections( $tab = false ) {
  * @return array Array of tabs and sections
  */
 function zp_get_registered_settings_sections() {
-
 	static $sections = false;
 
 	if ( false !== $sections ) {
@@ -347,7 +352,8 @@ function zp_get_registered_settings_sections() {
 			'main'		=> __( 'Planets and Points', 'zodiacpress' ),
 			'aspects'	=> __( 'Aspects', 'zodiacpress' ),
 			'orbs'		=> __( 'Orbs', 'zodiacpress' ),
-			'report'	=> __( 'Report', 'zodiacpress' )
+			'report'	=> __( 'Display', 'zodiacpress' ),
+			'technical'	=> __( 'Technical', 'zodiacpress' )
 		) ),
 		'licenses'	=> apply_filters( 'zp_settings_sections_licenses', array() ),
 		'misc'		=> apply_filters( 'zp_settings_sections_misc', array(
@@ -381,7 +387,6 @@ function zp_header_callback( $args ) {
  * @return void
  */
 function zp_checkbox_callback( $args ) {
-
 	$options = get_option( 'zodiacpress_settings' );
 	$checked = isset( $options[ $args['id'] ] ) ? checked( 1, $options[ $args['id'] ], false ) : '';
 	$html = '<input type="checkbox" id="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" value="1" ' . $checked . '/>';
