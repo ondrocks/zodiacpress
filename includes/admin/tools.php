@@ -50,8 +50,8 @@ function zp_tools_page() {
  */
 function zp_get_tools_tabs() {
 	$tabs 					= array();
-	$tabs['cleanup']		= __( 'Cleanup', 'zodiacpress' );
-	$tabs['sysinfo']		= __( 'System Info', 'zodiacpress' );
+	$tabs['cleanup']		= __( 'Clean up', 'zodiacpress' );
+	$tabs['sysinfo']		= __( 'System info', 'zodiacpress' );
 	$tabs['import_export']	= __( 'Export/Import', 'zodiacpress' );
 	return apply_filters( 'zp_tools_tabs', $tabs );
 }
@@ -96,15 +96,10 @@ function zp_get_cleanup_tools() {
  */
 function zp_tools_cleanup_display() {
 	?>
+	<h2><?php _e( 'Erase Interpretations', 'zodiacpress' ); ?></h2>
 	<p><?php _e( 'Use these tools to <strong>permanently delete</strong> your Interpretations text. Be aware that clicking these buttons will <strong>permanently erase</strong> your Interpretations.', 'zodiacpress' ); ?></p>
 	<table class="widefat zp-tools-table" id="zp-tools-cleanup">
-		<thead>
-			<tr>
-				<th data-override="key" class="row-title"><?php _e( 'Cleanup Interpretations', 'zodiacpress' ); ?></th>
-				<th data-override="value"></th>
-			</tr>
-		</thead>
-		<tbody>
+
 
 			<?php foreach( zp_get_cleanup_tools() as $id => $tool ) { ?>
 				<tr>
@@ -114,7 +109,7 @@ function zp_tools_cleanup_display() {
 				</tr>
 			<?php }
 			do_action( 'zp_system_tools_cleanup_table' ); ?>
-		</tbody>
+
 	</table>
 	<?php
 }
