@@ -96,10 +96,11 @@ function zp_get_cleanup_tools() {
  */
 function zp_tools_cleanup_display() {
 	?>
-	<h2><?php _e( 'Erase Interpretations', 'zodiacpress' ); ?></h2>
-	<p><?php _e( 'Use these tools to <strong>permanently delete</strong> your Interpretations text. Be aware that clicking these buttons will <strong>permanently erase</strong> your Interpretations.', 'zodiacpress' ); ?></p>
-	<table class="widefat zp-tools-table" id="zp-tools-cleanup">
-
+	<div class="stuffbox">
+		<div class="inside">
+		<h2><?php _e( 'Erase Interpretations', 'zodiacpress' ); ?></h2>
+		<p><?php _e( 'Use these tools to <strong>permanently delete</strong> your Interpretations text. Be aware that clicking these buttons will <strong>permanently erase</strong> your Interpretations.', 'zodiacpress' ); ?></p>
+		<table class="widefat zp-tools-table" id="zp-tools-cleanup">
 
 			<?php foreach( zp_get_cleanup_tools() as $id => $tool ) { ?>
 				<tr>
@@ -110,7 +111,9 @@ function zp_tools_cleanup_display() {
 			<?php }
 			do_action( 'zp_system_tools_cleanup_table' ); ?>
 
-	</table>
+		</table>
+		</div>
+	</div>
 	<?php
 }
 add_action( 'zp_tools_tab_cleanup', 'zp_tools_cleanup_display' );
@@ -185,8 +188,8 @@ add_action( 'zp_tools_tab_sysinfo', 'zp_tools_sysinfo_display' );
 function zp_tools_import_export_display() {
 	?>
 	<div class="stuffbox">
-		<h3><span><?php _e( 'Export Interpretations', 'zodiacpress' ); ?></span></h3>
 		<div class="inside">
+			<h2><?php _e( 'Export Interpretations', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Export your ZodiacPress interpretations for this site as a .json file. This allows you to easily import your interpretations into another site.', 'zodiacpress' ); ?></p>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>">
 				<p>
@@ -199,8 +202,8 @@ function zp_tools_import_export_display() {
 	</div>
 
 	<div class="stuffbox">
-		<h3><span><?php _e( 'Import Interpretations', 'zodiacpress' ); ?></span></h3>
 		<div class="inside">
+			<h2><?php _e( 'Import Interpretations', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Import your ZodiacPress interpretations from a .json file. This file can be obtained by exporting the interpretations on another site using the button above.', 'zodiacpress' ); ?></p>
 			<p><?php _e( 'NOTE: IMPORTED INTERPRETATIONS WILL COMPLETELY OVERRIDE ANY CURRENT EXISTING INTERPRETATIONS ON THIS SITE. ANY EXISTING INTERPRETATIONS ON THIS SITE WILL BE DELETED.', 'zodiacpress' ); ?></p>
 			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>">
@@ -217,8 +220,8 @@ function zp_tools_import_export_display() {
 	</div>
 
 	<div class="stuffbox">
-		<h3><span><?php _e( 'Export Settings', 'zodiacpress' ); ?></span></h3>
 		<div class="inside">
+			<h2><?php _e( 'Export Settings', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Export the ZodiacPress settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'zodiacpress' ); ?></p>
 			<form action="<?php  echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>" method="post">
 				<p>
@@ -231,8 +234,8 @@ function zp_tools_import_export_display() {
 	</div>
 
 	<div class="stuffbox">
-		<h3><span><?php _e( 'Import Settings', 'zodiacpress' ); ?></span></h3>
 		<div class="inside">
+			<h2><?php _e( 'Import Settings', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Import the ZodiacPress settings from a .json file. This file can be obtained by exporting the settings on another site using the button above.', 'zodiacpress' ); ?></p>
 			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>">
 				<p>
