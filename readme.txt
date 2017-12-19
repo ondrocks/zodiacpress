@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.0-alpha-42392
+Tested up to: 5.0-alpha-42407
 Requires PHP: 5.4
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,6 +60,10 @@ ZP uses the Swiss Ephemeris (under GNU GPLv2) to get the longitude of the planet
 **Internationalization**
 
 Much effort has been made to internationalize even the digits (numbers, years, and other integers in the plugin). On the birth report form, the month and day fields will switch places according to your date settings. Suggestions regarding i18n are welcome.
+
+**Languages**
+
+If you want to translate this plugin to your language, you can do so [on this page](https://translate.wordpress.org/projects/wp-plugins/zodiacpress). After you submit a translation, contact me in the support forum to request approval as a Translation Editor.
 
 **Important Note For Sites That Use Windows Hosting**
 
@@ -120,6 +124,13 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.5.7 =
+* Fix - Fixed some strings that were not being translated. The `.pot` translation file has been updated. Also added some notes for translators for the more comlplex strings.
+* Accessibility - The report form now meets WCAG 2.0 guidelines at level AA. 
+* Accessibility - Improved accessibility on the ZodicaPress Tools page in the admin by proper usage of heading elements.
+* Tweak - Reorganized the settings sections in the Natal Report settings tab. This is in order to simplify the user experience. In that tab, two new sections have been introduced: Display, and Technical.
+* Tweak - Reorganized the Tools > Cleanup tab.
 
 = 1.5.6 =
 * Fix - The chart image was not appearing on some browsers, mainly Safari (iPhone, iPad). This is now fixed by using a base64-encoded data uri instead of the image file.
@@ -202,6 +213,10 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.5.7 =
+Fixed some strings that were not being translated, updated .pot translation file, and improved accessibility.
+
 = 1.5.6 =
 Fixed the chart image. It was not appearing on some browsers, mainly Safari (iPhone, iPad).
 
