@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the ZodiacPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZodiacPress 1.5.7.alpha12140140\n"
+"Project-Id-Version: ZodiacPress 1.5.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zodiacpress\n"
-"POT-Creation-Date: 2017-12-14 08:14:54+00:00\n"
+"POT-Creation-Date: 2017-12-19 18:40:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,48 +27,48 @@ msgstr ""
 msgid "You do not have permission to install plugin updates"
 msgstr ""
 
-#: includes/EDD_SL_Plugin_Updater.php:385 includes/admin/tools.php:300
-#: includes/admin/tools.php:304 includes/admin/tools.php:309
-#: includes/admin/tools.php:369 includes/admin/tools.php:373
-#: includes/admin/tools.php:378 includes/class-zp-license.php:285
+#: includes/EDD_SL_Plugin_Updater.php:385 includes/admin/tools.php:294
+#: includes/admin/tools.php:298 includes/admin/tools.php:303
+#: includes/admin/tools.php:362 includes/admin/tools.php:366
+#: includes/admin/tools.php:371 includes/class-zp-license.php:285
 msgid "Error"
 msgstr ""
 
-#: includes/admin/admin-functions.php:31
+#: includes/admin/admin-functions.php:28
 msgid "Interpretations for natal planets in signs were erased."
 msgstr ""
 
-#: includes/admin/admin-functions.php:34
+#: includes/admin/admin-functions.php:31
 msgid "Interpretations for natal planets in houses were erased."
 msgstr ""
 
-#: includes/admin/admin-functions.php:37
+#: includes/admin/admin-functions.php:34
 msgid "Interpretations for natal aspects were erased."
 msgstr ""
 
-#: includes/admin/admin-functions.php:40
+#: includes/admin/admin-functions.php:37
 msgid "Your ZodiacPress settings have been imported."
 msgstr ""
 
-#: includes/admin/admin-functions.php:43
+#: includes/admin/admin-functions.php:40
 msgid "Your ZodiacPress interpretations have been imported."
 msgstr ""
 
-#: includes/admin/admin-functions.php:58
+#: includes/admin/admin-functions.php:55
 msgid ""
 "The PHP exec() function is disabled on your server. ZodiacPress requires the "
 "exec() function in order to create astrology reports. Please ask your web "
 "host to enable the PHP exec() function."
 msgstr ""
 
-#: includes/admin/admin-functions.php:66
+#: includes/admin/admin-functions.php:63
 msgid ""
 "Your website server uses Windows hosting. For ZodiacPress to work on your "
 "server, you need the %1$sZP Windows Server%2$s plugin. See <a href=\"%3$s\" "
 "target=\"_blank\" rel=\"nofollow\">this</a> for details."
 msgstr ""
 
-#: includes/admin/admin-functions.php:79
+#: includes/admin/admin-functions.php:76
 msgid ""
 "Your server did not allow ZodiacPress to set the necessary file permissions "
 "for the Ephemeris. ZodiacPress requires this in order to create astrology "
@@ -76,25 +76,25 @@ msgid ""
 "fix it."
 msgstr ""
 
-#: includes/admin/admin-functions.php:90
+#: includes/admin/admin-functions.php:87
 msgid ""
 "You are missing a file from ZodiacPress. This file is required in order to "
 "create astrology reports. <a href=\"%s\" target=\"_blank\" rel=\"nofollow"
 "\">See this</a> for more information."
 msgstr ""
 
-#: includes/admin/admin-functions.php:155
+#: includes/admin/admin-functions.php:152
 msgid "See ZodiacPress Extensions"
 msgstr ""
 
-#: includes/admin/admin-functions.php:164
+#: includes/admin/admin-functions.php:161
 msgid "Feedback"
 msgstr ""
 
-#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 1.5.7.alpha12140140)  #-#-#-#-#
+#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 1.5.7)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: includes/admin/admin-pages.php:17
-#: includes/admin/settings/display-interpretations.php:40
+#: includes/admin/settings/display-interpretations.php:36
 msgid "ZodiacPress"
 msgstr ""
 
@@ -114,100 +114,142 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:62
+#: includes/admin/settings/register-interpretations.php:56
 msgid "Interpretations For Natal %1$s in The Signs"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:66
+#: includes/admin/settings/register-interpretations.php:60
 msgid "Interpretations For Natal %1$s in The Houses"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:70
+#: includes/admin/settings/register-interpretations.php:64
 msgid "Interpretations For Aspects of Natal %1$s"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:74
+#: includes/admin/settings/register-interpretations.php:68
 msgid "Natal Interpretations"
 msgstr ""
 
 #. translators: 1: Planet 2: Zodiac sign
-#: includes/admin/settings/register-interpretations.php:164
+#: includes/admin/settings/register-interpretations.php:156
 #: includes/class-zp-birth-report.php:353
 msgid "%1$s in %2$s"
 msgstr ""
 
 #. translators: 1: Planet 2: Order number
-#: includes/admin/settings/register-interpretations.php:193
+#: includes/admin/settings/register-interpretations.php:185
 msgid "%1$s in The %2$s House"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:284
+#: includes/admin/settings/register-interpretations.php:275
 msgid "Interpretations updated."
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:297
+#: includes/admin/settings/register-interpretations.php:287
 msgid "In Signs"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:298
+#: includes/admin/settings/register-interpretations.php:288
 msgid "In Houses"
 msgstr ""
 
-#: includes/admin/settings/register-interpretations.php:299
-#: includes/admin/settings/register-settings.php:348
+#: includes/admin/settings/register-interpretations.php:289
+#: includes/admin/settings/register-settings.php:353
 #: includes/class-zp-birth-report.php:262
 msgid "Aspects"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:80
+#: includes/admin/settings/register-settings.php:79
 msgid "Planets and Points Settings"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:86
+#: includes/admin/settings/register-settings.php:85
 msgid "Enable Planets (and Points) in Signs"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:87
+#: includes/admin/settings/register-settings.php:86
 msgid "Choose which to show on the \"In The Signs\" section of the report."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:94
+#: includes/admin/settings/register-settings.php:93
 msgid "Enable Planets (and Points) in Houses"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:95
+#: includes/admin/settings/register-settings.php:94
 msgid "Choose which to show on the \"In The Houses\" section of the report."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:104
+#: includes/admin/settings/register-settings.php:103
 msgid "Aspects Settings"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:110
+#: includes/admin/settings/register-settings.php:109
 msgid "Enable Aspects"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:111
+#: includes/admin/settings/register-settings.php:110
 msgid "Choose which aspects to show on the report."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:118
+#: includes/admin/settings/register-settings.php:117
 msgid "Aspects To Planets (and Points)"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:119
+#: includes/admin/settings/register-settings.php:118
 msgid "Choose which planets/points to calculate aspects for."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:128
-msgid "Report Settings"
+#: includes/admin/settings/register-settings.php:127
+msgid "Display Settings"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:134
+#: includes/admin/settings/register-settings.php:133
+msgid "Add Chart Wheel To Natal Report"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:135
+msgid "Would you like to add the chart drawing to the birth report?"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:137
+msgid "do not add"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:138
+msgid "add to bottom of report"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:139
+msgid "add to top of report"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:145
+msgid "Birth Report Intro"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:147
+msgid "Optional \"Introduction\" text for the Birth Report."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:151
+msgid "Birth Report Closing"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:153
+msgid ""
+"Optional \"Closing\" text for the Birth Report. This will appear at the end "
+"of the report."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:160
+msgid "Technical Settings"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:166
 msgid "Allow Unknown Birth Time"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:136
+#: includes/admin/settings/register-settings.php:168
 msgid ""
 "Allow people with unknown birth times to generate a birth report. If "
 "enabled, this will allow them to generate a basic report, excluding items "
@@ -215,211 +257,181 @@ msgid ""
 "Midheaven, Vertex, and Part of Fortune)."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:140
-msgid "Add Chart Wheel To Natal Report"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:142
-msgid "Would you like to add the chart drawing to the birth report?"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:144
-msgid "do not add"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:145
-msgid "add to bottom of report"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:146
-msgid "add to top of report"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:152
-msgid "Birth Report Intro"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:154
-msgid "Optional \"Introduction\" text for the Birth Report."
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:158
-msgid "Birth Report Closing"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:160
-msgid ""
-"Optional \"Closing\" text for the Birth Report. This will appear at the end "
-"of the report."
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:170
-#: includes/admin/settings/register-settings.php:354
+#: includes/admin/settings/register-settings.php:179
+#: includes/admin/settings/register-settings.php:360
 msgid "Misc Settings"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:176
+#: includes/admin/settings/register-settings.php:185
 msgid "GeoNames Username"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:177
+#: includes/admin/settings/register-settings.php:186
 msgid ""
 "Your username from GeoNames.org is needed to get timezone info from their "
 "webservice. (%1$screate free account%2$s)"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:184
+#: includes/admin/settings/register-settings.php:193
 msgid "Remove Data on Uninstall"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:186
+#: includes/admin/settings/register-settings.php:195
 msgid ""
 "Check this box if you would like ZP to completely remove all of its data "
 "(INCLUDING INTERPRETATIONS TEXT) when the plugin is deleted."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:254
+#: includes/admin/settings/register-settings.php:263
 msgid "Settings updated."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:305
+#: includes/admin/settings/register-settings.php:312
 msgid "Natal Report"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:306
+#: includes/admin/settings/register-settings.php:313
 msgid "Misc"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:309
+#: includes/admin/settings/register-settings.php:316
 msgid "Licenses"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:347
+#: includes/admin/settings/register-settings.php:352
 msgid "Planets and Points"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:349
+#: includes/admin/settings/register-settings.php:354
 msgid "Orbs"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:350
-msgid "Report"
+#: includes/admin/settings/register-settings.php:355
+msgid "Display"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:472
+#: includes/admin/settings/register-settings.php:356
+msgid "Technical"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:477
 msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:568
+#: includes/admin/settings/register-settings.php:573
 msgid ""
 "Your license key expired on %1$s. Please <a href=\"%2$s\" target=\"_blank\" "
 "rel=\"nofollow\">renew your license key</a>."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:579
+#: includes/admin/settings/register-settings.php:584
 msgid ""
 "Your license key has been disabled. Please <a href=\"%s\" target=\"_blank\" "
 "rel=\"nofollow\">contact support</a> for more information."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:590
+#: includes/admin/settings/register-settings.php:595
 msgid ""
 "Invalid license. Please <a href=\"%s\" target=\"_blank\" rel=\"nofollow"
 "\">visit your account page</a> and verify it."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:602
+#: includes/admin/settings/register-settings.php:607
 msgid ""
 "Your %1$s is not active for this URL. Please <a href=\"%2$s\" target=\"_blank"
 "\" rel=\"nofollow\">visit your account page</a> to manage your license key "
 "URLs."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:613
+#: includes/admin/settings/register-settings.php:618
 msgid "This appears to be an invalid license key for %s."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:621
+#: includes/admin/settings/register-settings.php:626
 msgid ""
 "Your license key has reached its activation limit. <a href=\"%s\" rel="
 "\"nofollow\">View possible upgrades</a> now."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:628
+#: includes/admin/settings/register-settings.php:633
 msgid ""
 "The key you entered belongs to a bundle, please use the product specific "
 "license key."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:635
+#: includes/admin/settings/register-settings.php:640
 msgid ""
 "There was an error with this license key: %1$s. Please correct the license "
 "key or <a href=\"%2$s\" rel=\"nofollow\">contact our support team for help</"
 "a>."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:652
+#: includes/admin/settings/register-settings.php:657
 msgid "License key never expires."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:659
+#: includes/admin/settings/register-settings.php:664
 msgid ""
 "Your license key expires soon! It expires on %1$s. <a href=\"%2$s\" target="
 "\"_blank\">Renew your license key</a>."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:668
+#: includes/admin/settings/register-settings.php:673
 msgid "Your license key expires on %s."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:687
+#: includes/admin/settings/register-settings.php:692
 msgid "To receive updates, please enter your valid %s license key."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:698
+#: includes/admin/settings/register-settings.php:703
 msgid "Deactivate License"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:738
+#: includes/admin/settings/register-settings.php:743
 msgid ""
 "For each aspect, set the orb to use for each planet. If blank, the default "
 "(8) will be used."
 msgstr ""
 
-#: includes/admin/tools.php:53
-msgid "Cleanup"
+#: includes/admin/tools.php:50
+msgid "Clean up"
 msgstr ""
 
-#: includes/admin/tools.php:54
-msgid "System Info"
+#: includes/admin/tools.php:51
+msgid "System info"
 msgstr ""
 
-#: includes/admin/tools.php:55
+#: includes/admin/tools.php:52
 msgid "Export/Import"
 msgstr ""
 
-#: includes/admin/tools.php:79
+#: includes/admin/tools.php:76
 msgid "Natal Planets in Signs"
 msgstr ""
 
-#: includes/admin/tools.php:80
+#: includes/admin/tools.php:77
 msgid "Delete all interpretations text for natal planets/points in the signs."
 msgstr ""
 
-#: includes/admin/tools.php:83
+#: includes/admin/tools.php:80
 msgid "Natal Planets in Houses"
 msgstr ""
 
-#: includes/admin/tools.php:84
+#: includes/admin/tools.php:81
 msgid "Delete all interpretations text for natal planets/points in the houses."
 msgstr ""
 
-#: includes/admin/tools.php:87
+#: includes/admin/tools.php:84
 msgid "Natal Aspects"
 msgstr ""
 
-#: includes/admin/tools.php:88
+#: includes/admin/tools.php:85
 msgid "Delete all interpretations text for natal aspects."
+msgstr ""
+
+#: includes/admin/tools.php:98
+msgid "Erase Interpretations"
 msgstr ""
 
 #: includes/admin/tools.php:99
@@ -429,91 +441,87 @@ msgid ""
 "strong> your Interpretations."
 msgstr ""
 
-#: includes/admin/tools.php:103
-msgid "Cleanup Interpretations"
-msgstr ""
-
-#: includes/admin/tools.php:112
+#: includes/admin/tools.php:105
 msgid "Delete"
 msgstr ""
 
-#: includes/admin/tools.php:174
+#: includes/admin/tools.php:169
 msgid ""
 "The system info is a built-in debugging tool. If you contact support, please "
 "provide this info."
 msgstr ""
 
-#: includes/admin/tools.php:175
+#: includes/admin/tools.php:170
 msgid ""
 "(Do not be afraid to paste this info into the support forum because this "
 "info does not reveal your website name or URL.)"
 msgstr ""
 
-#: includes/admin/tools.php:193 includes/admin/tools.php:200
+#: includes/admin/tools.php:189 includes/admin/tools.php:195
 msgid "Export Interpretations"
 msgstr ""
 
-#: includes/admin/tools.php:195
+#: includes/admin/tools.php:190
 msgid ""
 "Export your ZodiacPress interpretations for this site as a .json file. This "
 "allows you to easily import your interpretations into another site."
 msgstr ""
 
-#: includes/admin/tools.php:207 includes/admin/tools.php:218
+#: includes/admin/tools.php:203 includes/admin/tools.php:213
 msgid "Import Interpretations"
 msgstr ""
 
-#: includes/admin/tools.php:209
+#: includes/admin/tools.php:204
 msgid ""
 "Import your ZodiacPress interpretations from a .json file. This file can be "
 "obtained by exporting the interpretations on another site using the button "
 "above."
 msgstr ""
 
-#: includes/admin/tools.php:210
+#: includes/admin/tools.php:205
 msgid ""
 "NOTE: IMPORTED INTERPRETATIONS WILL COMPLETELY OVERRIDE ANY CURRENT EXISTING "
 "INTERPRETATIONS ON THIS SITE. ANY EXISTING INTERPRETATIONS ON THIS SITE WILL "
 "BE DELETED."
 msgstr ""
 
-#: includes/admin/tools.php:225 includes/admin/tools.php:232
+#: includes/admin/tools.php:221 includes/admin/tools.php:227
 msgid "Export Settings"
 msgstr ""
 
-#: includes/admin/tools.php:227
+#: includes/admin/tools.php:222
 msgid ""
 "Export the ZodiacPress settings for this site as a .json file. This allows "
 "you to easily import the configuration into another site."
 msgstr ""
 
-#: includes/admin/tools.php:239 includes/admin/tools.php:249
+#: includes/admin/tools.php:235 includes/admin/tools.php:244
 msgid "Import Settings"
 msgstr ""
 
-#: includes/admin/tools.php:241
+#: includes/admin/tools.php:236
 msgid ""
 "Import the ZodiacPress settings from a .json file. This file can be obtained "
 "by exporting the settings on another site using the button above."
 msgstr ""
 
-#: includes/admin/tools.php:300 includes/admin/tools.php:369
+#: includes/admin/tools.php:294 includes/admin/tools.php:362
 msgid "Please upload a valid .json file"
 msgstr ""
 
-#: includes/admin/tools.php:304
+#: includes/admin/tools.php:298
 msgid "Please upload a valid ZodiacPress zp-settings-export file"
 msgstr ""
 
-#: includes/admin/tools.php:309 includes/admin/tools.php:378
+#: includes/admin/tools.php:303 includes/admin/tools.php:371
 msgid "Please upload a file to import"
 msgstr ""
 
-#: includes/admin/tools.php:373
+#: includes/admin/tools.php:366
 msgid "Please upload a valid ZodiacPress interpretations file"
 msgstr ""
 
-#: includes/ajax-functions.php:89
+#: includes/ajax-functions.php:86
 msgid "Something went wrong."
 msgstr ""
 
@@ -1005,21 +1013,25 @@ msgstr ""
 msgid "Birth City"
 msgstr ""
 
-#: includes/form/template.php:228
+#: includes/form/template.php:220
+msgid "UTC time offset"
+msgstr ""
+
+#: includes/form/template.php:229
 msgid "Next"
 msgstr ""
 
-#: includes/form/template.php:236
+#: includes/form/template.php:237
 msgid "Submit"
 msgstr ""
 
-#: includes/form/template.php:238
+#: includes/form/template.php:239
 msgid ""
 "Tip: Make sure the <strong>UTC time offset</strong> is correct. If it's "
 "wrong, you can change it."
 msgstr ""
 
-#: includes/form/template.php:248
+#: includes/form/template.php:249
 msgid ""
 "<strong>* NOTE: </strong> If birth time is unknown, the report will not "
 "include positions or aspects for the Moon, Ascendant, Midheaven, Vertex, or "
