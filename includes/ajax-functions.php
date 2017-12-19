@@ -5,9 +5,6 @@
  * Process the AJAX actions.
  *
  * @package     ZodiacPress
- * @subpackage  Functions/AJAX
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;

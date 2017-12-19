@@ -5,9 +5,6 @@
  * These are functions used for displaying ZP tools such as the export/import system.
  *
  * @package     ZodiacPress
- * @subpackage  Admin/Settings
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
@@ -259,7 +256,6 @@ add_action( 'zp_tools_tab_import_export', 'zp_tools_import_export_display' );
  * @return      void
  */
 function zp_tools_process_export_settings() {
-
 	if ( empty( $_POST['zp_export_settings_nonce'] ) )
 		return;
 	if ( ! wp_verify_nonce( $_POST['zp_export_settings_nonce'], 'zp_export_settings_nonce' ) )
@@ -355,7 +351,6 @@ add_action( 'zp_export_interps', 'zp_tools_process_export_interps' );
  * @return void
  */
 function zp_tools_process_import_interps() {
-
 	if( empty( $_POST['zp_import_interps_nonce'] ) )
 		return;
 	if( ! wp_verify_nonce( $_POST['zp_import_interps_nonce'], 'zp_import_interps_nonce' ) )

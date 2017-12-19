@@ -3,12 +3,8 @@
  * Register Interpretations
  *
  * @package     ZodiacPress
- * @subpackage  Admin/Settings
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
-
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Get the name of an option for an Interpretations tab section.
@@ -18,7 +14,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @return string The name of the db option for the Interpretations section
  */
 function zp_get_interps_option_name( $tab, $section ) {
-
 	if ( empty( $tab ) || empty( $section ) ) {
 		return false;
 	}
@@ -42,7 +37,6 @@ function zp_get_interps_option_name( $tab, $section ) {
  * @return string The title for the Interpretations section
  */
 function zp_get_interps_section_title( $tab, $section ) {
-
 	if ( empty( $tab ) || empty( $section ) ) {
 		return false;
 	}
@@ -84,7 +78,6 @@ function zp_get_interps_section_title( $tab, $section ) {
  * @return void
 */
 function zp_register_interps() {
-
 	// Large Interps Tabs get a separate option per section due to large size
 	$large_tabs = apply_filters( 'zp_large_tabs_separate_options', array( 'natal_aspects' ) );
 
@@ -141,7 +134,6 @@ add_action( 'admin_init', 'zp_register_interps' );
  * @return array
 */
 function zp_get_enabled_interps() {
-
 	$options = get_option( 'zodiacpress_settings' );
 
 	$zp_interps_settings = array();
@@ -248,7 +240,6 @@ function zp_get_enabled_interps() {
  * @return array Sanitizied value
  */
 function zp_interps_sanitize( $input = array() ) {
-
 	if ( empty( $_POST['_wp_http_referer'] ) ) {
 		return $input;
 	}
@@ -292,7 +283,6 @@ function zp_interps_sanitize( $input = array() ) {
  * @return array $tabs
  */
 function zp_get_interps_tabs() {
-
 	$tabs 								= array();
 	$tabs['natal_planets_in_signs']		= __( 'In Signs', 'zodiacpress' );
 	$tabs['natal_planets_in_houses']	= __( 'In Houses', 'zodiacpress' );
@@ -306,7 +296,6 @@ function zp_get_interps_tabs() {
  * @return array $section
  */
 function zp_get_interps_tab_sections( $tab = false ) {
-
 	$sections	= false;
 	$interps	= zp_get_enabled_interps_sections();
 
@@ -325,7 +314,6 @@ function zp_get_interps_tab_sections( $tab = false ) {
  * @return array Array of tabs and sections
  */
 function zp_get_enabled_interps_sections() {
-
 	$options = get_option( 'zodiacpress_settings' );
 	$sections = array();
 
@@ -342,7 +330,7 @@ function zp_get_enabled_interps_sections() {
 		}
 	}
 
-	/** "In Signs" tab */
+	/** "In Houses" tab */
 
 	// Do sections for planets that are enabled in settings.
 	if ( ! empty( $options['enable_planet_houses'] ) ) {
@@ -385,7 +373,6 @@ function zp_get_enabled_interps_sections() {
  * @return void
  */
 function zp_interps_textarea_callback( $args ) {
-
 	if ( ! isset( $args['tab'] ) ) {
 		return;
 	}
