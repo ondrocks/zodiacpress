@@ -75,7 +75,7 @@
 .zp-name-field label,
 .zp-birthdate legend,
 .zp-birthtime legend,
-.zp-birthplace label { /* @test this label if it applies to hidden? */
+.zp-birthplace label {
 	min-width: 120px;
 	font-weight: normal;
 }
