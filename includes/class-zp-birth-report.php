@@ -3,8 +3,6 @@
  * ZP_Birth_Report class
  *
  * @package     ZodiacPress
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
 
@@ -230,7 +228,7 @@ class ZP_Birth_Report {
 
 				// Does interpretation exist for this?
 				if ( ! empty( $interps[ $v['id'] ] ) ) {
-					$content .= '<p>' . wp_kses_post( wpautop( $interps[ $v['id'] ] ) ) . '</p>';
+					$content .= wp_kses_post( wpautop( $interps[ $v['id'] ] ) );
 				}
 
 				// Check for planets conjunct the next house cusp.
@@ -243,7 +241,7 @@ class ZP_Birth_Report {
 
 						// Does interpretation exist for this?
 						if ( ! empty( $interps[ $v['next_id'] ] ) ) {
-							$content .=	'<p>' . wp_kses_post( wpautop( $interps[ $v['next_id'] ] ) ) . '</p>';
+							$content .=	wp_kses_post( wpautop( $interps[ $v['next_id'] ] ) );
 						}
 					}
 				}
