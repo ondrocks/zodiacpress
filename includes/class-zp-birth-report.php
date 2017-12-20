@@ -179,10 +179,10 @@ class ZP_Birth_Report {
 	}
 
 	/**
-	 * Get an Interpretations section of the rerpot
+	 * Get an Interpretations section of the report
 	 * @param string $section Which section of interpretations to get, whether planets_in_signs, planets_in_houses, or aspects.
 	 */
-	private function get_interpretations( $section ) {
+	public function get_interpretations( $section ) {
 		if ( empty( $section ) ) {
 			return;
 		}
