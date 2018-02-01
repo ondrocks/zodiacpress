@@ -79,53 +79,70 @@ function zp_admin_notices_missing_file() {
 }
 
 /**
- * Perform cleanup actions for the ZP Cleanup Tools
+ * Erase Interpretations for Natal Planets in Signs when using ZP Cleanup Tools.
  */
-function zp_run_cleanup_tools() {
-
-	/****************************************************
-	* @todo now now must also not check for $_GET all over plugin.
-
-	See what $_get has to be eliminated!!!!!
-	This one has to be eliminated! use instead admin_post{action}
-
-
-	* 
-	****************************************************/
-	if ( ! isset( $_GET['zp_cleanup_tool'] ) || ! isset( $_GET['_nonce'] ) ) {
+function zp_erase_natal_in_signs() {
+	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_cleanup_natal_in_signs' ) ) {
 		return false;
 	}
-	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_cleanup_tool' ) ) {
-		return false;
-	}
-	switch( $_GET['zp_cleanup_tool'] ) {
 
-		case 'natal_in_signs';
-			delete_option( 'zp_natal_planets_in_signs' );
-			break;
-		
-		case 'natal_in_houses':
-			delete_option( 'zp_natal_planets_in_houses' );
-			break;
-		
-		case 'natal_aspects':
-			foreach ( zp_get_planets() as $planet ) {
-				$p = ( 'sun' == $planet['id'] ) ? 'main' : $planet['id'];
-				delete_option( 'zp_natal_aspects_' . $p );
-			}
-			break;
-	}
-	/* Redirect in "read-only" mode */
+	delete_option( 'zp_natal_planets_in_signs' );
+
 	$url  = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
-		'zp-done'	=> sanitize_text_field( $_GET['zp_cleanup_tool'] )
+		'zp-done'	=> 'natal_in_signs'
 		), admin_url( 'admin.php' )
 	) );
 	wp_redirect( wp_sanitize_redirect( $url ) );
 	exit;
 }
-add_action( 'admin_init', 'zp_run_cleanup_tools', 10, 0 );
+add_action( 'admin_post_erase_natal_in_signs', 'zp_erase_natal_in_signs' );
+
+/**
+ * Erase Interpretations for Natal Planets in Houses when using ZP Cleanup Tools.
+ */
+function zp_erase_natal_in_houses() {
+	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_cleanup_natal_in_houses' ) ) {
+		return false;
+	}
+
+	delete_option( 'zp_natal_planets_in_houses' );
+
+	$url  = esc_url_raw( add_query_arg( array(
+		'page'	=> 'zodiacpress-tools',
+		'tab'	=> 'cleanup',
+		'zp-done'	=> 'natal_in_houses'
+		), admin_url( 'admin.php' )
+	) );
+	wp_redirect( wp_sanitize_redirect( $url ) );
+	exit;
+}
+add_action( 'admin_post_erase_natal_in_houses', 'zp_erase_natal_in_houses' );
+
+/**
+ * Erase Interpretations for Natal Aspects when using ZP Cleanup Tools.
+ */
+function zp_erase_natal_aspects() {
+	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_cleanup_natal_aspects' ) ) {
+		return false;
+	}
+
+	foreach ( zp_get_planets() as $planet ) {
+		$p = ( 'sun' == $planet['id'] ) ? 'main' : $planet['id'];
+		delete_option( 'zp_natal_aspects_' . $p );
+	}
+
+	$url  = esc_url_raw( add_query_arg( array(
+		'page'	=> 'zodiacpress-tools',
+		'tab'	=> 'cleanup',
+		'zp-done'	=> 'natal_aspects'
+		), admin_url( 'admin.php' )
+	) );
+	wp_redirect( wp_sanitize_redirect( $url ) );
+	exit;
+}
+add_action( 'admin_post_erase_natal_aspects', 'zp_erase_natal_aspects' );
 
 /**
  * Custom admin menu icon
