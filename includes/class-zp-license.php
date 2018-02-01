@@ -9,7 +9,6 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 if ( ! class_exists( 'ZP_License' ) ) :
 
 /**
@@ -35,7 +34,6 @@ class ZP_License {
 	 * @param string  $_api_url
 	 */
 	function __construct( $_file, $_item, $_version, $_author, $_api_url = null ) {
-
 		$zp_options = get_option( 'zodiacpress_settings' );
 
 		$this->file           = $_file;
@@ -77,7 +75,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	private function hooks() {
-
 		// Register settings
 		add_filter( 'zp_settings_licenses', array( $this, 'settings' ), 1 );
 
@@ -113,7 +110,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function auto_updater() {
-
 		$args = array(
 			'version'   => $this->version,
 			'license'   => $this->license,
@@ -134,7 +130,6 @@ class ZP_License {
 		);
 	}
 
-
 	/**
 	 * Add license field to settings
 	 *
@@ -143,7 +138,6 @@ class ZP_License {
 	 * @return  array
 	 */
 	public function settings( $settings ) {
-
 		$settings['main'][ $this->item_shortname . '_license_key' ] = array(
 					'id'		=> $this->item_shortname . '_license_key',
 					'name'		=> sprintf( __( '%1$s', 'zodiacpress' ), $this->item_name ),
@@ -164,7 +158,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function license_help_text( $active_tab = '' ) {
-
 		static $has_ran;
 
 		if ( 'licenses' !== $active_tab ) {
@@ -184,7 +177,6 @@ class ZP_License {
 
 	}
 
-
 	/**
 	 * Activate the license key
 	 *
@@ -192,7 +184,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function activate_license() {
-
 		if ( ! isset( $_POST['zodiacpress_settings'] ) ) {
 			return;
 		}
@@ -265,7 +256,6 @@ class ZP_License {
 
 	}
 
-
 	/**
 	 * Deactivate the license key
 	 *
@@ -273,7 +263,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function deactivate_license() {
-
 		if ( ! isset( $_POST['zodiacpress_settings'] ) )
 			return;
 
@@ -329,7 +318,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function weekly_license_check() {
-
 		if( ! empty( $_POST['zodiacpress_settings'] ) ) {
 			return; // Don't fire when saving settings
 		}
@@ -372,7 +360,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function notices() {
-
 		static $showed_invalid_message;
 
 		if ( empty( $this->license ) || ! zp_is_admin_page() ) {
@@ -417,7 +404,6 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function plugin_row_license_missing( $plugin_data, $version_info ) {
-
 		static $showed_imissing_key_message;
 
 		$license = get_option( $this->item_shortname . '_license_active' );
