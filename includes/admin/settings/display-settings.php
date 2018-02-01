@@ -18,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return void
  */
 function zp_options_page() {
-
 	$settings_tabs = zp_get_settings_tabs();
 	$settings_tabs = empty( $settings_tabs ) ? array() : $settings_tabs;
 	$active_tab    = isset( $_GET['tab'] ) && array_key_exists( $_GET['tab'], $settings_tabs ) ? sanitize_text_field( $_GET['tab'] ) : 'natal';

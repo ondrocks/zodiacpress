@@ -197,11 +197,8 @@ class ZP_License {
 		}
 
 		if ( empty( $_POST['zodiacpress_settings'][ $this->item_shortname . '_license_key'] ) ) {
-
 			delete_option( $this->item_shortname . '_license_active' );
-
 			return;
-
 		}
 
 		foreach ( $_POST as $key => $value ) {
@@ -263,11 +260,13 @@ class ZP_License {
 	 * @return  void
 	 */
 	public function deactivate_license() {
-		if ( ! isset( $_POST['zodiacpress_settings'] ) )
+		if ( ! isset( $_POST['zodiacpress_settings'] ) ) {
 			return;
+		}
 
-		if ( ! isset( $_POST['zodiacpress_settings'][ $this->item_shortname . '_license_key'] ) )
+		if ( ! isset( $_POST['zodiacpress_settings'][ $this->item_shortname . '_license_key'] ) ){
 			return;
+		}
 
 		if( ! wp_verify_nonce( $_REQUEST[ $this->item_shortname . '_license_key-nonce'], $this->item_shortname . '_license_key-nonce' ) ) {
 
