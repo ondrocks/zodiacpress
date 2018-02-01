@@ -5,9 +5,6 @@
  * Functions related to astrological points and things.
  *
  * @package     ZodiacPress
- * @subpackage  Functions/Astro
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -424,11 +421,9 @@ function zp_is_planet_near_ingress( $planet, $longitude ) {
  * @return mixed $ingress array of sign keys if ingress occurs this day, otherwise false 
  */
 function zp_is_planet_ingress_today( $planet, $longitude, $form ) {
-
 	// Do not check time-sensitve points or planets, i.e. moon, asc, mc, pof, vertex
 	$planets = zp_get_planets();
 	if ( ! empty( $planets[ $planet ]['supports'] ) && in_array( 'birth_time_required', $planets[ $planet ]['supports'] ) ) {
-
 			return false;
 	}
 

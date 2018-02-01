@@ -16,7 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return void
 */
 function zp_register_settings() {
-
 	if ( false == get_option( 'zodiacpress_settings' ) ) {
 		add_option( 'zodiacpress_settings' );
 	}
@@ -213,7 +212,6 @@ function zp_get_registered_settings() {
  * @return string $input Sanitizied value
  */
 function zp_settings_sanitize( $input = array() ) {
-
 	global $zodiacpress_options;
 
 	if ( empty( $_POST['_wp_http_referer'] ) ) {
@@ -272,12 +270,12 @@ function zp_settings_sanitize( $input = array() ) {
  * @return string $input Sanitizied value
  */
 function zp_sanitize_text_field( $input, $key ) {
-	// Sanitize orb fields. Must be numeric and positive.
+	// Sanitize orb fields. Must be numeric.
 	if ( 0 === strpos( $key, 'orb_' ) ) {
 		if ( ! is_numeric( $input ) ) {
 			return 8;
 		} else {
-			return abs( $input );
+			return abs( $input );// not negative
 		}
 	}
 	return trim( $input );
@@ -404,7 +402,6 @@ function zp_checkbox_callback( $args ) {
  * @return void
  */
 function zp_multicheck_callback( $args ) {
-
 	$options = get_option( 'zodiacpress_settings' );
 
 	if ( ! empty( $args['options'] ) ) {
@@ -489,7 +486,6 @@ function zp_missing_callback($args) {
  */
 function zp_select_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
-
 	if ( isset( $options[ $args['id'] ] ) ) {
 		$value = $options[ $args['id'] ];
 	} else {
@@ -518,7 +514,6 @@ function zp_select_callback( $args ) {
  * @return void
  */
 function zp_textarea_callback( $args ) {
-
 	$options = get_option( 'zodiacpress_settings' );
 	$value = isset( $options[ $args['id'] ] ) ? $options[ $args['id'] ] : '';
 	
@@ -535,7 +530,6 @@ function zp_textarea_callback( $args ) {
  * @return void
  */
 function zp_license_key_callback( $args ) {
-
 	$options	= get_option( 'zodiacpress_settings' );
 	$zp_option	= isset( $options[ $args['id'] ] ) ? $options[ $args['id'] ] : '';
 	$messages	= array();
@@ -774,7 +768,6 @@ function zp_orbs_add_orb_settings( $settings ) {
 	}
 	return $settings;
 }
-
 
 add_action( 'zodiacpress_settings_tab_top_natal_orbs', 'zp_orbs_settings_help_text' );
 add_action( 'zp_settings_natal', 'zp_orbs_add_orb_settings' );
