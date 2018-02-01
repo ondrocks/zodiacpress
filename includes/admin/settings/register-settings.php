@@ -3,11 +3,7 @@
  * Register Settings
  *
  * @package     ZodiacPress
- * @subpackage  Admin/Settings
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
@@ -150,6 +146,12 @@ function zp_get_registered_settings() {
 						'name'	=> __( 'Birth Report Closing', 'zodiacpress' ),
 						'type'	=> 'textarea',
 						'desc'	=> __( 'Optional "Closing" text for the Birth Report. This will appear at the end of the report.', 'zodiacpress' )
+					),
+					'hide_empty_titles' => array(
+						'id'	=> 'hide_empty_titles',
+						'name'	=> __( 'Hide Empty Titles', 'zodiacpress' ),
+						'type'	=> 'checkbox',
+						'desc'	=> __( 'Hide titles for pieces that have no interpretations text.', 'zodiacpress' )
 					),
 				),
 

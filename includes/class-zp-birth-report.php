@@ -20,6 +20,8 @@ class ZP_Birth_Report {
 
 	/**
 	 * The form that is submitted by user requesting report.
+	 *
+	 * @var array
 	 */
 	private $form;
 
@@ -45,12 +47,20 @@ class ZP_Birth_Report {
 	private $enabled_aspects = array();
 
 	/**
+	 * The ZP settings.
+	 *
+	 * @var array
+	 */
+	private $zp_settings = array();
+
+	/**
 	 * Constructor.
 	 *
-	 * @param object $chart A ZP_Chart object
-	 * @param array $form Form data submitted by user requesting report	 
+	 * @param object $_chart A ZP_Chart object
+	 * @param array $_form Form data submitted by user requesting report	 
 	 */
 	public function __construct( $_chart, $_form ) {
+		$this->zp_settings = get_option( 'zodiacpress_settings', array() );
 		$this->chart	= $_chart;
 		$this->form		= $_form;
 		$this->setup_in_signs();
@@ -220,15 +230,26 @@ class ZP_Birth_Report {
 							'</p>';
 
 			} else {
-				$content .= '<p class="zp-subheading">' . $v['label'];
-				if ( isset( $v['zodiacal_dms'] ) ) {
-					$content .= ' <span class="zp-zodiacal-dms">' . $v['zodiacal_dms'] . '</span>';
-				}
-				$content .= '</p>';
 
-				// Does interpretation exist for this?
-				if ( ! empty( $interps[ $v['id'] ] ) ) {
+				$piece_title = '<p class="zp-subheading">' . $v['label'];
+				if ( isset( $v['zodiacal_dms'] ) ) {
+					$piece_title .= ' <span class="zp-zodiacal-dms">' . $v['zodiacal_dms'] . '</span>';
+				}
+				$piece_title .= '</p>';
+
+				// If interpretation does not exist, only show title if "Hide Titles With Empty Interpretations" is disabled.
+
+				if ( empty( $interps[ $v['id'] ] ) ) {// interpretation does not exist
+					
+					if ( empty( $this->zp_settings['hide_empty_titles'] ) ) {// "Hide Empty Titles" is disabled, so show title.
+						$content .= $piece_title;
+					}
+					
+				} else {// interpretation exists
+					
+					$content .= $piece_title;
 					$content .= wp_kses_post( wpautop( $interps[ $v['id'] ] ) );
+
 				}
 
 				// Check for planets conjunct the next house cusp.
@@ -245,6 +266,7 @@ class ZP_Birth_Report {
 						}
 					}
 				}
+
 			}
 			
 		}
@@ -281,9 +303,7 @@ class ZP_Birth_Report {
 	 * @return array of planets with official planet #s as keys
 	 */
 	private function get_cleared_planets( $planets_key ) {
-		global $zodiacpress_options;
-
-		if ( empty( $zodiacpress_options[ $planets_key ] ) ) {
+		if ( empty( $this->zp_settings[ $planets_key ] ) ) {
 			return;
 		}
 
@@ -291,7 +311,7 @@ class ZP_Birth_Report {
 		$cleared_planets	= array();
 
 		// Set up array of enabled planets and its official planet # as key.
-		foreach ( $zodiacpress_options[ $planets_key ] as $enabled_planet ) {
+		foreach ( $this->zp_settings[ $planets_key ] as $enabled_planet ) {
 			$key = zp_search_array( $enabled_planet['id'], 'id', $planets );
 			$cleared_planets[ $key ] = array( 
 										'id'	=> $enabled_planet['id'],
@@ -430,10 +450,7 @@ class ZP_Birth_Report {
 	 * Set up the list of aspects, limited to those enabled in the settings and omittimg moon and time-sensitive points if birth time is unknown.
 	 */
 	private function setup_aspects_list() {
-
-		global $zodiacpress_options;
-
-		if ( empty( $zodiacpress_options['enable_aspects'] ) ) {
+		if ( empty( $this->zp_settings['enable_aspects'] ) ) {
 			return;
 		}		
 
@@ -441,7 +458,7 @@ class ZP_Birth_Report {
 		$cleared_planets	= $this->get_cleared_planets( 'enable_planet_aspects' );
 
 		if ( $cleared_planets ) {
-			$active_aspects = $zodiacpress_options['enable_aspects'];// enabled in settings
+			$active_aspects = $this->zp_settings['enable_aspects'];// enabled in settings
 			$all_aspects    = zp_get_aspects();
 
 			foreach ( $cleared_planets as $key_1 => $p_1 ) {
@@ -469,10 +486,10 @@ class ZP_Birth_Report {
 
 							// Check custom orb for both planets and use the smaller orb.
 							$key1			= 'orb_' . $asp['id'] . '_' . $p_1['id'];
-							$allowed_orb1	= empty( $zodiacpress_options[ $key1 ] ) ? 8 : $zodiacpress_options[ $key1 ];
+							$allowed_orb1	= empty( $this->zp_settings[ $key1 ] ) ? 8 : $this->zp_settings[ $key1 ];
 							$allowed_orb1	= is_numeric( $allowed_orb1 ) ? abs( $allowed_orb1 ) : 8;
 							$key2			= 'orb_' . $asp['id'] . '_' . $p_2['id'];
-							$allowed_orb2	= empty( $zodiacpress_options[ $key2 ] ) ? 8 : $zodiacpress_options[ $key2 ];
+							$allowed_orb2	= empty( $this->zp_settings[ $key2 ] ) ? 8 : $this->zp_settings[ $key2 ];
 							$allowed_orb2	= is_numeric( $allowed_orb2 ) ? abs( $allowed_orb2 ) : 8;
 							$allowed_orb	=  min( $allowed_orb1, $allowed_orb2 );
 
@@ -522,8 +539,6 @@ class ZP_Birth_Report {
 	 * Return all parts of the birth report.
 	 */
 	public function get_report() {
-		global $zodiacpress_options;
-
 		if ( ! is_array( $this->form ) ) {
 			return;
 		}
@@ -541,9 +556,9 @@ class ZP_Birth_Report {
 		if ( 'birthreport' == $report_var ) {
 			
 			// Intro
-			if ( ! empty( $zodiacpress_options['birthreport_intro'] ) ) {
+			if ( ! empty( $this->zp_settings['birthreport_intro'] ) ) {
 				$intro = '<h3 class="zp-report-section-title zp-intro-title">' . apply_filters( 'birthreport_intro_title', __( 'Introduction', 'zodiacpress' ) ) . '</h3>';
-				$intro .= wpautop( $zodiacpress_options['birthreport_intro'] );
+				$intro .= wpautop( $this->zp_settings['birthreport_intro'] );
 				$out .= apply_filters( 'zp_report_intro', $intro );
 			}
 
@@ -552,9 +567,9 @@ class ZP_Birth_Report {
 			$out .= apply_filters( 'zp_report_aspects', $this->get_interpretations( 'aspects' ), $this->form, $this->chart );
 
 			// Closing
-			if ( ! empty( $zodiacpress_options['birthreport_closing'] ) ) {
+			if ( ! empty( $this->zp_settings['birthreport_closing'] ) ) {
 				$closing = '<h3 class="zp-report-section-title zp-closing-title">' . apply_filters( 'birthreport_closing_title', __( 'Closing', 'zodiacpress' ) ) . '</h3>';
-				$closing .= wpautop( $zodiacpress_options['birthreport_closing'] );
+				$closing .= wpautop( $this->zp_settings['birthreport_closing'] );
 				$out .= apply_filters( 'zp_report_closing', $closing );
 			}
 
