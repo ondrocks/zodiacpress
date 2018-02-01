@@ -188,9 +188,9 @@ function zp_tools_import_export_display() {
 		<div class="inside">
 			<h2><?php _e( 'Export Interpretations', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Export your ZodiacPress interpretations for this site as a .json file. This allows you to easily import your interpretations into another site.', 'zodiacpress' ); ?></p>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>">
+			<form method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>">
 				<p>
-					<input type="hidden" name="zp-action" value="export_interps" />
+					<input type="hidden" name="action" value="zp_export_interps" />
 					<?php wp_nonce_field( 'zp_export_interps_nonce', 'zp_export_interps_nonce' ); ?>
 					<?php submit_button( __( 'Export Interpretations', 'zodiacpress' ), 'secondary', 'submit', false ); ?>
 				</p>
@@ -203,12 +203,12 @@ function zp_tools_import_export_display() {
 			<h2><?php _e( 'Import Interpretations', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Import your ZodiacPress interpretations from a .json file. This file can be obtained by exporting the interpretations on another site using the button above.', 'zodiacpress' ); ?></p>
 			<p><?php _e( 'NOTE: IMPORTED INTERPRETATIONS WILL COMPLETELY OVERRIDE ANY CURRENT EXISTING INTERPRETATIONS ON THIS SITE. ANY EXISTING INTERPRETATIONS ON THIS SITE WILL BE DELETED.', 'zodiacpress' ); ?></p>
-			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>">
+			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>">
 				<p>
 					<input type="file" name="import_file"/>
 				</p>
 				<p>
-					<input type="hidden" name="zp-action" value="import_interps" />
+					<input type="hidden" name="action" value="zp_import_interps" />
 					<?php wp_nonce_field( 'zp_import_interps_nonce', 'zp_import_interps_nonce' ); ?>
 					<?php submit_button( __( 'Import Interpretations', 'zodiacpress' ), 'secondary', 'submit', false ); ?>
 				</p>
@@ -220,9 +220,9 @@ function zp_tools_import_export_display() {
 		<div class="inside">
 			<h2><?php _e( 'Export Settings', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Export the ZodiacPress settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'zodiacpress' ); ?></p>
-			<form action="<?php  echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>" method="post">
+			<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
 				<p>
-					<input type="hidden" name="zp-action" value="export_settings" />
+					<input type="hidden" name="action" value="zp_export_settings" />
 					<?php wp_nonce_field( 'zp_export_settings_nonce', 'zp_export_settings_nonce' ); ?>
 					<?php submit_button( __( 'Export Settings', 'zodiacpress' ), 'secondary', 'submit', false ); ?>
 				</p>
@@ -234,12 +234,12 @@ function zp_tools_import_export_display() {
 		<div class="inside">
 			<h2><?php _e( 'Import Settings', 'zodiacpress' ); ?></h2>
 			<p><?php _e( 'Import the ZodiacPress settings from a .json file. This file can be obtained by exporting the settings on another site using the button above.', 'zodiacpress' ); ?></p>
-			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export' ) ); ?>">
+			<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>">
 				<p>
 					<input type="file" name="import_file"/>
 				</p>
 				<p>
-					<input type="hidden" name="zp-action" value="import_settings" />
+					<input type="hidden" name="action" value="zp_import_settings" />
 					<?php wp_nonce_field( 'zp_import_settings_nonce', 'zp_import_settings_nonce' ); ?>
 					<?php submit_button( __( 'Import Settings', 'zodiacpress' ), 'secondary', 'submit', false ); ?>
 				</p>
@@ -255,13 +255,13 @@ add_action( 'zp_tools_tab_import_export', 'zp_tools_import_export_display' );
  *
  * @return      void
  */
-function zp_tools_process_export_settings() {
-	if ( empty( $_POST['zp_export_settings_nonce'] ) )
+function zp_export_settings() {
+	if ( ! wp_verify_nonce( $_POST['zp_export_settings_nonce'], 'zp_export_settings_nonce' ) ) {
 		return;
-	if ( ! wp_verify_nonce( $_POST['zp_export_settings_nonce'], 'zp_export_settings_nonce' ) )
+	}
+	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
-	if ( ! current_user_can( 'manage_zodiacpress_settings' ) )
-		return;
+	}
 	$settings = array();
 	$settings = get_option( 'zodiacpress_settings' );
 	ignore_user_abort( true );
@@ -275,22 +275,21 @@ function zp_tools_process_export_settings() {
 	echo json_encode( $settings );
 	exit;
 }
-add_action( 'zp_export_settings', 'zp_tools_process_export_settings' );
+add_action( 'admin_post_zp_export_settings', 'zp_export_settings' );
 
 /**
  * Process a settings import from a json file
  *
  * @return void
  */
-function zp_tools_process_import_settings() {
-	if( empty( $_POST['zp_import_settings_nonce'] ) )
+function zp_import_settings() {
+	if ( ! wp_verify_nonce( $_POST['zp_import_settings_nonce'], 'zp_import_settings_nonce' ) ) {
 		return;
-	if( ! wp_verify_nonce( $_POST['zp_import_settings_nonce'], 'zp_import_settings_nonce' ) )
+	}
+	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
-	if( ! current_user_can( 'manage_zodiacpress_settings' ) )
-		return;
-
-	if( zp_get_file_extension( $_FILES['import_file']['name'] ) != 'json' ) {
+	}
+	if ( zp_get_file_extension( $_FILES['import_file']['name'] ) != 'json' ) {
 		wp_die( __( 'Please upload a valid .json file', 'zodiacpress' ), __( 'Error', 'zodiacpress' ), array( 'response' => 400 ) );
 	}
 
@@ -299,7 +298,7 @@ function zp_tools_process_import_settings() {
 	}
 
 	$import_file = $_FILES['import_file']['tmp_name'];
-	if( empty( $import_file ) ) {
+	if ( empty( $import_file ) ) {
 		wp_die( __( 'Please upload a file to import', 'zodiacpress' ), __( 'Error', 'zodiacpress' ), array( 'response' => 400 ) );
 	}
 	// Retrieve the settings from the file and convert the json object to an array
@@ -308,26 +307,24 @@ function zp_tools_process_import_settings() {
 	update_option( 'zodiacpress_settings', $settings );
 	wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export&zp-done=settings-imported' ) ) ); exit;
 }
-add_action( 'zp_import_settings', 'zp_tools_process_import_settings' );
+add_action( 'admin_post_zp_import_settings', 'zp_import_settings' );
 
 /**
  * Process an Interpretations export that generates a .json file of your ZP Interpretations
  *
  * @return      void
  */
-function zp_tools_process_export_interps() {
-	if ( empty( $_POST['zp_export_interps_nonce'] ) )
+function zp_export_interps() {
+	if ( ! wp_verify_nonce( $_POST['zp_export_interps_nonce'], 'zp_export_interps_nonce' ) ) {
 		return;
-	if ( ! wp_verify_nonce( $_POST['zp_export_interps_nonce'], 'zp_export_interps_nonce' ) )
+	}
+	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
-	if ( ! current_user_can( 'manage_zodiacpress_settings' ) )
-		return;
+	}
 
 	// Collect all interpretions options
 	$option_names = zp_get_all_interps_options_names();
-
 	$interps = array();
-
 	foreach ( $option_names as $option ) {
 		$interps[ $option ] = get_option( $option );
 	}
@@ -340,25 +337,26 @@ function zp_tools_process_export_interps() {
 	header( 'Content-Type: application/json; charset=utf-8' );
 	header( 'Content-Disposition: attachment; filename=zp-interpretations-' . date( 'm-d-Y' ) . '.json' );
 	header( "Expires: 0" );
+
 	echo json_encode( $interps );
 	exit;
 }
-add_action( 'zp_export_interps', 'zp_tools_process_export_interps' );
+add_action( 'admin_post_zp_export_interps', 'zp_export_interps' );
 
 /**
  * Process an Interpretations import from a json file
  *
  * @return void
  */
-function zp_tools_process_import_interps() {
-	if( empty( $_POST['zp_import_interps_nonce'] ) )
+function zp_import_interps() {
+	if ( ! wp_verify_nonce( $_POST['zp_import_interps_nonce'], 'zp_import_interps_nonce' ) ) {
 		return;
-	if( ! wp_verify_nonce( $_POST['zp_import_interps_nonce'], 'zp_import_interps_nonce' ) )
+	}
+	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
-	if( ! current_user_can( 'manage_zodiacpress_settings' ) )
-		return;
+	}
 
-	if( zp_get_file_extension( $_FILES['import_file']['name'] ) != 'json' ) {
+	if ( zp_get_file_extension( $_FILES['import_file']['name'] ) != 'json' ) {
 		wp_die( __( 'Please upload a valid .json file', 'zodiacpress' ), __( 'Error', 'zodiacpress' ), array( 'response' => 400 ) );
 	}
 
@@ -367,7 +365,7 @@ function zp_tools_process_import_interps() {
 	}
 
 	$import_file = $_FILES['import_file']['tmp_name'];
-	if( empty( $import_file ) ) {
+	if ( empty( $import_file ) ) {
 		wp_die( __( 'Please upload a file to import', 'zodiacpress' ), __( 'Error', 'zodiacpress' ), array( 'response' => 400 ) );
 	}
 	// Retrieve the interpretations from the file and convert the json object to an array
@@ -384,4 +382,4 @@ function zp_tools_process_import_interps() {
 	}
 	wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=zodiacpress-tools&tab=import_export&zp-done=interps-imported' ) ) ); exit;
 }
-add_action( 'zp_import_interps', 'zp_tools_process_import_interps' );
+add_action( 'admin_post_zp_import_interps', 'zp_import_interps' );

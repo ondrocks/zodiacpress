@@ -7,17 +7,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Processes all ZP backend actions sent via POST by looking for the 'zp-action'
- * request and running do_action() to call the function on admin_init
- */
-function zp_process_actions() {
-	if ( isset( $_POST['zp-action'] ) ) {
-		do_action( 'zp_' . sanitize_text_field( $_POST['zp-action'] ), $_POST );
-	}
-}
-add_action( 'admin_init', 'zp_process_actions' );
-
-/**
  * ZP Admin notices
  */
 function zp_admin_notices() {
@@ -93,6 +82,16 @@ function zp_admin_notices_missing_file() {
  * Perform cleanup actions for the ZP Cleanup Tools
  */
 function zp_run_cleanup_tools() {
+
+	/****************************************************
+	* @todo now now must also not check for $_GET all over plugin.
+
+	See what $_get has to be eliminated!!!!!
+	This one has to be eliminated! use instead admin_post{action}
+
+
+	* 
+	****************************************************/
 	if ( ! isset( $_GET['zp_cleanup_tool'] ) || ! isset( $_GET['_nonce'] ) ) {
 		return false;
 	}
