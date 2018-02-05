@@ -53,14 +53,14 @@ function zp_get_tools_tabs() {
 	return apply_filters( 'zp_tools_tabs', $tabs );
 }
 /**
- * Build the link that triggers a specific cleanup tool.
+ * Build the link that triggers a specific tool.
  *
  * @param  string $tool Tool to trigger
  * @return string URL that triggers the tool function
  */
 function zp_tool_link( $tool ) {
-	$args['action']	= 'erase_' . $tool;
-	$args['_nonce']	= wp_create_nonce( 'zp_cleanup_' . $tool );
+	$args['action']	= $tool;
+	$args['_nonce']	= wp_create_nonce( 'zp_' . $tool );
 	return esc_url( add_query_arg( $args, admin_url( 'admin-post.php' ) ) );
 }
 
@@ -97,10 +97,11 @@ function zp_tools_cleanup_display() {
 		<h2><?php _e( 'Erase Interpretations', 'zodiacpress' ); ?></h2>
 		<p><?php _e( 'Use these tools to <strong>permanently delete</strong> your Interpretations text. Be aware that clicking these buttons will <strong>permanently erase</strong> your Interpretations.', 'zodiacpress' ); ?></p>
 		<table class="widefat zp-tools-table" id="zp-tools-cleanup">
-			<?php foreach( zp_get_cleanup_tools() as $id => $tool ) { ?>
+			<?php foreach( zp_get_cleanup_tools() as $id => $tool ) { 
+				$toolkey = 'erase_' . $id; ?>
 				<tr>
 					<td class="row-title"><label for="tablecell"><?php echo esc_html( $tool['label'] ); ?></label></td>
-					<td><a href="<?php echo esc_url( zp_tool_link( $id ) ); ?>" class="button-secondary"><?php _e( 'Delete', 'zodiacpress' ); ?></a>
+					<td><a href="<?php echo esc_url( zp_tool_link( $toolkey ) ); ?>" class="button-secondary"><?php _e( 'Delete', 'zodiacpress' ); ?></a>
 						<span class="zp-tools-desc"><?php echo esc_html( $tool['desc'] ); ?></span></td>
 				</tr>
 			<?php }

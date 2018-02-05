@@ -82,7 +82,7 @@ function zp_admin_notices_missing_file() {
  * Erase Interpretations for Natal Planets in Signs when using ZP Cleanup Tools.
  */
 function zp_erase_natal_in_signs() {
-	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_cleanup_natal_in_signs' ) ) {
+	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_erase_natal_in_signs' ) ) {
 		return false;
 	}
 
@@ -103,7 +103,7 @@ add_action( 'admin_post_erase_natal_in_signs', 'zp_erase_natal_in_signs' );
  * Erase Interpretations for Natal Planets in Houses when using ZP Cleanup Tools.
  */
 function zp_erase_natal_in_houses() {
-	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_cleanup_natal_in_houses' ) ) {
+	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_erase_natal_in_houses' ) ) {
 		return false;
 	}
 
@@ -124,7 +124,7 @@ add_action( 'admin_post_erase_natal_in_houses', 'zp_erase_natal_in_houses' );
  * Erase Interpretations for Natal Aspects when using ZP Cleanup Tools.
  */
 function zp_erase_natal_aspects() {
-	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_cleanup_natal_aspects' ) ) {
+	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_erase_natal_aspects' ) ) {
 		return false;
 	}
 
