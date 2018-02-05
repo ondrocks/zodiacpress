@@ -1,7 +1,5 @@
 <?php
 /**
- * AJAX Functions
- *
  * Process the AJAX actions.
  *
  * @package     ZodiacPress
