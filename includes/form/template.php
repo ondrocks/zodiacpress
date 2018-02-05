@@ -226,7 +226,7 @@ function zp_form( $report, $args = array() ) {
 
 		<p id="zp-submit-wrap">
 			<img id="zp-ajax-loader" src="<?php echo esc_url( ZODIACPRESS_URL . 'assets/ajax-loader.gif' ); ?>" alt="" />
-			<button id="zp-fetch-offset" class="zp-button"><?php _e('Next', 'zodiacpress'); ?></button>
+			<button id="zp-fetch-offset" class="zp-button"><?php _e( 'Next', 'zodiacpress' ); ?></button>
 			<?php if ( $args['sidereal'] ) { ?>
 				<input type="hidden" name="zp_report_sidereal" value="<?php echo $args['sidereal']; ?>">
 			<?php }
@@ -234,7 +234,7 @@ function zp_form( $report, $args = array() ) {
 				<input type="hidden" name="zp_report_house_system" value="<?php echo $args['house_system']; ?>">
 			<?php } ?>
 			<input type="hidden" name="action" value="zp_<?php echo esc_attr( $report ); ?>">
-			<input type="button" id="zp-fetch-<?php echo esc_attr( $report ); ?>" class="zp-button" value="<?php _e('Submit', 'zodiacpress'); ?>" /></p>
+			<input type="button" id="zp-fetch-<?php echo esc_attr( $report ); ?>" class="zp-button" value="<?php echo apply_filters( 'zp_form_submit_text', __( 'Submit', 'zodiacpress' ), $args ); ?>" /></p>
 
 		<p id="zp-form-tip" class="zp-small"><?php _e( 'Tip: Make sure the <strong>UTC time offset</strong> is correct. If it\'s wrong, you can change it.', 'zodiacpress' ); ?></p>
 
