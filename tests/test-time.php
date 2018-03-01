@@ -7,7 +7,7 @@ class Test_Time extends WP_UnitTestCase {
 	public function test_mktime() {
 		date_default_timezone_set('America/Chicago');// set a random locale
 		$times = array(
-		    // hour, minute, month, day, year, expected datetime string, expected datetime string
+		    // hour, minute, month, day, year, expected datetime string
 			array(02,00,03,27,1921, '1921-03-27 02:00:00'),
 		    array(02,00,04,30,1933, '1933-04-30 02:00:00'),
 		    array(02,30,04,24,1955, '1955-04-24 02:30:00'),
@@ -185,7 +185,6 @@ class Test_Time extends WP_UnitTestCase {
 
 	}
 
-
 	/**
 	 * Test that Universal Date is properly adjusted a month and year backward for timezone offset.
 	 */
@@ -219,5 +218,4 @@ class Test_Time extends WP_UnitTestCase {
 		$this->assertEquals( $expected_ut_date, $calculated_ut_date );		
 
 	}
-
 }
