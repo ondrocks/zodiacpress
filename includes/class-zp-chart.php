@@ -3,8 +3,6 @@
  * ZP_Chart class
  *
  * @package     ZodiacPress
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
 
@@ -156,12 +154,8 @@ final class ZP_Chart {
 			
 		$hour	= $moment['hour'] - $whole;
 		$minute	= $moment['minute'] - ( $fraction * 60 );
-		$second = '00';
 
-		// mktime() uses whatever zone its server wants, so force it to use UTC here
-		date_default_timezone_set('UTC');
-		$this->unix_timestamp = mktime( (int) $hour, (int) $minute, (int) $second, (int) $moment['month'], (int) $moment['day'], (int) $moment['year'] );
-
+		$this->unix_timestamp = zp_mktime( $hour, $minute, $moment['month'], $moment['day'], $moment['year'] );
 		$this->ut_date = strftime( "%d.%m.%Y", $this->unix_timestamp );
 		$this->ut_time = strftime( "%H:%M:%S", $this->unix_timestamp );
 

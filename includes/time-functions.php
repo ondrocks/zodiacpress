@@ -3,11 +3,21 @@
  * Time Functions
  *
  * @package     ZodiacPress
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
- /** 
+
+/**
+ * A wrapper for mktime().
+ * This wrapper is necessary for testing with PHPUNIT, necessary because mktime() can use its own zone and alter our times.
+ * @since 1.6
+ */
+function zp_mktime($hour, $minute, $month, $day, $year ) {
+	// mktime() uses whatever zone its server wants, so force it to use UTC here
+	date_default_timezone_set('UTC');
+	return mktime( (int) $hour, (int) $minute, (int) 0, (int) $month, (int) $day, (int) $year );
+}
+
+/** 
  * Get time offset from UTC for a designated datetime & timezone identifier.
  *
  * Can backtrack for old Daylight Savings rules (at least back to 1970, give or take some errors--this is why we allow visitors to override the offset on the form).

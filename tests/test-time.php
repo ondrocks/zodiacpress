@@ -1,14 +1,29 @@
 <?php
 class Test_Time extends WP_UnitTestCase {
+
+	/**
+	 * Test the zp_mktime() function to be precise regardless of locale setting
+	 */
+	public function test_mktime() {
+		date_default_timezone_set('America/Chicago');// set a random locale
+		$times = array(
+		    // hour, minute, month, day, year, expected datetime string, expected datetime string
+			array(02,00,03,27,1921, '1921-03-27 02:00:00'),
+		    array(02,00,04,30,1933, '1933-04-30 02:00:00'),
+		    array(02,30,04,24,1955, '1955-04-24 02:30:00'),
+		);
+		foreach ($times as $dt) {
+			$unix_time = zp_mktime($dt[0], $dt[1], $dt[2], $dt[3], $dt[4]);
+			$this->assertEquals($dt[5], strftime("%Y-%m-%d %H:%M:%S", $unix_time), 'Wrong timestamp.');
+		}
+	}
+
 	/**
 	 * Test the zp_get_timezone_offset() function
 	 */
 	public function test_get_timezone_offset() {
 		$datetimes = array(
-			// this is the dtstamp in ajax-functions.php:
 			array( 'America/Los_Angeles',	'1955-02-24 19:15:00', 37.7749, -122.431297, '-8' ),
-			// this is the dtstamp in phpfiddle.net:
-			array( 'America/Los_Angeles',	'1955-02-25 03:15:00', 37.7749, -122.431297, '-8' ),
 			array( 'America/Chicago',		'1958-08-29 19:33', 41.881832, -87.623177, '-5' ),
 			array( 'America/Managua',		'1979-03-19 11:00', 12.136389, -86.251389, '-5' ),
 			array( 'Asia/Tokyo',			'1972-09-12 07:55', '35.652832', '‎139.839478', '9' ),
@@ -101,7 +116,7 @@ class Test_Time extends WP_UnitTestCase {
 	public function test_formatted_12_hour_time_off_timezone() {
 
 		// random timezone
-		date_default_timezone_set( 'America/Chicago' );
+		date_default_timezone_set('America/Chicago');
 
 		// local form hour (in 24-hr) and minute:
 		$expected = array(
