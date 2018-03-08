@@ -36,6 +36,9 @@
 	padding:0 0 4px 0;
 	margin-bottom: 0;
 }
+#tab_container.misc_main label {
+	padding-left:8px;
+}
 .wrap-licenses .zp-license-data[class*="zp-license-"] {
 	background: #fafafa;
 	padding: 14px;
@@ -60,6 +63,7 @@
 	color: #fff;
 	border-color: #e24e4e;
 }
+
 .wrap-licenses .zp-license-data.zp-license-error,
 .wrap-licenses .zp-license-data.zp-license-missing,
 .wrap-licenses .zp-license-data.zp-license-invalid,
@@ -82,8 +86,10 @@
 }
 
 @media screen and ( max-width: 727px ) {
+	#tab_container.misc_main label,
 	.zp-tools-desc {
-		display: block;padding-top:10px;
+		display: block;
+		padding-top:8px;
 	}
 	#tab_container.natal_orbs td {
 		padding-bottom: 8px;
