@@ -56,30 +56,27 @@
 
 				// Show loading gif so user will patiently wait for the Next button
 				$( '#zp-ajax-loader' ).css({ 'visibility': 'visible' });
-		
-				// Insert hidden input with Geonames Timezone ID
-				$('<input>').attr({
-						type: 'hidden',
-						id: 'geo_timezone_id',
-						name: 'geo_timezone_id',
-						value: ui.item.timezoneid
-				}).appendTo( '#zp-timezone-id' );
 
-				// Grab the birthplace coordinates
-
-				$('<input>').attr({
-						type: 'hidden',
-						id: 'zp_lat_decimal',
-						name: 'zp_lat_decimal',
-						value: ui.item.latdeci
-				}).appendTo( '#zp-timezone-id' );
-						
-				$('<input>').attr({
-						type: 'hidden',
-						id: 'zp_long_decimal',
-						name: 'zp_long_decimal',
-						value: ui.item.lngdeci
-				}).appendTo( '#zp-timezone-id' );
+				// Insert hidden input with timezone ID and birthplace coordinates
+				var hiddenInputs = {
+					'geo_timezone_id': ui.item.timezoneid,
+					'zp_lat_decimal': ui.item.latdeci,
+					'zp_long_decimal': ui.item.lngdeci
+				}
+				for ( var elID in hiddenInputs ) {
+					// Remove any previous in case they're changing the city
+					var exists = document.getElementById( elID );
+					if ( null !== exists ) {
+						exists.remove();
+					}
+					// Insert hidden inputs
+					elInput = document.createElement( 'input' );
+				    elInput.setAttribute( 'type', 'hidden' );
+				    elInput.id = elID;
+					elInput.setAttribute( 'name', elID );
+					elInput.setAttribute( 'value', hiddenInputs[ elID ] );
+					document.getElementById( 'zp-timezone-id' ).appendChild( elInput );
+				}
 
 				// Reset the Offset section in case of changing city.
 				$( '#zp-offset-wrap' ).hide();
@@ -115,7 +112,7 @@
 						$( '#zp-ajax-birth-data' ).append( span );
 					} else {
 
-						// if not null, blank, nor false 
+						// if not null, blank, nor false, but 0 is okay 
 						if ($.trim(data.offset_geo) && 'false' != $.trim(data.offset_geo)) {
 							$( '.ui-state-error' ).hide();
 							
