@@ -1,11 +1,11 @@
 === ZodiacPress ===
 Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
-Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth reports, astrology reports, sidereal
+Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth chart, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.0-alpha-42407
+Tested up to: 5.0-alpha-42606
 Requires PHP: 5.4
-Stable tag: 1.5.7
+Stable tag: 1.6
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,15 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.6 =
+* New - Add option for the birth report to skip a title when its interpretation is missing. This new "Hide Empty Titles" setting is at ZodiacPress > Settings > Natal Report tab > Display settings.
+* Fix - On the form, remove prior hidden inputs in case of changing city. Previously, when changing city, many hidden inputs would accumulate.
+* API - Add filter for form submit button text.
+* API - Make wrapper for mktime(), zp_mktime().
+* API - Make ZP_Birth_Report::get_interpretations() public.
+* API - Make zp_tool_link() generic rather than only for cleanup tools.
+* Tweak - Use admin-post.php to run Tools.
+
 = 1.5.7 =
 * Fix - Fixed some strings that were not being translated. The `.pot` translation file has been updated. Also added some notes for translators for the more comlplex strings.
 * Accessibility - The report form now meets WCAG 2.0 guidelines at level AA. 
@@ -213,6 +222,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.6 =
+New option for report to skip a title when its interpretation is missing.
 
 = 1.5.7 =
 Fixed some strings that were not being translated, updated .pot translation file, and improved accessibility.
