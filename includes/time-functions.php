@@ -20,12 +20,13 @@ function zp_mktime($hour, $minute, $month, $day, $year ) {
 /** 
  * Get time offset from UTC for a designated datetime & timezone identifier.
  *
- * Can backtrack for old Daylight Savings rules (at least back to 1970, give or take some errors--this is why we allow visitors to override the offset on the form).
+ * Based on IANA/Olson time zone database.
+ * It has old Daylight Savings rules (give or take some errors--this is why we allow visitors to override the offset on the form).
  *
- * @param $timezone_id, Timezone name (or GeoNames timezone ID)
- * @param $datetime, Time stamp string 'YYYY-MM-DD HH:MM'
- * @param $lat, The latitude decimal
- * @param $long, The longitude decimal
+ * @param string $timezone_id Timezone name (or GeoNames timezone ID)
+ * @param string $datetime Datetime string 'YYYY-MM-DD HH:MM'
+ * @param int $lat The latitude decimal
+ * @param int $long The longitude decimal
  * @return mixed Returns offset in hours, or FALSE in case of bad parameters.
  */
 function zp_get_timezone_offset( $timezone_id, $datetime, $lat, $long ) {	
