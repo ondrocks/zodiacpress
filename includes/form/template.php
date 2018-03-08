@@ -25,10 +25,8 @@ function zp_name_form_field() {
  * Renders the HTML select options for the Month form field.
  */
 function zp_month_select_options() {
-	$months = zp_get_i18n_months();
 	?>
 	<option value=""><?php _e('Month', 'zodiacpress'); ?></option>
-
 	<?php foreach ( zp_get_i18n_months() as $key => $label ) { ?>
 		<option value="<?php echo $key; ?>"><?php echo $label; ?></option>
 	<?php
@@ -40,7 +38,6 @@ function zp_month_select_options() {
  * Renders the HTML select options for the Day form field.
  */
 function zp_day_select_options() {
-
 	$days 	= range( 1, 31 );
 	$labels = zp_i18n_numbers();
 	?>
@@ -80,7 +77,7 @@ function zp_hour_select_options() {
 
 	$hours = array_slice( zp_i18n_numbers_zeros(), 0, 24, true );
 	?>
-	<option value=""><?php _e( 'Hour', 'zodiacpress' ) ; ?></option>
+	<option value=""><?php _e( 'Hour', 'zodiacpress' ); ?></option>
 	<?php
 
 	foreach ( $hours as $hour => $label ) {
@@ -95,7 +92,7 @@ function zp_hour_select_options() {
  */
 function zp_minute_select_options() {
 	?>
-	<option value=""><?php _e( 'Minute', 'zodiacpress' ) ; ?></option>
+	<option value=""><?php _e( 'Minute', 'zodiacpress' ); ?></option>
 	<?php
 	foreach ( zp_i18n_numbers_zeros() as $minute => $label ) { ?>
 		<option value="<?php echo $minute; ?>"><?php echo $label; ?></option>
@@ -133,7 +130,6 @@ function zp_day_form_field() {
  * @param array $args 
  */
 function zp_form( $report, $args = array() ) {
-
 	global $zodiacpress_options;
 
 	$allow_unknown_bt_key_prefix = $report;
