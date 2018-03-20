@@ -282,11 +282,14 @@ class ZP_Birth_Report {
 				$title = __( 'Aspects', 'zodiacpress' );
 				break;
 		}
-
+		// Don't show section title if no interps exist for section.
+		if ( ! $content ) {
+			return '';
+		}		
+		
 		$out = '<h3 class="zp-report-section-title zp-' . $section . '-title">' .
 				apply_filters( "birthreport_${section}_title", $title ) .
 				'</h3>';
-
 		// Allow content to be inserted at the top of each section.
 		$out .= apply_filters( "zp_report_${section}_top", '' );
 
