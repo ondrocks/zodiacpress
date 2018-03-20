@@ -3,9 +3,6 @@
  * Form Validation Function
  *
  * @package     ZodiacPress
- * @subpackage  Form
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -115,11 +112,9 @@ function zp_validate_form( $data, $partial = false ) {
 	$name = ! empty( $data['name'] ) ? sanitize_text_field( $data['name'] ) : '';
 
 	// Validate offset.
-
-	$offset	= ( isset( $data['zp_offset_geo'] ) && is_numeric( sanitize_text_field( $data['zp_offset_geo'] ) ) ) ? sanitize_text_field( $data['zp_offset_geo'] ) : '';
-
-	// trim decimal from end, just in case
-	$offset	= trim( $offset, '.' );
+	$offset	= isset( $data['zp_offset_geo'] ) ? sanitize_text_field( $data['zp_offset_geo'] ) : '';
+	$offset	= is_numeric( $offset ) ? $offset : '';
+	$offset	= trim( $offset, '.' );// trim decimal from end, just in case
 
 	/*
 	 * Offset must match:
