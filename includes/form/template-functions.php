@@ -1,0 +1,146 @@
+<?php
+/**
+ * Helper Functions for the Form Template
+ *
+ * @package 	ZodiacPress
+ * @since 		1.7
+ */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * Render the HTML for the Name form field.
+ */
+function zp_name_form_field() {
+	?>
+	<p class="zp-name-field">
+		<label for="name" class="zp-form-label"><?php _e( 'Name', 'zodiacpress' ); ?> </label>
+		<span class="zp-input-text-wrap"><input id="name" name="name" class="zp-input-text" type="text" /></span>
+	</p>
+	<?php
+}
+/**
+ * Renders the HTML select options for the Month form field.
+ */
+function zp_month_select_options() {
+	?>
+	<option value=""><?php _e('Month', 'zodiacpress'); ?></option>
+	<?php foreach ( zp_get_i18n_months() as $key => $label ) { ?>
+		<option value="<?php echo $key; ?>"><?php echo $label; ?></option>
+	<?php
+	}
+
+}
+
+/**
+ * Renders the HTML select options for the Day form field.
+ */
+function zp_day_select_options() {
+	$days 	= range( 1, 31 );
+	$labels = zp_i18n_numbers();
+	?>
+	<option value=""><?php _e('Day', 'zodiacpress'); ?></option>
+	<?php foreach ( $days as $day ) { ?>
+		<option value="<?php echo $day; ?>"><?php echo $labels[ $day ]; ?></option>
+		<?php
+	}
+}
+
+/**
+ * Renders the HTML select options for the Year form field.
+ * @todo must update $accepted_yrs annually to avoid mismatch of key=>value with i18n year. Update it both here and in zp_i18n_years() so that the final year is 1 year into the future.
+ */
+function zp_year_select_options() {
+	?>
+	<option value=""><?php _e('Year', 'zodiacpress'); ?></option>
+	<?php 
+	$accepted_yrs = range( 1900, 2019);
+	$labels = zp_i18n_years();
+	$years = array_combine( $accepted_yrs, $labels );
+	arsort( $years );
+
+	// Allow years to be added with filter.
+	$years = apply_filters( 'zp_year_select_options', $years );
+
+	foreach ( $years as $year => $label ) {
+		?>
+		<option value="<?php echo $year; ?>"><?php echo $label; ?></option>
+		<?php
+	}
+}
+/**
+ * Renders the HTML select options for the Hour form field.
+ */
+function zp_hour_select_options() {
+
+	$hours = array_slice( zp_i18n_numbers_zeros(), 0, 24, true );
+	?>
+	<option value=""><?php _e( 'Hour', 'zodiacpress' ); ?></option>
+	<?php
+
+	foreach ( $hours as $hour => $label ) {
+		$key = (int) $hour;
+		?>
+		<option value="<?php echo $hour; ?>"><?php echo $label . ' (' . zp_get_12_hour( $key ) . ')'; ?></option>
+	<?php }
+}
+
+/**
+ * Renders the HTML select options for the Minute form field.
+ */
+function zp_minute_select_options() {
+	?>
+	<option value=""><?php _e( 'Minute', 'zodiacpress' ); ?></option>
+	<?php
+	foreach ( zp_i18n_numbers_zeros() as $minute => $label ) { ?>
+		<option value="<?php echo $minute; ?>"><?php echo $label; ?></option>
+
+	<?php }
+}
+
+/**
+ * Render the Month form field
+ */
+function zp_month_form_field() {
+	?>
+	<label for="month" class="screen-reader-text">
+	<?php _e( 'Birth Month', 'zodiacpress' ); ?></label>
+	<select id="month" name="month" required><?php zp_month_select_options(); ?></select>
+	<?php
+}
+
+/**
+ * Render the Day form field
+ */
+function zp_day_form_field() {
+	?>
+	<label for="day" class="screen-reader-text">
+	<?php _e( 'Birth Day', 'zodiacpress' ); ?></label>
+	<select id="day" name="day" required><?php zp_day_select_options(); ?></select>
+	<?php
+
+}
+
+/**
+ * Determine if this specific report form is supposed to allow unknown birth time.
+ *
+ * @param string $report Identifier to distinguish this type of report.
+ * @param array $args Shortcode args
+ *
+ * @since 1.7
+ *
+ * @return bool
+ */
+function zp_is_allowed_unknown_time( $report, $args = array() ) {
+	if ( in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
+		return false;
+	}
+	global $zodiacpress_options;
+	$allow_unknown_bt_key_prefix = $report;
+	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
+		$allow_unknown_bt_key_prefix = 'planet_lookup';
+	} elseif ( false !== strpos( $args['report'], 'drawing' ) ) {
+		$allow_unknown_bt_key_prefix = 'drawing';
+	}
+	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
+	return empty( $zodiacpress_options[ $allow_unknown_bt_key ] ) ? false : true;
+}
