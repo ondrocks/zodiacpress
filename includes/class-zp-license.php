@@ -28,20 +28,20 @@ class ZP_License {
 	 * Class constructor
 	 *
 	 * @param string  $_file
-	 * @param string  $_item
+	 * @param string  $_item_name
 	 * @param string  $_version
 	 * @param string  $_author
 	 * @param string  $_api_url
+	 * @param int     $_item_id
 	 */
-	function __construct( $_file, $_item, $_version, $_author, $_api_url = null ) {
+	function __construct( $_file, $_item_name, $_version, $_author, $_api_url = null, $_item_id = null ) {
 		$zp_options = get_option( 'zodiacpress_settings' );
 
-		$this->file           = $_file;
+		$this->file 		= $_file;
+		$this->item_name 	= $_item_name;
 
-		if( is_numeric( $_item ) ) {
-			$this->item_id    = absint( $_item );
-		} else {
-			$this->item_name  = $_item;
+		if ( is_numeric( $_item_id ) ) {
+			$this->item_id 	= absint( $_item_id );
 		}
 
 		$this->item_shortname = preg_replace( '/[^a-zA-Z0-9_\s]/', '', str_replace( ' ', '_', strtolower( $this->item_name ) ) );
