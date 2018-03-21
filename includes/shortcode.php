@@ -1,4 +1,5 @@
-<?php 
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 add_shortcode( 'birthreport', 'zp_birthreport_shortcode' );
 /**
  * Birth report shortcode.
