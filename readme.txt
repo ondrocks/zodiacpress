@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth chart, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.0-alpha-42606
+Tested up to: 5.0-alpha-42866
 Requires PHP: 5.4
-Stable tag: 1.6
+Stable tag: 1.7
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,15 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.7 =
+* New - New report to show only a chart drawing.
+* Fix- Don't show section title if there are no interpretations for a whole section.
+* Accessibility - The ZP admin pages, including settings and tools pages, will now have the correct page title in an H1 element. Previously, all tabs were inside the H1.
+* Tweak - The form will now also update the offset when hour/minute is changed. Previously, the offset was updated only when the day/month/year/city was changed.
+* Tweak - Scrollable results for autocomplete city field. The max number of cities returned from GeoNames is now 20. Previously, it was 12.
+* Tweak - Add version query string to stylesheet link to ensure the latest stylesheet is shown even with cache.
+* Maintenance - Updated the .pot language file.
+ 
 = 1.6 =
 * New - Add option for the birth report to skip a title when its interpretation is missing. This new "Hide Empty Titles" setting is at ZodiacPress > Settings > Natal Report tab > Display settings.
 * Fix - On the form, remove prior hidden inputs in case of changing city. Previously, when changing city, many hidden inputs would accumulate.
