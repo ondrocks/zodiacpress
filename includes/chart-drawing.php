@@ -3,10 +3,7 @@
  * Functions related to the chart drawing
  *
  * @package     ZodiacPress
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
@@ -61,7 +58,7 @@ function zp_get_chart_drawing( $chart, $colors = '' ) {
 }
 
 /**
- * Get the chart drawing only for the Birth Report, if enabled.
+ * Get the chart drawing only for the Birth Report
  * @param array $form The validated form data.
  * @param object $chart The chart object.
  * @return string The html for the chart image or empty string if not enabled.
@@ -103,3 +100,36 @@ function zp_get_sample_chart_drawing( $colors = false ) {
 	) );
 	return zp_get_chart_drawing( $chart, $colors );
 }
+
+/**
+ * Set the default form title for the "Only" Chart Drawing Report form.
+ */
+function zp_chart_only_form_title( $title, $atts ) {
+	if ( isset( $atts['report'] ) && 'drawing' == $atts['report'] ) {
+		$title = __( 'Get Your Birth Chart Wheel', 'zodiacpress' );
+	}
+	return $title;
+}
+add_filter( 'zp_shortcode_default_form_title', 'zp_chart_only_form_title', 10, 2 );
+
+/**
+ * Display help text at the top of the Chart Drawing Report tab
+ *
+ * @access  public
+ * @param   string   $active_tab
+ * @return  void
+ */
+function zp_drawing_settings_help_text( $active_tab = '' ) {
+	static $has_ran;
+
+	if ( 'drawing' !== $active_tab ) {
+		return;
+	}
+
+	if ( ! empty( $has_ran ) ) {
+		return;
+	}
+	echo '<p>' . __( 'These settings are for the "Only a Chart Drawing" report', 'zodiacpress' ) . '</p>';
+	$has_ran = true;
+}
+add_action( 'zodiacpress_settings_tab_top', 'zp_drawing_settings_help_text' );

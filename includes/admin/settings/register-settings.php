@@ -172,6 +172,19 @@ function zp_get_registered_settings() {
 
 			)
 		),
+		'drawing' => apply_filters( 'zp_settings_drawing',
+			array(
+				'main' => array(
+					'drawing_allow_unknown_bt' => array(
+								'id'	=> 'drawing_allow_unknown_bt',
+								'name'	=> __( 'Allow Unknown Birth Time', 'zodiacpress' ),
+								'type'	=> 'checkbox',
+								'std'	=> 1,
+								'desc'	=> __( 'Allow people with unknown birth times to get a chart wheel drawing. Their chart will be drawn for 12:00 time. Their chart will omit Moon, Ascendant, Midheaven, Part of Fortune and Vertex.', 'zodiacpress' )
+					),
+				)
+			)
+		),
 		'misc' => apply_filters( 'zp_settings_misc',
 			array(
 				'main' => array(
@@ -307,11 +320,11 @@ add_filter( 'zp_settings_sanitize_multicheck', 'zp_sanitize_multicheck_field', 1
  */
 function zp_get_settings_tabs() {
 	$settings = zp_get_registered_settings();
-
-	$tabs 			= array();
-	$tabs['natal']	= __( 'Natal Report', 'zodiacpress' );
-	$tabs['misc']	= __( 'Misc', 'zodiacpress' );
-
+	$tabs = array(
+		'natal'		=> __( 'Natal Report', 'zodiacpress' ),
+		'drawing'	=> __( 'Chart Drawing Report', 'zodiacpress' ),
+		'misc'		=> __( 'Misc', 'zodiacpress' )
+	);
 	if( ! empty( $settings['licenses'] ) ) {
 		$tabs['licenses'] = __( 'Licenses', 'zodiacpress' );
 	}
@@ -354,6 +367,9 @@ function zp_get_registered_settings_sections() {
 			'orbs'		=> __( 'Orbs', 'zodiacpress' ),
 			'report'	=> __( 'Display', 'zodiacpress' ),
 			'technical'	=> __( 'Technical', 'zodiacpress' )
+		) ),
+		'drawing'		=> apply_filters( 'zp_settings_sections_drawing', array(
+			'main'		=>  __( '"Drawing Only" Report Settings', 'zodiacpress' )
 		) ),
 		'licenses'	=> apply_filters( 'zp_settings_sections_licenses', array() ),
 		'misc'		=> apply_filters( 'zp_settings_sections_misc', array(

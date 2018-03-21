@@ -135,6 +135,8 @@ function zp_form( $report, $args = array() ) {
 	$allow_unknown_bt_key_prefix = $report;
 	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
 		$allow_unknown_bt_key_prefix = 'planet_lookup';
+	} elseif ( false !== strpos( $args['report'], 'drawing' ) ) {
+		$allow_unknown_bt_key_prefix = 'drawing';
 	}
 	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
 	$allow_unknown_bt = empty( $zodiacpress_options[ $allow_unknown_bt_key ] ) ? false : true;
