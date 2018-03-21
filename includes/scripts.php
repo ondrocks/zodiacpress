@@ -32,7 +32,7 @@ function zp_load_admin_scripts() {
 		return;
 	}
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-	wp_register_style( 'zp-admin', ZODIACPRESS_URL . 'assets/css/zp-admin' . $suffix . '.css' );
+	wp_register_style( 'zp-admin', ZODIACPRESS_URL . 'assets/css/zp-admin' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	wp_enqueue_style( 'zp-admin' );
 }
 	
