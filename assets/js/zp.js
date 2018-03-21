@@ -204,17 +204,17 @@
 			return false;
 		});
 
-		// Reset the Offset if date is changed.
-
-		$('#month, #day, #year').on('change', function () {
-			var changed = !this.options[this.selectedIndex].defaultSelected;
-			if (changed) {
+		// Reset the Offset if date or time is changed.
+		
+		$( '#month, #day, #year, #hour, #minute' ).on( 'change', function () {
+			var changed = ! this.options[this.selectedIndex].defaultSelected;
+			if ( changed ) {
 				$( '#zp-offset-wrap' ).hide();
 				$( '#zp-fetch-birthreport' ).hide();
 				$( '#zp-form-tip' ).hide();
 				$( '#zp-fetch-offset' ).show();				
 
 			}
-		});
+		} );
 
 })( jQuery );
