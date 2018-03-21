@@ -13,7 +13,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @param array $args 
  */
 function zp_form( $report, $args = array() ) {
-	$allow_unknown_bt = zp_is_allowed_unknown_time( $report, $args );
+	global $zodiacpress_options;
+	$allow_unknown_bt_key_prefix = $report;
+	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
+		$allow_unknown_bt_key_prefix = 'planet_lookup';
+	} elseif ( false !== strpos( $args['report'], 'drawing' ) ) {
+		$allow_unknown_bt_key_prefix = 'drawing';
+	}
+	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
+	$allow_unknown_bt = empty( $zodiacpress_options[ $allow_unknown_bt_key ] ) ? false : true;
 	?>
 	<noscript class="ui-state-highlight"><?php _e( 'This form requires JavaScript. Your browser either does not support JavaScript or has it disabled.', 'zodiacpress' ); ?></noscript>
 	<form id="zp-<?php echo esc_attr( $report ); ?>-form" method="post" class="zp-form">
@@ -57,14 +65,16 @@ function zp_form( $report, $args = array() ) {
 				<select id="minute" name="minute"><?php zp_minute_select_options(); ?></select>
 				<?php
 				// Show the unknown time checkbox, but not for reports that require a birth time
-				// ... and only if unkown time is allowed in settings 
-				if ( $allow_unknown_bt ) {
-					?>
-					<p class="zp-unknown-time-field zp-small">
-						<label for="unknown_time" class="screen-reader-text"><?php _e( 'Unknown Birth Time', 'zodiacpress' ); ?></label>
-						<input type="checkbox" id="unknown_time" name="unknown_time" /> <?php echo apply_filters( 'zp_unknown_birth_time_checkbox', __( 'If birth time is unknown, check this box.', 'zodiacpress' ) ); ?><strong>*</strong></p>
-					<?php
-				
+				if ( ! in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
+					// ...only if unkown time is allowed in settings
+					if ( $allow_unknown_bt ) {
+						?>
+						<p class="zp-unknown-time-field zp-small">
+							<label for="unknown_time" class="screen-reader-text"><?php _e( 'Unknown Birth Time', 'zodiacpress' ); ?></label>
+							<input type="checkbox" id="unknown_time" name="unknown_time" /> <?php echo apply_filters( 'zp_unknown_birth_time_checkbox', __( 'If birth time is unknown, check this box.', 'zodiacpress' ) ); ?><strong>*</strong></p>
+						<?php
+					}
+
 				} else {
 
 					echo apply_filters( 'zp_birth_time_required',
@@ -113,13 +123,17 @@ function zp_form( $report, $args = array() ) {
 
 		<?php
 		// Add note about unknown birth time, but not for reports that require a birth time
-		// ... and only if unkown time is allowed in settings
-		if ( $allow_unknown_bt ) {
-			echo apply_filters( 'zp_allow_unknown_time_note',
-					'<p class="zp-birth-time-note zp-small">' .
-					__( '<strong>* NOTE: </strong> If birth time is unknown, the report will not include positions or aspects for the Moon, Ascendant, Midheaven, Vertex, or Part of Fortune, nor will it include House positions for any planets.', 'zodiacpress' ) .
-					'</p>',
-					$args );
+		if ( ! in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
+			// ...only if unkown time is allowed in settings
+			if ( $allow_unknown_bt ) {
+
+				echo apply_filters( 'zp_allow_unknown_time_note',
+						'<p class="zp-birth-time-note zp-small">' .
+						__( '<strong>* NOTE: </strong> If birth time is unknown, the report will not include positions or aspects for the Moon, Ascendant, Midheaven, Vertex, or Part of Fortune, nor will it include House positions for any planets.', 'zodiacpress' ) .
+						'</p>',
+						$args );
+			}
+
 		}
 		do_action( 'zp_form_bottom', $allow_unknown_bt, $report, $args ); ?>
 	</form>

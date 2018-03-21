@@ -119,28 +119,3 @@ function zp_day_form_field() {
 	<?php
 
 }
-
-/**
- * Determine if this specific report form is supposed to allow unknown birth time.
- *
- * @param string $report Identifier to distinguish this type of report.
- * @param array $args Shortcode args
- *
- * @since 1.7
- *
- * @return bool
- */
-function zp_is_allowed_unknown_time( $report, $args = array() ) {
-	if ( in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
-		return false;
-	}
-	global $zodiacpress_options;
-	$allow_unknown_bt_key_prefix = $report;
-	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
-		$allow_unknown_bt_key_prefix = 'planet_lookup';
-	} elseif ( false !== strpos( $args['report'], 'drawing' ) ) {
-		$allow_unknown_bt_key_prefix = 'drawing';
-	}
-	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
-	return empty( $zodiacpress_options[ $allow_unknown_bt_key ] ) ? false : true;
-}
