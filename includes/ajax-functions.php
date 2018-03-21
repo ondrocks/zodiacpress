@@ -21,7 +21,7 @@ function zp_ajax_autocomplete_cities() {
 	$api_params = array(
 		'featureClass'		=> 'P',
 		'style'				=> 'full',
-		'maxRows'			=> 12,
+		'maxRows'			=> 20,
 		'name_startsWith'	=> sanitize_text_field( $_POST['name_startsWith'] ),
 		'username'			=> urlencode( sanitize_text_field( $_POST['username'] ) ),
 		'lang'				=> ! empty( $_POST['lang'] ) ? sanitize_text_field( $_POST['lang'] ) : '',
