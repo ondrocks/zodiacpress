@@ -283,10 +283,11 @@ function zp_interps_sanitize( $input = array() ) {
  * @return array $tabs
  */
 function zp_get_interps_tabs() {
-	$tabs 								= array();
-	$tabs['natal_planets_in_signs']		= __( 'In Signs', 'zodiacpress' );
-	$tabs['natal_planets_in_houses']	= __( 'In Houses', 'zodiacpress' );
-	$tabs['natal_aspects']				= __( 'Aspects', 'zodiacpress' );
+	$tabs = array(
+		'natal_planets_in_signs' 	=> __( 'In Signs', 'zodiacpress' ),
+		'natal_planets_in_houses' 	=> __( 'In Houses', 'zodiacpress' ),
+		'natal_aspects'				=> __( 'Aspects', 'zodiacpress' )
+	);
 	return $tabs;
 }
 
