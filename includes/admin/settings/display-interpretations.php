@@ -19,6 +19,7 @@ function zp_interpretations_page() {
 	$interps_tabs = empty($interps_tabs) ? array() : $interps_tabs;
 	$active_tab   = isset( $_GET['tab'] ) && array_key_exists( $_GET['tab'], $interps_tabs ) ? sanitize_text_field( $_GET['tab'] ) : 'natal_planets_in_signs';
 	$sections 	  = zp_get_interps_tab_sections( $active_tab );
+	$current_tab_name = $interps_tabs[ $active_tab ];
 
 	// Get 'main' section which varies depending on which planets are enabled in settings.
 	if ( $sections ) {
@@ -36,7 +37,7 @@ function zp_interpretations_page() {
 		<span class="zp-admin-title"><?php _e( 'ZodiacPress', 'zodiacpress' ); ?></span>
 		<?php zp_extend_link();
 			zp_feedback_link()?>
-		<h1 class="nav-tab-wrapper clear">
+		<nav class="nav-tab-wrapper clear">
 			<?php
 			settings_errors( 'zp-intpers-notices' );
 			foreach( $interps_tabs as $tab_id => $tab_name ) {
@@ -56,7 +57,8 @@ function zp_interpretations_page() {
 				echo '</a>';
 			}
 			?>
-		</h1>
+		</nav>
+		<h1 class="screen-reader-text"><?php echo $current_tab_name; ?></h1>
 		<?php
 		$number_of_sections = count( $sections );
 		$number = 0;

@@ -3,10 +3,7 @@
  * Admin Settings Page
  *
  * @package     ZodiacPress
- * @subpackage  Admin/Settings
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
-*/
+ */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -22,6 +19,7 @@ function zp_options_page() {
 	$settings_tabs = empty( $settings_tabs ) ? array() : $settings_tabs;
 	$active_tab    = isset( $_GET['tab'] ) && array_key_exists( $_GET['tab'], $settings_tabs ) ? sanitize_text_field( $_GET['tab'] ) : 'natal';
 	$sections      = zp_get_settings_tab_sections( $active_tab );
+	$current_tab_name = $settings_tabs[ $active_tab ];
 
 	$section = isset( $_GET['section'] ) && ! empty( $sections ) && array_key_exists( $_GET['section'], $sections ) ? sanitize_text_field( $_GET['section'] ) : 'main';
 	ob_start();
@@ -29,7 +27,7 @@ function zp_options_page() {
 	<div class="wrap <?php echo 'wrap-' . $active_tab; ?>">
 		<?php zp_extend_link();
 			zp_feedback_link(); ?>
-		<h1 class="nav-tab-wrapper clear">
+		<nav class="nav-tab-wrapper clear">
 			<?php
 			settings_errors( 'zp-notices' );
 			foreach( $settings_tabs as $tab_id => $tab_name ) {
@@ -49,7 +47,8 @@ function zp_options_page() {
 				echo '</a>';
 			}
 			?>
-		</h1>
+		</nav>
+		<h1 class="screen-reader-text"><?php echo $current_tab_name; ?></h1>
 		<?php
 		$number_of_sections = count( $sections );
 		$number = 0;

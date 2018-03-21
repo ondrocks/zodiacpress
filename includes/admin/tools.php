@@ -16,14 +16,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function zp_tools_page() {
 	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'cleanup';
+	$tabs = zp_get_tools_tabs();
+	$current_tab_name = $tabs[ $active_tab ];
 	?>
 	<div class="wrap">
 	<?php zp_extend_link();
 		zp_feedback_link(); ?>
-	<h1 class="nav-tab-wrapper clear">
+	<nav class="nav-tab-wrapper clear">
 		<?php foreach( zp_get_tools_tabs() as $tab_id => $tab_name ) {
 			$active = $active_tab == $tab_id ? ' nav-tab-active' : '';
-
 			$tab_url = add_query_arg( array( 'tab' => $tab_id ) );
 
 			// Remove the arg that triggers the admin notice
@@ -32,7 +33,8 @@ function zp_tools_page() {
 			echo '<a href="' . esc_url( $tab_url ) . '" title="' . esc_attr( $tab_name ) . '" class="nav-tab' . $active . '">' . esc_html( $tab_name ) . '</a>';
 		}
 		?>
-	</h1>
+	</nav>
+	<h1 class="screen-reader-text"><?php echo $current_tab_name; ?></h1>
 	<div class="metabox-holder">
 		<?php do_action( 'zp_tools_tab_' . $active_tab ); ?>
 	</div>
@@ -46,10 +48,11 @@ function zp_tools_page() {
  * @return      array
  */
 function zp_get_tools_tabs() {
-	$tabs 					= array();
-	$tabs['cleanup']		= __( 'Clean up', 'zodiacpress' );
-	$tabs['sysinfo']		= __( 'System info', 'zodiacpress' );
-	$tabs['import_export']	= __( 'Export/Import', 'zodiacpress' );
+	$tabs = array(
+		'cleanup' 		=> __( 'Clean up', 'zodiacpress' ),
+		'sysinfo' 		=> __( 'System info', 'zodiacpress' ),
+		'import_export' => __( 'Export/Import', 'zodiacpress' )
+	);
 	return apply_filters( 'zp_tools_tabs', $tabs );
 }
 /**
