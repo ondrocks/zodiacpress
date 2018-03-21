@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Adds a ZodiacPress chart wheel color editor to the Customizer.
  */

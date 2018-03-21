@@ -3,11 +3,8 @@
  * Misc Functions
  *
  * @package     ZodiacPress
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
-
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Returns an orderinal word for a number, or a list of number ordinal words
