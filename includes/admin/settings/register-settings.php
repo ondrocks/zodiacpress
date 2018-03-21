@@ -322,7 +322,7 @@ function zp_get_settings_tabs() {
 	$settings = zp_get_registered_settings();
 	$tabs = array(
 		'natal'		=> __( 'Natal Report', 'zodiacpress' ),
-		'drawing'	=> __( 'Chart Drawing Report', 'zodiacpress' ),
+		'drawing'	=> __( 'Only Chart Drawing Report', 'zodiacpress' ),
 		'misc'		=> __( 'Misc', 'zodiacpress' )
 	);
 	if( ! empty( $settings['licenses'] ) ) {
@@ -369,7 +369,7 @@ function zp_get_registered_settings_sections() {
 			'technical'	=> __( 'Technical', 'zodiacpress' )
 		) ),
 		'drawing'		=> apply_filters( 'zp_settings_sections_drawing', array(
-			'main'		=>  __( '"Drawing Only" Report Settings', 'zodiacpress' )
+			'main'		=>  __( '"Only Chart Drawing" Report Settings', 'zodiacpress' )
 		) ),
 		'licenses'	=> apply_filters( 'zp_settings_sections_licenses', array() ),
 		'misc'		=> apply_filters( 'zp_settings_sections_misc', array(
