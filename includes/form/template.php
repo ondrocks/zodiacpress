@@ -17,7 +17,7 @@ function zp_form( $report, $args = array() ) {
 	$allow_unknown_bt_key_prefix = $report;
 	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
 		$allow_unknown_bt_key_prefix = 'planet_lookup';
-	} elseif ( false !== strpos( $args['report'], 'drawing' ) ) {
+	} elseif ( 'drawing' === $args['report'] ) {
 		$allow_unknown_bt_key_prefix = 'drawing';
 	}
 	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
@@ -124,8 +124,8 @@ function zp_form( $report, $args = array() ) {
 		<?php
 		// Add note about unknown birth time, but not for reports that require a birth time
 		if ( ! in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
-			// ...only if unkown time is allowed in settings
-			if ( $allow_unknown_bt ) {
+			// ...only if unkown time is allowed in settings, but not for 'Only Chart Wheel'
+			if ( $allow_unknown_bt && 'drawing' !== $args['report'] ) {
 
 				echo apply_filters( 'zp_allow_unknown_time_note',
 						'<p class="zp-birth-time-note zp-small">' .
