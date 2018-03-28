@@ -3,7 +3,7 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth chart, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.0-alpha-42866
+Tested up to: 5.0-alpha-42881
 Requires PHP: 5.4
 Stable tag: 1.7
 License: GNU GPLv2
@@ -84,7 +84,7 @@ See the full [ZodiacPress documentation](https://cosmicplugins.com/docs/category
 
 1. In your WordPress dashboard, go to ZodiacPress –> Settings, and click the Misc tab. 
 2. Enter your GeoNames Username and click “Save Changes.” You can quickly create a free [GeoNames account here](http://www.geonames.org/login). This is required because the plugin uses GeoNames webservice to get birth place latitude/longitude coordinates and timezone ids for the birth reports. After you create your GeoNames account, you have to enable their free web services by going to their [manage account page](http://www.geonames.org/manageaccount) and click to enable them at the bottom where it says "Free Web Services." (Optional: if you have a Premium GeoNames account, then you should take advantage of [Enhanced GeoNames](https://cosmicplugins.com/downloads/zodiacpress-enhanced-geonames/).)
-3. Add the `[birthreport]` shortcode to a page or post. This is where the birth report form will appear. Go to this page on the front of your site to generate a birth report.
+3. Add the `[birthreport]` shortcode to a page or post. This is where the birth report form will appear. Go to this page on the front of your site to generate a birth report. For more help with shortcodes, see [How To Use a Shortcode](https://cosmicplugins.com/docs/shortcode/).
 
 That’s it for the Quick Setup. This allows you to generate a basic report which lists the planets in the signs, planets in the houses, and aspects. Interpretations will not be included in the report until you enter your own natal interpretations. 
 
@@ -124,6 +124,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.7.1 =
+* Fix - The Fagan/Bradley sidereal method was not working when selling a report.
 
 = 1.7 =
 * New - New report to show only a chart drawing.
@@ -231,6 +234,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.7.1 =
+Fixed - The Fagan/Bradley sidereal method was not working when selling a report.
 
 = 1.6 =
 New option for report to skip a title when its interpretation is missing.
