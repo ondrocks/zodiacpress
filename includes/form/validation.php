@@ -132,7 +132,8 @@ function zp_validate_form( $data, $partial = false ) {
 	// Validate the sidereal hidden field
 	$sidereal = empty( $data['zp_report_sidereal'] ) ? false : sanitize_text_field( $data['zp_report_sidereal'] );
 	if ( ! isset( zp_get_sidereal_methods()[ $sidereal ] ) ) {
-		$sidereal = false;
+		// Allow faganbradley without slash
+		$sidereal = ( 'faganbradley' === $sidereal ) ? 'fagan/bradley' : false;
 	}
 
 	// Validate the house system hidden field
