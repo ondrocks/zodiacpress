@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 5.0-alpha-42881
 Requires PHP: 5.4
-Stable tag: 1.7
+Stable tag: 1.7.1
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
