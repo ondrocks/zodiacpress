@@ -13,7 +13,7 @@ __Please Note:__ GitHub is for bug reports and contributions only - if you have 
 * Submit a new issue, assuming one does not already exist for your issue.
   * Create a new Issue on our [Issue Tracker](https://github.com/isabelc/zodiacpress/issues)
   * Clearly describe the issue including steps to reproduce the bug.
-  * Make sure you fill in the earliest version that you know has the issue as well as the version of WordPress you're using.
+  * Make sure you give the earliest version that you know has the issue as well as the version of WordPress you're using.
 
 ## Contributing Changes
 
