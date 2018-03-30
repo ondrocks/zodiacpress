@@ -23,8 +23,7 @@ The birth report includes three parts:
 2. Planets and Points in The Houses
 3. Aspects
 
-Birth Report Details
---------------------
+= Birth Report Details =
 
 You can choose which planets and aspects to include in the birth report.
 
@@ -44,34 +43,29 @@ You get granular control over aspect orbs. It lets you assign different orbs for
 
 If birth time is unknown, ZP checks for ingress on that day rather than simply using the planet's noon position. If an ingress occurs at any time on that day, it lets the person know that the planet changed signs on that day, and from which sign to which it changed.
 
-Interpretations Are Optional
-----------------------------
+= Interpretations Are Optional =
 
 Entering your interpretations is not required since you can generate reports without interpretations text. See the [screenshots](https://wordpress.org/plugins/zodiacpress/screenshots/) to see how a basic report **without** interpretations text looks.
 
-Privacy Policy and EU GDPR Compliance
--------------------------------------
+= Privacy Policy and EU GDPR Compliance =
 
 ZodiacPress complies with the EU General Data Protection Regulation (GDPR). ZodiacPress does not store the data that is entered into the form. Once a user submits the form with their birth information, that data is used instantaneously to generate a report, and then the data is lost. It is not saved with cookies or to any database. **So, you can confidently add a notice somewhere on your page (whether under the form, or on the footer of your site) to inform your users that the Birth Report form is not storing their data.**
 
-Technical Details
------------------
+= Technical Details =
 
 ZodiacPress gets birth place latitude/longitude coordinates from the GeoNames geographical database (via its webservices) which uses the latest revision of World Geodetic System (WGS 84). This is why a GeoNames account is necessary.
 
 ZP uses the Swiss Ephemeris (under GNU GPLv2) to get the longitude of the planets/celestial bodies. This ephemeris is included inside the plugin.
 
-Internationalization
---------------------
+= Internationalization =
 
 Much effort has been made to internationalize even the digits (numbers, years, and other integers in the plugin). On the birth report form, the month and day fields will switch places according to your date settings. Suggestions regarding i18n are welcome.
 
-=Languages=
+= Languages =
 
 If you want to translate this plugin to your language, please see [ZodiacPress in Your Language](https://cosmicplugins.com/docs/zodiacpress-language/).
 
-Contributing
-------------
+= Contributing =
 
 Anyone is welcome to contribute to ZodiacPress. Please read the [guidelines for contributing](https://github.com/isabelc/zodiacpress/blob/master/CONTRIBUTING.md) to this repository.
 

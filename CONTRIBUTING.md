@@ -1,12 +1,21 @@
 ## Contribute To ZodiacPress
 
-Community made patches, translations, bug reports and contributions are always welcome and are crucial to ensure ZodiacPress remains actively supported.
+Anyone is welcome to contribute to ZodiacPress. Community-made patches, translations, bug reports and contributions are always welcome and are crucial to ensure ZodiacPress remains actively supported.
+
+There are various ways you can contribute:
+
+1. Report a bug by creating an [Issue](https://github.com/isabelc/zodiacpress/issues) on GitHub.
+2. Send us a Pull Request with your bug fixes and/or new features.
+3. Translate ZodiacPress into [different languages](https://cosmicplugins.com/docs/zodiacpress-language/).
+4. Provide feedback and suggestions on [enhancements](https://github.com/isabelc/zodiacpress/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
+
 
 When contributing please ensure you follow the guidelines below.
 
+
 __Please Note:__ GitHub is for bug reports and contributions only - if you have a support question or a request for a customization don't post here, go to the [Support page](https://wordpress.org/support/plugin/zodiacpress) instead.
 
-## Creating Issues
+## Reporting Bugs
 
 * __Do not report potential security vulnerabilities here. Report them privately on our [contact page](https://cosmicplugins.com/contact/)__
 * Before submitting an issue, please be sure to replicate the behavior with no other plugins active and on a base theme like Twenty Seventeen.
