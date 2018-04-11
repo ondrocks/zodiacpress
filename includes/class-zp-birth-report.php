@@ -255,13 +255,19 @@ class ZP_Birth_Report {
 				// Check for planets conjunct the next house cusp.
 				if ( 'planets_in_houses' == $section ) {
 					if ( ! empty( $v['next_label'] ) ) {
-						$content .= '<p class="zp-subheading">' .
+						// new subtitle
+						$piece_title = '<p class="zp-subheading">' .
 								sprintf( __( 'NOTE: Since %s is very close to the next house cusp, the next item is also relevant.', 'zodiacpress' ), $v['planet_label'] ) .
 								'</p>' . 
-								'<p class="zp-subheading">' . $v['next_label'] . '</p>';
+								'<p class="zp-subheading">' . $v['next_label'] . '</p>';	
 
-						// Does interpretation exist for this?
-						if ( ! empty( $interps[ $v['next_id'] ] ) ) {
+						// If interpretation for 'planet in next house' does NOT exist, only show title if "Hide Titles With Empty Interpretations" is disabled.
+						if ( empty( $interps[ $v['next_id'] ] ) ) {// interpretation does not exist
+							if ( empty( $this->zp_settings['hide_empty_titles'] ) ) {// "Hide Empty Titles" is disabled, so show title.
+								$content .= $piece_title;
+							}
+						} else {// interpretation exists
+							$content .= $piece_title;
 							$content .=	wp_kses_post( wpautop( $interps[ $v['next_id'] ] ) );
 						}
 					}
