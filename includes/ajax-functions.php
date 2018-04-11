@@ -45,13 +45,10 @@ add_action( 'wp_ajax_nopriv_zp_get_cities_list', 'zp_ajax_autocomplete_cities' )
  * Handles ajax request to calculate timezone offset and send back to form fields
  */
 function zp_ajax_get_time_offset() {
-	parse_str( $_POST['post_data'], $post_data );
-
 	$offset_geo = null;
-	$validated = zp_validate_form( $post_data, true );
+	$validated = zp_validate_form( $_POST, true );
 
 	if ( ! is_array( $validated )  ) {
-
 		// We have an error
 		echo json_encode( array( 'error' => $validated ) );
 		wp_die();

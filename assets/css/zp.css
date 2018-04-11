@@ -105,7 +105,7 @@
 	margin-right: 0.4em;
 }
 form .zp-button {
-	background: #26264c;
+	background: #339933;
 	border: 0;
 	border-radius: 2px;
 	color: #fff;
@@ -117,17 +117,21 @@ form .zp-button {
 	box-sizing: border-box;
 }
 form .zp-button:hover, .zp-button:focus{
-	background-color: #333366;
+	background-color: #339933;
 }
-#zp-fetch-offset, #zp-fetch-birthreport {
+
+#zp-submit-wrap {
+	margin-top: 32px;
+}
+
+#zp-fetch-birthreport {
 	margin: 3px 0 36px;
 	width: 100%;
 	cursor: pointer;
 }
+
 #zp-fetch-birthreport[disabled],
-#zp-fetch-offset[disabled],
-#zp-fetch-birthreport[disabled]:hover,
-#zp-fetch-offset[disabled]:hover {
+#zp-fetch-birthreport[disabled]:hover {
 	cursor: default;
 	cursor: not-allowed;
 	opacity: .5;
@@ -137,14 +141,7 @@ form .zp-button:hover, .zp-button:focus{
 
 /* Ajax
 -------------------------------------------------------------- */
-#zp-ajax-loader {
-	margin: 1em auto;
-	display: block;
-	border:none;
-	visibility: hidden;
-}
 
-#zp-fetch-birthreport,
 #zp-report-wrap,
 #zp-offset-wrap,
 #zp-form-tip{

@@ -1,15 +1,17 @@
-(function( $ ) {
+/* Disable Submit button until form is filled */
+var zpButton = document.getElementById( 'zp-fetch-birthreport' );
+zpButton.setAttribute( 'disabled', true );
 
-		// Disable Next button until ajax response is ready
-		$( "#zp-fetch-offset" ).prop( 'disabled', true );
-		
-		// Autocomplete city
+(function( $ ) {
+	
+		/* Autocomplete city */
 
 		$( '#place' ).autocomplete({
 			source: function( request, response ) {
 
-				$( '.ui-state-error' ).hide();// Hide the geonames error message, if any, in case they are trying again
-
+				/* Hide the geonames error message, if any, in case they are trying again */
+				zpRemoveError();
+				
 				$.ajax({
 					url: zp_ajax_object.autocomplete_ajaxurl,
 					dataType: zp_ajax_object.dataType,
@@ -25,11 +27,7 @@
 					},
 					success: function( data ) {
 
-						$( "#zp-fetch-offset" ).prop( 'disabled', true );
-						// disable also submit button in case of changing city after offset is calculated
-						$( "#zp-fetch-birthreport" ).prop( 'disabled', true );
-
-						// check for GeoNames exceptions
+						/* check for GeoNames exceptions */
 						if ( data.status !== undefined ) {
 							var msg = $( '<span />' );
 							msg.attr( 'class', 'ui-state-error' );
@@ -52,24 +50,21 @@
 			minLength: 2,
 			select: function( event, ui ) {
 
-				$( '.ui-state-error' ).hide();
+				zpRemoveError();
 
-				// Show loading gif so user will patiently wait for the Next button
-				$( '#zp-ajax-loader' ).css({ 'visibility': 'visible' });
-
-				// Insert hidden input with timezone ID and birthplace coordinates
+				/* Insert hidden input with timezone ID and birthplace coordinates */
 				var hiddenInputs = {
 					'geo_timezone_id': ui.item.timezoneid,
 					'zp_lat_decimal': ui.item.latdeci,
 					'zp_long_decimal': ui.item.lngdeci
 				}
 				for ( var elID in hiddenInputs ) {
-					// Remove any previous in case they're changing the city
+					/* Remove any previous in case they're changing the city */
 					var exists = document.getElementById( elID );
 					if ( null !== exists ) {
 						exists.remove();
 					}
-					// Insert hidden inputs
+					/* Insert hidden inputs */
 					elInput = document.createElement( 'input' );
 				    elInput.setAttribute( 'type', 'hidden' );
 				    elInput.id = elID;
@@ -78,67 +73,63 @@
 					document.getElementById( 'zp-timezone-id' ).appendChild( elInput );
 				}
 
-				// Reset the Offset section in case of changing city.
-				$( '#zp-offset-wrap' ).hide();
-				$( '#zp-fetch-birthreport' ).hide();
-				$( '#zp-form-tip' ).hide();
-				$( '#zp-fetch-offset' ).show();
-				$( '#zp-ajax-loader' ).css({ 'visibility': 'hidden' });
-
-				// Enable the Next button
-				$( "#zp-fetch-offset" ).prop( 'disabled', false );
+				zpGetOffset();
 			}
 		});
 	
-		// Fill in time offset upon clicking Next.
-
-		$('#zp-fetch-offset').click(function(e) {
-			var data = {
-				action: 'zp_tz_offset',
-				post_data: $( '#zp-ajax-birth-data :input' ).serialize()
-			};
-			$.ajax({
-				url: zp_ajax_object.ajaxurl,
-				type: "POST",
-				data: data,
-				dataType: "json",
-				success: function( data ) {
+	/**
+	 * Ajax request to get time offset
+	 */
+	function zpGetOffset() {
+		const zpFormData = $( '#zp-ajax-birth-data :input' ).serialize() + '&action=zp_tz_offset';
+		const xhr = new XMLHttpRequest();
+		xhr.open( 'POST', zp_ajax_object.ajaxurl );
+		xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+		xhr.responseType = 'json';
 		
-					if (data.error) {
-						$( '.ui-state-error' ).hide();
-						var span = $( '<span />' );
-						span.attr( 'class', 'ui-state-error' );
-						span.text( data.error );
-						$( '#zp-ajax-birth-data' ).append( span );
-					} else {
+		xhr.onload = function() {
+			var submitButton = document.getElementById( 'zp-fetch-birthreport' );
 
-						// if not null, blank, nor false, but 0 is okay 
-						if ($.trim(data.offset_geo) && 'false' != $.trim(data.offset_geo)) {
-							$( '.ui-state-error' ).hide();
-							
-							// Display offset.
-							$( '#zp-offset-wrap' ).show();
-							$( '#zp-offset-label' ).text( zp_ajax_object.utc + " " );
-							$( '#zp_offset_geo' ).val(data.offset_geo);
-							$( '#zp-form-tip' ).show();
+			if (xhr.status === 200 && xhr.response) {
+				if ( xhr.response.error ) {
 
-							// Switch buttons
-							$( '#zp-fetch-offset' ).hide();
-							$( '#zp-fetch-birthreport' ).show();
-							$( '#zp-fetch-birthreport' ).prop( 'disabled', false );
-
-							// Make the submit button green
-							$( "#zp-fetch-birthreport" ).css({ 'background-color': '#339933', 'border-color': '#339933' });
-
-						}
-					}
+					/* remove previous errors if any */
+					zpRemoveError();
 					
-				}
-			});
-			return false;
-		});
+					/* show new error */
+					var span = document.createElement( 'span' );
+					span.setAttribute( 'class', 'ui-state-error' );
+					span.textContent = xhr.response.error;
+					document.getElementById( 'zp-ajax-birth-data' ).appendChild( span );
 
-		// Fetch birth report upon clicking submit
+				} else {
+
+					/* if not null, blank, nor false, but 0 is okay  */
+					if ( xhr.response.offset_geo && 'false' != xhr.response.offset_geo ) {
+
+						/* remove previous errors if any */
+						zpRemoveError();
+								
+						/* Display offset. */
+						document.getElementById( 'zp-offset-wrap' ).style.display = 'block';
+						document.getElementById( 'zp-offset-label' ).textContent = zp_ajax_object.utc + ' ';
+						document.getElementById( 'zp_offset_geo' ).value = xhr.response.offset_geo;
+						document.getElementById( 'zp-form-tip' ).style.display = 'block';
+
+						/* Enable submit button */
+						submitButton.removeAttribute( 'disabled' );
+
+					}
+
+				}
+
+			}
+		};
+
+		xhr.send( zpFormData );
+	}
+
+		/* Fetch birth report upon clicking submit */
 
 		$( '#zp-fetch-birthreport' ).click(function() {
 			$.ajax({
@@ -149,7 +140,7 @@
 				success: function( reportData ) {
 
 					if (reportData.error) {
-						$( '.ui-state-error' ).hide();
+						zpRemoveError();
 						var span = $( '<span />' );
 						span.attr( 'class', 'ui-state-error' );
 						span.text( reportData.error );
@@ -157,21 +148,21 @@
 
 					} else {
 
-						// if neither null, blank, nor false 
+						/* if neither null, blank, nor false */
 						if ($.trim(reportData.report) && 'false' != $.trim(reportData.report)) {
 							
-							$( '.ui-state-error' ).hide();
+							zpRemoveError();
 
-							// Display report.
+							/* Display report. */
 							$( '#zp-report-wrap' ).show();
 							$( '#zp-report-content' ).append(reportData.report);
 							$( '#zp-form-wrap' ).hide();
 
-							// Insert the chart image.
+							/* Insert the chart image. */
 							switch ( zp_ajax_object.draw ) {
 								case 'top':
 
-									// Show image at top
+									/* Show image at top */
 
 									if ( $( '.zp-report-header' ).length ) {
 										$( '.zp-report-header' ).after( reportData.image );
@@ -182,7 +173,7 @@
 								break;
 								case 'bottom':
 
-									// show image at end of report
+									/* show image at end of report */
 
 									$( '#zp-report-content' ).append( reportData.image );
 
@@ -190,7 +181,7 @@
 
 							}
 
-							// Scroll to top of report
+							/* Scroll to top of report */
 							var distance = $('#zp-report-wrap').offset().top - 70;
 							$( 'html,body' ).animate({
 								scrollTop: distance
@@ -204,17 +195,50 @@
 			return false;
 		});
 
-		// Reset the Offset if date or time is changed.
+		/* Reset the Offset if date or time is changed. */
 		
 		$( '#month, #day, #year, #hour, #minute' ).on( 'change', function () {
 			var changed = ! this.options[this.selectedIndex].defaultSelected;
 			if ( changed ) {
-				$( '#zp-offset-wrap' ).hide();
-				$( '#zp-fetch-birthreport' ).hide();
-				$( '#zp-form-tip' ).hide();
-				$( '#zp-fetch-offset' ).show();				
+
+				/* Only do ajax (get offset) if (partial) required fields are entered. */
+
+				if ( zpFieldsFilled() ) {
+					zpGetOffset();
+				}
 
 			}
 		} );
 
 })( jQuery );
+
+/**
+ * Check that the fields required to get offset are entered.
+ */
+function zpFieldsFilled() {
+	var ids = ['geo_timezone_id','zp_long_decimal','zp_lat_decimal','place','minute','hour','year','day','month'];
+
+	for ( var i of ids ) {
+
+		var el = document.getElementById(i);
+
+		if ( null === el ) {
+			return false;
+		}
+
+        if ( el.value.length === 0 || ! el.value.trim() ) {
+        	/* fail */
+        	return false;
+        }
+	}
+
+	return true;
+}
+
+/**
+ * Remove form error notices
+ */
+function zpRemoveError() {
+	var el = document.querySelector( '.ui-state-error' );
+	if ( el !== null ) { el.parentNode.removeChild( el ); }
+}
