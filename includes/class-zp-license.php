@@ -167,9 +167,8 @@ class ZP_License {
 		if ( ! empty( $has_ran ) ) {
 			return;
 		}
-
 		echo '<p>' . sprintf(
-			__( 'Enter your extension license keys here to receive updates for purchased extensions. If your license key has expired, please <a href="%s" target="_blank" rel="nofollow">renew your license</a>.', 'zodiacpress' ),
+			__( 'Enter your license keys here to receive updates for extensions. If your license key has expired, please <a href="%s" target="_blank" rel="nofollow">renew your license</a>.', 'zodiacpress' ),
 			'https://cosmicplugins.com/faq/#jl-licenserenew'
 		) . '</p>';
 
