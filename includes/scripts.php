@@ -11,13 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Register styles
  */
 function zp_register_scripts() {
-	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 	wp_register_style( 'zp', ZODIACPRESS_URL . 'assets/css/zp' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	// for RTL languages
 	wp_register_style( 'zp-rtl', ZODIACPRESS_URL . 'assets/css/zp-rtl' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array( 'jquery-ui-autocomplete', 'jquery' ), ZODIACPRESS_VERSION );
-
 	wp_localize_script( 'zp', 'zp_ajax_object', zp_get_script_localization_data() );
 
 }
@@ -31,7 +30,7 @@ function zp_load_admin_scripts() {
 	if ( ! zp_is_admin_page() ) {
 		return;
 	}
-	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	wp_register_style( 'zp-admin', ZODIACPRESS_URL . 'assets/css/zp-admin' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	wp_enqueue_style( 'zp-admin' );
 }
