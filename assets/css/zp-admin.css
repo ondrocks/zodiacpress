@@ -1,3 +1,46 @@
+.zp-setting-geonames_user > th,
+.zp-setting-atlas-status th {
+	visibility: hidden;
+}
+
+.zp-setting-atlas label {
+	display: block;
+	margin: 0 0 12px;
+	
+}
+
+#tab_container .zp-setting-atlas input {
+	margin-right:8px;
+}
+
+.zp-flex-container {
+  display: flex;
+   padding:10px;
+}
+
+#zp-atlas-status td {
+  font-size: inherit;
+  margin-bottom: 0;
+  padding: 6px 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+#zp-atlas-status tr:last-child td {
+  border-width: 0;
+}
+.zp-atlas-message{
+	position: relative;
+	overflow: hidden;
+}
+.zp-atlas-message.notice{
+	border-left-color: #9900CC!important;
+}
+.zp-atlas-error{
+	color:#dc3232;
+}
+.zp-success{
+	color:green;
+}
+
 .zp-admin-title{
 	font-size: 23px;
 	line-height: 29px;
@@ -29,6 +72,7 @@
 .zp-helptext{
 	padding-top:2em;
 }
+
 #tab_container.natal_orbs th {
 	padding:0;
 }
@@ -36,9 +80,12 @@
 	padding:0 0 4px 0;
 	margin-bottom: 0;
 }
-#tab_container.misc_main label {
+
+.zp-setting-checkbox-label label {
 	padding-left:8px;
 }
+
+#zp-atlas-installer,
 .wrap-licenses .zp-license-data[class*="zp-license-"] {
 	background: #fafafa;
 	padding: 14px;
@@ -63,7 +110,6 @@
 	color: #fff;
 	border-color: #e24e4e;
 }
-
 .wrap-licenses .zp-license-data.zp-license-error,
 .wrap-licenses .zp-license-data.zp-license-missing,
 .wrap-licenses .zp-license-data.zp-license-invalid,

@@ -65,6 +65,7 @@ function zp_uninstall() {
 
 
 		delete_option( 'zodiacpress_settings' );
+		delete_option( 'zp_atlas_db_installing' );
 
 		foreach ( $interpretations as $interpretation ) {
 			delete_option( $interpretation );

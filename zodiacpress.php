@@ -3,7 +3,7 @@
 Plugin Name: ZodiacPress
 Plugin URI: https://cosmicplugins.com/downloads/zodiacpress/
 Description: Generate astrology birth reports with your custom interpretations.
-Version: 1.8-alpha.2
+Version: 1.8-alpha.3
 Author: Isabel Castillo, Cosmic Plugins
 Author URI: https://isabelcastillo.com
 License: GNU GPLv2
@@ -28,7 +28,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with ZodiacPress. If not, see <http://www.gnu.org/licenses/>.
 */
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! class_exists( 'ZodiacPress' ) ) {
@@ -99,6 +98,8 @@ final class ZodiacPress {
 		require_once ZODIACPRESS_PATH . 'includes/class-zp-license.php';
 		require_once ZODIACPRESS_PATH . 'includes/misc-functions.php';
 		require_once ZODIACPRESS_PATH . 'includes/scripts.php';
+		include_once ZODIACPRESS_PATH . 'includes/atlas/class-zp-atlas-db.php';
+		include_once ZODIACPRESS_PATH . 'includes/atlas/atlas-functions.php';
 		require_once ZODIACPRESS_PATH . 'includes/time-functions.php';
 		require_once ZODIACPRESS_PATH . 'includes/form/template-functions.php';
 		require_once ZODIACPRESS_PATH . 'includes/form/template.php';
@@ -108,7 +109,6 @@ final class ZodiacPress {
 		require_once ZODIACPRESS_PATH . 'includes/form/validation.php';
 		require_once ZODIACPRESS_PATH . 'includes/chart-drawing.php';
 		require_once ZODIACPRESS_PATH . 'includes/class-zp-customize.php';
-
 
 		if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 

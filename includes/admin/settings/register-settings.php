@@ -43,6 +43,7 @@ function zp_register_settings() {
 						'size'        => isset( $option['size'] )        ? $option['size']        : null,
 						'options'     => isset( $option['options'] )     ? $option['options']     : '',
 						'std'         => isset( $option['std'] )         ? $option['std']         : '',
+						'class'		=> isset( $option['class'] )	? $option['class'] : '',
 					)
 				);
 			}
@@ -151,7 +152,8 @@ function zp_get_registered_settings() {
 						'id'	=> 'hide_empty_titles',
 						'name'	=> __( 'Hide Empty Titles', 'zodiacpress' ),
 						'type'	=> 'checkbox',
-						'desc'	=> __( 'Hide titles for pieces that have no interpretations text.', 'zodiacpress' )
+						'desc'	=> __( 'Hide titles for pieces that have no interpretations text.', 'zodiacpress' ),
+						'class' => 'zp-setting-checkbox-label'
 					),
 				),
 
@@ -166,7 +168,8 @@ function zp_get_registered_settings() {
 						'id'	=> 'birthreport_allow_unknown_bt',
 						'name'	=> __( 'Allow Unknown Birth Time', 'zodiacpress' ),
 						'type'	=> 'checkbox',
-						'desc'	=> __( 'Allow people with unknown birth times to generate a birth report. If enabled, this will allow them to generate a basic report, excluding items that require a birth time (i.e. excluding Houses, Moon, Ascendant, Midheaven, Vertex, and Part of Fortune).', 'zodiacpress' )
+						'desc'	=> __( 'Allow people with unknown birth times to generate a birth report. If enabled, this will allow them to generate a basic report, excluding items that require a birth time (i.e. excluding Houses, Moon, Ascendant, Midheaven, Vertex, and Part of Fortune).', 'zodiacpress' ),
+						'class' => 'zp-setting-checkbox-label'
 					),
 				)
 
@@ -180,7 +183,8 @@ function zp_get_registered_settings() {
 								'name'	=> __( 'Allow Unknown Birth Time', 'zodiacpress' ),
 								'type'	=> 'checkbox',
 								'std'	=> 1,
-								'desc'	=> __( 'Allow people with unknown birth times to get a chart wheel drawing. Their chart will be drawn for 12:00 time. Their chart will omit Moon, Ascendant, Midheaven, Part of Fortune and Vertex.', 'zodiacpress' )
+								'desc'	=> __( 'Allow people with unknown birth times to get a chart wheel drawing. Their chart will be drawn for 12:00 time. Their chart will omit Moon, Ascendant, Midheaven, Part of Fortune and Vertex.', 'zodiacpress' ),
+								'class' => 'zp-setting-checkbox-label'
 					),
 				)
 			)
@@ -188,25 +192,52 @@ function zp_get_registered_settings() {
 		'misc' => apply_filters( 'zp_settings_misc',
 			array(
 				'main' => array(
-					'misc_settings' => array(
-						'id'	=> 'misc_settings',
-						'name'	=> '<h3>' . __( 'Misc Settings', 'zodiacpress' ) . '</h3>',
-						'desc'	=> '',
+					'atlas_header' => array(
+						'id'	=> 'atlas_header',
+						'name'	=> '<h3>' . __( 'Atlas', 'zodiacpress' ) . '</h3>',
 						'type'	=> 'header',
+						'desc'	=> '<hr />'
 					),
+					'atlas'	=> array(
+						'id'	=> 'atlas',
+						'name'	=> __( 'Choose Atlas', 'zodiacpress' ),
+						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="nofollow">Help with this decision</a>)', 'zodiacpress' ), '#@todourl' ),// @todo url
+						'type'	=> 'radio',
+						'options' => array(
+							'geonames' => __( 'Use GeoNames', 'zodiacpress' ),
+							'db' => __( 'Use my own atlas database', 'zodiacpress' ),
+						),
+						'std'	=> 'db',// @test temp. Will either be blank or geonames on live
+						'class' => 'zp-setting-atlas'
+					),
+
 					'geonames_user'	=> array(
 						'id'	=> 'geonames_user',
 						'name'	=> __( 'GeoNames Username', 'zodiacpress' ),
-						'desc'	=> sprintf( __( 'Your username from GeoNames.org is needed to get timezone info from their webservice. (%1$screate free account%2$s)', 'zodiacpress' ), '<a href="http://www.geonames.org/login" target="_blank" rel="nofollow">', '</a>' ),
-						'type'	=> 'text',
+						'desc'	=> sprintf( __( 'Your username from GeoNames.org is needed to get timezone info from their webservice. (%1$screate free account%2$s)', 'zodiacpress' ), '<a href="http://www.geonames.org/login" target="_blank" rel="nofollow">', '</a>' ),// @todo instead link to help doc
+						'type'	=> 'subtext',
 						'size'	=> 'medium',
 						'std'	=> '',
-					),					
+						'class' => 'zp-setting-geonames_user'
+					),
+					'atlas-status'	=> array(
+						'id'	=> 'atlas-status',
+						'name'	=> __( 'Atlas Status', 'zodiacpress' ),
+						'type'	=> 'atlas',
+						'class' => 'zp-setting-atlas-status'
+					),
+					'uninstall_header' => array(
+						'id'	=> 'uninstall_header',
+						'name'	=> '<h3>' . __( 'Uninstall', 'zodiacpress' ) . '</h3>',
+						'type'	=> 'header',
+						'desc'	=> '<hr />'
+					),
 					'remove_data' => array(
 						'id'	=> 'remove_data',
 						'name'	=> __( 'Remove Data on Uninstall', 'zodiacpress' ),
 						'type'	=> 'checkbox',
-						'desc'	=> __( 'Check this box if you would like ZP to completely remove all of its data (INCLUDING INTERPRETATIONS TEXT) when the plugin is deleted.', 'zodiacpress' )
+						'desc'	=> __( 'Check this box if you would like ZP to completely remove all of its data (INCLUDING INTERPRETATIONS TEXT) when the plugin is deleted.', 'zodiacpress' ),
+						'class' => 'zp-setting-checkbox-label'
 					),
 				)
 			)
@@ -383,9 +414,7 @@ function zp_get_registered_settings_sections() {
 }
 
 /**
- * Header Callback
- *
- * Renders the header.
+ * Callback function that renders the header field
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -395,9 +424,7 @@ function zp_header_callback( $args ) {
 }
 
 /**
- * Checkbox Callback
- *
- * Renders checkboxes.
+ * Callback function that renders checkbox setting
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -412,9 +439,7 @@ function zp_checkbox_callback( $args ) {
 }
 
 /**
- * Multicheck Callback
- *
- * Renders multiple checkboxes.
+ * Callback function that renders multicheck setting
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -426,7 +451,7 @@ function zp_multicheck_callback( $args ) {
 
 		echo '<p class="description">' . wp_kses_post( $args['desc'] ) . '</p>';
 
-		/** Reformat options array as alternative to using array_column() to support PHP < 5.5 */
+		/* Reformat options array as alternative to using array_column() to support PHP < 5.5 */
 		$enabled_options = array();
 		if ( is_array( $options ) ) {
 			$plucked_keys	= array();
@@ -454,9 +479,7 @@ function zp_multicheck_callback( $args ) {
 }
 
 /**
- * Text Callback
- *
- * Renders text fields.
+ * Callback function that renders text settings.
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -480,6 +503,20 @@ function zp_text_callback( $args ) {
 }
 
 /**
+ * Callback function that renders alternate text settings.
+ *
+ * @param array $args Arguments passed by the setting
+ * @return void
+ */
+function zp_subtext_callback( $args ) {
+	$name = isset( $args['name'] ) ? $args['name'] : '';
+	?>
+	<div class="zp-flex-container stuffbox"><div><strong><?php echo $name; ?></strong></div>
+	<div><?php zp_text_callback( $args ); ?></div></div>
+	<?php
+}
+
+/**
  * Missing Callback
  *
  * If a function is missing for settings callbacks alert the user.
@@ -495,9 +532,7 @@ function zp_missing_callback($args) {
 }
 
 /**
- * Select Callback
- *
- * Renders select fields.
+ * Callback function that renders select field
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -524,9 +559,7 @@ function zp_select_callback( $args ) {
 }
 
 /**
- * Textarea Callback
- *
- * Renders textarea fields.
+ * Callback function that renders textarea setting
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -539,6 +572,43 @@ function zp_textarea_callback( $args ) {
 	$html .= '<textarea class="large-text" cols="50" rows="5" id="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']">' . esc_textarea( stripslashes( $value ) ) . '</textarea>';
 
 	echo $html;
+}
+
+/**
+ * Callback function that renders radio input setting
+ *
+ * @param array $args Arguments passed by the setting
+ * @return void
+ */
+function zp_radio_callback( $args ) {
+	$options = get_option( 'zodiacpress_settings' );
+
+	if ( isset( $options[ $args['id'] ] ) ) {
+		$value = $options[ $args['id'] ];
+	} else {
+		$value = isset( $args['std'] ) ? $args['std'] : '';
+	}
+
+	$html = '<label for="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']"> ' . wp_kses_post( $args['desc'] ) . '</label>';
+
+	foreach ( $args['options'] as $option => $name ) {
+		$checked = ( $option === $value ) ? ' checked' : '';
+
+		$html .= '<div><input type="radio" name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" id="zodiacpress_settings_' . esc_attr( $args['id'] ) . '_' . esc_attr( $option ) . '" value="' . esc_attr( $option ) . '"' . $checked . '>' . esc_html( $name ) . '</div>';
+	}
+
+	echo $html;
+}
+
+
+/**
+ * Callback function that renders Atlas status box
+ *
+ * @param array $args Arguments passed by the setting
+ * @return void
+ */
+function zp_atlas_callback( $args ) {
+	include ZODIACPRESS_PATH . 'includes/admin/views/atlas-status.php';
 }
 
 /**
