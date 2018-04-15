@@ -64,7 +64,7 @@ class ZP_License {
 	 */
 	private function includes() {
 		if ( ! class_exists( 'EDD_SL_Plugin_Updater' ) )  {
-			require_once 'EDD_SL_Plugin_Updater.php';
+			include_once 'EDD_SL_Plugin_Updater.php';
 		}
 	}
 

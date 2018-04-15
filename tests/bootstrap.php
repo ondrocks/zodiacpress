@@ -25,7 +25,7 @@ if ( strtolower( PHP_SHLIB_SUFFIX ) === 'dll' ) {
  * We are loading this so that we can add our tests filter
  * to load the plugin, using tests_add_filter().
  */
-require_once $_tests_dir . '/includes/functions.php';
+include_once $_tests_dir . '/includes/functions.php';
 
 /**
  * Manually load the plugin main file.
@@ -56,4 +56,4 @@ $zodiacpress_options = get_option( 'zodiacpress_settings' );
 echo "Activated ZodiacPress ........................\n";
 
 // Include helper
-require_once 'helper.php';
+include_once 'helper.php';

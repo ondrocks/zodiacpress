@@ -3,7 +3,7 @@
 Plugin Name: ZodiacPress
 Plugin URI: https://cosmicplugins.com/downloads/zodiacpress/
 Description: Generate astrology birth reports with your custom interpretations.
-Version: 1.8-alpha.3
+Version: 1.8-alpha.4
 Author: Isabel Castillo, Cosmic Plugins
 Author URI: https://isabelcastillo.com
 License: GNU GPLv2
@@ -88,36 +88,36 @@ final class ZodiacPress {
 	 */
 	private function includes() {
 		global $zodiacpress_options;
-		require_once ZODIACPRESS_PATH . 'includes/admin/settings/register-settings.php';
+		include_once ZODIACPRESS_PATH . 'includes/admin/settings/register-settings.php';
 		$zodiacpress_options = get_option( 'zodiacpress_settings' );
-		require_once ZODIACPRESS_PATH . 'includes/ajax-functions.php';
-		require_once ZODIACPRESS_PATH . 'includes/astro-functions.php';
-		require_once ZODIACPRESS_PATH . 'includes/class-zp-birth-report.php';
-		require_once ZODIACPRESS_PATH . 'includes/class-zp-chart.php';
-		require_once ZODIACPRESS_PATH . 'includes/class-zp-ephemeris.php';
-		require_once ZODIACPRESS_PATH . 'includes/class-zp-license.php';
-		require_once ZODIACPRESS_PATH . 'includes/misc-functions.php';
-		require_once ZODIACPRESS_PATH . 'includes/scripts.php';
+		include_once ZODIACPRESS_PATH . 'includes/ajax-functions.php';
+		include_once ZODIACPRESS_PATH . 'includes/astro-functions.php';
+		include_once ZODIACPRESS_PATH . 'includes/class-zp-birth-report.php';
+		include_once ZODIACPRESS_PATH . 'includes/class-zp-chart.php';
+		include_once ZODIACPRESS_PATH . 'includes/class-zp-ephemeris.php';
+		include_once ZODIACPRESS_PATH . 'includes/class-zp-license.php';
+		include_once ZODIACPRESS_PATH . 'includes/misc-functions.php';
+		include_once ZODIACPRESS_PATH . 'includes/scripts.php';
 		include_once ZODIACPRESS_PATH . 'includes/atlas/class-zp-atlas-db.php';
 		include_once ZODIACPRESS_PATH . 'includes/atlas/atlas-functions.php';
-		require_once ZODIACPRESS_PATH . 'includes/time-functions.php';
-		require_once ZODIACPRESS_PATH . 'includes/form/template-functions.php';
-		require_once ZODIACPRESS_PATH . 'includes/form/template.php';
-		require_once ZODIACPRESS_PATH . 'includes/shortcode.php';
+		include_once ZODIACPRESS_PATH . 'includes/time-functions.php';
+		include_once ZODIACPRESS_PATH . 'includes/form/template-functions.php';
+		include_once ZODIACPRESS_PATH . 'includes/form/template.php';
+		include_once ZODIACPRESS_PATH . 'includes/shortcode.php';
 
 		// anything that handles ajax scripts must be loaded both in front and back.
-		require_once ZODIACPRESS_PATH . 'includes/form/validation.php';
-		require_once ZODIACPRESS_PATH . 'includes/chart-drawing.php';
-		require_once ZODIACPRESS_PATH . 'includes/class-zp-customize.php';
+		include_once ZODIACPRESS_PATH . 'includes/form/validation.php';
+		include_once ZODIACPRESS_PATH . 'includes/chart-drawing.php';
+		include_once ZODIACPRESS_PATH . 'includes/class-zp-customize.php';
 
 		if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 
-			require_once ZODIACPRESS_PATH . 'includes/admin/settings/register-interpretations.php';
-			require_once ZODIACPRESS_PATH . 'includes/admin/settings/display-interpretations.php';
-			require_once ZODIACPRESS_PATH . 'includes/admin/settings/display-settings.php';
-			require_once ZODIACPRESS_PATH . 'includes/admin/admin-functions.php';
-			require_once ZODIACPRESS_PATH . 'includes/admin/admin-pages.php';
-			require_once ZODIACPRESS_PATH . 'includes/admin/tools.php';
+			include_once ZODIACPRESS_PATH . 'includes/admin/settings/register-interpretations.php';
+			include_once ZODIACPRESS_PATH . 'includes/admin/settings/display-interpretations.php';
+			include_once ZODIACPRESS_PATH . 'includes/admin/settings/display-settings.php';
+			include_once ZODIACPRESS_PATH . 'includes/admin/admin-functions.php';
+			include_once ZODIACPRESS_PATH . 'includes/admin/admin-pages.php';
+			include_once ZODIACPRESS_PATH . 'includes/admin/tools.php';
 
 		}
 	}

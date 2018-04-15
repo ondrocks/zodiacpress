@@ -3,7 +3,7 @@ class Test_Misc extends WP_UnitTestCase {
 
 	public function test_all_interps_options_names() {
 
-		require_once ZODIACPRESS_PATH . 'includes/admin/settings/register-interpretations.php';
+		include_once ZODIACPRESS_PATH . 'includes/admin/settings/register-interpretations.php';
 
 		$expected = array(
 			'zp_natal_planets_in_signs',
