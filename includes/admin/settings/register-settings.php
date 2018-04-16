@@ -207,10 +207,9 @@ function zp_get_registered_settings() {
 							'geonames' => __( 'Use GeoNames', 'zodiacpress' ),
 							'db' => __( 'Use my own atlas database', 'zodiacpress' ),
 						),
-						'std'	=> 'db',// @test temp. Will either be blank or geonames on live
+						'std'	=> 'geonames',
 						'class' => 'zp-setting-atlas'
 					),
-
 					'geonames_user'	=> array(
 						'id'	=> 'geonames_user',
 						'name'	=> __( 'GeoNames Username', 'zodiacpress' ),
@@ -327,6 +326,17 @@ function zp_sanitize_text_field( $input, $key ) {
 	return trim( $input );
 }
 add_filter( 'zp_settings_sanitize_text', 'zp_sanitize_text_field', 10, 2 );
+
+/**
+ * Sanitize subtext fields
+ *
+ * @param string $input The field value
+ * @return string $input Sanitizied value
+ */
+function zp_sanitize_subtext_field( $input, $key ) {
+	return sanitize_text_field( $input );
+}
+add_filter( 'zp_settings_sanitize_subtext', 'zp_sanitize_subtext_field', 10, 2 );
 
 /**
  * Sanitize multicheck fields
@@ -608,7 +618,7 @@ function zp_radio_callback( $args ) {
  * @return void
  */
 function zp_atlas_callback( $args ) {
-	include ZODIACPRESS_PATH . 'includes/admin/views/atlas-status.php';
+	include ZODIACPRESS_PATH . 'includes/admin/views/html-atlas-status.php';
 }
 
 /**
