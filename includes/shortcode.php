@@ -20,6 +20,8 @@ function zp_birthreport_shortcode( $atts ) {
 	if ( is_rtl() ) {
 		wp_enqueue_style( 'zp-rtl' );
 	}
+
+	wp_enqueue_script( 'zp-autocomplete' );
 	wp_enqueue_script( 'zp' );
 	
 	do_action( 'zp_report_shortcode_before', $report_atts );// This hook can be used by addons to swap out the .js
