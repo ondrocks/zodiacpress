@@ -201,7 +201,7 @@ function zp_get_registered_settings() {
 					'atlas'	=> array(
 						'id'	=> 'atlas',
 						'name'	=> __( 'Choose Atlas', 'zodiacpress' ),
-						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="nofollow">Help with this decision</a>)', 'zodiacpress' ), '#@todourl' ),// @todo url
+						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="nofollow">Help with this decision</a>)', 'zodiacpress' ), 'https://cosmicplugins.com/docs/choosing-an-atlas/' ),
 						'type'	=> 'radio',
 						'options' => array(
 							'geonames' => __( 'Use GeoNames', 'zodiacpress' ),
@@ -214,7 +214,7 @@ function zp_get_registered_settings() {
 					'geonames_user'	=> array(
 						'id'	=> 'geonames_user',
 						'name'	=> __( 'GeoNames Username', 'zodiacpress' ),
-						'desc'	=> sprintf( __( 'Your username from GeoNames.org is needed to get timezone info from their webservice. (%1$screate free account%2$s)', 'zodiacpress' ), '<a href="http://www.geonames.org/login" target="_blank" rel="nofollow">', '</a>' ),// @todo instead link to help doc
+						'desc'	=> sprintf( __( 'Your username from GeoNames.org is needed to get timezone info from their webservice. (%1$screate free account%2$s)', 'zodiacpress' ), '<a href="http://www.geonames.org/login" target="_blank" rel="nofollow">', '</a>' ),
 						'type'	=> 'subtext',
 						'size'	=> 'medium',
 						'std'	=> '',
