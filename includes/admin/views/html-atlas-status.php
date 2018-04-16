@@ -10,6 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $table_exists = ZP_Atlas_DB::table_exists();
 $installing = get_option( 'zp_atlas_db_installing' );
+
+// isa_log('$installing... = ' . $installing );// @test 
+
 $pending_msg = get_option( 'zp_atlas_db_pending' );
 
 $status = __( 'error', 'zodiacpress' );
@@ -32,13 +35,8 @@ if ( ! $table_exists ) {
 
 		if ( ! $installing && ! $pending_msg ) {
 
-		    // check if table is complete by counting rows & checking keys
-
-		    if (
-		    	ZP_Atlas_DB::row_count() > 3000000 &&
-		    	ZP_Atlas_DB::key_exists( 'PRIMARY' ) &&
-		    	ZP_Atlas_DB::key_exists( 'ix_name_country' )
-		    ) {
+		    // check if table installation is complete
+			if ( ZP_Atlas_DB::use_db() ) {
 		    	$status = zp_string( 'active' );
 		    	$class = 'success';
 		    	$checkmark = ' &#x2713; &nbsp; ';
@@ -47,9 +45,26 @@ if ( ! $table_exists ) {
 		}
 
 	}
-} // match this also in the js for status field
+} // @todo match this also in the js for status field, make sure js messages don't conflict
 
 // Show installer only if the db has not been installed and a custom one is not being used, and it's not currently installing.
+
+/****************************************************
+*
+* @todo @test BEGIN
+*
+****************************************************/
+
+// $cc = ZP_Atlas_DB::is_installed();
+// $dd = ZP_Atlas_DB::is_separate_db();
+// isa_log('::is_installed() = ' . $cc );// @test 
+// isa_log('::is_separate_db() = ' . $dd );// @test 
+
+/****************************************************
+*
+* @todo @test END
+*
+****************************************************/
 
 if ( ! ZP_Atlas_DB::is_installed() && ! ZP_Atlas_DB::is_separate_db() && ! $installing ) {
 	?>
