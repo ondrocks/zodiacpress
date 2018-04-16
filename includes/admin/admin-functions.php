@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @param array $response Heartbeat response data to pass back to front end.
  * @param array $data Data received from the front end (unslashed).
  */
-function zpatlas_receive_heartbeat( $response, $data ) {
+function zp_atlas_receive_heartbeat( $response, $data ) {
 	if ( empty( $data['zpatlas_status'] ) ) {
 		return $response;    
 	}
@@ -37,7 +37,7 @@ function zpatlas_receive_heartbeat( $response, $data ) {
 	 
 	return $response;
 }
-add_filter( 'heartbeat_received', 'zpatlas_receive_heartbeat', 10, 2 );
+add_filter( 'heartbeat_received', 'zp_atlas_receive_heartbeat', 10, 2 );
 
 /**
  * ZP Admin notices

@@ -219,8 +219,8 @@ function zp_get_registered_settings() {
 						'std'	=> '',
 						'class' => 'zp-setting-geonames_user'
 					),
-					'atlas-status'	=> array(
-						'id'	=> 'atlas-status',
+					'atlas_status'	=> array(
+						'id'	=> 'atlas_status',
 						'name'	=> __( 'Atlas Status', 'zodiacpress' ),
 						'type'	=> 'atlas',
 						'class' => 'zp-setting-atlas-status'

@@ -27,7 +27,7 @@
 #zp-atlas-status tr:last-child td {
   border-width: 0;
 }
-#zpatlas-spinner {
+#zp-spinner {
 	position: relative;
 	display: inline-block;
 	margin-right: 20px;
@@ -36,10 +36,10 @@
 	transform:rotate(360deg)
 	}
 }
-.zpatlas-spinner {
+.zp-spinner {
 	min-height: 18px;
 }
-.zpatlas-spinner:before {
+.zp-spinner:before {
 	content: '';
 	box-sizing: border-box;
 	position: absolute;

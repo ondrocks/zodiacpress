@@ -12,7 +12,7 @@ console.log('1.................');// @test
 /* Show spinner if the atlas is currently installing */
 
 if ( '1' === zp_atlas_install_strings.installingNow ) {
-	zpatlasSpinner();
+	zpSpinner();
 }
 
 /* Run Installer upon button click */
@@ -28,7 +28,7 @@ if ( zpAtlasInstall !== null ) {
 				if ( el !== null ) { el.parentNode.removeChild( el ); }
 
 				// show the 'installing in background...' admin notice
-				zpatlasNotice( zp_atlas_install_strings.installingNotice );
+				zpAtlasNotice( zp_atlas_install_strings.installingNotice );
 
 				window.scroll(0,0);
 
@@ -36,7 +36,7 @@ if ( zpAtlasInstall !== null ) {
 				document.querySelector( '.zp-atlas-error' ).textContent = zp_atlas_install_strings.installing;
 
 				/* Start spinner */
-				zpatlasSpinner();
+				zpSpinner();
 
 		});
 
@@ -68,7 +68,7 @@ jQuery( document ).on( 'heartbeat-tick', function ( event, data ) {
 	}// @test new that old messages are removed
 
     /* show the new notice */
-	zpatlasNotice( message );
+	zpAtlasNotice( message );
 
 	/* Also update the status on Atlas Status field, if on that page. */
 
@@ -80,7 +80,7 @@ jQuery( document ).on( 'heartbeat-tick', function ( event, data ) {
 
 		if ( zp_atlas_install_strings.complete === message ) {
 
-			// zpatlasSpinner( 'stop' );// @test again, is needed still?
+			// zpSpinner( 'stop' );// @test again, is needed still?
 
 			/* Set the status to "Active" */
 			status.textContent = ' \u2713 ' + zp_atlas_install_strings.active;
@@ -98,7 +98,7 @@ jQuery( document ).on( 'heartbeat-tick', function ( event, data ) {
 
 				console.log('@test. would be starting spinner again......');// @test
 
-				// zpatlasSpinner();// @test again, is needed still?
+				// zpSpinner();// @test again, is needed still?
 
 			}
 
@@ -111,7 +111,7 @@ jQuery( document ).on( 'heartbeat-tick', function ( event, data ) {
 /**
  * Create and show an admin notice
  */
-function zpatlasNotice( msg ) {
+function zpAtlasNotice( msg ) {
 	/* create notice div */
 	var div = document.createElement( 'div' );
 	div.classList.add( 'notice', 'zp-atlas-message' );
@@ -122,10 +122,15 @@ function zpatlasNotice( msg ) {
     strong.appendChild( document.createTextNode( zp_atlas_install_strings.statusHeading ) );
 	p.appendChild( strong );
     /* Add message text */
-    var span = document.createElement( 'span' );
-    span.id = 'zpatlas-status';
-    span.appendChild( document.createTextNode( ' \u2014 ' + msg ) );
-    p.appendChild( span );
+
+    // @test remove span
+    // var span = document.createElement( 'span' );
+    // span.id = 'zpatlas-status';
+    // span.appendChild( document.createTextNode( ' \u2014 ' + msg ) );
+    // p.appendChild( span );
+
+    p.appendChild( document.createTextNode( ' \u2014 ' + msg ) );
+    
     /* Add link to check status if not on status page */
 	if ( window.location.href.indexOf( 'page=zodiacpress-settings&tab=misc' ) === -1 ) {
 	 	var a = document.createElement( 'a' );
@@ -135,6 +140,7 @@ function zpatlasNotice( msg ) {
 		p.appendChild( document.createTextNode( '\xa0 \xa0' ) );
 		p.appendChild( a );
 	}
+
 	/* Add the whole message to notice div */
     div.appendChild( p );
 
@@ -164,13 +170,13 @@ function zpatlasNotice( msg ) {
 /**
  * Start or stop spinner for Status field
  */
-function zpatlasSpinner( action = 'start' ) {
+function zpSpinner( action = 'start' ) {
 
 	if ( 'stop' === action) {
 
 		/* stop spinner */
 
-		var spinner = document.getElementById( 'zpatlas-spinner' );
+		var spinner = document.getElementById( 'zp-spinner' );
 		if ( spinner !== null ) {
 			spinner.parentNode.removeChild( spinner );
 		}
@@ -186,10 +192,10 @@ function zpatlasSpinner( action = 'start' ) {
 
 			/* Create span element for spinner */
 		    var s = document.createElement( 'span' );
-		    s.id = 'zpatlas-spinner';
+		    s.id = 'zp-spinner';
 
 		    /* make it spin */
-		    s.setAttribute( 'class', 'zpatlas-spinner' );
+		    s.setAttribute( 'class', 'zp-spinner' );
 
 		    /* Prepend it to status field */
 			el.insertBefore( s, el.firstChild );
