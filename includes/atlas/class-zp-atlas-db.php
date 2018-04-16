@@ -94,8 +94,6 @@ class ZP_Atlas_DB {
 	/**
 	 * Checks whether to use the Atlas db live instead of GeoNames, regardless of whether its in $wbdp or a separate database.
 	 *
-	 * @test will this be used or needed in the end?
-	 *
 	 * @return bool
 	 */
 	public static function use_db() {
@@ -116,17 +114,9 @@ class ZP_Atlas_DB {
 	 * @return bool	 
 	 */
 	public static function is_separate_db() {
-
-		// isa_log('Made it to ::is_separate_db().');// @test
-
 		if ( isset( self::$separate_db ) ) {
-
-			// isa_log('self::$separate_db already set so dont get option again. the value is = ');
-			// isa_log(self::$separate_db);// @test 
-
 			return self::$separate_db;
 		}		
-
 		self::$separate_db = apply_filters( 'zp_atlas_separate_db', false );
 		return self::$separate_db;
 	}
