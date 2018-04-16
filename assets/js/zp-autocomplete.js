@@ -1,6 +1,6 @@
 (function( $ ) {
 	
-	/* Autocomplete city */
+	/* Autocomplete city field from GeoNames webservice */
 
 	$( '#place' ).autocomplete({
 		source: function( request, response ) {

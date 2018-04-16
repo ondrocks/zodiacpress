@@ -1,9 +1,9 @@
 /**
- * Autocomplete city
+ * Autocomplete city field from atlas database
  */
 jQuery( '#place' ).autocomplete({
 	source: function( request, response ) {
-			jQuery.get( zp_js_strings.ajaxurl, 'action=zpatlas_get_cities&c=' + request.term, response, 'json' );
+			jQuery.get( zp_js_strings.ajaxurl, 'action=zp_atlas_get_cities&c=' + request.term, response, 'json' );
 	},
 	minLength: 2,
 	select: function( event, ui ) {
