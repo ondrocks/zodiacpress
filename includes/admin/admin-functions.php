@@ -10,6 +10,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * ZP Admin notices
  */
 function zp_admin_notices() {
+	global $zodiacpress_options;
+
+	// On activation, adds admin notice to inform that Atlas must be set up.
+	if ( get_transient( 'zodiacpress_activating' ) ) {
+		delete_transient( 'zodiacpress_activating' );
+		// Only show notice if atlas db is not in use and a geonames username is not set
+		if ( ! ZP_Atlas_DB::use_db() && empty( $zodiacpress_options['geonames_user'] ) ) {
+			include plugin_dir_path( __FILE__ ) . 'views/html-notice-install.php';
+		}
+	}
+
 	// Success notices for ZP Tools.
 	if ( isset( $_GET['zp-done'] ) ) {
 		switch( $_GET['zp-done'] ) {

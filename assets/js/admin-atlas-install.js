@@ -1,5 +1,5 @@
 /**
- * This file is loaded only during the atlas installation in the admin,
+ * admin-atlas-install.js is loaded only during the atlas installation in the admin,
  * only if atlas has not been installed and a custom db (via filter) is not being used.
  */
 
@@ -38,13 +38,10 @@ if ( zpAtlasInstall !== null ) {
 				/* Start spinner */
 				zpatlasSpinner();
 
-
 		});
 
 	});
 }
-
-
 
 /**
  * Create and show an admin notice
@@ -99,7 +96,6 @@ function zpatlasNotice( msg ) {
 
 }
 
-
 /**
  * Start or stop spinner for Status field
  */
@@ -136,4 +132,14 @@ function zpatlasSpinner( action = 'start' ) {
 		}
 
 	}
+}
+
+/* Dismisses the activation Install notice ("Skip setup") */
+
+var zpSetupDismiss = document.getElementById( 'zp-skip-setup' );
+if ( zpSetupDismiss !== null ) {
+	zpSetupDismiss.addEventListener( 'click', function () {
+		var el = document.querySelector( '.zp-atlas-message' );
+		el.parentNode.removeChild( el );
+	});
 }

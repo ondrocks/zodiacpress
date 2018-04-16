@@ -205,8 +205,8 @@ final class ZodiacPress {
 			$admin->add_cap( 'manage_zodiacpress_settings' );
 			$admin->add_cap( 'manage_zodiacpress_interps' );
 		}
+		set_transient( 'zodiacpress_activating', true, 5 );
 	}
-
 }
 
 } // End class_exists check.
