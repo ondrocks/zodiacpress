@@ -7,7 +7,7 @@
 * @todo make admin-atlas-install.min.js
 ****************************************************/
 
-// console.log('13.................');// @test
+console.log('1.................');// @test
 
 /* Show spinner if the atlas is currently installing */
 
@@ -42,6 +42,71 @@ if ( zpAtlasInstall !== null ) {
 
 	});
 }
+
+/**
+ * Sends a flag on heartbeat tick to notify server that we want atlas install status
+ */
+jQuery( document ).on( 'heartbeat-send', function ( event, data ) {
+	data.zpatlas_status = true;
+});
+
+/**
+ * Receives atlas install status on heartbeat tick
+ */
+jQuery( document ).on( 'heartbeat-tick', function ( event, data ) {
+    if ( ! data.zpatlas_status_message ) {
+        return;
+    }
+
+    var message = data.zpatlas_status_message.trim();
+ 
+    /* remove any old zp atlas admin notice */
+
+	var el = document.querySelector( '.zp-atlas-message' );
+	if ( el !== null ) {
+		el.parentNode.removeChild( el );
+	}// @test new that old messages are removed
+
+    /* show the new notice */
+	zpatlasNotice( message );
+
+	/* Also update the status on Atlas Status field, if on that page. */
+
+	var status = document.querySelector( '.zp-atlas-error' );
+
+	if ( status !== null ) {
+	
+		/* If installation is now complete, make it green instead of red */
+
+		if ( zp_atlas_install_strings.complete === message ) {
+
+			// zpatlasSpinner( 'stop' );// @test again, is needed still?
+
+			/* Set the status to "Active" */
+			status.textContent = ' \u2713 ' + zp_atlas_install_strings.active;
+			status.classList.add( 'zp-success' );
+			status.classList.remove( 'zp-atlas-error' );
+
+		} else {
+			
+			/* update the status text */
+			status.textContent = message;
+
+			/* restart spinner only if status is Inserting */
+
+			if ( message === zp_atlas_install_strings.inserting ) {
+
+				console.log('@test. would be starting spinner again......');// @test
+
+				// zpatlasSpinner();// @test again, is needed still?
+
+			}
+
+		}
+
+	}
+
+});
 
 /**
  * Create and show an admin notice

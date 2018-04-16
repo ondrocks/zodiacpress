@@ -27,6 +27,33 @@
 #zp-atlas-status tr:last-child td {
   border-width: 0;
 }
+#zpatlas-spinner {
+	position: relative;
+	display: inline-block;
+	margin-right: 20px;
+}
+@keyframes spinner{ to{
+	transform:rotate(360deg)
+	}
+}
+.zpatlas-spinner {
+	min-height: 18px;
+}
+.zpatlas-spinner:before {
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 18px;
+	height: 18px;
+	margin-top: -10px;
+	margin-left: -10px;
+	border-radius: 50%;
+	border: 2px solid #ccc;
+	border-top-color: #336;
+	animation: spinner 1s linear infinite;
+}
 .zp-atlas-message{
 	position: relative;
 	overflow: hidden;
