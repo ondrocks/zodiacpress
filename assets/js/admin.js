@@ -1,7 +1,6 @@
-/****************************************************
-* @todo make admin.min.js !!
-****************************************************/
-
+/**
+ * Toggles the Atlas settings
+ */
 var zpAtlasDB = document.getElementById( 'zodiacpress_settings_atlas_db' );
 var zpAtlasGN = document.getElementById( 'zodiacpress_settings_atlas_geonames' );
 
