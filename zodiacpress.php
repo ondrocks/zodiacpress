@@ -143,23 +143,6 @@ final class ZodiacPress {
 	 */
 	public function plugin_loaded() {
 		zp_is_sweph_executable();
-
-		/**
-		 * @temp Allow easy updates for plugin extensions
-		 * @todo remove in 1.7.2+
-		 */
-		if ( class_exists( 'ZP_License' ) && is_admin() ) {
-			$plugin = 'zp-sell-reports/zp-sell-reports.php';
-			$plugin_path = plugin_dir_path( __DIR__ ) . $plugin;
-			// if ZPWCSR is active, and is < version 1.1.2
-			if ( in_array( $plugin, apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) { 
-				$version = trim( get_file_data( $plugin_path, array( 'Version' => 'Version' ), 'plugin' )['Version'] );
-				if ( version_compare( $version, '1.1.2', '<' ) ) {
-					$zp_test_license = new ZP_License( $plugin_path, 'ZodiacPress Sell Reports with WooCommerce', '1.1', 'Isabel Castillo' );
-				}
-			} 
-		}
-
 	}
 
 	/**
