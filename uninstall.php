@@ -3,8 +3,6 @@
  * Fired when the plugin is uninstalled.
  *
  * @package     ZodiacPress
- * @copyright   Copyright (c) 2016-2017, Isabel Castillo
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -41,6 +39,19 @@ function zp_uninstall() {
 	// Make sure that the user wants to remove all the data.
 	if ( isset( $options['remove_data'] ) && '1' == $options['remove_data'] ) {
 
+		global $wpdb;// only delete atlas table from wpdb, not a custom database ($zpdb)
+
+		// Delete options
+
+		$option_keys = array(
+			'zodiacpress_settings',
+			'zp_atlas_db_installing',
+			'zp_atlas_db_notice',
+			'zp_atlas_db_pending',
+			'zp_atlas_db_previous_notice',
+			'zp_atlas_db_version'
+		);
+
 		$interpretations = array(
 			'zp_natal_planets_in_signs',
 			'zp_natal_planets_in_houses',
@@ -63,15 +74,17 @@ function zp_uninstall() {
 			'zp_natal_aspects_mc'
 			);
 
+		$keys = array_merge( $option_keys, $interpretations );
 
-		delete_option( 'zodiacpress_settings' );
-		delete_option( 'zp_atlas_db_installing' );
-
-		foreach ( $interpretations as $interpretation ) {
-			delete_option( $interpretation );
+		foreach ( $keys as $key ) {
+			delete_option( $key );
 		}
 		
 		zp_remove_caps();
+
+		// Delete the zp_atlas database table
+		$wpdb->query( "DROP TABLE IF EXISTS " . $wpdb->prefix . "zp_atlas" );
+
 	}
 }
 
