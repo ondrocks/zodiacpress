@@ -16,25 +16,39 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function zp_atlas_receive_heartbeat( $response, $data ) {
 	if ( empty( $data['zpatlas_status'] ) ) {
-		return $response;    
+		return $response;
 	}
 
-	// Show "Atlas is Ready" notice once, the first time the atlas is ready
+	// If atlas install in complete, Show "Atlas is Ready" admin notice once
 	if ( get_transient( 'zp_atlas_ready_once' ) ) {
-		$status = zp_string( 'complete' );
 		delete_transient( 'zp_atlas_ready_once' );
+		$response['zpatlas_status_notice'] = __( 'The atlas installation is complete. It is ready for use.', 'zodiacpress' );
+		$response['zpatlas_status_field'] = zp_string( 'active' );
 
+		// send DB row count, size, and keys
+		$response['zpatlas_status_db'] = array(
+			'rows'	=> number_format( ZP_Atlas_DB::row_count() ),
+			'size'	=> ( $size = zp_atlas_get_size() ) ? ( number_format( $size / 1048576, 1 ) . ' MB' ) : $size,
+			'key'	=> ZP_Atlas_DB::key_exists( 'PRIMARY' ) ? __( 'okay', 'zodiacpress' ) : __( 'missing', 'zodiacpress' ),
+			'index'	=> ZP_Atlas_DB::key_exists( 'ix_name_country' ) ? __( 'okay', 'zodiacpress' ) : __( 'missing', 'zodiacpress' ),
+		);
+		
 	} else {
 
-		// since the atlas_ready transient is not found, get pending msg
-		$status = get_option( 'zp_atlas_db_pending' );
+		$response['zpatlas_status_field'] = get_option( 'zp_atlas_db_pending' );
+
+		$admin_notice = get_option( 'zp_atlas_db_notice' );
+
+		// only send admin notice if it has changed
+
+		if ( $admin_notice && get_option( 'zp_atlas_db_previous_notice' ) !== $admin_notice ) {
+
+			$response['zpatlas_status_notice'] = $admin_notice;
+
+			update_option( 'zp_atlas_db_previous_notice', $admin_notice );
+		}
 	}
 
-	// only send something if there is something to add
-	if ( $status ) {
-		$response['zpatlas_status_message'] = $status;  
-	}
-	 
 	return $response;
 }
 add_filter( 'heartbeat_received', 'zp_atlas_receive_heartbeat', 10, 2 );

@@ -9,9 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $table_exists = ZP_Atlas_DB::table_exists();
-$installing = get_option( 'zp_atlas_db_installing' );
 
-// isa_log('$installing... = ' . $installing );// @test 
+$installing = get_option( 'zp_atlas_db_installing' );
 
 $pending_msg = get_option( 'zp_atlas_db_pending' );
 
@@ -22,11 +21,11 @@ $checkmark = '';
 if ( $pending_msg ) {
 	$status = $pending_msg;
 } else {
-	$status = ( $installing ? zp_string( 'installing' ) : zp_string( 'none' ) );
+	$status = ( $installing ? zp_string( 'installing' ) : __( 'none', 'zodiacpress' ) );
 }
 
 if ( ! $table_exists ) {
-	$status = zp_string( 'none' );
+	$status = __( 'none', 'zodiacpress' );
 } else {
 	
 	if ( 'db' !== zp_atlas_option() ) {
@@ -45,26 +44,9 @@ if ( ! $table_exists ) {
 		}
 
 	}
-} // @todo match this also in the js for status field, make sure js messages don't conflict
+}
 
 // Show installer only if the db has not been installed and a custom one is not being used, and it's not currently installing.
-
-/****************************************************
-*
-* @todo @test BEGIN
-*
-****************************************************/
-
-// $cc = ZP_Atlas_DB::is_installed();
-// $dd = ZP_Atlas_DB::is_separate_db();
-// isa_log('::is_installed() = ' . $cc );// @test 
-// isa_log('::is_separate_db() = ' . $dd );// @test 
-
-/****************************************************
-*
-* @todo @test END
-*
-****************************************************/
 
 if ( ! ZP_Atlas_DB::is_installed() && ! ZP_Atlas_DB::is_separate_db() && ! $installing ) {
 	?>
@@ -91,7 +73,7 @@ if ( ! ZP_Atlas_DB::is_installed() && ! ZP_Atlas_DB::is_separate_db() && ! $inst
 
 			<tr>
 				<td><label><?php _e( 'City records count', 'zodiacpress' ); ?></label></td>
-				<td>
+				<td id="zp-atlas-status-rows">
 					<?php 
 					if ( $table_exists && ! $installing ) {
 						echo number_format( ZP_Atlas_DB::row_count() );
@@ -102,7 +84,7 @@ if ( ! ZP_Atlas_DB::is_installed() && ! ZP_Atlas_DB::is_separate_db() && ! $inst
 
 			<tr>
 				<td><label><?php _e( 'Database table size', 'zodiacpress' ); ?></label></td>
-				<td>
+				<td id="zp-atlas-status-size">
 					<?php
 					if ( $table_exists && ! $installing ) {
 						echo ( $size = zp_atlas_get_size() ) ? ( number_format( $size / 1048576, 1 ) . ' MB' ) : $size;
@@ -113,7 +95,7 @@ if ( ! ZP_Atlas_DB::is_installed() && ! ZP_Atlas_DB::is_separate_db() && ! $inst
 
 			<tr>
 				<td><label><?php _e( 'Database table primary key', 'zodiacpress' ); ?></label></td>
-				<td>
+				<td id="zp-atlas-status-key">
 					<?php 
 					if ( $table_exists && ! $installing ) {
 
@@ -126,7 +108,7 @@ if ( ! ZP_Atlas_DB::is_installed() && ! ZP_Atlas_DB::is_separate_db() && ! $inst
 
 			<tr>
 				<td><label><?php _e( 'Database table index', 'zodiacpress' ); ?></label></td>
-				<td>
+				<td id="zp-atlas-status-index">
 					<?php 
 					if ( $table_exists && ! $installing ) {
 

@@ -217,18 +217,16 @@ function zp_weekly_events() {
 
 /**
  * Returns a ZP message string
- * @todo @todo Remove strings that are not used more than once.
  * @since 1.8
  */
 function zp_string( $id = '' ) {
 	$strings = array(
 		'active'		=> __( 'Active', 'zodiacpress' ),
-		'check_status'	=> __( 'Check the status.', 'zodiacpress' ),
-		'complete'		=> __( 'The atlas installation is complete. It is ready for use.', 'zodiacpress' ),
+		'creating'		=> __( 'Creating table keys...', 'zodiacpress' ),
 		'failed_keys'	=> __( 'Failed to create table key(s):', 'zodiacpress' ),
 		'inserting'		=> __( 'Inserting cities data into database...', 'zodiacpress' ),
-		'installing'	=> __( 'installing', 'zodiacpress' ),		
-		'none'			=> __( 'none', 'zodiacpress' )
+		'installing'	=> __( 'installing...', 'zodiacpress' ),
+		'installing_notice' => __( 'The atlas is being installed in the background. This will take a few minutes.', 'zodiacpress' )
 	);
 	return $strings[ $id ];
 }

@@ -50,13 +50,22 @@ function zp_atlas_ajax_install() {
 	check_ajax_referer( 'zp_atlas_install' );
 	
 	/**
-	 * Temporary flag to not show the Atlas Installer button during background installation.
+	 * Temporary flag to remove the Atlas Installer button during background installation.
 	 */
-	update_option( 'zp_atlas_db_installing', true );// @todo THIS OPTION MUST BE ALSO DELETED WHEN ATLAS INSTALL IS COMPLETE
+	update_option( 'zp_atlas_db_installing', true );
 
-	// zp_atlas_create_table();// @todo PUT BACK IN AFTER TESTING (UNCOMMENT)
-	// Trigger the first async task: to download the cities datafile
-	// do_action('zp_atlas_import');// @todo PUT BACK IN AFTER TESTING (UNCOMMENT)
+	update_option( 'zp_atlas_db_previous_notice', zp_string( 'installing_notice' ) );
+
+	/**
+	 * Update the atlas option since the intent is to use the db instead of GeoNames
+	 */
+	$options = get_option( 'zodiacpress_settings' );
+	$options['atlas'] = 'db';
+	update_option( 'zodiacpress_settings', $options );
+
+	zp_atlas_create_table();
+	// Trigger the first async task: download the cities data file
+	do_action('zp_atlas_import');
 	
 	wp_die();
 
@@ -113,9 +122,7 @@ function zp_atlas_table_create_keys() {
 				if ( $wpdb->query( $sql_2 ) === true ) {
 
 					// BOTH KEYS WERE SUCCESSFULLY CREATED
-
-					$return = true;
-
+					return true;
 				}
 
 			} else {
@@ -153,8 +160,6 @@ function zp_atlas_table_create_keys() {
 		* END
 		*
 		****************************************************/
-
-
 	}
 
     return $return;

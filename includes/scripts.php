@@ -45,23 +45,18 @@ function zp_admin_scripts() {
 
 	wp_register_script( 'zp-atlas-install', ZODIACPRESS_URL . '/assets/js/admin-atlas-install' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION, true );
 
-	wp_localize_script( 'zp-atlas-install', 'zp_atlas_install_strings',
+	wp_localize_script( 'zp-atlas-install', 'zpAtlasStrings',
 		array(
-			// @todo check what is still needed...remove what is not used
-			'active'		=> zp_string( 'active' ),
 			'adminurl'		=> admin_url(),
-			'checkStatus'	=> zp_string( 'check_status' ),
-			'complete'		=> zp_string( 'complete' ),
+			'checkStatus'	=> __( 'Check the status.', 'zodiacpress' ),
+			'creatingKeys'	=> zp_string( 'creating' ),
 			'dismiss'		=> __( 'Dismiss this notice.', 'zodiacpress' ),
 			'inserting'		=> zp_string( 'inserting' ),
-   			'installingNotice'	=> __( 'The atlas is being installed in the background. This will take a few minutes.', 'zodiacpress' ),
-   			'installing'	=> zp_string( 'installing' ),
+			'installing'	=> zp_string( 'installing' ),
+   			'installingNotice'	=> zp_string( 'installing_notice' ),
    			'installingNow' => get_option( 'zp_atlas_db_installing' ),
 			'nonce'			=> wp_create_nonce( 'zp_atlas_install' ),
-			'none'			=> zp_string( 'none' ),
-			// @todo maybe need this in zp_string() since may be used more than once
 			'statusHeading'	=> __( 'ZodiacPress Status Message', 'zodiacpress' )
-			
 		)
 	);
 	
