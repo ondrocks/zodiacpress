@@ -1,15 +1,11 @@
 <?php
 /**
- * Tools
- *
- * These are functions used for displaying ZP tools such as the export/import system.
+ * Tools: all functions for displaying ZP tools such as the export/import system.
  *
  * @package     ZodiacPress
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
- * Tools
- *
  * Shows the tools panel which contains ZP-specific tools.
  *
  * @return      void
@@ -20,8 +16,7 @@ function zp_tools_page() {
 	$current_tab_name = $tabs[ $active_tab ];
 	?>
 	<div class="wrap">
-	<?php zp_extend_link();
-		zp_feedback_link(); ?>
+	<?php zp_admin_links(); ?>
 	<nav class="nav-tab-wrapper clear">
 		<?php foreach( zp_get_tools_tabs() as $tab_id => $tab_name ) {
 			$active = $active_tab == $tab_id ? ' nav-tab-active' : '';

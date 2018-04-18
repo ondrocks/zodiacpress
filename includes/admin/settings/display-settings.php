@@ -4,9 +4,7 @@
  *
  * @package     ZodiacPress
  */
-
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Settings Page
  *
@@ -25,8 +23,7 @@ function zp_options_page() {
 	ob_start();
 	?>
 	<div class="wrap <?php echo 'wrap-' . $active_tab; ?>">
-		<?php zp_extend_link();
-			zp_feedback_link(); ?>
+		<?php zp_admin_links(); ?>
 		<nav class="nav-tab-wrapper clear">
 			<?php
 			settings_errors( 'zp-notices' );

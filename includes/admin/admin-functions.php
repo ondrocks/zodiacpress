@@ -218,22 +218,28 @@ function zp_custom_admin_menu_icon() {
   }#adminmenu .toplevel_page_zodiacpress .dashicons-universal-access-alt.dashicons-before::before {font-family: "zodiacpress" !important}#adminmenu .toplevel_page_zodiacpress div.dashicons-universal-access-alt::before{content:"\e90c"}</style>';
 }
 add_action('admin_head', 'zp_custom_admin_menu_icon');
-/**
- * Displays a link to see ZP extensions.
- */
-function zp_extend_link() {
-	echo '<a href="https://cosmicplugins.com/downloads/category/zodiacpress-extensions/" class="button-secondary zp-extend-link alignright" target="_blank" rel="nofollow">';
-	_e( 'See ZodiacPress Extensions', 'zodiacpress' );
-	echo '</a>';
-}
 
 /**
- * Displays a link to rate ZodacPress
+ * Display links in the admin tor ZP docs, rating, and extensions.
  */
-function zp_feedback_link() {
-	echo '<a href="https://wordpress.org/support/plugin/zodiacpress/reviews/" class="button-secondary zp-feedback-link alignright" target="_blank" rel="nofollow">';
-	_e( 'Feedback', 'zodiacpress' );
-	echo '</a>';
+function zp_admin_links() {
+	$links = array(
+		array(
+			'extend',
+			__( 'ZodiacPress Extensions', 'zodiacpress' ),
+			'https://cosmicplugins.com/downloads/category/zodiacpress-extensions/' ),
+		array(
+			'feedback',
+			__( 'Feedback', 'zodiacpress' ),
+			'https://wordpress.org/support/plugin/zodiacpress/reviews/' ),
+		array(
+			'docs',
+			__( 'Documentation', 'zodiacpress' ),
+			'https://cosmicplugins.com/docs/category/zodiacpress/' )
+	);
+	foreach ( $links as $link ) {
+		echo '<a href="' . $link[2] . '" class="button-secondary zp-' . $link[0] . '-link alignright" target="_blank" rel="nofollow">' . $link[1] . '</a>';
+	}
 }
 
 /**
