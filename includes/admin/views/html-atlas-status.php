@@ -9,11 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $table_exists = ZP_Atlas_DB::table_exists();
-
 $installing = get_option( 'zp_atlas_db_installing' );
-
 $pending_msg = get_option( 'zp_atlas_db_pending' );
-
 $status = __( 'error', 'zodiacpress' );
 $class = 'atlas-error';
 $checkmark = '';
@@ -27,7 +24,6 @@ if ( $pending_msg ) {
 if ( ! $table_exists ) {
 	$status = __( 'none', 'zodiacpress' );
 } else {
-	
 	if ( 'db' !== zp_atlas_option() ) {
 		$status = __( 'not in use', 'zodiacpress' );
 	} else {

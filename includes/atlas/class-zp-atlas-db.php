@@ -100,7 +100,6 @@ class ZP_Atlas_DB {
 		if ( isset( self::$use ) ) {
 			return self::$use;
 		}
-
 		if ( 'db' === zp_atlas_option() ) {
 			self::$use = ( ZP_Atlas_DB::is_installed() || ZP_Atlas_DB::is_separate_db() );
 			return self::$use;
