@@ -113,64 +113,10 @@ function zp_tools_cleanup_display() {
 add_action( 'zp_tools_tab_cleanup', 'zp_tools_cleanup_display' );
 
 /**
- * Display System Tools tab.
+ * Display System info Tools tab.
  */
 function zp_tools_sysinfo_display() {
-	$out = '### Begin System Info ###' . "\n\n";
-	$out .= '-- Server Info' . "\n\n";
-	$out .= 'Server Software:          ' . $_SERVER['SERVER_SOFTWARE'] . "\n";
-	$out .= 'PHP Version:              ' . PHP_VERSION . "\n";
-	$out .= 'GD Support:               ' . ( ( extension_loaded( 'gd' ) && function_exists( 'gd_info' ) ) ? 'Yes' : 'No!' ) . "\n";
-	$out .= 'PHP_SHLIB_SUFFIX:         ' . PHP_SHLIB_SUFFIX . "\n";
-	$out .= 'exec() Function:          ' . ( zp_is_func_enabled( 'exec' ) ? 'Enabled' : 'Disabled!' ) . "\n";
-	$out .= 'chmod() Function:         ' . ( zp_is_func_enabled( 'chmod' ) ? 'Enabled' : 'Disabled!' ) . "\n";
-	$out .= "\n" . '-- ZodiacPress Info' . "\n\n";
-	$out .= 'swetest file:             ' . ( file_exists( ZODIACPRESS_PATH . 'sweph/swetest' ) ? 'Okay' : 'Missing!' ) . "\n";
-	$out .= 'Ephemeris permissions:    ' . ( zp_is_sweph_executable() ? 'Executable' : 'Not executable!' ) . "\n";
-	$out .= "\n" . '-- WordPress Info' . "\n\n";
-	$out .= 'WP Version:               ' . get_bloginfo('version') . "\n";
-	$out .= 'Multisite:                ' . ( is_multisite() ? 'Yes' : 'No' ) . "\n";
-	$out .= 'WP_DEBUG:                 ' . ( defined( 'WP_DEBUG' ) ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Not set' ) . "\n";
-	$out .= 'WP Memory Limit:          ' . WP_MEMORY_LIMIT . "\n";
-	$out .= "\n" . '-- Theme' . "\n\n";
-	$active_theme = wp_get_theme();
-	$out .= 'Theme Name:               ' . $active_theme->Name . "\n";
-	$out .= 'Theme Version:            ' . $active_theme->Version . "\n";
-	if ( is_child_theme() ) {
-		$parent_theme = wp_get_theme( $active_theme->Template );
-		$out .= 'Parent Theme Name:        ' . $parent_theme->Name . "\n";
-		$out .= 'Parent Theme Version:     ' . $parent_theme->Version . "\n";
-	}
-	$out .= 'Is Child Theme:           ' . ( empty( $parent_theme ) ? 'No' : 'Yes' ) . "\n";
-	$out .= "\n" . '-- Active Plugins' . "\n\n";
-	$active_plugins = (array) get_option( 'active_plugins', array() );
-
-	if ( is_multisite() )
-		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-
-	$wp_plugins = array();
-	foreach ( $active_plugins as $plugin ) {
-
-		$plugin_data    = @get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin );
-		if ( ! empty( $plugin_data['Name'] ) ) {
-			$wp_plugins[] = $plugin_data['Name'] . ' by ' . $plugin_data['AuthorName'] . ' version ' . $plugin_data['Version'];
-		}
-	}
-	if ( sizeof( $wp_plugins ) == 0 ) {
-		$out .= '-';
-	} else {
-		$out .= implode( ",\n", $wp_plugins );
-	}
-	$out .= "\n\n" . '### End System Info ###';
-	?>
-	<p><?php _e( 'The system info is a built-in debugging tool. If you contact support, please provide this info.', 'zodiacpress' ); ?></p>
-	<p><?php _e( '(Do not be afraid to paste this info into the support forum because this info does not reveal your website name or URL.)', 'zodiacpress' ); ?></p>
-	<form action="<?php echo esc_url( admin_url( 'admin.php?page=zodiacpress-tools&tab=sysinfo' ) ); ?>" method="post" dir="ltr">
-	<textarea readonly="readonly" onclick="this.focus(); this.select()" id="system-info-textarea" name="zp-sysinfo" title="To copy the system info, click below then press Ctrl + C (on a PC) or Cmd + C (on a Mac)."><?php echo esc_textarea( $out ); ?>
-	</textarea>
-	</form>
-	<?php
-
+	include ZODIACPRESS_PATH . 'includes/admin/views/html-tools-systeminfo.php';
 }
 add_action( 'zp_tools_tab_sysinfo', 'zp_tools_sysinfo_display' );
 
