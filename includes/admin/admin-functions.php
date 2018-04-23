@@ -64,7 +64,7 @@ function zp_admin_notices() {
 		delete_transient( 'zodiacpress_activating' );
 		// Only show notice if atlas db is not in use and a geonames username is not set
 		if ( ! ZP_Atlas_DB::use_db() && empty( $zodiacpress_options['geonames_user'] ) ) {
-			include plugin_dir_path( __FILE__ ) . 'views/html-notice-install.php';
+			include ZODIACPRESS_PATH . 'includes/admin/views/html-notice-install.php';
 		}
 	}
 
