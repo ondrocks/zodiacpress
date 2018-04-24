@@ -109,9 +109,9 @@ This plugin is provided as is. It is created, supported, and enhanced entirely t
 
 Please do the <a href="https://cosmicplugins.com/docs/pre-support-self-check/">Pre-Support Self-Check</a> to solve common issues. You can also browse these [troubleshooting articles](https://cosmicplugins.com/docs/category/zodiacpress/troubleshooting/ "Troubleshooting ZodiacPress").
 
-= Why must I create a GeoNames account? =
+= Do I have to create a GeoNames account? =
 
-When your visitor enters a birth city into the report form, the plugin will get the latitude/longitude coordinates of that birth city from GeoNames. GeoNames provides this as "web service." GeoNames requires you to have an account on their site in order to use their web service.
+You only have to create a GeoNames account if you choose GeoNames in the **Choose Atlas** setting. If you choose to use your own atlas database, then you don't need a GeoNames account.
 
 = How can I set the house system to be used for the "Planets in Houses" section of the report? =
 
