@@ -66,8 +66,7 @@ function zp_get_chart_drawing( $chart, $colors = '' ) {
  */
 function zp_maybe_get_chart_drawing( $form, $chart ) {
 	$image = '';
-
-	if ( 'birthreport' == $form['zp-report-variation'] )  {
+	if ( 'birthreport' === $form['zp-report-variation'] || 'birthreport_preview' === $form['zp-report-variation'] )  {
 		$image = zp_get_chart_drawing( $chart );
 	}
 
