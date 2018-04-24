@@ -20,7 +20,7 @@ function zp_register_scripts() {
 		$autocomplete_js = 'zp-autocomplete';
 		$strings = zp_geonames_js_strings();
 	}
-	
+
 	wp_register_style( 'zp', ZODIACPRESS_URL . 'assets/css/zp' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	// for RTL languages
 	wp_register_style( 'zp-rtl', ZODIACPRESS_URL . 'assets/css/zp-rtl' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
@@ -30,6 +30,9 @@ function zp_register_scripts() {
 	// core script
 	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION );
 	wp_localize_script( 'zp', 'zp_ajax_object', zp_script_localization_data() );
+	// back compatibility @todo to be removed in future version
+	wp_register_script( 'zp-back-compat', ZODIACPRESS_URL . 'assets/js/back-compat' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION );
+	wp_localize_script( 'zp-back-compat', 'zp_ajax_object', zp_script_localization_data() );
 }
 	
 add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
@@ -73,16 +76,7 @@ function zp_admin_scripts() {
 add_action( 'admin_enqueue_scripts', 'zp_admin_scripts', 100 );
 
 /**
- * Deprecated: Get data for wp_localize_script
- * @todo remove in future version
- */
-function zp_get_script_localization_data() {
-	// Temporarily add old data for back compatibility with addons
-	return array_merge( zp_script_localization_data(), zp_geonames_js_strings() );
-}
-
-/**
- * Get data strings for the zp script.
+ * Get data strings for the ZP core script.
  */
 function zp_script_localization_data() {
 	global $zodiacpress_options;
@@ -96,7 +90,7 @@ function zp_script_localization_data() {
 }
 
 /**
- * Get data strings for the zp-autocomplete script.
+ * Get data strings for the zp-autocomplete.js script.
  */
 function zp_geonames_js_strings() {
 	global $zodiacpress_options;
