@@ -1,13 +1,7 @@
-/**
+/*
  * admin-atlas-install.js is loaded only during the atlas installation in the admin,
  * only if atlas has not been installed and a custom db (via filter) is not being used.
  */
-
-/****************************************************
-* @todo make admin-atlas-install.min.js
-****************************************************/
-
-console.log('3.................');// @test
 
 window.wp.heartbeat.interval( 15 );
 
