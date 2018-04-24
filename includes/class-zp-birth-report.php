@@ -337,13 +337,17 @@ class ZP_Birth_Report {
 			}
 		}
 
-		// For planets in signs, move ASC to the top, just because it looks nicer on report
-		if ( 'enable_planet_signs' == $planets_key && isset( $cleared_planets[ 15 ] ) ) {
-			$cleared_planets = array( 15 => $cleared_planets[ 15 ] ) + $cleared_planets;
+		// For planets in signs, move ASC up after sun, just because it looks nicer on report
+		if ( 'enable_planet_signs' === $planets_key && isset( $cleared_planets[15] ) ) {
+			// if the Sun is set, move to position 2, otherwise to position 1
+			if ( isset( $cleared_planets[0] ) ) {
+				$cleared_planets = array( 0 => $cleared_planets[0], 15 => $cleared_planets[15] ) + $cleared_planets;
+			} else {
+				$cleared_planets = array( 15 => $cleared_planets[15] ) + $cleared_planets;
+			}
 		}
-		
-		return $cleared_planets;
 
+		return $cleared_planets;
 	}
 
 	/**
