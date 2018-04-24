@@ -47,9 +47,9 @@ If birth time is unknown, ZP checks for ingress on that day rather than simply u
 
 Entering your interpretations is not required since you can generate reports without interpretations text. See the [screenshots](https://wordpress.org/plugins/zodiacpress/screenshots/) to see how a basic report **without** interpretations text looks.
 
-= Privacy Policy and EU GDPR Compliance =
+= Privacy Policy and EU GDPR Information =
 
-ZodiacPress complies with the EU General Data Protection Regulation (GDPR). ZodiacPress does not store the data that is entered into the form. Once a user submits the form with their birth information, that data is used instantaneously to generate a report, and then the data is lost. It is not saved with cookies or to any database. **So, you can confidently add a notice somewhere on your page (whether under the form, or on the footer of your site) to inform your users that the Birth Report form is not storing their data.**
+ZodiacPress does not store the data that is entered into the form. Once a user submits the form with their birth information, that data is used instantaneously to generate a report, and then the data is lost. It is not saved with cookies or to any database. **So, you can confidently add a notice somewhere on your page (whether under the form, or on the footer of your site) to inform your users that the Birth Report form is not storing their data.**
 
 = Technical Details =
 
