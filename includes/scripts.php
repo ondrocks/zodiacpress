@@ -77,6 +77,7 @@ add_action( 'admin_enqueue_scripts', 'zp_admin_scripts', 100 );
 
 /**
  * Get data strings for the ZP core script.
+ * @since 1.8
  */
 function zp_script_localization_data() {
 	global $zodiacpress_options;

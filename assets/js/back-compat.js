@@ -2,7 +2,7 @@
  * Backwards compatibility script
  * Ensures back-compat for extensions with ZP 1.8 single-step form
  *
- * @todo This will be removed in a future version.
+ * @todo To be removed in a future version
  */
 
 /* Disable Add to Cart button until form is filled */
