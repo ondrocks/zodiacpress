@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 5.0-alpha-42881
 Requires PHP: 5.4
-Stable tag: 1.7.1
+Stable tag: 1.8
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,15 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.8 =
+* New - Option to create your own atlas database. Choosing this option will eliminate the need for GeoNames. However, the option to use GeoNames still remains.
+* New - Eliminated the 'Next' button step. The form now only has a single Submit button. Previously, it required 2 steps: Next, and then Submit.
+* New - Moved Sun above the Ascendant on the Birth Report.
+* Fix - 'Planet in Next House' titles now honor the 'Hide Empty' setting.
+* Tweak - Added Documentation link to top-right of admin pages, only on ZodiacPress admin pages.
+* Tweak - Removed loading gif.
+* Tweak - Added rel="noopener" to all target="_blank" links.
+
 = 1.7.1 =
 * Fix - The Fagan/Bradley sidereal method was not working when selling a report.
 
@@ -243,6 +252,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.8 =
+New option to create your own atlas database and be rid of GeoNames.
 
 = 1.7.1 =
 Fixed - The Fagan/Bradley sidereal method was not working when selling a report.
