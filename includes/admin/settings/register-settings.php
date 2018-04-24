@@ -201,7 +201,7 @@ function zp_get_registered_settings() {
 					'atlas'	=> array(
 						'id'	=> 'atlas',
 						'name'	=> __( 'Choose Atlas', 'zodiacpress' ),
-						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="nofollow">Help with this decision</a>)', 'zodiacpress' ), 'https://cosmicplugins.com/docs/choosing-an-atlas/' ),
+						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="noopener">Help with this decision</a>)', 'zodiacpress' ), 'https://cosmicplugins.com/docs/choosing-an-atlas/' ),
 						'type'	=> 'radio',
 						'options' => array(
 							'geonames' => __( 'Use GeoNames', 'zodiacpress' ),
@@ -213,7 +213,7 @@ function zp_get_registered_settings() {
 					'geonames_user'	=> array(
 						'id'	=> 'geonames_user',
 						'name'	=> __( 'GeoNames Username', 'zodiacpress' ),
-						'desc'	=> sprintf( __( 'Your username from GeoNames.org is needed to get timezone info from their webservice. (%1$screate free account%2$s)', 'zodiacpress' ), '<a href="http://www.geonames.org/login" target="_blank" rel="nofollow">', '</a>' ),
+						'desc'	=> sprintf( __( 'Your username from GeoNames.org is needed to get timezone info from their webservice. (%1$screate free account%2$s)', 'zodiacpress' ), '<a href="http://www.geonames.org/login" target="_blank" rel="noopener">', '</a>' ),
 						'type'	=> 'subtext',
 						'size'	=> 'medium',
 						'std'	=> '',
@@ -662,7 +662,7 @@ function zp_license_key_callback( $args ) {
 
 					$class = 'expired';
 					$messages[] = sprintf(
-							__( 'Your license key expired on %1$s. Please <a href="%2$s" target="_blank" rel="nofollow">renew your license key</a>.', 'zodiacpress' ),
+							__( 'Your license key expired on %1$s. Please <a href="%2$s" target="_blank" rel="noopener">renew your license key</a>.', 'zodiacpress' ),
 							$format_expiration,
 							'https://cosmicplugins.com/checkout/?edd_license_key=' . $value
 						);
@@ -673,7 +673,7 @@ function zp_license_key_callback( $args ) {
 				case 'revoked' :
 
 					$messages[] = sprintf(
-						__( 'Your license key has been disabled. Please <a href="%s" target="_blank" rel="nofollow">contact support</a> for more information.', 'zodiacpress' ),
+						__( 'Your license key has been disabled. Please <a href="%s" target="_blank" rel="noopener">contact support</a> for more information.', 'zodiacpress' ),
 							'https://cosmicplugins.com/contact/'
 					);
 
@@ -684,7 +684,7 @@ function zp_license_key_callback( $args ) {
 				case 'missing' :
 
 					$messages[] = sprintf(
-						__( 'Invalid license. Please <a href="%s" target="_blank" rel="nofollow">visit your account page</a> and verify it.', 'zodiacpress' ),
+						__( 'Invalid license. Please <a href="%s" target="_blank" rel="noopener">visit your account page</a> and verify it.', 'zodiacpress' ),
 						'https://cosmicplugins.com/my-account/'
 					);
 
@@ -696,7 +696,7 @@ function zp_license_key_callback( $args ) {
 				case 'site_inactive' :
 
 					$messages[] = sprintf(
-						__( 'Your %1$s is not active for this URL. Please <a href="%2$s" target="_blank" rel="nofollow">visit your account page</a> to manage your license key URLs.', 'zodiacpress' ),
+						__( 'Your %1$s is not active for this URL. Please <a href="%2$s" target="_blank" rel="noopener">visit your account page</a> to manage your license key URLs.', 'zodiacpress' ),
 						$args['name'],
 						'https://cosmicplugins.com/my-account/'
 					);
@@ -753,7 +753,7 @@ function zp_license_key_callback( $args ) {
 					} elseif( $expiration > $now && $expiration - $now < ( DAY_IN_SECONDS * 30 ) ) {
 
 						$messages[] = sprintf(
-							__( 'Your license key expires soon! It expires on %1$s. <a href="%2$s" target="_blank">Renew your license key</a>.', 'zodiacpress' ),
+							__( 'Your license key expires soon! It expires on %1$s. <a href="%2$s" target="_blank" rel="noopener">Renew your license key</a>.', 'zodiacpress' ),
 							$format_expiration,
 							'https://cosmicplugins.com/checkout/?edd_license_key=' . $value
 						);

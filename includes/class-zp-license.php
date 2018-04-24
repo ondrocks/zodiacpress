@@ -168,7 +168,7 @@ class ZP_License {
 			return;
 		}
 		echo '<p>' . sprintf(
-			__( 'Enter your license keys here to receive updates for extensions. If your license key has expired, please <a href="%s" target="_blank" rel="nofollow">renew your license</a>.', 'zodiacpress' ),
+			__( 'Enter your license keys here to receive updates for extensions. If your license key has expired, please <a href="%s" target="_blank" rel="noopener">renew your license</a>.', 'zodiacpress' ),
 			'https://cosmicplugins.com/faq/#jl-licenserenew'
 		) . '</p>';
 

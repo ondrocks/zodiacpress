@@ -107,7 +107,7 @@ function zp_admin_notices() {
 			if ( ! defined( 'ZP_WINDOWS_SERVER_PATH' ) ) {
 
 				echo '<div class="notice notice-error is-dismissible"><p>' .
-				sprintf( __( 'Your website server uses Windows hosting. For ZodiacPress to work on your server, you need the %1$sZP Windows Server%2$s plugin. See <a href="%3$s" target="_blank" rel="nofollow">this</a> for details.', 'zodiacpress' ), '<strong>', '</strong>', 'https://cosmicplugins.com/docs/your-site-windows-hosting/' ) .
+				sprintf( __( 'Your website server uses Windows hosting. For ZodiacPress to work on your server, you need the %1$sZP Windows Server%2$s plugin. See <a href="%3$s" target="_blank" rel="noopener">this</a> for details.', 'zodiacpress' ), '<strong>', '</strong>', 'https://cosmicplugins.com/docs/your-site-windows-hosting/' ) .
 				'</p></div>';
 			}
 		}
@@ -120,7 +120,7 @@ add_action( 'admin_notices', 'zp_admin_notices' );
  */
 function zp_admin_notices_chmod_failed() {
 	if ( zp_is_admin_page() ) {
-		$msg = sprintf( __( 'Your server did not allow ZodiacPress to set the necessary file permissions for the Ephemeris. ZodiacPress requires this in order to create astrology reports. <a href="%s" target="_blank" rel="nofollow">See this</a> to fix it.', 'zodiacpress' ), 'https://cosmicplugins.com/docs/file-permissions-swetest/' );
+		$msg = sprintf( __( 'Your server did not allow ZodiacPress to set the necessary file permissions for the Ephemeris. ZodiacPress requires this in order to create astrology reports. <a href="%s" target="_blank" rel="noopener">See this</a> to fix it.', 'zodiacpress' ), 'https://cosmicplugins.com/docs/file-permissions-swetest/' );
 
 		printf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', $msg );
 	}
@@ -131,7 +131,7 @@ function zp_admin_notices_chmod_failed() {
  */
 function zp_admin_notices_missing_file() {
 	if ( zp_is_admin_page() ) {
-		$msg = sprintf( __( 'You are missing a file from ZodiacPress. This file is required in order to create astrology reports. <a href="%s" target="_blank" rel="nofollow">See this</a> for more information.', 'zodiacpress' ), 'https://cosmicplugins.com/docs/missing-file/' );
+		$msg = sprintf( __( 'You are missing a file from ZodiacPress. This file is required in order to create astrology reports. <a href="%s" target="_blank" rel="noopener">See this</a> for more information.', 'zodiacpress' ), 'https://cosmicplugins.com/docs/missing-file/' );
 		printf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', $msg );
 	}
 }
@@ -238,7 +238,7 @@ function zp_admin_links() {
 			'https://cosmicplugins.com/docs/category/zodiacpress/' )
 	);
 	foreach ( $links as $link ) {
-		echo '<a href="' . $link[2] . '" class="button-secondary zp-' . $link[0] . '-link alignright" target="_blank" rel="nofollow">' . $link[1] . '</a>';
+		echo '<a href="' . $link[2] . '" class="button-secondary zp-' . $link[0] . '-link alignright" target="_blank" rel="noopener">' . $link[1] . '</a>';
 	}
 }
 
