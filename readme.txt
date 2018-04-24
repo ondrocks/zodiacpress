@@ -53,7 +53,7 @@ ZodiacPress does not store the data that is entered into the form. Once a user s
 
 = Technical Details =
 
-ZodiacPress gets birth place latitude/longitude coordinates from the GeoNames geographical database (via its webservices) which uses the latest revision of World Geodetic System (WGS 84). This is why a GeoNames account is necessary.
+ZodiacPress gets birth place latitude/longitude coordinates from the GeoNames geographical database which uses the latest revision of World Geodetic System (WGS 84).
 
 ZP uses the Swiss Ephemeris (under GNU GPLv2) to get the longitude of the planets/celestial bodies. This ephemeris is included inside the plugin.
 
@@ -89,13 +89,9 @@ See the full [ZodiacPress documentation](https://cosmicplugins.com/docs/category
 
 **Quick Setup**
 
-1. In your WordPress dashboard, go to ZodiacPress –> Settings, and click the Misc tab. 
-2. Enter your GeoNames Username and click “Save Changes.” You can quickly create a free [GeoNames account here](http://www.geonames.org/login). This is required because the plugin uses GeoNames webservice to get birth place latitude/longitude coordinates and timezone ids for the birth reports. After you create your GeoNames account, you have to enable their free web services by going to their [manage account page](http://www.geonames.org/manageaccount) and click to enable them at the bottom where it says "Free Web Services." (Optional: if you have a Premium GeoNames account, then you should take advantage of [Enhanced GeoNames](https://cosmicplugins.com/downloads/zodiacpress-enhanced-geonames/).)
-3. Add the `[birthreport]` shortcode to a page or post. This is where the birth report form will appear. Go to this page on the front of your site to generate a birth report. For more help with shortcodes, see [How To Use a Shortcode](https://cosmicplugins.com/docs/shortcode/).
+The [Quick Start Guide](https://cosmicplugins.com/docs/quick-start-guide/) is the fastest to way to get the ZodiacPress birth report working on your site. This allows you to generate a basic report which lists the planets in the signs, planets in the houses, and aspects.
 
-That’s it for the Quick Setup. This allows you to generate a basic report which lists the planets in the signs, planets in the houses, and aspects. Interpretations will not be included in the report until you enter your own natal interpretations. 
-
-To enter your interpretations, go to “ZodiacPress” in your dashboard menu. See the [Full Setup Guide](https://cosmicplugins.com/docs/full-setup-guide/ "ZodiacPress Documentation") for important options.
+Interpretations will not be included in the report until you enter your own natal interpretations. To enter your interpretations, go to “ZodiacPress” in your dashboard menu. See the [Full Setup Guide](https://cosmicplugins.com/docs/full-setup-guide/ "ZodiacPress Documentation") for important options.
 
 **If your website uses Windows hosting**
 
