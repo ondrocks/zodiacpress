@@ -77,12 +77,8 @@ add_action( 'admin_enqueue_scripts', 'zp_admin_scripts', 100 );
  * @todo remove in future version
  */
 function zp_get_script_localization_data() {
-	trigger_error(
-		'The ' . __FUNCTION__ . ' function is deprecated as of version 1.8. ' .
-		'Please use zp_script_localization_data() instead.',
-		E_USER_DEPRECATED
-    );
-	zp_script_localization_data();
+	// Temporarily add old data for back compatibility with addons
+	return array_merge( zp_script_localization_data(), zp_geonames_js_strings() );
 }
 
 /**
