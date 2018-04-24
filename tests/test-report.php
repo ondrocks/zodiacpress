@@ -184,7 +184,7 @@ class Test_Report extends WP_UnitTestCase {
 	 */
 	public function test_enabled_planets_in_signs_partial() {
 
-		$expected = array( 'asc', 'sun', 'moon', 'saturn', 'pof' );
+		$expected = array( 'sun', 'asc', 'moon', 'saturn', 'pof' );
 
 		// Get calculated planets_in_signs
 		$zp_object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );		

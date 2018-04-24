@@ -2,8 +2,8 @@
 $sec = chr(34);
 // Expected planets in signs for Steve Jobs
 $expected_planets_in_signs[] = array(
-	0 => 'asc_virgo',
-	1 => 'sun_pisces',
+	0 => 'sun_pisces',
+	1 => 'asc_virgo',
 	2 => 'moon_aries',
 	3 => 'mercury_aquarius',
 	4 => 'venus_capricorn',
@@ -23,8 +23,8 @@ $expected_planets_in_signs[] = array(
 
 // Expected planets in signs for Michael Jackson
 $expected_planets_in_signs[] = array(
-	0 => 'asc_pisces',
-	1 => 'sun_virgo',
+	0 => 'sun_virgo',
+	1 => 'asc_pisces',
 	2 => 'moon_pisces',
 	3 => 'mercury_leo',
 	4 => 'venus_leo',
@@ -44,8 +44,8 @@ $expected_planets_in_signs[] = array(
 
 // Expected zodiacal degrees, minutes, seconds of planets for Steve Jobs [0]
 $expected_zodiacal_dms[] = array(
-	0 => '22&#176; <span class="zp-icon-virgo"> </span> 17\' 34' . $sec,// astro gets 39
-	1 => '&#160;5&#176; <span class="zp-icon-pisces"> </span> 44\' 53' . $sec,
+	0 => '&#160;5&#176; <span class="zp-icon-pisces"> </span> 44\' 53' . $sec,
+	1 => '22&#176; <span class="zp-icon-virgo"> </span> 17\' 34' . $sec,// astro gets 39
 	2 => '&#160;7&#176; <span class="zp-icon-aries"> </span> 44\' 50' . $sec,
 	3 => '14&#176; <span class="zp-icon-aquarius"> </span> 21\' 42' . $sec . '&nbsp; R<sub>x</sub> ',
 	4 => '21&#176; <span class="zp-icon-capricorn"> </span> 10\' 19' . $sec,
@@ -65,8 +65,8 @@ $expected_zodiacal_dms[] = array(
 
 // Expected zodiacal degrees, minutes, seconds of planets for Michael Jackson
 $expected_zodiacal_dms[] = array(
-	0 => '10&#176; <span class="zp-icon-pisces"> </span> 06\' 34' . $sec,
-	1 => '&#160;6&#176; <span class="zp-icon-virgo"> </span> 08\' 37' . $sec,
+	0 => '&#160;6&#176; <span class="zp-icon-virgo"> </span> 08\' 37' . $sec,
+	1 => '10&#176; <span class="zp-icon-pisces"> </span> 06\' 34' . $sec,
 	2 => '14&#176; <span class="zp-icon-pisces"> </span> 54\' 25' . $sec,
 	3 => '25&#176; <span class="zp-icon-leo"> </span> 24\' 52' . $sec . '&nbsp; R<sub>x</sub> ',
 	4 => '17&#176; <span class="zp-icon-leo"> </span> 04\' 14' . $sec,
