@@ -106,7 +106,8 @@ function zp_atlas_table_create_keys() {
 	global $wpdb;
 	$return = 2;
 	$sql_1 = "ALTER TABLE " . $wpdb->prefix . "zp_atlas MODIFY COLUMN geonameid bigint(20) UNSIGNED NOT NULL PRIMARY KEY";
-	$sql_2 = "CREATE INDEX ix_name_country ON " . $wpdb->prefix . "zp_atlas (name,country DESC)";	
+	$sql_2 = "CREATE INDEX ix_name_country ON " . $wpdb->prefix . "zp_atlas (name(50),country(50) DESC)";
+
 	// create PRIMARY KEY
 
 	if ( ! ZP_Atlas_DB::key_exists( 'PRIMARY' ) ) {
