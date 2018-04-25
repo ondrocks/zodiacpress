@@ -146,7 +146,7 @@ add_action( 'wp_async_zp_atlas_insert_db', function () {
 		
 		// Set the db_version option to which serves as a flag that the database is ready
 
-		update_option( 'zp_atlas_db_version', '1.8' );// @todo update ONLY upon changing database
+		update_option( 'zp_atlas_db_version', '1.8.1' );// @todo update ONLY upon changing database
 
 		// Set transient flag to enable the Ready admin notice to appear
 
