@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 5.0-alpha-42881
 Requires PHP: 5.4
-Stable tag: 1.8
+Stable tag: 1.8.1
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.8.1 =
+* Fix - Atlas database table INDEX needed max length.
+
 = 1.8 =
 * New - Option to create your own atlas database. Choosing this option will eliminate the need for GeoNames. However, the option to use GeoNames still remains.
 * New - Eliminated the 'Next' button step. The form now only has a single Submit button. Previously, it required 2 steps: Next, and then Submit.
@@ -252,6 +255,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.8.1 =
+Fixed - New Atlas database table INDEX needed max length.
 
 = 1.8 =
 New option to create your own atlas database and be rid of GeoNames.
