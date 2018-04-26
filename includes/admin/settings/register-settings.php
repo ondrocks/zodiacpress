@@ -79,7 +79,7 @@ function zp_get_registered_settings() {
 					'enable_planet_signs' => array(
 						'id'		=> 'enable_planet_signs',
 						'name'		=> __( 'Enable Planets (and Points) in Signs', 'zodiacpress' ),
-						'desc'		=> __( 'Choose which to show on the "In The Signs" section of the report.', 'zodiacpress' ),
+						'desc'		=> __( 'Choose which to show on the "In The Signs" section of the natal report.', 'zodiacpress' ),
 						'type'		=> 'multicheck',
 						'options'	=> zp_get_planets(),
 						'std'		=> zp_get_planets( false, 7 )
@@ -87,7 +87,7 @@ function zp_get_registered_settings() {
 					'enable_planet_houses' => array(
 						'id'		=> 'enable_planet_houses',
 						'name'		=> __( 'Enable Planets (and Points) in Houses', 'zodiacpress' ),
-						'desc'		=> __( 'Choose which to show on the "In The Houses" section of the report.', 'zodiacpress' ),
+						'desc'		=> __( 'Choose which to show on the "In The Houses" section of the natal report.', 'zodiacpress' ),
 						'type'		=> 'multicheck',
 						'options'	=> zp_get_planets( true ),
 						'std'		=> zp_get_planets( true )
@@ -103,7 +103,7 @@ function zp_get_registered_settings() {
 					'enable_aspects' => array(
 						'id'		=> 'enable_aspects',
 						'name'		=> __( 'Enable Aspects', 'zodiacpress' ),
-						'desc'		=> __( 'Choose which aspects to show on the report.', 'zodiacpress' ),
+						'desc'		=> __( 'Choose which aspects to show on the natal report.', 'zodiacpress' ),
 						'type'		=> 'multicheck',
 						'options'	=> zp_get_aspects(),
 						'std'		=> zp_get_aspects()
@@ -138,15 +138,15 @@ function zp_get_registered_settings() {
 					),
 					'birthreport_intro' => array(
 						'id'	=> 'birthreport_intro',
-						'name'	=> __( 'Birth Report Intro', 'zodiacpress' ),
+						'name'	=> __( 'Report Intro', 'zodiacpress' ),
 						'type'	=> 'textarea',
-						'desc'	=> __( 'Optional "Introduction" text for the Birth Report.', 'zodiacpress' )
+						'desc'	=> __( 'Optional "Introduction" text for the birth report.', 'zodiacpress' )
 					),
 					'birthreport_closing' => array(
 						'id'	=> 'birthreport_closing',
-						'name'	=> __( 'Birth Report Closing', 'zodiacpress' ),
+						'name'	=> __( 'Report Closing', 'zodiacpress' ),
 						'type'	=> 'textarea',
-						'desc'	=> __( 'Optional "Closing" text for the Birth Report. This will appear at the end of the report.', 'zodiacpress' )
+						'desc'	=> __( 'Optional "Closing" text for the birth report. This will appear at the end of the report.', 'zodiacpress' )
 					),
 					'hide_empty_titles' => array(
 						'id'	=> 'hide_empty_titles',
