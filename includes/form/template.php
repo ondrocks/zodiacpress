@@ -7,12 +7,15 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Display the form to generate an astrology report
+ * Displays the form to generate an astrology report.
  *
- * @param string $report Identifier to distinguish this type of report.
- * @param array $args 
+ * @param string $report Identifier to distinguish this single-person report from
+ * 					future synastry report.
+ * @param array $args Additional report args. `$args['report']` specifies the
+ * 					variation of this type of report to distinguish from other types
+ * 					of `$report` reports.
  */
-function zp_form( $report, $args = array() ) {
+function zp_form( $report, $args ) {
 	global $zodiacpress_options;
 	$allow_unknown_bt_key_prefix = $report;
 	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {// @todo consider changing strpos with substr for speed, here and everywhere this is done
