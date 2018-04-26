@@ -237,6 +237,11 @@ class ZP_Birth_Report {
 				}
 				$piece_title .= '</p>';
 
+				/****************************************************
+				* @todo
+				* don't add hide empty stuff to custom reports since they are manually choosing what to show on each custom report, it follows that they should have the interp.
+				****************************************************/
+
 				// If interpretation does not exist, only show title if "Hide Titles With Empty Interpretations" is disabled.
 
 				if ( empty( $interps[ $v['id'] ] ) ) {// interpretation does not exist

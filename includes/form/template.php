@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function zp_form( $report, $args = array() ) {
 	global $zodiacpress_options;
 	$allow_unknown_bt_key_prefix = $report;
-	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
+	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {// @todo consider changing strpos with substr for speed, here and everywhere this is done
 		$allow_unknown_bt_key_prefix = 'planet_lookup';
 	} elseif ( 'drawing' === $args['report'] ) {
 		$allow_unknown_bt_key_prefix = 'drawing';

@@ -168,7 +168,7 @@ final class ZP_Chart {
 	private function setup_chart() {
 
 		// Ephemeris gives wrong calculations for Whole Sign houses, so query it as Placidus, then calculate Whole Sign houses manually.
-		$final_house_system = ( 'W' == $this->house_system ) ? 'P' : $this->house_system;
+		$final_house_system = ( 'W' === $this->house_system ) ? 'P' : $this->house_system;
 
 		// Args for the ephemeris query
 		$args = array(
