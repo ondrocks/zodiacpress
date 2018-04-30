@@ -96,6 +96,7 @@ final class ZodiacPress {
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-chart.php';
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-ephemeris.php';
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-license.php';
+		include_once ZODIACPRESS_PATH . 'includes/class-zp-report-ids.php';
 		include_once ZODIACPRESS_PATH . 'includes/misc-functions.php';
 		include_once ZODIACPRESS_PATH . 'includes/scripts.php';
 		include_once ZODIACPRESS_PATH . 'includes/atlas/class-zp-atlas-db.php';
