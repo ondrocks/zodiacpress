@@ -230,3 +230,16 @@ function zp_string( $id = '' ) {
 	);
 	return $strings[ $id ];
 }
+
+/**
+ * Extract report id from a _preview report variation
+ * @param string $report_var The report variation
+ */
+function zp_get_preview_report_id( $report_var ) {
+    if ( substr( $report_var, -8 ) === '_preview' ) {
+        $len = strlen( $report_var );
+        return substr( $report_var, 0, $len-8 );
+    } else {
+        return false;
+    }
+}

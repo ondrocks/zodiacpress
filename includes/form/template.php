@@ -17,12 +17,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function zp_form( $report, $args ) {
 	global $zodiacpress_options;
-	$allow_unknown_bt_key_prefix = $report;
-	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {// @todo consider changing strpos with substr for speed, here and everywhere this is done
+	$allow_unknown_bt_key_prefix = $args['report'];
+
+	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
 		$allow_unknown_bt_key_prefix = 'planet_lookup';
-	} elseif ( 'drawing' === $args['report'] ) {
-		$allow_unknown_bt_key_prefix = 'drawing';
 	}
+
+	// if it's a preview, get report id
+	if ( $preview = zp_get_preview_report_id( $args['report'] ) ) {
+		$allow_unknown_bt_key_prefix = $preview;
+	}
+
 	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
 	$allow_unknown_bt = empty( $zodiacpress_options[ $allow_unknown_bt_key ] ) ? false : true;
 	?>
