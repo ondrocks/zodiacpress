@@ -30,6 +30,9 @@ function zp_form( $report, $args ) {
 
 	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
 	$allow_unknown_bt = empty( $zodiacpress_options[ $allow_unknown_bt_key ] ) ? false : true;
+
+	$required_time_reports = apply_filters( 'zp_reports_require_birthtime', array() );
+
 	?>
 	<noscript class="ui-state-highlight"><?php _e( 'This form requires JavaScript. Your browser either does not support JavaScript or has it disabled.', 'zodiacpress' ); ?></noscript>
 	<form id="zp-<?php echo esc_attr( $report ); ?>-form" method="post" class="zp-form">
@@ -73,7 +76,7 @@ function zp_form( $report, $args ) {
 				<select id="minute" name="minute"><?php zp_minute_select_options(); ?></select>
 				<?php
 				// Show the unknown time checkbox, but not for reports that require a birth time
-				if ( ! in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
+				if ( ! in_array( $args['report'], $required_time_reports ) ) {
 					// ...only if unkown time is allowed in settings
 					if ( $allow_unknown_bt ) {
 						?>
@@ -129,7 +132,7 @@ function zp_form( $report, $args ) {
 
 		<?php
 		// Add note about unknown birth time, but not for reports that require a birth time
-		if ( ! in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
+		if ( ! in_array( $args['report'], $required_time_reports ) ) {
 			// ...only if unkown time is allowed in settings, but not for 'Only Chart Wheel'
 			if ( $allow_unknown_bt && 'drawing' !== $args['report'] ) {
 
