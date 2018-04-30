@@ -44,20 +44,14 @@ class ZP_Report_IDs {
 	 */
 	private static function exists( $id ) {
 		$core_ids = array( 'birthreport', 'birthreport_preview', 'drawing', 'house_systems' );
-
 		foreach ( zp_get_planets() as $p ) {
 			$core_ids[] = 'planet_lookup_' . $p['id'];
 		}
-
-		isa_log('core ids = ');// @test 
-		isa_log($core_ids);// @test 
-
 		return ( in_array( $id, self::get_custom() ) || in_array( $id, $core_ids ) );
-
 	}
 
 	/**
-	 * Saves a new report ID 
+	 * Saves a new custom report ID 
 	 * 
 	 * @return bool
 	 */
@@ -86,7 +80,7 @@ class ZP_Report_IDs {
 	}
 
 	/**
-	 * Deletes a report ID 
+	 * Deletes a custom report ID 
 	 * 
 	 * @return bool
 	 */
