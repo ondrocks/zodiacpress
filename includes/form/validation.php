@@ -14,18 +14,24 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return mixed|array|string Array of form values if all is valid, otherwise the error string
  */
 function zp_validate_form( $data, $partial = false ) {
-	$out			= $data;
-	$month			= ( isset( $data['month'] ) && is_numeric( trim( $data['month'] ) ) ) ? $data['month'] : '';
-	$day			= ( isset( $data['day'] ) && is_numeric( trim( $data['day'] ) ) ) ? trim( $data['day'] ) : '';
-	$year			= ( isset( $data['year'] ) && is_numeric( trim( $data['year'] ) ) ) ? trim( $data['year'] ) : '';
-	$hour			= ( isset( $data['hour'] ) && is_numeric( trim( $data['hour'] ) ) ) ? trim( $data['hour'] ) : '';
-	$minute			= ( isset( $data['minute'] ) && is_numeric( trim( $data['minute'] ) ) ) ? trim( $data['minute'] ) : '';
-	$timezone_id	= empty( $data['geo_timezone_id'] ) ? '' : sanitize_text_field( $data['geo_timezone_id'] );
-	$place			= empty( $data['place'] ) ? '' : sanitize_text_field( $data['place'] );
-	$latitude		= ( isset( $data['zp_lat_decimal'] ) && is_numeric( trim( $data['zp_lat_decimal'] ) ) ) ? trim( $data['zp_lat_decimal'] ) : '';
-	$longitude		= ( isset( $data['zp_long_decimal'] ) && is_numeric( trim( $data['zp_long_decimal'] ) ) ) ? trim( $data['zp_long_decimal'] ) : '';
-	$unknown_time	= isset( $data['unknown_time'] ) ? $data['unknown_time'] : '';
-	$report_var		= empty( $data['zp-report-variation'] ) ? 'birthreport' : sanitize_text_field( $data['zp-report-variation'] );
+	$out = $data;
+	$month = ( isset( $data['month'] ) && is_numeric( $data['month'] ) ) ? $data['month'] : '';
+    $day = isset( $data['day'] ) ? trim( $data['day'] ) : '';
+    $day = is_numeric( $day ) ? $day : '';
+    $year = isset( $data['year'] ) ? trim( $data['year'] ) : '';
+    $year = is_numeric( $year ) ? $year : '';
+    $hour = isset( $data['hour'] ) ? trim( $data['hour'] ) : '';
+    $hour = is_numeric( $hour ) ? $hour : '';
+    $minute = isset( $data['minute'] ) ? trim( $data['minute'] ) : '';
+    $minute = is_numeric( $minute ) ? $minute : '';
+	$timezone_id = empty( $data['geo_timezone_id'] ) ? '' : sanitize_text_field( $data['geo_timezone_id'] );
+	$place = empty( $data['place'] ) ? '' : sanitize_text_field( $data['place'] );
+    $latitude = isset( $data['zp_lat_decimal'] ) ? trim( $data['zp_lat_decimal'] ) : '';
+    $latitude = is_numeric( $latitude ) ? $latitude : '';
+    $longitude = isset( $data['zp_long_decimal'] ) ? trim( $data['zp_long_decimal'] ) : '';
+    $longitude = is_numeric( $longitude ) ? $longitude : '';
+	$unknown_time = isset( $data['unknown_time'] ) ? $data['unknown_time'] : '';
+	$report_var = empty( $data['zp-report-variation'] ) ? 'birthreport' : sanitize_text_field( $data['zp-report-variation'] );
 	
 	// Validate date.
 	if ( "" == $month || "" == $day || "" == $year ) {
