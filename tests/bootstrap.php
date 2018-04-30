@@ -1,5 +1,4 @@
 <?php
- 
 /**
  * Set up environment for my plugin's tests suite.
  */

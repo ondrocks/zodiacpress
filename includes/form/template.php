@@ -39,12 +39,10 @@ function zp_form( $report, $args ) {
 	
 		<?php 
 		// Show name field only for reports that require it
-		if (  apply_filters( 'zp_form_show_name_field', true, $args['report'] ) ) {
-
+		if ( apply_filters( 'zp_form_show_name_field', true, $args['report'] ) ) {
 			do_action( 'zp_form_above_name', $report, $args );
 			zp_name_form_field();
 			do_action( 'zp_form_below_name', $report, $args );
-	
 		}
 		?>
 

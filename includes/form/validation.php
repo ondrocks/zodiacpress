@@ -26,7 +26,7 @@ function zp_validate_form( $data, $partial = false ) {
 	$longitude		= ( isset( $data['zp_long_decimal'] ) && is_numeric( trim( $data['zp_long_decimal'] ) ) ) ? trim( $data['zp_long_decimal'] ) : '';
 	$unknown_time	= isset( $data['unknown_time'] ) ? $data['unknown_time'] : '';
 	$report_var		= empty( $data['zp-report-variation'] ) ? 'birthreport' : sanitize_text_field( $data['zp-report-variation'] );
-
+	
 	// Validate date.
 	if ( "" == $month || "" == $day || "" == $year ) {
 
@@ -50,19 +50,6 @@ function zp_validate_form( $data, $partial = false ) {
 
 		// Time values should be 2 characters
 		if ( strlen( utf8_decode( $hour ) ) !== 2 || strlen( utf8_decode( $minute ) ) !== 2  ) {
-
-			/****************************************************
-			* @todo
-			* instead of re-checking if unknown time is allowed here, just pass it from form as hidden field.
-
-			_allow_unknown_bt
-
-			<input type="hidden" name="" value="" />
-
-			// and then here i would just validate it.
-
-
-			****************************************************/
 			global $zodiacpress_options;
 			$allow_unknown_bt_key = $report_var . '_allow_unknown_bt';
 
