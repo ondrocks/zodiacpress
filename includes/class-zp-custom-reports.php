@@ -13,15 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 class ZP_Custom_Reports {
 	private static $custom_ids;
 	private static $zp_settings;
+	private static $tabs;
 
 	/**
 	 * Gets the tab names for the Custom Reports admin page.
 	 * @return array
 	 */
 	public static function get_tabs() {
-		$tabs = array( 'custom_reports' => __( 'Custom Reports', 'zodiacpress' ) );
-		
-		// @todo if this is going to be called twice, make a property and check it first.
+		if ( isset( self::$tabs ) ) {
+			return self::$tabs;
+		}
+		$tabs = array( 'custom-reports' => __( 'Custom Reports', 'zodiacpress' ) );
 
 		if ( isset( self::$zp_settings ) ) {
 			$options = self::$zp_settings;
@@ -37,18 +39,27 @@ class ZP_Custom_Reports {
 			}
 		}
 
+		self::$tabs = $tabs;
 		return $tabs;
 	}
 
 	/**
-	 * @test every tab, except for the 1st custom reports tab, will have the same sections::
+	 * Gets the sections for the custom reports tabs.
+	 * 
+	 * All custom report tabs, except the first 'manage' tab, will
+	 * 		have these same sections.
+	 * @todo @test
 	 */
 	public static function get_tabs_sections() {
 
 		$sections = array(
 			'main' => __( 'Edit Report', 'zodiacpress'), // @test if this makes sense
 
-			// @todo Orbs section is added ONLY if this report layout includes any aspects!!
+			/****************************************************
+			* @todo
+			* Orbs section is added ONLY if this report layout includes any aspects
+			* 
+			****************************************************/
 
 			'technical' => __( 'Technical', 'zodiacpress' )
 
@@ -113,11 +124,14 @@ class ZP_Custom_Reports {
 		// Save the new report id to db
 		$options = self::$zp_settings;
 		$options['custom_reports'][ $new_id ] = array();
-		update_option('zodiacpress_settings', $options);
+		$update = update_option('zodiacpress_settings', $options);
 
-		// Update class properties with the new report
-		self::$zp_settings = $options;
-		self::$custom_ids[] = $new_id;
+		if ( $update ) {
+			// Update class properties with the new report
+			self::$zp_settings = $options;
+			self::$custom_ids[] = $new_id;
+		}
+		return $update;
 	}
 
 	/**
@@ -142,4 +156,17 @@ class ZP_Custom_Reports {
 			unset( self::$custom_ids[ $key ] );
 		}        
 	}
+
+	/**
+	 * Updates the name for a custom report
+	 * @todo
+	 * @return bool
+	 */
+	public static function update( $id ) {
+
+
+
+	}
+
+
 }
