@@ -32,7 +32,7 @@ function zp_interpretations_page() {
 	ob_start();
 	?>
 	<div class="wrap">
-		<span class="zp-admin-title"><?php _e( 'ZodiacPress', 'zodiacpress' ); ?></span>
+		<span class="zp-admin-title"><?php _e( 'ZodiacPress Natal Interpretations', 'zodiacpress' ); ?></span>
 		<?php zp_admin_links(); ?>
 		<nav class="nav-tab-wrapper clear">
 			<?php
