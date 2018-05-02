@@ -13,7 +13,7 @@ class Test_Custom_Reports extends WP_UnitTestCase {
 
 		// create some custom reports
 		foreach($this->reports as $id) {
-			ZP_Custom_Reports::add($id);
+			ZP_Custom_Reports::create($id);
 		}
 
 		// Test again, but with 4 existing reports

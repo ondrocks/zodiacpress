@@ -2,7 +2,7 @@
 /**
  * ZodiacPress ZP_Custom_Report class.
  *
- * Manages identifiers for all reports.
+ * Manages custom reports.
  *
  * @package  ZodiacPress
  * @since 1.9
@@ -103,11 +103,11 @@ class ZP_Custom_Reports {
 	}
 
 	/**
-	 * Saves a new custom report ID 
+	 * Creates a new custom report
 	 * 
 	 * @return bool
 	 */
-	public static function add( $id ) {
+	public static function create( $id ) {
 		$id = sanitize_key( $id );
 		$new_id = substr( $id, 0, 13 );// allow max 13 chars
 
