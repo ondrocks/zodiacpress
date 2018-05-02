@@ -72,26 +72,38 @@ function zp_admin_notices() {
 
 		// Success notices for ZP Tools and tasks.
 		if ( isset( $_GET['zp-done'] ) ) {
+			$class = 'success';// @test now now
 			switch( $_GET['zp-done'] ) {
+				case 'cr-success':
+					$msg = __( 'New custom report was created.', 'zodiacpress' );
+					break;
+				case 'cr-fail':
+					$class = 'error';
+					$msg = __( 'Failed to create custom report.', 'zodiacpress' );
+					break;// @test now now
+				case 'cr-fail-length':
+					$class = 'error';
+					$msg = __( 'Custom report was not created because the name has to be at least 2 characters long.', 'zodiacpress' );
+					break;
 				case 'natal_in_signs':
-					$success = __( 'Interpretations for natal planets in signs were erased.', 'zodiacpress' );
+					$msg = __( 'Interpretations for natal planets in signs were erased.', 'zodiacpress' );
 					break;
 				case 'natal_in_houses':
-					$success = __( 'Interpretations for natal planets in houses were erased.', 'zodiacpress' );
+					$msg = __( 'Interpretations for natal planets in houses were erased.', 'zodiacpress' );
 					break;
 				case 'natal_aspects':
-					$success = __( 'Interpretations for natal aspects were erased.', 'zodiacpress' );
+					$msg = __( 'Interpretations for natal aspects were erased.', 'zodiacpress' );
 					break;
 				case 'settings-imported':
-					$success = __( 'Your ZodiacPress settings have been imported.', 'zodiacpress' );
+					$msg = __( 'Your ZodiacPress settings have been imported.', 'zodiacpress' );
 					break;
 				case 'interps-imported':
-					$success = __( 'Your ZodiacPress interpretations have been imported.', 'zodiacpress' );
+					$msg = __( 'Your ZodiacPress interpretations have been imported.', 'zodiacpress' );
 					break;				
 			}
 
-			if ( isset( $success ) ) {
-				printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $success );
+			if ( isset( $msg ) ) {
+				printf( '<div class="notice notice-%s is-dismissible"><p>%s</p></div>', $class, $msg );
 			}
 		}		
 

@@ -133,6 +133,25 @@
 *
 ****************************************************/
 
+#zp-custom-reports-table {
+	margin-top: 1em;
+}
+
+#zp-custom-reports-table label {
+	cursor: initial;	
+}
+#zp-create-custom-wrap {
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 10px 6px;
+}
+
+#zp-create-custom-form label {
+	text-align: left;
+	padding: 15px 10px 20px 0;
+	font-weight: 600;
+	display: inline-block;	
+}
 .zp-BlankState {
     text-align: center;
     padding: 5em 0 0;
@@ -170,19 +189,6 @@
     padding: .75em 1.5em;
     height: auto;
     display: inline-block;
-}
-
-#zp-create-custom-wrap {
-    max-width: 500px;
-    margin: 10px auto;
-    padding: 10px 6px;
-}
-
-#zp-create-custom-form label {
-	text-align: left;
-	padding: 15px 10px 20px 0;
-	font-weight: 600;
-	display: inline-block;	
 }
 
 /****************************************************

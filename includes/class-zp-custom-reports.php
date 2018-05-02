@@ -47,13 +47,13 @@ class ZP_Custom_Reports {
 	 * Gets the sections for the custom reports tabs.
 	 * 
 	 * All custom report tabs, except the first 'manage' tab, will
-	 * 		have these same sections.
+	 * 		have these sections.
 	 * @todo @test
 	 */
 	public static function get_tabs_sections() {
 
 		$sections = array(
-			'main' => __( 'Edit Report', 'zodiacpress'), // @test if this makes sense
+			'edit' => __( 'Edit Report', 'zodiacpress'), // @test if this makes sense
 
 			/****************************************************
 			* @todo
@@ -105,31 +105,31 @@ class ZP_Custom_Reports {
 	/**
 	 * Creates a new custom report
 	 * 
-	 * @return bool
+	 * @return bool $update Whether new report was created
 	 */
-	public static function create( $id ) {
-		$id = sanitize_key( $id );
-		$new_id = substr( $id, 0, 13 );// allow max 13 chars
+	public static function create( $name ) {
+		// Make a 13-character ID from name
+		$id = substr( sanitize_key( $name ), 0, 13 );
 
 		// If this report ID already exists, create a unique report ID
-		if ( self::exists( $new_id ) ) {
+		if ( self::exists( $id ) ) {
 			$suffix = 1;
 			do {
 				$unique_id = $id . $suffix;
 				$suffix ++;
 			} while ( self::exists( $unique_id ) );
-			$new_id = $unique_id;
+			$id = $unique_id;
 		}
 
 		// Save the new report id to db
 		$options = self::$zp_settings;
-		$options['custom_reports'][ $new_id ] = array();
-		$update = update_option('zodiacpress_settings', $options);
+		$options['custom_reports'][ $id ] = array( 'name' => $name, 'layout' => array() );
+		$update = update_option( 'zodiacpress_settings', $options );
 
 		if ( $update ) {
 			// Update class properties with the new report
 			self::$zp_settings = $options;
-			self::$custom_ids[] = $new_id;
+			self::$custom_ids[] = $id;
 		}
 		return $update;
 	}
@@ -137,6 +137,7 @@ class ZP_Custom_Reports {
 	/**
 	 * Deletes a custom report ID 
 	 * 
+	 * @todo before using this method, must block zp_settings_sanitize() for this action
 	 * @return bool
 	 */
 	public static function delete( $id ) {

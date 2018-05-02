@@ -257,20 +257,20 @@ function zp_get_registered_settings() {
  * @return string $input Sanitizied value
  */
 function zp_settings_sanitize( $input = array() ) {
+	if ( isset( $_POST['action'] ) && 'zp_create_new_report' == $_POST['action'] ) {
+		return $input;
+	}
 	global $zodiacpress_options;
-
 	if ( empty( $_POST['_wp_http_referer'] ) ) {
 		return $input;
 	}
-
 	parse_str( $_POST['_wp_http_referer'], $referrer );
 
 	$settings = zp_get_registered_settings();
-	$tab      = isset( $referrer['tab'] ) ? $referrer['tab'] : 'natal';
-	$section  = isset( $referrer['section'] ) ? $referrer['section'] : 'main';
-
-	$input 					= $input ? $input : array();
-	$zodiacpress_options 	= $zodiacpress_options ? $zodiacpress_options : array();
+	$tab = isset( $referrer['tab'] ) ? $referrer['tab'] : 'natal';
+	$section = isset( $referrer['section'] ) ? $referrer['section'] : 'main';
+	$input = $input ? $input : array();
+	$zodiacpress_options = $zodiacpress_options ? $zodiacpress_options : array();
 
 	$input = apply_filters( 'zodiacpress_settings_' . $tab . '-' . $section . '_sanitize', $input );
 
