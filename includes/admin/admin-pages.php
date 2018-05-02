@@ -22,9 +22,9 @@ add_action( 'admin_menu', 'zp_add_admin_pages' );
  */
 function zp_is_admin_page() {
 	global $pagenow;
-	$page 			= isset( $_GET['page'] ) ? strtolower( sanitize_text_field( $_GET['page'] ) ) : false;
-	$found			= false;
-	$zp_pages 		= apply_filters( 'zp_admin_pages', array( 'zodiacpress', 'zodiacpress-settings', 'zodiacpress-tools' ) );
+	$page = isset( $_GET['page'] ) ? strtolower( sanitize_text_field( $_GET['page'] ) ) : false;
+	$found = false;
+	$zp_pages = apply_filters( 'zp_admin_pages', array( 'zodiacpress', 'zodiacpress-settings', 'zodiacpress-tools', 'zodiacpress-custom' ) );
 
 	if ( 'admin.php' == $pagenow && in_array( $page, $zp_pages ) ) {
 		$found = true;

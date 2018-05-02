@@ -3,6 +3,10 @@
 	visibility: hidden;
 }
 
+#zp-create-custom-wrap {
+	display: none;
+}
+
 .zp-setting-atlas label {
 	display: block;
 	margin: 0 0 12px;
@@ -61,6 +65,7 @@
 .zp-atlas-message.notice{
 	border-left-color: #9900CC!important;
 }
+.zp-error,
 .zp-atlas-error{
 	color:#dc3232;
 }
@@ -117,6 +122,11 @@
 	padding-left:8px;
 }
 
+#zp-cancel-create {
+	margin-left:10px;
+}
+
+
 /****************************************************
 *
 * Custom Reports BEGIN
@@ -159,7 +169,20 @@
     font-size: 1.2em;
     padding: .75em 1.5em;
     height: auto;
-    display: inline-block !important;
+    display: inline-block;
+}
+
+#zp-create-custom-wrap {
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 10px 6px;
+}
+
+#zp-create-custom-form label {
+	text-align: left;
+	padding: 15px 10px 20px 0;
+	font-weight: 600;
+	display: inline-block;	
 }
 
 /****************************************************
