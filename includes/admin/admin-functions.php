@@ -68,34 +68,34 @@ function zp_admin_notices() {
 		}
 	}
 
-	// Success notices for ZP Tools.
-	if ( isset( $_GET['zp-done'] ) ) {
-		switch( $_GET['zp-done'] ) {
-			case 'natal_in_signs':
-				$success = __( 'Interpretations for natal planets in signs were erased.', 'zodiacpress' );
-				break;
-			case 'natal_in_houses':
-				$success = __( 'Interpretations for natal planets in houses were erased.', 'zodiacpress' );
-				break;
-			case 'natal_aspects':
-				$success = __( 'Interpretations for natal aspects were erased.', 'zodiacpress' );
-				break;
-			case 'settings-imported':
-				$success = __( 'Your ZodiacPress settings have been imported.', 'zodiacpress' );
-				break;
-			case 'interps-imported':
-				$success = __( 'Your ZodiacPress interpretations have been imported.', 'zodiacpress' );
-				break;				
-		}
-
-		if ( isset( $success ) ) {
-			printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $success );
-		}
-	}
-	
-	// Notify when plugin cannot work
-
 	if ( zp_is_admin_page() ) {
+
+		// Success notices for ZP Tools and tasks.
+		if ( isset( $_GET['zp-done'] ) ) {
+			switch( $_GET['zp-done'] ) {
+				case 'natal_in_signs':
+					$success = __( 'Interpretations for natal planets in signs were erased.', 'zodiacpress' );
+					break;
+				case 'natal_in_houses':
+					$success = __( 'Interpretations for natal planets in houses were erased.', 'zodiacpress' );
+					break;
+				case 'natal_aspects':
+					$success = __( 'Interpretations for natal aspects were erased.', 'zodiacpress' );
+					break;
+				case 'settings-imported':
+					$success = __( 'Your ZodiacPress settings have been imported.', 'zodiacpress' );
+					break;
+				case 'interps-imported':
+					$success = __( 'Your ZodiacPress interpretations have been imported.', 'zodiacpress' );
+					break;				
+			}
+
+			if ( isset( $success ) ) {
+				printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $success );
+			}
+		}		
+
+		// Notify when plugin cannot work
 
 		if ( ! zp_is_func_enabled( 'exec' ) ) {
 			echo '<div class="notice notice-error is-dismissible"><p>' .
