@@ -21,15 +21,12 @@ if ( $ids ) {
 
 	<table id="zp-custom-reports-table" class="striped widefat">
 		<?php
-
 		foreach ( $ids as $id ) {
-			// @todo add separate link to 'Edit name', 'Edit layout'
 			?>
 			<tr>
 				<td class="row-title"><label for="tablecell"><?php echo $tabs[ $id ]; ?></label></td>
-				<td>
-					<a href="<?php echo esc_url( '#@todo' ); ?>" class="button-secondary"><?php _e( 'Edit', 'zodiacpress' ); ?></a> | 
-					<a href="<?php echo esc_url( '#@todo' ); ?>" class="button-secondary"><?php _e( 'Delete', 'zodiacpress' ); ?></a>
+				<td class="zp-custom-reports-col2">
+					<a href="#" class="zp-custom-reports-delete zp-error" data-report="<?php echo $id; ?>"><?php _e( 'Delete', 'zodiacpress' ); ?></a>
 				</td>
 			</tr>
 		<?php

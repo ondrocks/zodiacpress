@@ -1,8 +1,10 @@
 var zpAtlasDB = document.getElementById( 'zodiacpress_settings_atlas_db' );
 var zpAtlasGN = document.getElementById( 'zodiacpress_settings_atlas_geonames' );
 var zpCreateReportButton = document.getElementById( 'zp-create-new-report' );
+var zpDeleteLink = document.getElementsByClassName( 'zp-custom-reports-delete' );
+var zpDeleteLinks = zpDeleteLink.length;
 
-console.log('@test 1----------');// @test
+console.log('@test 8----------');// @test
 
 
 /* Displays the "Create new report" form when "Create New Report" button is clicked */
@@ -18,6 +20,82 @@ if ( zpCreateReportButton !== null ) {
 		this.style.display = 'none';
 
 	});
+}
+
+/* Displays the "Delete report" form when Delete link is clicked
+	on the Manage Custom Reports page */
+
+for ( var i = 0; i < zpDeleteLinks; i++) {
+    zpDeleteLink[ i ].addEventListener( 'click', function( e ) {
+
+    	e.preventDefault();
+
+    	var d = this;
+
+    	/* Build delete confirmation note */
+
+		/* form wrapper */
+		var div = document.createElement( 'div' );
+		div.classList.add( 'stuffbox', 'zp-delete-custom-wrap' );
+
+		/* form element */
+		var f = document.createElement( 'form' );
+		f.setAttribute( 'method', 'post' );	
+		f.setAttribute( 'action', zp_admin_strings.adminPost );
+
+		var p = document.createElement( 'p' );
+		p.appendChild( document.createTextNode( zp_admin_strings.confirm ) );
+
+		var report = document.createElement( 'input' );
+		report.setAttribute( 'type', 'hidden' );
+		report.setAttribute( 'name', 'zp_report_id' );
+		report.value = this.getAttribute( 'data-report' );
+
+		var hidden = document.createElement( 'input' );
+		hidden.setAttribute( 'type', 'hidden' );
+		hidden.setAttribute( 'name', 'action' );
+		hidden.value = 'zp_delete_report';
+		
+		var nonce = document.createElement( 'input' );
+		nonce.setAttribute( 'type', 'hidden' );
+		nonce.setAttribute( 'name', 'zp_admin_nonce' );
+		nonce.value = zp_admin_strings.nonceDelete;
+
+		var submit = document.createElement( 'input' );
+		submit.setAttribute( 'type', 'submit' );
+		submit.setAttribute( 'class', 'button-primary' );
+		submit.setAttribute( 'value', zp_admin_strings.confirmSubmit );
+		
+		/* Cancel link */
+		var cancel = document.createElement( 'a' );
+		cancel.classList.add( 'zp-cancel', 'zp-error' );
+		cancel.href = '#';
+		cancel.appendChild( document.createTextNode( zp_admin_strings.cancel ) );	
+
+		div.appendChild( f );
+		f.appendChild( p );
+		f.appendChild( report );
+		f.appendChild( hidden );
+		f.appendChild( nonce );
+		f.appendChild( submit );
+		f.appendChild( cancel );
+
+		/* Insert form before the Delete link */
+		this.parentNode.insertBefore( div, this );
+
+		/* Closes the Delete form when Cancel link is clicked. */
+		cancel.addEventListener( 'click', function (e) {
+			e.preventDefault();
+	    	/* Hide the form */
+	    	div.style.display = 'none';
+			// Restore the Delete link
+			d.style.display = 'inline-block';
+		}, true );
+
+		/* Hide the Delete link */
+		this.style.display = 'none';
+
+	} );
 }
 
 /* Toggles the Atlas settings */
@@ -91,7 +169,7 @@ function zpCreateReportForm() {
 	var nonce = document.createElement( 'input' );
 	nonce.setAttribute( 'type', 'hidden' );
 	nonce.setAttribute( 'name', 'zp_admin_nonce' );
-	nonce.value = zp_admin_strings.nonce;		
+	nonce.value = zp_admin_strings.nonceCreate;
 
 	var submit = document.createElement( 'input' );
 	submit.setAttribute( 'type', 'submit' );
@@ -100,10 +178,9 @@ function zpCreateReportForm() {
 	
 	/* Cancel link */
 	var cancel = document.createElement( 'a' );
-	cancel.id = 'zp-cancel-create';
-	cancel.setAttribute( 'class', 'zp-error' );
+	cancel.classList.add( 'zp-cancel', 'zp-error' );
 	cancel.href = '#';
-	cancel.appendChild( document.createTextNode( zp_admin_strings.cancel ) );	
+	cancel.appendChild( document.createTextNode( zp_admin_strings.cancel ) );
 
 	div.appendChild( f );
 	f.appendChild( label );
@@ -119,10 +196,8 @@ function zpCreateReportForm() {
 	/* Closes the form when Cancel link is clicked. */
 	cancel.addEventListener( 'click', function (e) {
 		e.preventDefault();
-
 	    /* Hide the form */
 	    div.style.display = 'none';
-
 		// Restore the 'Create New Custom Report' button
 		zpCreateReportButton.style.display = 'inline-block';
 	});

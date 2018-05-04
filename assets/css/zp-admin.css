@@ -62,10 +62,14 @@
 .zp-atlas-message.notice{
 	border-left-color: #9900CC!important;
 }
-.zp-error,
+.zp-error {
+	color: #a00;
+}
+.zp-error:hover,
 .zp-atlas-error{
 	color:#dc3232;
 }
+
 .zp-success{
 	color:green;
 }
@@ -119,8 +123,10 @@
 	padding-left:8px;
 }
 
-#zp-cancel-create {
+.zp-cancel {
 	margin-left:10px;
+	margin-top: 8px;
+	display: inline-block;
 }
 
 
@@ -134,10 +140,19 @@
 	margin-top: 1em;
 }
 
-#zp-custom-reports-table label {
-	cursor: initial;	
+#zp-custom-reports-table td {
+	width: 60%;
 }
 
+#zp-custom-reports-table label {
+	cursor: initial;
+}
+
+#zp-custom-reports-table.zp-custom-reports-col2 {
+	width: 40%;
+}
+
+.zp-delete-custom-wrap,
 #zp-create-custom-wrap {
     max-width: 500px;
     margin: 10px auto;

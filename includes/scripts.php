@@ -70,9 +70,12 @@ function zp_admin_scripts() {
 		wp_localize_script( 'zp-admin', 'zp_admin_strings', array(
 			'adminPost' => admin_url( 'admin-post.php' ),
 			'cancel'	=> __( 'Cancel', 'zodiacpress' ),
+			'confirm'	=> __( 'Are you sure you want to delete this report, including its layout and interpretations?', 'zodiacpress' ),
+			'confirmSubmit' => __( 'Yes, Delete Report', 'zodiacpress' ),
 			'create'	=> __( 'Create', 'zodiacpress' ),
 			'label'		=> __( 'Report Name', 'zodiacpress' ),
-			'nonce'		=> wp_create_nonce( 'zp_create_new_report' )
+			'nonceCreate'		=> wp_create_nonce( 'zp_create_new_report' ),
+			'nonceDelete'		=> wp_create_nonce( 'zp_delete_report' )
 		) );
 		wp_enqueue_script( 'zp-admin' );
 	}
