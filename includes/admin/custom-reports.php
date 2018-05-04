@@ -84,9 +84,9 @@ function zp_custom_reports_page() {
 	<?php }
 
 	?>
-	<div id="tab_container" class="<?php echo $tab_class; ?>">
+	<div id="zp-custom-reports-tab-container" class="<?php echo $tab_class; ?>">
 		<?php include ZODIACPRESS_PATH . 'includes/admin/views/html-' . $view . '.php'; ?>
-	</div><!-- #tab_container-->
+	</div>
 	</div><!-- .wrap -->
 
 	<?php
@@ -100,6 +100,7 @@ add_action( 'admin_post_zp_create_new_report', function () {
 	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
 	}
+	
 	$response = '';
 
 	// validate name

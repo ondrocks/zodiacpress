@@ -42,12 +42,9 @@ add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
  */
 function zp_admin_scripts() {
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
 	wp_register_style( 'zp-admin', ZODIACPRESS_URL . 'assets/css/zp-admin' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	wp_enqueue_style( 'zp-admin' );
-
 	wp_register_script( 'zp-atlas-install', ZODIACPRESS_URL . '/assets/js/admin-atlas-install' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION, true );
-
 	wp_localize_script( 'zp-atlas-install', 'zpAtlasStrings',
 		array(
 			'adminurl'		=> admin_url(),
@@ -70,6 +67,13 @@ function zp_admin_scripts() {
 
 	if ( zp_is_admin_page() ) {
 		wp_register_script( 'zp-admin', ZODIACPRESS_URL . 'assets/js/admin' . $suffix . '.js', array(), ZODIACPRESS_VERSION, true );
+		wp_localize_script( 'zp-admin', 'zp_admin_strings', array(
+			'adminPost' => admin_url( 'admin-post.php' ),
+			'cancel'	=> __( 'Cancel', 'zodiacpress' ),
+			'create'	=> __( 'Create', 'zodiacpress' ),
+			'label'		=> __( 'Report Name', 'zodiacpress' ),
+			'nonce'		=> wp_create_nonce( 'zp_create_new_report' )
+		) );
 		wp_enqueue_script( 'zp-admin' );
 	}
 }

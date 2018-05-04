@@ -3,10 +3,6 @@
 	visibility: hidden;
 }
 
-#zp-create-custom-wrap {
-	display: none;
-}
-
 .zp-setting-atlas label {
 	display: block;
 	margin: 0 0 12px;
@@ -18,8 +14,9 @@
 }
 
 .zp-flex-container {
-  display: flex;
-   padding:10px;
+	display: flex;
+	padding:10px;
+	justify-content: space-between;
 }
 
 #zp-atlas-status td {
@@ -140,10 +137,12 @@
 #zp-custom-reports-table label {
 	cursor: initial;	
 }
+
 #zp-create-custom-wrap {
     max-width: 500px;
     margin: 10px auto;
     padding: 10px 6px;
+    display: inline-block;
 }
 
 #zp-create-custom-form label {
