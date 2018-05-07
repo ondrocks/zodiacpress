@@ -5,10 +5,6 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 $ids = ZP_Custom_Reports::get_ids();
-
-isa_log('in html-custom-reports. Any existing custom report ids = ');// @test
-isa_log($ids);// @test
-
 if ( $ids ) {
 	?>
 	<div class="zp-flex-container">

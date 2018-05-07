@@ -82,7 +82,6 @@ function zp_register_interps() {
 	$large_tabs = apply_filters( 'zp_large_tabs_separate_options', array( 'natal_aspects' ) );
 
 	foreach ( zp_get_enabled_interps() as $tab => $sections ) {
-
 		foreach ( $sections as $section => $interps ) {
 
 			add_settings_section(
@@ -135,7 +134,6 @@ add_action( 'admin_init', 'zp_register_interps' );
 */
 function zp_get_enabled_interps() {
 	$options = get_option( 'zodiacpress_settings' );
-
 	$zp_interps_settings = array();
 
 	/** "In Signs" Interpretations Settings */
@@ -144,9 +142,7 @@ function zp_get_enabled_interps() {
 
 	// A section for each planet that is enabled for the "Planets in Signs" setting
 	if ( ! empty( $options['enable_planet_signs'] ) ) {
-
 		foreach ( $options['enable_planet_signs'] as $planet ) {
-
 			$section = ( 'sun' == $planet['id'] ) ? 'main' : $planet['id'];
 
 			foreach ( zp_get_zodiac_signs() as $sign ) {
@@ -157,7 +153,6 @@ function zp_get_enabled_interps() {
 						$planet['label'],
 						$sign['label']
 						);
-
 				$zp_interps_settings[ $tab ][ $section ][ $key ]['id'] = $key;
 				$zp_interps_settings[ $tab ][ $section ][ $key ]['name'] = $name;
 
@@ -243,7 +238,6 @@ function zp_interps_sanitize( $input = array() ) {
 	if ( empty( $_POST['_wp_http_referer'] ) ) {
 		return $input;
 	}
-
 	parse_str( $_POST['_wp_http_referer'], $referrer );
 	$interps 	= zp_get_enabled_interps();
 	$tab 		= isset( $referrer['tab'] ) ? $referrer['tab'] : 'natal_planets_in_signs';
