@@ -257,9 +257,13 @@ function zp_get_registered_settings() {
  * @return string $input Sanitizied value
  */
 function zp_settings_sanitize( $input = array() ) {
-	if ( isset( $_POST['action'] ) && 'zp_create_new_report' == $_POST['action'] ) {
-		return $input;
+	// Skip this function when creating/deleting Custom Reports
+	if ( isset( $_POST['action'] ) ) {
+		if ( 'zp_create_new_report' == $_POST['action'] || 'zp_delete_report' == $_POST['action'] ) {
+			return $input;
+		}
 	}
+	
 	global $zodiacpress_options;
 	if ( empty( $_POST['_wp_http_referer'] ) ) {
 		return $input;

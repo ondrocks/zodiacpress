@@ -72,7 +72,7 @@ function zp_admin_notices() {
 
 		// Success notices for ZP Tools and tasks.
 		if ( isset( $_GET['zp-done'] ) ) {
-			$class = 'success';// @test now now
+			$class = 'success';
 			switch( $_GET['zp-done'] ) {
 				case 'cr-success':
 					$msg = __( 'New custom report was created.', 'zodiacpress' );
@@ -80,10 +80,17 @@ function zp_admin_notices() {
 				case 'cr-fail':
 					$class = 'error';
 					$msg = __( 'Failed to create custom report.', 'zodiacpress' );
-					break;// @test now now
+					break;
 				case 'cr-fail-length':
 					$class = 'error';
 					$msg = __( 'Custom report was not created because the name has to be at least 2 characters long.', 'zodiacpress' );
+					break;
+				case 'cr-d':
+					$msg = __( 'Custom report was deleted.', 'zodiacpress' );
+					break;
+				case 'cr-d-fail':
+					$class = 'error';
+					$msg = __( 'Could not delete custom report.', 'zodiacpress' );
 					break;
 				case 'natal_in_signs':
 					$msg = __( 'Interpretations for natal planets in signs were erased.', 'zodiacpress' );

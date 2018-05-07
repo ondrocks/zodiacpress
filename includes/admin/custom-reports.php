@@ -100,8 +100,6 @@ add_action( 'admin_post_zp_create_new_report', function () {
 	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
 	}
-	
-	$response = '';
 
 	// validate name
 	$name = isset( $_POST['zp-report-name-field'] ) ? sanitize_text_field( $_POST['zp-report-name-field'] ) : '';
@@ -112,5 +110,22 @@ add_action( 'admin_post_zp_create_new_report', function () {
 	} else {
 		$response = ZP_Custom_Reports::create( $name ) ? 'cr-success' : 'cr-fail';
 	}
-	wp_safe_redirect( admin_url( "admin.php?page=zodiacpress-custom &zp-done=$response" ) ); exit;
+	wp_safe_redirect( admin_url( "admin.php?page=zodiacpress-custom&zp-done=$response" ) ); exit;
+} );
+
+/**
+ * Processes the 'Delete Report' form.
+ */
+add_action( 'admin_post_zp_delete_report', function () {
+	check_admin_referer( 'zp_delete_report', 'zp_admin_nonce' );
+	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
+		return;
+	}
+	if ( isset( $_POST['zp-report-id'] ) ) {
+		$name = sanitize_text_field( $_POST['zp-report-id'] );
+	} else {
+		return;
+	}
+	$response = ZP_Custom_Reports::delete( $name ) ? 'cr-d' : 'cr-d-fail';
+	wp_safe_redirect( admin_url( "admin.php?page=zodiacpress-custom&zp-done=$response" ) ); exit;
 } );

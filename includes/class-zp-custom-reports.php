@@ -31,14 +31,12 @@ class ZP_Custom_Reports {
 			$options = get_option( 'zodiacpress_settings' );
 			self::$zp_settings = $options;
 		}
-
 		if ( isset( $options['custom_reports'] ) ) {
 
 			foreach( $options['custom_reports'] as $id => $data ) {
 				$tabs[ $id ] = $data['name'];
 			}
 		}
-
 		self::$tabs = $tabs;
 		return $tabs;
 	}
@@ -77,14 +75,12 @@ class ZP_Custom_Reports {
 		if ( isset( self::$custom_ids ) ) {
 			return self::$custom_ids;
 		}
-
 		if ( isset( self::$zp_settings ) ) {
 			$options = self::$zp_settings;
 		} else {
 			$options = get_option( 'zodiacpress_settings' );
 			self::$zp_settings = $options;
 		}
-
 		self::$custom_ids = isset( $options['custom_reports'] ) ? array_keys( $options['custom_reports'] ) : array();
 		return self::$custom_ids;
 	}
@@ -125,20 +121,13 @@ class ZP_Custom_Reports {
 		$options = self::$zp_settings;
 		$options['custom_reports'][ $id ] = array( 'name' => $name, 'layout' => array() );
 		$update = update_option( 'zodiacpress_settings', $options );
-
-		if ( $update ) {
-			// Update class properties with the new report
-			self::$zp_settings = $options;
-			self::$custom_ids[] = $id;
-		}
 		return $update;
 	}
 
 	/**
 	 * Deletes a custom report ID 
 	 * 
-	 * @todo before using this method, must block zp_settings_sanitize() for this action
-	 * @return bool
+	 * @return bool $deleted Whether report was deleted
 	 */
 	public static function delete( $id ) {
 		// delete the report id from db
@@ -149,13 +138,8 @@ class ZP_Custom_Reports {
 			self::$zp_settings = $options;
 		}
 		unset( $options['custom_reports'][ $id ] );
-		update_option('zodiacpress_settings', $options);
-
-		// Update class properties to reflect deletion
-		self::$zp_settings = $options;
-		if ( ( $key = array_search( $id, self::$custom_ids ) ) !== false ) {
-			unset( self::$custom_ids[ $key ] );
-		}        
+		$deleted = update_option('zodiacpress_settings', $options);
+		return $deleted;
 	}
 
 	/**

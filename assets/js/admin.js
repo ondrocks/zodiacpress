@@ -4,7 +4,7 @@ var zpCreateReportButton = document.getElementById( 'zp-create-new-report' );
 var zpDeleteLink = document.getElementsByClassName( 'zp-custom-reports-delete' );
 var zpDeleteLinks = zpDeleteLink.length;
 
-console.log('@test 8----------');// @test
+console.log('@test 1----------');// @test
 
 
 /* Displays the "Create new report" form when "Create New Report" button is clicked */
@@ -48,7 +48,7 @@ for ( var i = 0; i < zpDeleteLinks; i++) {
 
 		var report = document.createElement( 'input' );
 		report.setAttribute( 'type', 'hidden' );
-		report.setAttribute( 'name', 'zp_report_id' );
+		report.setAttribute( 'name', 'zp-report-id' );
 		report.value = this.getAttribute( 'data-report' );
 
 		var hidden = document.createElement( 'input' );
