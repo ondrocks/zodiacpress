@@ -146,7 +146,7 @@ function zp_erase_natal_in_signs() {
 
 	delete_option( 'zp_natal_planets_in_signs' );
 
-	$url  = esc_url_raw( add_query_arg( array(
+	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
 		'zp-done'	=> 'natal_in_signs'
@@ -167,7 +167,7 @@ function zp_erase_natal_in_houses() {
 
 	delete_option( 'zp_natal_planets_in_houses' );
 
-	$url  = esc_url_raw( add_query_arg( array(
+	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
 		'zp-done'	=> 'natal_in_houses'
@@ -191,7 +191,7 @@ function zp_erase_natal_aspects() {
 		delete_option( 'zp_natal_aspects_' . $p );
 	}
 
-	$url  = esc_url_raw( add_query_arg( array(
+	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
 		'zp-done'	=> 'natal_aspects'
