@@ -266,7 +266,7 @@ function zp_interps_sanitize( $input = array() ) {
 	// Merge our new interps with the existing
 	$output = array_merge( $interps_option, $input );
 
-	add_settings_error( 'zp-intpers-notices', '', __( 'Interpretations updated.', 'zodiacpress' ), 'updated' );
+	add_settings_error( 'zp-interps-notices', '', __( 'Interpretations updated.', 'zodiacpress' ), 'updated' );
 
 	return $output;
 }

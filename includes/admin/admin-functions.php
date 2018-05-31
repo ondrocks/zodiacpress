@@ -162,10 +162,12 @@ function zp_erase_natal_in_signs() {
 	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_erase_natal_in_signs' ) ) {
 		return false;
 	}
-
+	if ( ! current_user_can( 'manage_zodiacpress_interps' ) ) {
+		return;
+	}
 	delete_option( 'zp_natal_planets_in_signs' );
 
-	$url  = esc_url_raw( add_query_arg( array(
+	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
 		'zp-done'	=> 'natal_in_signs'
@@ -183,10 +185,12 @@ function zp_erase_natal_in_houses() {
 	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_erase_natal_in_houses' ) ) {
 		return false;
 	}
-
+	if ( ! current_user_can( 'manage_zodiacpress_interps' ) ) {
+		return;
+	}
 	delete_option( 'zp_natal_planets_in_houses' );
 
-	$url  = esc_url_raw( add_query_arg( array(
+	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
 		'zp-done'	=> 'natal_in_houses'
@@ -204,13 +208,15 @@ function zp_erase_natal_aspects() {
 	if ( ! wp_verify_nonce( $_GET['_nonce'], 'zp_erase_natal_aspects' ) ) {
 		return false;
 	}
-
+	if ( ! current_user_can( 'manage_zodiacpress_interps' ) ) {
+		return;
+	}
 	foreach ( zp_get_planets() as $planet ) {
 		$p = ( 'sun' == $planet['id'] ) ? 'main' : $planet['id'];
 		delete_option( 'zp_natal_aspects_' . $p );
 	}
 
-	$url  = esc_url_raw( add_query_arg( array(
+	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
 		'zp-done'	=> 'natal_aspects'

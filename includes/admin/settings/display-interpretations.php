@@ -36,7 +36,7 @@ function zp_interpretations_page() {
 		<?php zp_admin_links(); ?>
 		<nav class="nav-tab-wrapper clear">
 			<?php
-			settings_errors( 'zp-intpers-notices' );
+			settings_errors( 'zp-interps-notices' );
 			foreach( $interps_tabs as $tab_id => $tab_name ) {
 
 				$tab_url = add_query_arg( array(

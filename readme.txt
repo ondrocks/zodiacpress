@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth chart, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.0-alpha-42881
+Tested up to: 5.0-alpha-43320
 Requires PHP: 5.4
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,10 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.8.2 =
+* New - For creating own atlas database, get the cities data file from Google Cloud rather than from cosmicplugins.com.
+* Tweak - check permissions for erase tools.
 
 = 1.8.1 =
 * Fix - Atlas database table INDEX needed max length.

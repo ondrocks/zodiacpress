@@ -21,7 +21,7 @@ add_action( 'wp_async_zp_atlas_import', function () {
 	$error = '';
 	$datafile = 'cities.txt';
 	$size = 275665461;// Current filesize of cities.txt @todo update
-	$url = 'https://download.cosmicplugins.com/' . $datafile;
+	$url = 'https://storage.googleapis.com/zodiacpress_cities/' . $datafile;
 	$temp_dir = get_temp_dir();
 
 	if ( ! $temp_dir ) {
