@@ -467,7 +467,7 @@ function zp_multicheck_callback( $args ) {
 			$plucked_keys	= array();
 			$plucked_values	= array();
 			foreach ( $options as $k => $v ) {
-				if ( is_array( $v ) && isset( $v['id'] ) ) {
+				if ( is_array( $v ) && isset( $v[0]['id'] ) ) {
 					$plucked_keys[] 	= $k;
 					$plucked_values[]	= wp_list_pluck( $v, 'id', 'id' );
 				}
