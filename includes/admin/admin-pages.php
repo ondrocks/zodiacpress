@@ -14,7 +14,6 @@ function zp_add_admin_pages() {
 	add_submenu_page( 'zodiacpress', __( 'ZodiacPress Custom Reports', 'zodiacpress' ), __( ' Custom Reports', 'zodiacpress' ), 'manage_zodiacpress_settings', 'zodiacpress-custom', 'zp_custom_reports_page' );
 	add_submenu_page( 'zodiacpress', __( 'ZodiacPress Tools', 'zodiacpress' ), __( 'Tools', 'zodiacpress' ), 'manage_zodiacpress_settings', 'zodiacpress-tools', 'zp_tools_page' );
 	add_submenu_page( 'zodiacpress', __( 'ZodiacPress Settings', 'zodiacpress' ), __( 'Settings', 'zodiacpress' ), 'manage_zodiacpress_settings', 'zodiacpress-settings', 'zp_options_page' );
-
 }
 add_action( 'admin_menu', 'zp_add_admin_pages' );
 /**

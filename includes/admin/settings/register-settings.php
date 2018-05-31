@@ -257,9 +257,9 @@ function zp_get_registered_settings() {
  * @return string $input Sanitizied value
  */
 function zp_settings_sanitize( $input = array() ) {
-	// Skip this function when creating/deleting Custom Reports
+	// Skip this function when manually updating options while creating/updating/deleting Custom Reports
 	if ( isset( $_POST['action'] ) ) {
-		if ( 'zp_create_new_report' == $_POST['action'] || 'zp_delete_report' == $_POST['action'] ) {
+		if ( 'zp_create_new_report' == $_POST['action'] || 'zp_delete_report' == $_POST['action'] || 'zp_update_report' == $_POST['action'] ) {
 			return $input;
 		}
 	}
@@ -460,7 +460,6 @@ function zp_checkbox_callback( $args ) {
  */
 function zp_multicheck_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
-
 	if ( ! empty( $args['options'] ) ) {
 
 		echo '<p class="description">' . wp_kses_post( $args['desc'] ) . '</p>';
@@ -471,14 +470,13 @@ function zp_multicheck_callback( $args ) {
 			$plucked_keys	= array();
 			$plucked_values	= array();
 			foreach ( $options as $k => $v ) {
-				if ( is_array( $v ) ) {
+				if ( is_array( $v ) && isset( $v[0]['id'] ) ) {
 					$plucked_keys[] 	= $k;
 					$plucked_values[]	= wp_list_pluck( $v, 'id', 'id' );
 				}
 			}
 			$enabled_options = array_combine( $plucked_keys, $plucked_values );
 		}
-
 		foreach( $args['options'] as $option ):
 
 			if ( isset( $enabled_options[$args['id']][ $option['id'] ] ) ) {

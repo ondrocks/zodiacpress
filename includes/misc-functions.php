@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Returns an orderinal word for a number, or a list of number ordinal words
+ * Returns an ordinal word for a number, or a list of number ordinal words
  * @param int $key the number of word to return
  * @return mixed|array|string If key is passed, a string for that ordinal word, otherwise array of ordinal words
  */

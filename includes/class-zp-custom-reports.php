@@ -1,8 +1,9 @@
 <?php
-/**
- * ZodiacPress ZP_Custom_Report class.
+/** @test can this file be moved to /includes/admin/....
  *
- * Manages custom reports.
+ * ZodiacPress ZP_Custom_Reports class.
+ *
+ * Manages the Custom Reports settings.
  *
  * @package  ZodiacPress
  * @since 1.9
@@ -14,12 +15,17 @@ class ZP_Custom_Reports {
 	private static $custom_ids;
 	private static $zp_settings;
 	private static $tabs;
+	private static $items_sign;
+	private static $items_house;
+	private static $items_lord;
+	private static $items_residents;
+	private static $items_aspects;
 
 	/**
 	 * Gets the tab names for the Custom Reports admin page.
 	 * @return array
 	 */
-	public static function get_tabs() {
+	public static function tabs() {
 		if ( isset( self::$tabs ) ) {
 			return self::$tabs;
 		}
@@ -46,16 +52,16 @@ class ZP_Custom_Reports {
 	 * 
 	 * All custom report tabs, except the first 'manage' tab, will
 	 * 		have these sections.
-	 * @todo @test
+	 * @todo...
 	 */
-	public static function get_tabs_sections() {
+	public static function tabs_sections() {
 
 		$sections = array(
-			'edit' => __( 'Edit Report', 'zodiacpress'), // @test if this makes sense
+			'edit' => __( 'Edit Report', 'zodiacpress'),
 
 			/****************************************************
 			* @todo
-			* Orbs section is added ONLY if this report layout includes any aspects
+			* Orbs section is added ONLY if this report includes any aspects
 			* 
 			****************************************************/
 
@@ -119,7 +125,7 @@ class ZP_Custom_Reports {
 
 		// Save the new report id to db
 		$options = self::$zp_settings;
-		$options['custom_reports'][ $id ] = array( 'name' => $name, 'layout' => array() );
+		$options['custom_reports'][ $id ] = array( 'name' => $name, 'items' => array() );
 		$update = update_option( 'zodiacpress_settings', $options );
 		return $update;
 	}
@@ -144,14 +150,158 @@ class ZP_Custom_Reports {
 
 	/**
 	 * Updates the name for a custom report
-	 * @todo
-	 * @return bool
+	 * @return mixed|bool|string True if name was updated, error message if name is already used for another report, false is report id doesn't exist or other error.
 	 */
-	public static function update( $id ) {
+	public static function update_name( $id, $name ) {
+		$options = self::$zp_settings;
+		if ( ! isset( $options['custom_reports'] ) || ! isset( $options['custom_reports'][ $id ] ) ) {
+			return false;
+		}
+		// check that new name is unique
+		if ( zp_search_array( $name, 'name', $options['custom_reports'] ) ) {
+			// not unique so return an error msg. This string is not currently used.
+			return sprintf( __( 'The report name %s conflicts with another report name. Please try another.', 'zodiacpress' ),
+			'<strong>' . esc_html( $name ) . '</strong>' );
 
-
-
+		}
+		// Update the new report name
+		$_items = $options['custom_reports'][ $id ]['items'];
+		$options['custom_reports'][ $id ] = array( 'name' => $name, 'items' => $_items );
+		$update = update_option( 'zodiacpress_settings', $options );
+		self::$zp_settings = $options;
+		return $update;
 	}
 
+	/**
+	 * Returns a list of available Custom Reports items
+	 * @param string $type Whether sign, house, lord, residents, aspects
+	 */
+	public static function listitems( $type ) {
+		if ( isset( self::${"items_${type}"} ) ) {
+			return self::${"items_${type}"};
+		}
+		$out = array();
+		$uctype = ucwords( $type );
+		if ( 'sign' == $type || 'house' == $type ) {
+			$houses = 'house' === $type ? true : false;
+			$planets = zp_get_planets( $houses );
+			foreach( $planets as $p ) {
+				$out[ $p['id'] . '_' . $type ] = $p['label'] . ' ' . $uctype;
+			}
+		}
+		if ( 'lord' == $type || 'residents' == $type ) {
+			$label_i18n = __( 'House %d %s', 'zodiacpress' );
+			for ( $i=1; $i < 13; $i++ ) {
+				$out[ $i . '_' . $type ] = sprintf( $label_i18n, $i, $uctype );
+			}
+		}
+		if ( 'aspects' == $type ) {
+			$planets = zp_get_planets();
+			$aspects = zp_get_aspects(2);
+			foreach ( $planets as $p ) {
+				foreach( $aspects as $asp ) {
+					$out[ $p['id'] . '_' . $asp['id'] . '_' . $type ] = $p['label'] . ' ' . $asp['label'];
+				}
+			}
+		}
+		self::${"items_${type}"} = $out;
+		return $out;
+	}
+
+	/**
+	 * Gets the draggable HTML list elements for the specified report items.
+	 */
+	public static function get_edit_html_items( $items, $pending = false ) {
+		$out = '';
+
+		foreach ( $items as $item ) {
+			$item_id = esc_attr( $item[0] );
+			$classes = array(
+				'report-item',
+				'report-item-edit-inactive',
+			);
+
+			if ( $pending ) {
+				$classes[] = 'pending';
+			}
+
+			// Get item type
+			$pos = strrpos( $item_id, '_' );
+			if ( false === $pos ) {
+				continue;// skip unrecognized item
+			} else {
+				$type = substr( $item_id, $pos + 1 );
+			}
+
+			$official_title = in_array( $type, array( 'heading', 'subheading', 'text' ) ) ? ucwords( $type ) : ZP_Custom_Reports::listitems( $type )[ $item_id ];
+			$title = ( ! isset( $item[1] ) || '' == $item[1] ) ? $official_title : $item[1];
+
+			$tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : '';
+
+			// Markup for each item...
+			ob_start();
+			?>
+
+			<li id="report-item-<?php echo $item_id; ?>" class="<?php echo implode( ' ', $classes ); ?>">
+				<div class="report-item-bar">
+					<div class="report-item-handle">
+						<span class="item-title"><span class="report-item-title"><?php
+							if ( 'text' !== $type ) {
+								echo esc_html( $title );
+							} ?>
+						</span></span>
+
+						<span class="item-controls">
+							<span class="item-type"><?php echo esc_html( $official_title ); ?></span>
+							<a class="item-edit" id="edit-<?php echo $item_id; ?>" href="<?php echo admin_url( 'admin.php?page=zodiacpress-custom&tab=' . $tab . '#report-item-settings-' . $item_id ); ?>" aria-label="<?php esc_attr_e( 'Edit report item', 'zodiacpress' ); ?>"><span class="screen-reader-text"><?php _e( 'Edit', 'zodiacpress' ); ?></span></a>
+						</span>
+					</div>
+				</div>
+
+				<div class="report-item-settings wp-clearfix" id="report-item-settings-<?php echo $item_id; ?>">
+
+					<input class="report-item-data-object-id" type="hidden" name="report-item-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item_id ); ?>" />
+
+					<?php if ( 'text' == $type ) { ?>
+						<p class="description description-wide">
+							<label for="edit-report-item-title-<?php echo $item_id; ?>">
+								<?php _e( 'Text' ); ?><br />
+								<textarea id="edit-report-item-title-<?php echo $item_id; ?>" class="widefat " rows="3" cols="20" name="report-item-title[<?php echo $item_id; ?>]"><?php echo esc_textarea( stripslashes( $title ) ); ?></textarea>
+							</label>
+						</p>
+
+					<?php } else { ?>
+
+						<p class="description description-wide">
+							<label for="edit-report-item-title-<?php echo $item_id; ?>">
+								<?php if ( 'heading' != $type && 'subheading' != $type ) {
+									_e( 'Label', 'zodiacpress' ); ?><br />
+								<?php } ?>
+								<input type="text" id="edit-report-item-title-<?php echo $item_id; ?>" class="widefat edit-report-item-title" name="report-item-title[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $title ); ?>" />
+							</label>
+						</p>
+
+					<?php } ?>
+
+					<fieldset class="field-move hide-if-no-js description description-wide">
+						<span class="field-move-visual-label" aria-hidden="true"><?php _e( 'Move', 'zodiacpress' ); ?></span>
+						<button type="button" class="button-link reports-move reports-move-up" data-dir="up"><?php _e( 'Up one', 'zodiacpress' ); ?></button>
+						<button type="button" class="button-link reports-move reports-move-down" data-dir="down"><?php _e( 'Down one', 'zodiacpress' ); ?></button>
+						<button type="button" class="button-link reports-move reports-move-top" data-dir="top"><?php _e( 'To the top', 'zodiacpress' ); ?></button>
+					</fieldset>
+
+					<div class="report-item-actions description-wide submitbox">
+						<a class="item-delete submitdelete deletion" id="delete-<?php echo $item_id; ?>" href="#"><?php _e( 'Remove', 'zodiacpress' ); ?></a> <span class="meta-sep hide-if-no-js"> | </span> <a class="item-cancel submitcancel hide-if-no-js" id="cancel-<?php echo $item_id; ?>" href="#"><?php _e( 'Cancel', 'zodiacpress' ); ?></a>
+					</div>
+
+				</div><!-- .report-item-settings-->
+			</li>
+			<?php
+			$out .= ob_get_clean();
+		}
+
+		return $out;
+
+	}
 
 }

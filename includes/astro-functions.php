@@ -126,32 +126,33 @@ function zp_get_planets( $houses = '', $include = '' ) {
 
 /**
  * Return a list of available aspects.
+ * @param int $n Count to pass to _n(). Use 2 for the plural labels.
  */
-function zp_get_aspects() {
+function zp_get_aspects( $n = 1 ) {
 	$aspects = array(
 		array(
 			'id'		=> 'conjunction',
-			'label'		=> __( 'Conjunction', 'zodiacpress' ),
+			'label'		=> _n(' Conjunction', 'Conjunctions', $n, 'zodiacpress' ),
 			'numerical'	=> '0' ),
 		array(
 			'id'		=> 'sextile',
-			'label'		=> __( 'Sextile', 'zodiacpress' ),
+			'label'		=> _n( 'Sextile', 'Sextiles', $n, 'zodiacpress' ),
 			'numerical'	=> 60 ),
 		array(
 			'id'		=> 'square',
-			'label'		=> __( 'Square', 'zodiacpress' ),
+			'label'		=> _n(' Square', 'Squares', $n, 'zodiacpress' ),
 			'numerical'	=> 90 ),
 		array(
 			'id'		=> 'trine',
-			'label'		=> __( 'Trine', 'zodiacpress' ),
+			'label'		=> _n(' Trine', 'Trines', $n, 'zodiacpress' ),
 			'numerical'	=> 120 ),
 		array(
 			'id'		=> 'quincunx',
-			'label'		=> __( 'Quincunx', 'zodiacpress' ),
+			'label'		=> _n(' Quincunx', 'Quincunxes', $n, 'zodiacpress' ),
 			'numerical'	=> 150 ),
 		array(
 			'id'		=> 'opposition',
-			'label'		=> __( 'Opposition', 'zodiacpress' ),
+			'label'		=> _n(' Opposition', 'Oppositions', $n, 'zodiacpress' ),
 			'numerical'	=> 180 ),
 	);
 	

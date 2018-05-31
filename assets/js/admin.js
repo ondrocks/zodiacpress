@@ -4,9 +4,6 @@ var zpCreateReportButton = document.getElementById( 'zp-create-new-report' );
 var zpDeleteLink = document.getElementsByClassName( 'zp-custom-reports-delete' );
 var zpDeleteLinks = zpDeleteLink.length;
 
-console.log('@test 1----------');// @test
-
-
 /* Displays the "Create new report" form when "Create New Report" button is clicked */
 
 if ( zpCreateReportButton !== null ) {

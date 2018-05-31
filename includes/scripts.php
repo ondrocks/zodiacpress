@@ -70,7 +70,7 @@ function zp_admin_scripts() {
 		wp_localize_script( 'zp-admin', 'zp_admin_strings', array(
 			'adminPost' => admin_url( 'admin-post.php' ),
 			'cancel'	=> __( 'Cancel', 'zodiacpress' ),
-			'confirm'	=> __( 'Are you sure you want to delete this report, including its layout and interpretations?', 'zodiacpress' ),
+			'confirm'	=> __( 'Are you sure you want to delete this report, including its items and interpretations?', 'zodiacpress' ),
 			'confirmSubmit' => __( 'Yes, Delete Report', 'zodiacpress' ),
 			'create'	=> __( 'Create', 'zodiacpress' ),
 			'label'		=> __( 'Report Name', 'zodiacpress' ),
@@ -78,6 +78,8 @@ function zp_admin_scripts() {
 			'nonceDelete'		=> wp_create_nonce( 'zp_delete_report' )
 		) );
 		wp_enqueue_script( 'zp-admin' );
+		wp_register_script( 'zp-edit-report', ZODIACPRESS_URL . 'assets/js/edit-report' . $suffix . '.js', array( 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery-ui-droppable' ), ZODIACPRESS_VERSION );
+		wp_register_style( 'zp-edit-report', ZODIACPRESS_URL . 'assets/css/edit-report' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	}
 }
 add_action( 'admin_enqueue_scripts', 'zp_admin_scripts', 100 );
