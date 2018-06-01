@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 5.0-alpha-43320
 Requires PHP: 5.4
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 1.8.3 =
+* Fix - Fixed a bug that was introduced in version 1.8.2. It had made the Natal Report Planets and Points settings, and Asepcts settings, appear blank.
+
 = 1.8.2 =
 * New - For creating own atlas database, get the cities data file from Google Cloud rather than from cosmicplugins.com.
 * Tweak - check permissions for erase tools.
@@ -259,6 +262,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.8.3 =
+* Fix - Fixed a bug that made the Natal Report Planets and Points settings, and Asepcts settings, appear blank.
 
 = 1.8.1 =
 Fixed - New Atlas database table INDEX needed max length.
