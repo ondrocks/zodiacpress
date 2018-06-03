@@ -54,7 +54,7 @@ class ZP_Custom_Reports {
 	 * 		have these sections.
 	 * @todo...
 	 */
-	public static function tabs_sections() {
+	public static function tabs_sections( $tab ) {
 
 		$sections = array(
 			'edit' => __( 'Edit Report', 'zodiacpress'),
