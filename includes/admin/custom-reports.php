@@ -212,8 +212,7 @@ add_action( 'wp_ajax_zp_update_report', function () {
 	if ( isset( $data['report-item-id'][0] ) ) {
 		foreach ( $data['report-item-id'] as $key => $id ) {
 			// Get item type because textarea is sanitized differently
-			$pos = strrpos( $id, '_' );
-			if ( false !== $pos && 'text' == substr( $id, $pos + 1 ) ) {
+			if ( 'text' === ZP_Custom_Reports::get_item_type( $id ) ) {
 				$text = wp_kses_post( $data['report-item-title'][ $key ] );
 			} else {
 				$text = sanitize_text_field( $data['report-item-title'][ $key ] );

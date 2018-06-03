@@ -48,25 +48,15 @@ class ZP_Custom_Reports {
 	}
 
 	/**
-	 * Gets the sections for the custom reports tabs.
+	 * Gets the sections for a custom reports tab.
 	 * 
-	 * All custom report tabs, except the first 'manage' tab, will
-	 * 		have these sections.
-	 * @todo...
+	 * This is used by all custom report tabs, except the first 'Manage' tab.
 	 */
 	public static function tabs_sections( $tab ) {
 
 		$sections = array(
 			'edit' => __( 'Edit Report', 'zodiacpress'),
-
-			/****************************************************
-			* @todo
-			* Orbs section is added ONLY if this report includes any aspects
-			* 
-			****************************************************/
-
 			'technical' => __( 'Technical', 'zodiacpress' )
-
 		);
 
 		return $sections;
@@ -209,6 +199,20 @@ class ZP_Custom_Reports {
 	}
 
 	/**
+	 * Get the type of a custom report item.
+	 *
+	 * @return string|bool $type Either house, sign, residents, lord, aspects, 
+	 * 			heading, subheading, or text, or FALSE for unrecognized type.
+	 */
+	public static function get_item_type( $item_id ) {
+		$pos = strrpos( $item_id, '_' );
+		if ( false !== $pos ) {
+			return substr( $item_id, $pos + 1 );
+		}
+		return false;
+	}
+
+	/**
 	 * Gets the draggable HTML list elements for the specified report items.
 	 */
 	public static function get_edit_html_items( $items, $pending = false ) {
@@ -225,17 +229,13 @@ class ZP_Custom_Reports {
 				$classes[] = 'pending';
 			}
 
-			// Get item type
-			$pos = strrpos( $item_id, '_' );
-			if ( false === $pos ) {
+			$type = ZP_Custom_Reports::get_item_type( $item_id );
+			if ( false === $type ) {
 				continue;// skip unrecognized item
-			} else {
-				$type = substr( $item_id, $pos + 1 );
 			}
 
-			$official_title = in_array( $type, array( 'heading', 'subheading', 'text' ) ) ? ucwords( $type ) : ZP_Custom_Reports::listitems( $type )[ $item_id ];
+			$official_title = in_array( $type, array( 'heading', 'subheading', 'text' ) ) ? ucwords( $type ) : self::listitems( $type )[ $item_id ];
 			$title = ( ! isset( $item[1] ) || '' == $item[1] ) ? $official_title : $item[1];
-
 			$tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : '';
 
 			// Markup for each item...
