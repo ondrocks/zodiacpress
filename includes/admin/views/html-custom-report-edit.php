@@ -8,11 +8,9 @@
 wp_enqueue_style( 'zp-edit-report' );
 wp_enqueue_script( 'zp-edit-report' );
 
-// @test if needed for mobile
-
-// if ( wp_is_mobile() ) {
-// 	wp_enqueue_script( 'jquery-touch-punch' );
-// }
+if ( wp_is_mobile() ) {
+	wp_enqueue_script( 'jquery-touch-punch' );
+}
 
 $report_id = $active_tab;
 

@@ -78,7 +78,7 @@ function zp_admin_scripts() {
 			'nonceDelete'		=> wp_create_nonce( 'zp_delete_report' )
 		) );
 		wp_enqueue_script( 'zp-admin' );
-		wp_register_script( 'zp-edit-report', ZODIACPRESS_URL . 'assets/js/edit-report' . $suffix . '.js', array( 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery-ui-droppable' ), ZODIACPRESS_VERSION );
+		wp_register_script( 'zp-edit-report', ZODIACPRESS_URL . 'assets/js/edit-report' . $suffix . '.js', array( 'jquery-ui-sortable' ), ZODIACPRESS_VERSION );
 		wp_register_style( 'zp-edit-report', ZODIACPRESS_URL . 'assets/css/edit-report' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	}
 }
