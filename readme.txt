@@ -135,7 +135,7 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 == Changelog ==
 
 = 1.8.3 =
-* Fix - Fixed a bug that was introduced in version 1.8.2. It had made the Natal Report Planets and Points settings, and Asepcts settings, appear blank.
+* Fix - Fixed a bug that was introduced in version 1.8.2. It had made the Natal Report Planets and Points settings, and Aspects settings, appear blank.
 
 = 1.8.2 =
 * New - For creating own atlas database, get the cities data file from Google Cloud rather than from cosmicplugins.com.
@@ -264,7 +264,7 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 == Upgrade Notice ==
 
 = 1.8.3 =
-* Fix - Fixed a bug that made the Natal Report Planets and Points settings, and Asepcts settings, appear blank.
+* Fix - Fixed a bug that made the Natal Report Planets and Points settings, and Aspects settings, appear blank.
 
 = 1.8.1 =
 Fixed - New Atlas database table INDEX needed max length.

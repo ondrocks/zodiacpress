@@ -337,7 +337,7 @@ function zp_get_enabled_interps_sections() {
 		}
 	}
 
-	/** Asepcts tab */
+	/** Aspects tab */
 
 	// Only sections for planets that are enabled in the Aspects To Planets setting
 

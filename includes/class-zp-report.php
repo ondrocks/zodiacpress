@@ -1,6 +1,6 @@
 <?php
 /**
- * ZodiacPress ZP_Report class.
+ * ZodiacPress ZP_Report class to build and display a custom report.
  *
  * @package  ZodiacPress
  * @since 1.9
