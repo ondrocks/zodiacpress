@@ -3,7 +3,6 @@
  *
  * @package ZodiacPress
  */
-
 var zpEditReport;
 
 (function($) {
@@ -50,6 +49,14 @@ var zpEditReport;
 					if ( 0 === $('#report-to-edit').length ) {
 						return false;
 					}
+
+					// get all ids of added report items
+					var addedItems = document.querySelectorAll('#report-to-edit li[id]'),
+						addedIds = [];
+					Array.prototype.forEach.call( addedItems, function( el ) {
+						addedIds.push( el.id.replace('report-item-', '') );
+					} );
+
 					return this.each(function() {
 						var t = $(this), reportItems = {},
 							checkboxes = t.find( '.tabs-panel-active .categorychecklist li input:checked' ),
@@ -64,8 +71,17 @@ var zpEditReport;
 						// Retrieve report item data
 						$(checkboxes).each(function(){
 							var t = $(this);
-							reportItems[this.value] = t.closest('li').getItemData( 'add-report-item', this.value );
+							// if item is already added to report, don't add it again
+							if ( -1 == addedIds.indexOf(this.value) ) {
+								reportItems[this.value] = t.closest('li').getItemData( 'add-report-item', this.value );
+							}
 						});
+
+						if ( ! Object.keys(reportItems).length ) {
+							// Nothing to add so stop spinner and get out
+							t.find( '.button-controls .spinner' ).removeClass( 'is-active' );
+							return false;
+						}
 
 						// Add the items
 						api.addItemToReport(reportItems, processMethod, function(){
