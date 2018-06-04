@@ -52,13 +52,21 @@ class ZP_Custom_Reports {
 	 * 
 	 * This is used by all custom report tabs, except the first 'Manage' tab.
 	 */
-	public static function tabs_sections( $tab ) {
-
+	public static function tab_sections( $tab ) {
 		$sections = array(
 			'edit' => __( 'Edit Report', 'zodiacpress'),
 			'technical' => __( 'Technical', 'zodiacpress' )
 		);
-
+		/* Add Orbs section ONLY if this report includes any aspects */
+		$report = new ZP_Report( $tab );
+		$items = $report->get_items();
+		foreach ( $items as $item ) {
+			$item_id = $item[0];
+			if ( 'aspects' === ZP_Custom_Reports::get_item_type( $item_id ) ) {
+				$sections['orbs'] = __( 'Orbs', 'zodiacpress');
+				break;
+			}
+		}
 		return $sections;
 	}
 

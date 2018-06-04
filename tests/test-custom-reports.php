@@ -148,20 +148,51 @@ class Test_Custom_Reports extends WP_UnitTestCase {
 		);
 		foreach ($expected as $item_id => $expected_type) {
 			$actual = ZP_Custom_Reports::get_item_type($item_id);
-			$this->assertEquals($expected_type, $actual);	
+			$this->assertEquals($expected_type, $actual);
 		}
 	}
 
-
 	/**
-	 * Test the ZP_Custom_Reports::tabs_sections() method
-	 * @todo 
+	 * Test the ZP_Custom_Reports::tab_sections() method
 	 */
-	public function test_custom_reports_tabs_sections() {
+	public function test_custom_reports_tab_sections() {
+		$expected = array(
+		    'edit'		=> 'Edit Report',
+		    'technical'	=> 'Technical');
+		
+		$expected_orbs = $expected + array('orbs' => 'Orbs');
 
+		// Test 1: create a custom report WITHOUT aspects
 
+		$name = 'Work Report';
+		$id = 'workreport';
+		ZP_Custom_Reports::create($name);
+		// add items without aspects
+		$options = get_option('zodiacpress_settings');
+		$options['custom_reports'][$id]['items'] = array(
+			array('saturn_sign',''),
+			array('1_heading',''),
+			array('10_lord',''),
+			array('8_residents','')
+		);
+		update_option('zodiacpress_settings', $options);
+
+		$actual = ZP_Custom_Reports::tab_sections($id);
+		$this->assertEquals($expected, $actual);
+
+		// Test 2: create a new custom report WITH aspects
+
+		$name = 'Love Report';
+		$id = 'lovereport';
+		ZP_Custom_Reports::create($name);
+		$options = get_option('zodiacpress_settings');
+		$options['custom_reports'][$id]['items'] = array(
+			array('venus_sign',''),
+			array('mars_conjunction_aspects','')
+		);
+		update_option('zodiacpress_settings', $options);
+
+		$actual = ZP_Custom_Reports::tab_sections($id);
+		$this->assertEquals($expected_orbs, $actual);
 	}
-
-
-	
 }

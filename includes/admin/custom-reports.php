@@ -43,7 +43,7 @@ function zp_custom_reports_page() {
 	$tabs = ZP_Custom_Reports::tabs();
 	$active_tab = isset( $_GET['tab'] ) && array_key_exists( $_GET['tab'], $tabs ) ? sanitize_text_field( $_GET['tab'] ) : 'custom-reports';
 
-	$sections = ( 'custom-reports' === $active_tab ) ? 0 : ZP_Custom_Reports::tabs_sections( $active_tab );// no sections for main custom reports tab
+	$sections = ( 'custom-reports' === $active_tab ) ? 0 : ZP_Custom_Reports::tab_sections( $active_tab );// no sections for main custom reports tab
 
 	$section = isset( $_GET['section'] ) && ! empty( $sections ) && array_key_exists( $_GET['section'], $sections ) ? sanitize_text_field( $_GET['section'] ) : 'edit';
 	?>
