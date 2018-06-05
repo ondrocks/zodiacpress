@@ -52,16 +52,10 @@ function zp_custom_reports_page() {
 	<nav class="nav-tab-wrapper clear">
 
 	<?php
-
-	// settings_errors( 'zp-custom-reports-notices' );// @test need? perhaps not since will use custom js. Maybe only for Technical and Orbs sections. and interps.
+	settings_errors( 'zp-notices' );// @test with orbs
 
 	foreach( $tabs as $tab_id => $tab_name ) {
-
-		$tab_url = add_query_arg( array(
-			// 'settings-updated' => false,// @test need? perhaps not since will use custom js.
-			'tab'              => $tab_id
-		) );
-
+		$tab_url = add_query_arg( array( 'tab' => $tab_id ) );
 		// Remove the section from the tabs so we always end up at the main 'edit' section, and remove the zp-done admin notice flag
 		$tab_url = remove_query_arg( array( 'section', 'zp-done' ), $tab_url );
 
@@ -76,7 +70,7 @@ function zp_custom_reports_page() {
 	}
 	?>
 	</nav>
-	<h1 class="screen-reader-text"><?php echo $tabs[ $active_tab ]; ?></h1>
+	<h1 class="screen-reader-text"><?php echo esc_html( $tabs[ $active_tab ] ); ?></h1>
 
 	<?php
 	$view = $active_tab;
@@ -92,7 +86,6 @@ function zp_custom_reports_page() {
 				<?php
 				$number++;
 				$tab_url = add_query_arg( array(
-					// 'settings-updated' => false,// @test need?
 					'tab' => $active_tab,
 					'section' => $section_id
 				) );
@@ -333,7 +326,6 @@ function zp_aspects_meta_box( $object, $box ) {
 
 }
 
-
 /**
  * Displays Heading/Subheading/Text meta boxes for the Edit Custom Reports pages
  * @param string $object Not used.
@@ -408,3 +400,32 @@ function zp_ajax_aspects_quick_search() {
 	wp_die();
 }
 add_action( 'wp_ajax_zp-aspects-quick-search', 'zp_ajax_aspects_quick_search', 1 );
+
+/**
+ * Adds a Technical Settings section for each Custom Report.
+ */
+function zp_custom_reports_tech_settings( $settings ) {
+	$ids = ZP_Custom_Reports::get_ids();
+	if ( ! $ids ) {
+		return $settings;
+	}
+	foreach ( $ids as $id ) {
+		$settings["cr$id"]['technical'] = array(
+					'tech_settings' => array(
+						'id'	=> 'tech_settings',
+						'name'	=> '<h3>' . __( 'Technical Settings', 'zodiacpress' ) . '</h3>',
+						'desc'	=> '',
+						'type'	=> 'header',
+					),
+					"{$id}_allow_unknown_bt" => array(
+						'id'	=> "{$id}_allow_unknown_bt",
+						'name'	=> __( 'Allow Unknown Birth Time', 'zodiacpress' ),
+						'type'	=> 'checkbox',
+						'desc'	=> __( 'Allow people with unknown birth times to get this custom report. If enabled, this will allow them to generate a report, excluding items that require a birth time (i.e. excluding Houses, House Lords, Moon, Ascendant, Midheaven, Vertex, and Part of Fortune).', 'zodiacpress' ),
+						'class' => 'zp-setting-checkbox-label'
+					),
+		);
+	}
+	return $settings;
+}
+add_filter( 'zp_registered_settings', 'zp_custom_reports_tech_settings' );

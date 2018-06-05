@@ -269,13 +269,11 @@ function zp_settings_sanitize( $input = array() ) {
 		return $input;
 	}
 	parse_str( $_POST['_wp_http_referer'], $referrer );
-
 	$settings = zp_get_registered_settings();
 	$tab = isset( $referrer['tab'] ) ? $referrer['tab'] : 'natal';
 	$section = isset( $referrer['section'] ) ? $referrer['section'] : 'main';
 	$input = $input ? $input : array();
 	$zodiacpress_options = $zodiacpress_options ? $zodiacpress_options : array();
-
 	$input = apply_filters( 'zodiacpress_settings_' . $tab . '-' . $section . '_sanitize', $input );
 
 	// Loop through each setting being saved and pass it through a sanitization filter
@@ -294,8 +292,13 @@ function zp_settings_sanitize( $input = array() ) {
 	}
 
 	// Loop through the whitelist and unset any that are empty for the tab being saved
-	$section_settings = ! empty( $settings[ $tab ][ $section ] ) ? $settings[ $tab ][ $section ] : array();
 
+	// regular settings
+	$section_settings = ! empty( $settings[ $tab ][ $section ] ) ? $settings[ $tab ][ $section ] : array();
+	// custom reports settings (Technical/Orbs)
+	if ( ! $section_settings ) {
+		$section_settings = ! empty( $settings["cr$tab"][ $section ] ) ? $settings["cr$tab"][ $section ] : array();
+	}
 	if ( ! empty( $section_settings ) ) {
 		foreach ( $section_settings as $key => $value ) {
 			if ( empty( $input[ $key ] ) ) {
@@ -303,7 +306,6 @@ function zp_settings_sanitize( $input = array() ) {
 			}
 		}
 	}
-
 	// Merge our new settings with the existing
 	$output = array_merge( $zodiacpress_options, $input );
 
