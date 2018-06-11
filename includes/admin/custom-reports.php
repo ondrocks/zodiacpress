@@ -52,7 +52,7 @@ function zp_custom_reports_page() {
 	<nav class="nav-tab-wrapper clear">
 
 	<?php
-	settings_errors( 'zp-notices' );// @test with orbs
+	settings_errors( 'zp-notices' );
 
 	foreach( $tabs as $tab_id => $tab_name ) {
 		$tab_url = add_query_arg( array( 'tab' => $tab_id ) );
@@ -85,16 +85,18 @@ function zp_custom_reports_page() {
 				<li>
 				<?php
 				$number++;
-				$tab_url = add_query_arg( array(
+				$section_url = add_query_arg( array(
 					'tab' => $active_tab,
 					'section' => $section_id
 				) );
+				// remove the zp-done admin notice flag
+				$section_url = remove_query_arg( 'zp-done' , $section_url );
 				$class = '';
 				if ( $section == $section_id ) {
 					$class = 'current';
 				}
 				?>
-				<a class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $tab_url ); ?>"><?php echo esc_html( $section_name ); ?></a>
+				<a class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $section_url ); ?>"><?php echo esc_html( $section_name ); ?></a>
 				<?php
 				if ( $number != $number_of_sections ) {
 					?>
@@ -120,7 +122,7 @@ function zp_custom_reports_page() {
 /**
  * Processes the 'Create New Custom Report' form.
  */
-add_action( 'admin_post_zp_create_new_report', function () {
+add_action( 'admin_post_zp_create_new_report', function() {
 	check_admin_referer( 'zp_create_new_report', 'zp_admin_nonce' );
 	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
@@ -141,7 +143,7 @@ add_action( 'admin_post_zp_create_new_report', function () {
 /**
  * Processes the 'Delete Report' form.
  */
-add_action( 'admin_post_zp_delete_report', function () {
+add_action( 'admin_post_zp_delete_report', function() {
 	check_admin_referer( 'zp_delete_report', 'zp_admin_nonce' );
 	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
 		return;
@@ -429,3 +431,27 @@ function zp_custom_reports_tech_settings( $settings ) {
 	return $settings;
 }
 add_filter( 'zp_registered_settings', 'zp_custom_reports_tech_settings' );
+
+/**
+ * Save orbs for custom report upon clicking 'Save Changes'
+ */
+add_action( 'admin_post_zp-save-custom-orbs', function() {
+	check_admin_referer( 'save-custom-orbs', 'zp_admin_nonce' );
+	if ( ! current_user_can( 'manage_zodiacpress_settings' ) ) {
+		return;
+	}
+	if ( ! isset( $_POST['custom-report-id'] ) ) {
+		return;
+	}
+	if ( ! isset( $_POST['zp_custom_orbs'] ) || ! is_array( $_POST['zp_custom_orbs'] ) ) {
+		return;
+	}	
+	$report_id = sanitize_text_field( $_POST['custom-report-id'] );
+	$orbs = array();
+	foreach ( $_POST['zp_custom_orbs'] as $key => $input ) {
+		$orbs[ $key ] = zp_sanitize_orb_fields( $input );
+	}
+	$report = new ZP_Report( $report_id );
+	$response = $report->update_orbs( $orbs ) ? 'orbs-saved' : '';
+	wp_safe_redirect( admin_url( "admin.php?page=zodiacpress-custom&tab={$report_id}&section=orbs&zp-done=$response" ) ); exit;
+} );

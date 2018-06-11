@@ -53,10 +53,8 @@ class ZP_Custom_Reports {
 	 * This is used by all custom report tabs, except the first 'Manage' tab.
 	 */
 	public static function tab_sections( $tab ) {
-		$sections = array(
-			'edit' => __( 'Edit Report', 'zodiacpress'),
-			'technical' => __( 'Technical', 'zodiacpress' )
-		);
+		$sections['edit'] = __( 'Edit Report', 'zodiacpress');
+
 		/* Add Orbs section ONLY if this report includes any aspects */
 		$report = new ZP_Report( $tab );
 		$items = $report->get_items();
@@ -67,6 +65,9 @@ class ZP_Custom_Reports {
 				break;
 			}
 		}
+
+		$sections['technical'] = __( 'Technical', 'zodiacpress' );
+
 		return $sections;
 	}
 
@@ -163,8 +164,7 @@ class ZP_Custom_Reports {
 
 		}
 		// Update the new report name
-		$_items = $options['custom_reports'][ $id ]['items'];
-		$options['custom_reports'][ $id ] = array( 'name' => $name, 'items' => $_items );
+		$options['custom_reports'][ $id ]['name'] = $name;
 		$update = update_option( 'zodiacpress_settings', $options );
 		self::$zp_settings = $options;
 		return $update;
@@ -216,6 +216,19 @@ class ZP_Custom_Reports {
 		$pos = strrpos( $item_id, '_' );
 		if ( false !== $pos ) {
 			return substr( $item_id, $pos + 1 );
+		}
+		return false;
+	}
+
+	/**
+	 * Get the type of aspect of a custom report aspect item.
+	 * @return string|bool $type The aspect type, or FALSE for unrecognized item.
+	 */
+	public static function get_aspect_type( $aspect_item_id ) {
+		$frag = str_replace( '_aspects', '', $aspect_item_id );
+		$pos = strpos( $frag, '_' );
+		if ( false !== $pos ) {
+			return substr( $frag, $pos + 1);
 		}
 		return false;
 	}

@@ -25,6 +25,11 @@ class ZP_Report {
 	private $items;
 
 	/**
+	 * The orbs for this report's aspects items, if any.
+	 */
+	private $orbs;
+
+	/**
 	 * The Chart object for this report.
 	 */
 	private $chart;// @test need?
@@ -32,7 +37,7 @@ class ZP_Report {
 	/**
 	 * The ZP settings.
 	 */
-	private $options = array();
+	private $options;
 	/**
 	 * Constructor.
 	 *
@@ -44,6 +49,7 @@ class ZP_Report {
 		$this->chart = $_chart;// @test need?
 		$this->options = get_option( 'zodiacpress_settings', array() );
 		$this->items = isset( $this->options['custom_reports'][ $this->id ]['items'] ) ? $this->options['custom_reports'][ $this->id ]['items'] : array();
+		$this->orbs = isset( $this->options['custom_reports'][ $this->id ]['orbs'] ) ? $this->options['custom_reports'][ $this->id ]['orbs'] : array();
 	}
 
 	/**
@@ -52,6 +58,14 @@ class ZP_Report {
 	 */
 	public function get_items() {
 		return $this->items;
+	}
+
+	/**
+	 * Gets all report orbs for aspect items, if any.
+	 * @return array $items Array of orbs for each type of aspect.
+	 */
+	public function get_orbs() {
+		return $this->orbs;
 	}
 
 	/**
@@ -74,23 +88,38 @@ class ZP_Report {
 
 	/**
 	 * Updates the items for a custom report
-	 * @return mixed|bool|string True if name was updated, false is report id doesn't exist or other error.
+	 * @return bool True if name was updated, false is report id doesn't exist or other error.
 	 */
 	public function update_items( $items ) {
 		if ( ! isset( $this->options['custom_reports'][ $this->id ] ) ) {
 			return false;
 		}
-
 		if ( ! isset( $items ) ) {
 			return false;
 		}
-
 		// Update items
-		$_name = $this->options['custom_reports'][ $this->id ]['name'];
-		$this->options['custom_reports'][ $this->id ] = array( 'name' => $_name, 'items' => $items );
+		$this->options['custom_reports'][ $this->id ]['items'] = $items;
 		$update = update_option( 'zodiacpress_settings', $this->options );
 		$this->items = $items;
+		return $update;
+	}
 
+
+	/**
+	 * Updates the orbs for a custom report
+	 * @return bool True if orbs were updated, false is report id doesn't exist or udpated failed.
+	 */
+	public function update_orbs( $orbs ) {
+		if ( ! isset( $this->options['custom_reports'][ $this->id ] ) ) {
+			return false;
+		}
+		if ( ! isset( $orbs ) ) {
+			return false;
+		}
+		// Update orbs
+		$this->options['custom_reports'][ $this->id ]['orbs'] = $orbs;
+		$update = update_option( 'zodiacpress_settings', $this->options );
+		$this->orbs = $orbs;
 		return $update;
 	}
 

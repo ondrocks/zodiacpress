@@ -110,10 +110,11 @@
 .zp-helptext{
 	padding-top:2em;
 }
-
+.custom-report-orbs th,
 #tab_container.natal_orbs th {
 	padding:0;
 }
+.custom-report-orbs td,
 #tab_container.natal_orbs td {
 	padding:0 0 4px 0;
 	margin-bottom: 0;
@@ -262,6 +263,7 @@
 		display: block;
 		padding-top:8px;
 	}
+	.custom-report-orbs td,
 	#tab_container.natal_orbs td {
 		padding-bottom: 8px;
 	}

@@ -92,6 +92,9 @@ function zp_admin_notices() {
 					$class = 'error';
 					$msg = __( 'Could not delete custom report.', 'zodiacpress' );
 					break;
+				case 'orbs-saved':
+					$msg = __( 'Orbs saved.', 'zodiacpress' );
+					break;
 				case 'natal_in_signs':
 					$msg = __( 'Interpretations for natal planets in signs were erased.', 'zodiacpress' );
 					break;

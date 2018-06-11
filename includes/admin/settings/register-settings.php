@@ -259,7 +259,7 @@ function zp_get_registered_settings() {
 function zp_settings_sanitize( $input = array() ) {
 	// Skip this function when manually updating options while creating/updating/deleting Custom Reports
 	if ( isset( $_POST['action'] ) ) {
-		if ( 'zp_create_new_report' == $_POST['action'] || 'zp_delete_report' == $_POST['action'] || 'zp_update_report' == $_POST['action'] ) {
+		if ( 'zp_create_new_report' == $_POST['action'] || 'zp_delete_report' == $_POST['action'] || 'zp_update_report' == $_POST['action'] || 'zp-save-custom-orbs' == $_POST['action'] ) {
 			return $input;
 		}
 	}
@@ -315,19 +315,28 @@ function zp_settings_sanitize( $input = array() ) {
 }
 
 /**
+ * Sanitize orb fields
+ * @return int Sanitzed value
+ */
+function zp_sanitize_orb_fields( $input ) {
+	// Must be numeric.
+	if ( ! is_numeric( $input ) ) {
+		return 8;
+	} else {
+		return abs( $input );// not negative
+	}
+}
+
+/**
  * Sanitize text fields
  *
  * @param string $input The field value
- * @return string $input Sanitizied value
+ * @return string|int $input Sanitizied value
  */
 function zp_sanitize_text_field( $input, $key ) {
-	// Sanitize orb fields. Must be numeric.
+	// Sanitize orb fields.
 	if ( 0 === strpos( $key, 'orb_' ) ) {
-		if ( ! is_numeric( $input ) ) {
-			return 8;
-		} else {
-			return abs( $input );// not negative
-		}
+		return zp_sanitize_orb_fields( $input );
 	}
 	return trim( $input );
 }
