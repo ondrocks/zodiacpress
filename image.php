@@ -1,6 +1,5 @@
 <?php // This file creates the ZodiaPress chart image
 global $zpci_orbs;
-
 if ( isset( $_GET['zpl'] ) ) {
 	$longitudes_raw = unserialize( $_GET['zpl'] );
 	for ( $n = 0; $n <= 16; $n++ ) {
@@ -602,9 +601,7 @@ function zpci_is_planet_too_close( $long_1, $long_2 ) {
 	if ( $distance < 0 ) {
 		$distance += 360;
 	}
-
-	return (  $distance <= 3 ) ? true : false;
-
+	return ( $distance <= 1 ) ? true : false;
 }
 
 /**
@@ -627,19 +624,19 @@ function zpci_planet_glyph_coordinates($angle_to_use, $radii, $i, $sort_pos, &$x
 		if ( zpci_is_planet_too_close( $sorted_longitudes[ $i ], $sorted_longitudes[ $i + 1 ] ) ) {
 
 			// Yes, too close
-			$angle_to_use += deg2rad(3);
+			$angle_to_use += deg2rad(2);
 			
 			// Was the previous also too close to its previous planet?
 			if ( isset( $sorted_longitudes[ $i + 2 ] ) ) {
 				if ( zpci_is_planet_too_close( $sorted_longitudes[ $i + 1 ], $sorted_longitudes[ $i + 2 ] ) ) {
 
 					// Yes, too close
-					$angle_to_use += deg2rad(6);
+					$angle_to_use += deg2rad(2);
 			
 					// was the previous-previous also too close to its previous planet?
 					if ( isset( $sorted_longitudes[ $i + 3 ] ) ) {
 						if ( zpci_is_planet_too_close( $sorted_longitudes[ $i + 2 ], $sorted_longitudes[ $i + 3 ] ) ) {
-							$angle_to_use += deg2rad(9);
+							$angle_to_use += deg2rad(2);
 						}
 					}
 				}
