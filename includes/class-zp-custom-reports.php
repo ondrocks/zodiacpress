@@ -1,5 +1,6 @@
 <?php
 /** @test can this file be moved to /includes/admin/....
+ * @todo Possibly rename class to ZP_Custom_Reports_Settings, and move to /includes/admin/settings/
  *
  * ZodiacPress ZP_Custom_Reports class.
  *

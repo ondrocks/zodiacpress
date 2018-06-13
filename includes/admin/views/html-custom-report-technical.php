@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin View: Custom Reports: Custom tab: Technical section
+ * Admin View: Custom Reports: Custom Report tab: Technical section
  * @since 1.9
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
