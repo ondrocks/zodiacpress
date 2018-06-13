@@ -45,15 +45,11 @@
 }
 
 /* Report Container */
-
-/* @todo: responsive view. */
 #zp-report-management-liquid {
 	float: left;
 	min-width: 100%;
 	margin-top: 3px;
 }
-
-/* @todo: responsive view. */
 #zp-report-management {
 	position: relative;
 	margin-right: 20px;
@@ -61,11 +57,9 @@
 	width: 100%;
 	background: #f5f5f5;
 }
-
 #zp-report-management .report-edit {
 	margin-bottom: 20px;
 }
-
 #zp-custom-reports-tab-container #post-body {
 	padding: 0 10px 10px;
 	border-top: 1px solid #fff;
@@ -228,7 +222,6 @@ Aspects meta box
 	font-weight: 600;
 	line-height: 20px;
 	display: block;
-	/* @todo: responsive view. */
 	margin-right: 13em;
 }
 /* Sortables */
@@ -428,6 +421,7 @@ li.report-item.ui-sortable-helper .report-item-transport .report-item-bar {
 	}
 	#zp-report-management-liquid {
 		margin-top: 25px;
+		float:none;
 	}
 	#report-name {
 		width: 100%;
@@ -439,6 +433,9 @@ li.report-item.ui-sortable-helper .report-item-transport .report-item-bar {
 	.report-item-settings,
 	.description-wide {
 		width: auto;
+	}
+	.report-item-handle .item-title {
+        margin-right: 11em;
 	}
 	.report-item-settings {
 		padding: 10px;
