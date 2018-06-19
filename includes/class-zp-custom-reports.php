@@ -181,27 +181,37 @@ class ZP_Custom_Reports {
 		}
 		$out = array();
 		$uctype = ucwords( $type );
-		if ( 'sign' == $type || 'house' == $type ) {
-			$houses = 'house' === $type ? true : false;
-			$planets = zp_get_planets( $houses );
-			foreach( $planets as $p ) {
-				$out[ $p['id'] . '_' . $type ] = $p['label'] . ' ' . $uctype;
-			}
-		}
-		if ( 'lord' == $type || 'residents' == $type ) {
-			$label_i18n = __( 'House %d %s', 'zodiacpress' );
-			for ( $i=1; $i < 13; $i++ ) {
-				$out[ $i . '_' . $type ] = sprintf( $label_i18n, $i, $uctype );
-			}
-		}
-		if ( 'aspects' == $type ) {
-			$planets = zp_get_planets();
-			$aspects = zp_get_aspects(2);
-			foreach ( $planets as $p ) {
-				foreach( $aspects as $asp ) {
-					$out[ $p['id'] . '_' . $asp['id'] . '_' . $type ] = $p['label'] . ' ' . $asp['label'];
+
+		switch ( $type ) {
+			case 'sign':
+			case 'house':
+				$houses = 'house' === $type ? true : false;
+				$planets = zp_get_planets( $houses );
+				foreach( $planets as $p ) {
+					$out[ $p['id'] . '_' . $type ] = $p['label'] . ' ' . $uctype;
 				}
-			}
+				break;
+			case 'lord':
+				$label_i18n = __( '%s of House %d', 'zodiacpress' );
+				for ( $i=1; $i < 13; $i++ ) {
+					$out[ $i . '_' . $type ] = sprintf( $label_i18n, $uctype, $i );
+				}// @test now now
+				break;
+			case 'residents':
+				$label_i18n = __( 'House %d %s', 'zodiacpress' );
+				for ( $i=1; $i < 13; $i++ ) {
+					$out[ $i . '_' . $type ] = sprintf( $label_i18n, $i, $uctype );
+				}
+				break;
+			case 'aspects':
+				$planets = zp_get_planets();
+				$aspects = zp_get_aspects(2);
+				foreach ( $planets as $p ) {
+					foreach( $aspects as $asp ) {
+						$out[ $p['id'] . '_' . $asp['id'] . '_' . $type ] = $p['label'] . ' ' . $asp['label'];
+					}
+				}
+				break;
 		}
 		self::${"items_${type}"} = $out;
 		return $out;
