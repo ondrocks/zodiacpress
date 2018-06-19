@@ -1,4 +1,4 @@
-<?php // This file creates the ZodiaPress chart image
+<?php // This file creates the ZodiacPress chart image
 global $zpci_orbs;
 
 if ( isset( $_GET['zpl'] ) ) {
