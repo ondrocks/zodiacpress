@@ -38,7 +38,7 @@ function zpGetOffset() {
 			} else {
 
 				/* if not null, blank, nor false, but 0 is okay  */
-				if ( xhr.response.offset_geo && 'false' != xhr.response.offset_geo ) {
+				if ( null !== xhr.response.offset_geo && '' !== xhr.response.offset_geo && 'false' != xhr.response.offset_geo) {
 
 					/* remove previous errors if any */
 					zpRemoveError();

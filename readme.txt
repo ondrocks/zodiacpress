@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 5.0-alpha-43320
 Requires PHP: 5.4
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,10 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.8.4 =
+* Fix - Form was not allowing time offset of 0, for example, London timezone.
+* Fix - Draw stellium planets closer together on the chart wheel. Conjunctions of 3 or more planets were being drawn too far apart from each other.
 
 = 1.8.3 =
 * Fix - Fixed a bug that was introduced in version 1.8.2. It had made the Natal Report Planets and Points settings, and Aspects settings, appear blank.
@@ -263,8 +267,11 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 
 == Upgrade Notice ==
 
+= 1.8.4 =
+Fixed - Form was not allowing time offset of 0, for example, London timezone.
+
 = 1.8.3 =
-* Fix - Fixed a bug that made the Natal Report Planets and Points settings, and Aspects settings, appear blank.
+Fix - Fixed a bug that made the Natal Report Planets and Points settings, and Asepcts settings, appear blank.
 
 = 1.8.1 =
 Fixed - New Atlas database table INDEX needed max length.

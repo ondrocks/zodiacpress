@@ -70,7 +70,7 @@ final class ZodiacPress {
 	 */
 	private function setup_constants() {
 		if ( ! defined( 'ZODIACPRESS_VERSION' ) ) {
-			define( 'ZODIACPRESS_VERSION', '1.8.3' );// @todo update
+			define( 'ZODIACPRESS_VERSION', '1.8.4' );// @todo update
 		}
 		if ( ! defined( 'ZODIACPRESS_URL' ) ) {
 			define( 'ZODIACPRESS_URL', plugin_dir_url( __FILE__ ) );
