@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @return array of planets id and label. If no parameters passed, returns all planets.
  */
-function zp_get_planets( $houses = '', $include = '' ) {
+function zp_get_planets( $houses = false, $include = 0 ) {
 	$planets = apply_filters( 'zp_get_planets', array(
 		array(
 			'id'		=> 'sun',
@@ -132,7 +132,7 @@ function zp_get_aspects( $n = 1 ) {
 	$aspects = array(
 		array(
 			'id'		=> 'conjunction',
-			'label'		=> _n(' Conjunction', 'Conjunctions', $n, 'zodiacpress' ),
+			'label'		=> _n( 'Conjunction', 'Conjunctions', $n, 'zodiacpress' ),
 			'numerical'	=> '0' ),
 		array(
 			'id'		=> 'sextile',
@@ -140,19 +140,19 @@ function zp_get_aspects( $n = 1 ) {
 			'numerical'	=> 60 ),
 		array(
 			'id'		=> 'square',
-			'label'		=> _n(' Square', 'Squares', $n, 'zodiacpress' ),
+			'label'		=> _n( 'Square', 'Squares', $n, 'zodiacpress' ),
 			'numerical'	=> 90 ),
 		array(
 			'id'		=> 'trine',
-			'label'		=> _n(' Trine', 'Trines', $n, 'zodiacpress' ),
+			'label'		=> _n( 'Trine', 'Trines', $n, 'zodiacpress' ),
 			'numerical'	=> 120 ),
 		array(
 			'id'		=> 'quincunx',
-			'label'		=> _n(' Quincunx', 'Quincunxes', $n, 'zodiacpress' ),
+			'label'		=> _n( 'Quincunx', 'Quincunxes', $n, 'zodiacpress' ),
 			'numerical'	=> 150 ),
 		array(
 			'id'		=> 'opposition',
-			'label'		=> _n(' Opposition', 'Oppositions', $n, 'zodiacpress' ),
+			'label'		=> _n( 'Opposition', 'Oppositions', $n, 'zodiacpress' ),
 			'numerical'	=> 180 ),
 	);
 	
