@@ -205,6 +205,25 @@
     height: auto;
     display: inline-block;
 }
+.custom-report-interpretations {
+	padding-top:8px;
+	clear:both;
+}
+
+#zp-custom-report-interp-menu {
+	background: #f5f5f5;
+	border: 1px solid #ddd;	
+}
+
+#zp-tabsubtitle {
+	margin-top:8px;
+	margin-bottom: 0;
+	padding-left:3px;
+}
+
+#zp-custom-report-interp-menu .subsubsub {
+  float:none;
+}
 
 /****************************************************
 *
