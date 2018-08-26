@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=B4ZUZQKG2M58G&lc=US&no_note=1&no_shipping=1&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth chart, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.0-alpha-43320
+Tested up to: 5.0-alpha-43581
 Requires PHP: 5.4
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.8.5 =
+* New - Use secure GeoNames api endpoint (https) for everyone, regardless of whether their site uses http or https, and regardless of whether they have a Premium GeoNames account or not. This renders the addon plugin "ZodiacPress Enhanced GeoNames" obsolete since this is now built in for everyone.
 
 = 1.8.4 =
 * Fix - Form was not allowing time offset of 0, for example, London timezone.
@@ -266,6 +269,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.8.5 =
+New - Use secure GeoNames api endpoint (https) for everyone.
 
 = 1.8.4 =
 Fixed - Form was not allowing time offset of 0, for example, London timezone.
