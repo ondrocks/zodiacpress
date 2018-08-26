@@ -33,40 +33,6 @@ add_action( 'wp_ajax_zp_atlas_get_cities', 'zp_atlas_get_cities' );
 add_action( 'wp_ajax_nopriv_zp_atlas_get_cities', 'zp_atlas_get_cities' );
 
 /**
- * Handles ajax request to get cities list from GeoNames for autocomplete birth place field.
- * 
- * It's done like this rather than from the browswer so that I can make this work
- * on HTTPS pages, otherwise GeoNames only serves http pages.
- */
-function zp_ajax_autocomplete_cities() {
-	if ( empty( $_POST['name_startsWith'] ) ) {
-		return;
-	}
-
-	$api_params = array(
-		'featureClass'		=> 'P',
-		'style'				=> 'full',
-		'maxRows'			=> 20,
-		'name_startsWith'	=> sanitize_text_field( $_POST['name_startsWith'] ),
-		'username'			=> urlencode( sanitize_text_field( $_POST['username'] ) ),
-		'lang'				=> ! empty( $_POST['lang'] ) ? sanitize_text_field( $_POST['lang'] ) : '',
-	);
-
-	$request = wp_remote_post( 'http://api.geonames.org/searchJSON', array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
-	if ( ! is_wp_error( $request ) ) {
-		$request = wp_remote_retrieve_body( $request );
-	} else {
-		$request = false;
-	}
-
-	echo $request;
-	wp_die();
-
-}
-add_action( 'wp_ajax_zp_get_cities_list', 'zp_ajax_autocomplete_cities' );
-add_action( 'wp_ajax_nopriv_zp_get_cities_list', 'zp_ajax_autocomplete_cities' );
-
-/**
  * Handles ajax request to calculate timezone offset and send back to form fields
  */
 function zp_ajax_get_time_offset() {

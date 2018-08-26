@@ -7,17 +7,15 @@
 
 			/* Hide the geonames error message, if any, in case they are trying again */
 			zpRemoveError();
-				
 			$.ajax({
-				url: zp_js_strings.autocomplete_ajaxurl,
-				dataType: zp_js_strings.dataType,
-				type: zp_js_strings.type,
+				url: 'https://secure.geonames.org/searchJSON',
+				dataType: 'jsonp',
+				type: 'GET',
 				data: {
 					featureClass: "P",
 					style: "full",
-					maxRows: 12,
+					maxRows: 20,
 					username: zp_js_strings.geonames_user,
-					action: zp_js_strings.autocomplete_action ? zp_js_strings.autocomplete_action : undefined,
 					name_startsWith: request.term,
 					lang: zp_js_strings.lang
 				},

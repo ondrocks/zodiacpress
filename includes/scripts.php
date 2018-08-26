@@ -101,12 +101,8 @@ function zp_geonames_js_strings() {
 	$city_list_lang = ( 'en' != $langcode ) ? $langcode : '';
 	$geonames_username = empty( $zodiacpress_options[ 'geonames_user' ] ) ? 'demo' : trim( $zodiacpress_options[ 'geonames_user' ] );
 	$data = array(
-		'autocomplete_ajaxurl'	=> apply_filters( 'zp_autocomplete_ajaxurl', admin_url( 'admin-ajax.php' ) ),
-		'autocomplete_action'	=> apply_filters( 'zp_ajax_geonames_action', 'zp_get_cities_list' ),
-		'dataType'				=> apply_filters( 'zp_ajax_datatype', 'json' ),
-		'type'					=> apply_filters( 'zp_ajax_type', 'POST' ),			
-		'lang'					=> $city_list_lang,
-		'geonames_user'			=> $geonames_username
+		'lang'			=> $city_list_lang,
+		'geonames_user'	=> $geonames_username
 	);
 	return $data;
 }
