@@ -74,6 +74,10 @@ function zp_admin_notices() {
 		if ( isset( $_GET['zp-done'] ) ) {
 			$class = 'success';
 			switch( $_GET['zp-done'] ) {
+				// @test now now
+				case 'cr-interps':
+					$msg = __( 'Interpretations updated.', 'zodiacpress' );
+					break;
 				case 'cr-success':
 					$msg = __( 'New custom report was created.', 'zodiacpress' );
 					break;

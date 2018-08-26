@@ -123,4 +123,20 @@ class ZP_Report {
 		return $update;
 	}
 
+	/** @test now now
+	 * Updates the interpretations for a custom report
+	 * @param string $option_key Option key for this set of interpretations
+	 * @param array $interps Interpretations text for all items in this set
+	 * @return bool True if updated, otherwise false.
+	 */
+	public function update_interpretations( $option_key, $interps ) {
+		if ( ! isset( $option_key ) || ! isset( $interps ) || ! is_array( $interps ) ) {
+			return false;
+		}
+		$option = get_option( $option_key, array() );
+		// add the new interps to existing interps, updating text if necessary
+		$new = array_replace( $option, $interps );
+		$update = update_option( $option_key, $new );
+		return $update;
+	}
 }

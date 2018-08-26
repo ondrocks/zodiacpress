@@ -56,8 +56,8 @@ function zp_custom_reports_page() {
 
 	foreach( $tabs as $tab_id => $tab_name ) {
 		$tab_url = add_query_arg( array( 'tab' => $tab_id ) );
-		// Remove the section from the tabs so we always end up at the main 'edit' section, and remove the zp-done admin notice flag
-		$tab_url = remove_query_arg( array( 'section', 'zp-done' ), $tab_url );
+		// Remove the section from the tabs so we always end up at the main 'edit' section, and remove the zp-done admin notice flag. @test now remove subsection
+		$tab_url = remove_query_arg( array( 'section', 'subsection', 'zp-done' ), $tab_url );
 
 		$active = $active_tab == $tab_id ? ' nav-tab-active' : '';
 		?>
@@ -89,8 +89,8 @@ function zp_custom_reports_page() {
 					'tab' => $active_tab,
 					'section' => $section_id
 				) );
-				// remove the zp-done admin notice flag
-				$section_url = remove_query_arg( 'zp-done' , $section_url );
+				// remove the zp-done admin notice flag. @test now remove subsection
+				$section_url = remove_query_arg( array( 'zp-done', 'subsection' ), $section_url );
 				$class = '';
 				if ( $section == $section_id ) {
 					$class = 'current';
@@ -454,4 +454,54 @@ add_action( 'admin_post_zp-save-custom-orbs', function() {
 	$report = new ZP_Report( $report_id );
 	$response = $report->update_orbs( $orbs ) ? 'orbs-saved' : '';
 	wp_safe_redirect( admin_url( "admin.php?page=zodiacpress-custom&tab={$report_id}&section=orbs&zp-done=$response" ) ); exit;
+} );
+
+/** @test now now
+ * Save interpretations for custom report upon clicking 'Save Changes'
+ */
+add_action( 'admin_post_zp-save-custom-interps', function() {
+	check_admin_referer( 'save-custom-interps', 'zp_admin_nonce' );
+	if ( ! current_user_can( 'manage_zodiacpress_interps' ) ) {
+		return;
+	}
+	if ( ! isset( $_POST['custom-report-id'] ) || ! isset( $_POST['subsection'] ) || ! isset( $_POST['type'] ) ) {
+		return;
+	}
+	if ( ! isset( $_POST['interps'] ) || ! is_array( $_POST['interps'] ) ) {
+		return;
+	}
+
+	$report_id = sanitize_text_field( $_POST['custom-report-id'] );
+	$subsection = sanitize_text_field( $_POST['subsection'] );
+	$type = sanitize_text_field( $_POST['type'] );
+	$report = new ZP_Report( $report_id );
+
+	// make sure this item exists before saving any interpretations
+	$clear = false;
+	foreach( $report->get_items() as $item ) {
+		if ( $subsection == $item[0] ) {
+			$clear = true;
+			break;
+		}
+	}
+	if ( ! $clear ) {
+		return;
+	}
+
+	// the option name where these interps will be saved
+	$option_key = 'zp_' . $report_id . '_' . $type;
+	if ( ! empty( $_POST['aspecting-planet'] ) ) {
+		$option_key .= '_' . sanitize_text_field( $_POST['aspecting-planet'] );
+	}
+
+	// sanitize interps text
+	$interps = array();
+	foreach ( $_POST['interps'] as $key => $input ) {
+		foreach( $input as $input_key => $text ) {
+			$interps[ $key ][ $input_key ] = wp_kses_post( $text );
+		}
+	}
+
+	$response = $report->update_interpretations( $option_key, $interps ) ? 'cr-interps' : '';
+	wp_safe_redirect( admin_url( "admin.php?page=zodiacpress-custom&tab={$report_id}&section=interpretations&subsection={$subsection}&zp-done=$response" ) ); exit;
 } );
