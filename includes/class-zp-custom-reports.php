@@ -55,13 +55,22 @@ class ZP_Custom_Reports {
 	 */
 	public static function tab_sections( $tab ) {
 		$sections['edit'] = __( 'Edit Report', 'zodiacpress');
-
-		/* Add Orbs section ONLY if this report includes any aspects */
 		$report = new ZP_Report( $tab );
 		$items = $report->get_items();
+
+		// Add Interpretations section only if this report has an item that needs it
+		$need_interps = array( 'sign', 'house', 'lord', 'residents', 'aspects' );
 		foreach ( $items as $item ) {
-			$item_id = $item[0];
-			if ( 'aspects' === ZP_Custom_Reports::get_item_type( $item_id ) ) {
+			if ( in_array( ZP_Custom_Reports::get_item_type( $item[0] ), $need_interps ) ) {// @test now now
+				$sections['interpretations'] = __( 'Interpretations', 'zodiacpress');
+				break;
+			}
+		}
+
+		/* Add Orbs section only if this report includes any aspects */
+		foreach ( $items as $item ) {
+			// @test now now
+			if ( 'aspects' === ZP_Custom_Reports::get_item_type( $item[0] ) ) {
 				$sections['orbs'] = __( 'Orbs', 'zodiacpress');
 				break;
 			}
@@ -195,7 +204,7 @@ class ZP_Custom_Reports {
 				$label_i18n = __( '%s of House %d', 'zodiacpress' );
 				for ( $i=1; $i < 13; $i++ ) {
 					$out[ $i . '_' . $type ] = sprintf( $label_i18n, $uctype, $i );
-				}// @test now now
+				}
 				break;
 			case 'residents':
 				$label_i18n = __( 'House %d %s', 'zodiacpress' );
@@ -242,6 +251,13 @@ class ZP_Custom_Reports {
 			return substr( $frag, $pos + 1);
 		}
 		return false;
+	}
+
+	/** @test do i even need this function?
+	 * Split aspect item into `array( $planet id, $aspect id )`
+	 */
+	public static function split_aspect_item( $item ) {
+    	return explode( '_', $item );
 	}
 
 	/**
