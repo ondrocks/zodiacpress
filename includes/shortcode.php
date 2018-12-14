@@ -32,7 +32,7 @@ function zp_birthreport_shortcode( $atts ) {
 		<?php if ( $report_atts[ 'form_title' ] ) { ?>
 			<h2><?php echo esc_html( $report_atts['form_title'] ); ?></h2>
 		<?php }
-		wp_kses_post ( zp_form( 'birthreport', $report_atts ) ); ?>
+		zp_form( 'birthreport', $report_atts ); ?>
 	</div><!-- #zp-form-wrap -->
 
 	<div id="zp-report-wrap">
