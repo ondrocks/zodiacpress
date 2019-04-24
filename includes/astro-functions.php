@@ -72,7 +72,7 @@ function zp_get_planets( $houses = '', $include = '' ) {
 		array(
 			'id'		=> 'chiron',
 			'label'		=> __( 'Chiron', 'zodiacpress' ),
-			'supports'	=> array( 'houses' ) //t true lunar node
+			'supports'	=> array( 'houses' )
 		),
 		array(
 			'id'		=> 'lilith',
@@ -82,7 +82,7 @@ function zp_get_planets( $houses = '', $include = '' ) {
 		array(
 			'id'		=> 'nn',
 			'label'		=> __( 'North Node', 'zodiacpress' ),
-			'supports'	=> array( 'houses' )
+			'supports'	=> array( 'houses' ) // true lunar node
 		),
 		array(
 			'id'		=> 'pof',
@@ -204,7 +204,7 @@ function zp_get_zodiac_signs() {
 
 /**
 * Convert zodiac decimal longitude from 360 degrees notation into zodiac sign degrees, minutes, seconds
-* @param zodiac decimal longitude in 360 degrees notation
+* @param int $longitude zodiac decimal longitude in 360 degrees notation
 * @return string zodiac sign degrees in 30 degrees notation, sign glyph, minutes, seconds
 */
 function zp_get_zodiac_sign_dms( $longitude ) {
