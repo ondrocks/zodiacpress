@@ -51,6 +51,6 @@ class Test_Ephemeris_Direct extends WP_UnitTestCase {
 		
 		// exec( "swetest -edir{$this->sweph} -p -h -g", $out);
 
-		ZP_Helper::print_to_terminal( $out );
+		// ZP_Helper::print_to_terminal( $out );
 	}
 }
