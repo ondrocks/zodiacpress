@@ -14,14 +14,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function zp_form( $report, $args = array() ) {
 	global $zodiacpress_options;
-	$allow_unknown_bt_key_prefix = $report;
-	if ( false !== strpos( $args['report'], 'planet_lookup' ) ) {
-		$allow_unknown_bt_key_prefix = 'planet_lookup';
-	} elseif ( 'drawing' === $args['report'] ) {
-		$allow_unknown_bt_key_prefix = 'drawing';
-	}
+
+	// allow granular control for each custom report to allow unknown birth times
+	$allow_unknown_bt_key_prefix = apply_filters( 'zp_allow_known_bt_key_prefix', $report, $args );
+
 	$allow_unknown_bt_key = $allow_unknown_bt_key_prefix . '_allow_unknown_bt';
-	$allow_unknown_bt = empty( $zodiacpress_options[ $allow_unknown_bt_key ] ) ? false : true;
+	$allow_unknown_bt = ! empty( $zodiacpress_options[ $allow_unknown_bt_key ] );
+
 	?>
 	<noscript class="ui-state-highlight"><?php _e( 'This form requires JavaScript. Your browser either does not support JavaScript or has it disabled.', 'zodiacpress' ); ?></noscript>
 	<form id="zp-<?php echo esc_attr( $report ); ?>-form" method="post" class="zp-form">
