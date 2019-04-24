@@ -125,20 +125,30 @@ function zpGetOffset() {
 		});
 
 		/* Reset the Offset if date or time is changed. */
-		
+
 		$( '#month, #day, #year, #hour, #minute' ).on( 'change', function () {
 			var changed = ! this.options[this.selectedIndex].defaultSelected;
 			if ( changed ) {
 
 				/* Only do ajax (get offset) if (partial) required fields are entered. */
-
+				
 				if ( zpFieldsFilled() ) {
 					zpGetOffset();
 				}
-
 			}
 		} );
 
+		// Get offset after unknown_time checkbox is checked
+		$( '#unknown_time' ).on( 'change', function () {
+			if ( $( this ).is( ":checked" ) ) {
+
+				/* Only do ajax (get offset) if (partial) required fields are entered. */
+				if ( zpFieldsFilled() ) {
+					zpGetOffset();
+				}
+			}
+		} );
+			
 })( jQuery );
 
 /**
@@ -156,7 +166,14 @@ function zpFieldsFilled() {
 		}
 
         if ( el.value.length === 0 || ! el.value.trim() ) {
-        	/* fail */
+
+        	// if minute or hour are blank, pass if unknown time is checked
+        	if ( 'minute' === i || 'hour' === i ) {
+        		if ( document.getElementById( 'unknown_time' ).checked ) {
+        			continue;
+        		}
+        	}
+
         	return false;
         }
 	}
