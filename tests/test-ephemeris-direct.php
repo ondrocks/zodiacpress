@@ -49,8 +49,8 @@ class Test_Ephemeris_Direct extends WP_UnitTestCase {
 		// With header data
 		// exec( "swetest -edir{$this->sweph} -b25.2.1955 -ut03:15 -pa -house-122.41942,37.77493,P -eswe -fPlZ -g", $out);
 		
-		// exec( "swetest -edir{$this->sweph} -b25.2.1955 -p -h -eswe -g", $out);
+		// exec( "swetest -edir{$this->sweph} -p -h -g", $out);
 
-		// ZP_Helper::print_to_terminal( $out );
+		ZP_Helper::print_to_terminal( $out );
 	}
 }
