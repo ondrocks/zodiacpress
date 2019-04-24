@@ -34,8 +34,7 @@ function zp_birthreport_shortcode( $atts ) {
 		<?php }
 		zp_form( 'birthreport', $report_atts ); ?>
 	</div><!-- #zp-form-wrap -->
-
-	<div id="zp-report-wrap">
+	<div id="zp-report-wrap" class="zp-report-<?php echo esc_attr( $report_atts['report'] ); ?>">
 		<?php
 		// allow Start Over link to be manipulated with filter
 		if ( apply_filters( 'zp_show_start_over_link', true, $report_atts['report'] ) ) { ?>
