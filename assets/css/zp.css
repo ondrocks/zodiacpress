@@ -39,10 +39,14 @@
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 1em;
 }
-#zp-birthreport-form .zp-input-text:focus,#zp-ajax-birth-data select:focus{
-	border: 1px solid #009bff;
-	outline: none;
-	transition: 0.2s ease-in;
+#zp-ajax-birth-data select:focus{
+ border:1px solid #009bff;
+ outline:0;
+ transition:.2s ease-in
+}
+#zp-birthreport-form .zp-input-text:focus {
+ border:1px solid #009bff;
+ outline:0;
 }
 #zp-form-wrap h2,
 #zp-form-wrap .zp-form {
@@ -144,8 +148,8 @@ form .zp-button:hover, .zp-button:focus{
 
 #zp-report-wrap,
 #zp-offset-wrap,
-#zp-form-tip{
-	display:none;
+#zp-form-tip {
+	display: none;
 }
 
 #zp-offset-label,
@@ -153,6 +157,7 @@ form .zp-button:hover, .zp-button:focus{
 	background-color:transparent;
 	color:#339933;
 	font-size: 13px;
+	font-weight:bold;
 	border:0;
 	margin: 0;
 	padding: 0;
@@ -168,15 +173,10 @@ form .zp-button:hover, .zp-button:focus{
 	float:left;	
 	width:40%; 
 }
-
 #zp-offset-wrap{
 	margin:0;
 	padding:0;
 }
-#zp-offset-label, #zp_offset_geo {
-	font-weight:bold;
-}
-
 #zp-offset-wrap #zp_offset_geo{
 	padding:0 10px;
     box-shadow: unset;
@@ -231,7 +231,6 @@ form .zp-button:hover, .zp-button:focus{
 .zp-zodiacal-dms {
 	font-weight: 400;padding-left:1em;font-size:.9em;
 }
-
 .zp-subheading {
 	font-weight: bold;
 }
@@ -370,7 +369,6 @@ h3.zp-report-section-title{
 .ui-front {
 	z-index: 100;
 }
-
 
 /* Interaction Cues
 ----------------------------------*/
@@ -629,7 +627,6 @@ h3.zp-report-section-title{
 	opacity: .3;
 	border-radius: 8px;
 }
-
 @media screen and ( max-width: 727px ) {
 	.zp-form #hour,
 	.zp-form #minute,
