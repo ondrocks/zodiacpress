@@ -99,7 +99,6 @@ function zp_get_sample_chart_drawing( $colors = false ) {
 	) );
 	return zp_get_chart_drawing( $chart, $colors );
 }
-
 /**
  * Set the default form title for the "Only" Chart Drawing Report form.
  */
@@ -110,7 +109,16 @@ function zp_only_drawing_form_title( $title, $atts ) {
 	return $title;
 }
 add_filter( 'zp_shortcode_default_form_title', 'zp_only_drawing_form_title', 10, 2 );
-
+/**
+ * Allow unknown birth time for 'Only Chart Wheel' (if set in settings).
+ */
+function zp_drawing_allow_unknown_time( $prefix, $args ) {
+	if ( 'drawing' === $args['report'] ) {
+		return 'drawing';
+	}
+	return $prefix;
+}
+add_filter( 'zp_allow_known_bt_key_prefix', 'zp_drawing_allow_unknown_time', 10, 2 );
 /**
  * Display help text at the top of the Only Chart Drawing Report tab
  *
