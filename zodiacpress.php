@@ -149,7 +149,7 @@ final class ZodiacPress {
 	/**
 	 * Fired when the plugin is activated.
 	 *
-	 * @param    boolean    $network_wide    True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
+	 * @param bool $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
 	 */
 	public static function activate( $network_wide = false ) {
 		global $wpdb;
