@@ -565,10 +565,9 @@ class ZP_Birth_Report {
 		$report_var = $this->form['zp-report-variation'];
 
 		$out = '';
-		$out .= apply_filters( 'zp_report_header', $this->header(), $report_var, $this->chart );
 
 		if ( 'birthreport' == $report_var ) {
-			
+			$out .= $this->header();				
 			// Intro
 			if ( ! empty( $this->zp_settings['birthreport_intro'] ) ) {
 				$intro = '<h3 class="zp-report-section-title zp-intro-title">' . apply_filters( 'birthreport_intro_title', __( 'Introduction', 'zodiacpress' ) ) . '</h3>';
@@ -589,7 +588,7 @@ class ZP_Birth_Report {
 
 		} else {
 			// Allow extensions to create custom reports
-			$out .= apply_filters( "zp_{$report_var}_report", '', $this->form, $this->chart );
+			$out .= apply_filters( "zp_{$report_var}_report", '', $this->form, $this->chart, $this->header() );
 		}
 		return $out;
 	}

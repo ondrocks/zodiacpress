@@ -38,14 +38,11 @@ add_action( 'wp_ajax_nopriv_zp_atlas_get_cities', 'zp_atlas_get_cities' );
 function zp_ajax_get_time_offset() {
 	$offset_geo = null;
 	$validated = zp_validate_form( $_POST, true );
-
 	if ( ! is_array( $validated )  ) {
 		// We have an error
 		echo json_encode( array( 'error' => $validated ) );
 		wp_die();
-
 	}
-
 	$dtstamp = strftime("%Y-%m-%d %H:%M:%S", zp_mktime( $validated['hour'], $validated['minute'], $validated['month'], $validated['day'], $validated['year'] ));
 
 	// get time offset
@@ -76,6 +73,7 @@ function zp_ajax_get_birthreport() {
 		// get image seperately because wp_kses_post does not allow data uri
 		// Add the image by default only for the "only chart drawing" report
 		if ( 'drawing' === $validated['zp-report-variation'] ) {
+			$report .= wp_kses_post( $birth_report->header() );
 			$report .= zp_get_chart_drawing( $chart );
 		} else {
 			$image = zp_maybe_get_chart_drawing( $validated, $chart );
