@@ -164,14 +164,16 @@ class ZP_Birth_Report {
 					'<td>' . __( 'Universal Time:', 'zodiacpress' ) . ' ' . $ut . ' </td>' .
 				'</tr>';
 		}
-		$header .= '<tr class="zp-report-header-place">' .
+		if ( ! empty( $this->form['place'] ) ) {
+			$header .= '<tr class="zp-report-header-place">' .
 					'<td>' . stripslashes( $this->form['place'] ) . '</td>' .
-				'</tr><tr class="zp-report-header-coordinates">' .					
+				'</tr>';
+		}
+		$header .= '<tr class="zp-report-header-coordinates">' .					
 					'<td>' . esc_html( $coordinates ) . '</td>' .
 				'</tr><tr class="zp-report-header-zodiac-type">' .
 					'<td>' . $zodiac_type . '</td>' .
 				'</tr>';
-
 		// House system used
 		if ( empty( $this->chart->unknown_time ) ) {
 			$houses = '<tr class="zp-report-header-houses"><td>' .
@@ -181,11 +183,8 @@ class ZP_Birth_Report {
 			// Allow house system to be removed with filter
 			$header .= apply_filters( 'zp_report_header_houses', $houses, $this->form['zp-report-variation'] );
 		}
-
 		$header .= '</table>';
-		
 		return $header;
-
 	}
 
 	/**
