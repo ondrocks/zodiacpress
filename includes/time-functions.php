@@ -5,7 +5,6 @@
  * @package     ZodiacPress
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * A wrapper for mktime().
  * This wrapper is necessary for testing with PHPUNIT, necessary because mktime() can use its own zone and alter our times.
@@ -16,7 +15,6 @@ function zp_mktime($hour, $minute, $month, $day, $year ) {
 	date_default_timezone_set('UTC');
 	return mktime( (int) $hour, (int) $minute, (int) 0, (int) $month, (int) $day, (int) $year );
 }
-
 /** 
  * Get time offset from UTC for a designated datetime & timezone identifier.
  *
@@ -27,32 +25,26 @@ function zp_mktime($hour, $minute, $month, $day, $year ) {
  * @param string $datetime Datetime string 'YYYY-MM-DD HH:MM'
  * @param int $lat The latitude decimal
  * @param int $long The longitude decimal
- * @return mixed Returns offset in hours, or FALSE in case of bad parameters.
+ * @return mixed int|bool Returns offset in hours, or FALSE in case of error.
  */
-function zp_get_timezone_offset( $timezone_id, $datetime, $lat, $long ) {	
+function zp_get_timezone_offset( $timezone_id, $datetime ) {
 	try {
 		$dt = new DateTime( $datetime, new DateTimeZone( $timezone_id ) );
 	} catch (Exception $e) {
-		// The GeoNames timezone id is a bad timezone, so use the PHP timezone identifier
-		$php_timezone_id = zp_get_php_timezone( $lat, $long );
-		$dt = new DateTime( $datetime, new DateTimeZone( $php_timezone_id ) );
+		// PHP bug. See: https://bugs.php.net/bug.php?id=76057
+		return false;
 	}
-
 	$offset_seconds = $dt->getOffset();
 	$out = ( false === $offset_seconds ) ? false : $offset_seconds/3600;
-
 	return $out;
 }
-
 /**
  * Convert the just the hour of a time from 24-hour format into 12-hour format
  * @param $hour mixed Hour in 24-hour format with leading zero, 00 - 23
  * @return string The hour in 12 format (g a), as in "3 pm".
  */
 function zp_get_12_hour( $hour = '00' ) {
-
 	if ( $hour < 12  ) {
-
 		if ( '00' == $hour ) {
 			$out = sprintf( _x ( '%s am, midn', 'time meridiem midnight', 'zodiacpress' ),
 			zp_i18n_numbers( '12' ) );
@@ -61,30 +53,23 @@ function zp_get_12_hour( $hour = '00' ) {
 			$out = sprintf( _x ( '%s am', 'time meridiem', 'zodiacpress' ),
 			zp_i18n_numbers( $h ) );			
 		}
-
 	} elseif( '12' == $hour ) {
 		$out = sprintf( _x ( '%s pm, noon', 'time meridiem noon', 'zodiacpress' ),
 			zp_i18n_numbers( '12' ) );		
 	} else {
-		
 		$h = $hour - 12;
 		(int) $h;
-
 		$out = sprintf( _x ( '%s pm', 'time meridiem', 'zodiacpress' ),
 			zp_i18n_numbers( $h ) );
 	}
-
 	return $out;
 }
-
 /**
  * Detect if the Date Format set in WP settings has month before day.
  * @return bool true if month is before day, otherwise false.
  */
 function zp_is_month_before_day() {
-
 	$out = false;
-
 	// some possible separators in the date format string, besides a 'space'
 	$sep 					= array( ',', '-', '/', '.', ':' );
 	
@@ -110,14 +95,10 @@ function zp_is_month_before_day() {
 			if ( 'c' == $date_format_elements[0] ) {
 				$out = true;
 			}
-			
 		}
-	
 	}
-
 	return apply_filters( 'zp_is_month_before_day', $out );
 }
-
 /**
  * Returns internationalized months.
  * @param int $key The month to return
@@ -142,8 +123,6 @@ function zp_get_i18n_months( $key = '' ) {
 	// if $key is passed, return only that month
 	return ( $key && isset( $months[ $key ] ) ) ? $months[ $key ] : $months;
 }
-
-
 /**
  * Returns internationalized years from 1900+
  * @param int $key The year to return (offset by -1900, so 1 returns 1901, 2 returns 1902)
@@ -155,46 +134,36 @@ function zp_i18n_years( $key = '' ) {
 
 	return ( $key !== '' && isset( $years[ $key ] ) ) ? $years[ $key ] : $years;
 }
-
 /**
  * Returns internationalized numbers from 1 - 31 without leading zeros.
  * @param int $key The number to return
  * @return mixed|array|string If key is passed, a string for that number, otherwise array of numbers
  */
 function zp_i18n_numbers( $key = '' ) {
-
 	$keys	= range( 1, 31 );
 	$labels	= array(
 		__( '1', 'zodiacpress' ), __( '2', 'zodiacpress' ), __( '3', 'zodiacpress' ), __( '4', 'zodiacpress' ), __( '5', 'zodiacpress' ), __( '6', 'zodiacpress' ), __( '7', 'zodiacpress' ), __( '8', 'zodiacpress' ), __( '9', 'zodiacpress' ), __( '10', 'zodiacpress' ), __( '11', 'zodiacpress' ), __( '12', 'zodiacpress' ), __( '13', 'zodiacpress' ), __( '14', 'zodiacpress' ), __( '15', 'zodiacpress' ), __( '16', 'zodiacpress' ), __( '17', 'zodiacpress' ), __( '18', 'zodiacpress' ), __( '19', 'zodiacpress' ), __( '20', 'zodiacpress' ), __( '21', 'zodiacpress' ), __( '22', 'zodiacpress' ), __( '23', 'zodiacpress' ), __( '24', 'zodiacpress' ), __( '25', 'zodiacpress' ), __( '26', 'zodiacpress' ), __( '27', 'zodiacpress' ), __( '28', 'zodiacpress' ), __( '29', 'zodiacpress' ), __( '30', 'zodiacpress' ), __( '31', 'zodiacpress' ) );
 
-
 	$n = array_combine( $keys, $labels );
-
 	// if $key is passed, return only that number
 	return ( $key !== '' && isset( $n[ $key ] ) ) ? $n[ $key ] : $n;
 }
-
 /**
  * Returns internationalized numbers from 00 - 59 with leading zeros up to 09.
  * @param int $key The number to return
  * @return mixed|array|string If key is passed, a string for that number, otherwise array of numbers 
  */
 function zp_i18n_numbers_zeros( $key = '' ) {
-
 	// 0-9 need a leading zero
 	$prepend = array( '00', '01', '02', '03', '04', '05', '06', '07', '08', '09' );
 	$range = array_merge( $prepend, range( 10, 59 ) );
-
 	$labels = array(
 		__( '00', 'zodiacpress' ), __( '01', 'zodiacpress' ), __( '02', 'zodiacpress' ), __( '03', 'zodiacpress' ), __( '04', 'zodiacpress' ), __( '05', 'zodiacpress' ), __( '06', 'zodiacpress' ), __( '07', 'zodiacpress' ), __( '08', 'zodiacpress' ), __( '09', 'zodiacpress' ), __( '10', 'zodiacpress' ), __( '11', 'zodiacpress' ), __( '12', 'zodiacpress' ), __( '13', 'zodiacpress' ), __( '14', 'zodiacpress' ), __( '15', 'zodiacpress' ), __( '16', 'zodiacpress' ), __( '17', 'zodiacpress' ), __( '18', 'zodiacpress' ), __( '19', 'zodiacpress' ), __( '20', 'zodiacpress' ), __( '21', 'zodiacpress' ), __( '22', 'zodiacpress' ), __( '23', 'zodiacpress' ), __( '24', 'zodiacpress' ), __( '25', 'zodiacpress' ), __( '26', 'zodiacpress' ), __( '27', 'zodiacpress' ), __( '28', 'zodiacpress' ), __( '29', 'zodiacpress' ), __( '30', 'zodiacpress' ), __( '31', 'zodiacpress' ), __( '32', 'zodiacpress' ), __( '33', 'zodiacpress' ), __( '34', 'zodiacpress' ), __( '35', 'zodiacpress' ), __( '36', 'zodiacpress' ), __( '37', 'zodiacpress' ), __( '38', 'zodiacpress' ), __( '39', 'zodiacpress' ), __( '40', 'zodiacpress' ), __( '41', 'zodiacpress' ), __( '42', 'zodiacpress' ), __( '43', 'zodiacpress' ), __( '44', 'zodiacpress' ), __( '45', 'zodiacpress' ), __( '46', 'zodiacpress' ), __( '47', 'zodiacpress' ), __( '48', 'zodiacpress' ), __( '49', 'zodiacpress' ), __( '50', 'zodiacpress' ), __( '51', 'zodiacpress' ), __( '52', 'zodiacpress' ), __( '53', 'zodiacpress' ), __( '54', 'zodiacpress' ), __( '55', 'zodiacpress' ), __( '56', 'zodiacpress' ), __( '57', 'zodiacpress' ), __( '58', 'zodiacpress' ), __( '59', 'zodiacpress' ) );
 	
 	$n = array_combine( $range, $labels );
-
 	// if $key is passed, return only that number
 	return ( $key !== '' && isset( $n[ $key ] ) ) ? $n[ $key ] : $n;	
 }
-
-
 /**
  * Returns internationalized numbers from 0 to 180 without leading zeros.
  *
@@ -203,11 +172,9 @@ function zp_i18n_numbers_zeros( $key = '' ) {
  * @return mixed|array|string If key is passed, a string for that number, otherwise array of numbers 
  */
 function zp_i18n_coordinates( $key = '' ) {
-
 	$append = array(
 			__( '32', 'zodiacpress' ), __( '33', 'zodiacpress' ), __( '34', 'zodiacpress' ), __( '35', 'zodiacpress' ), __( '36', 'zodiacpress' ), __( '37', 'zodiacpress' ), __( '38', 'zodiacpress' ), __( '39', 'zodiacpress' ), __( '40', 'zodiacpress' ), __( '41', 'zodiacpress' ), __( '42', 'zodiacpress' ), __( '43', 'zodiacpress' ), __( '44', 'zodiacpress' ), __( '45', 'zodiacpress' ), __( '46', 'zodiacpress' ), __( '47', 'zodiacpress' ), __( '48', 'zodiacpress' ), __( '49', 'zodiacpress' ), __( '50', 'zodiacpress' ), __( '51', 'zodiacpress' ), __( '52', 'zodiacpress' ), __( '53', 'zodiacpress' ), __( '54', 'zodiacpress' ), __( '55', 'zodiacpress' ), __( '56', 'zodiacpress' ), __( '57', 'zodiacpress' ), __( '58', 'zodiacpress' ), __( '59', 'zodiacpress' ), __( '60', 'zodiacpress' ), __( '61', 'zodiacpress' ), __( '62', 'zodiacpress' ), __( '63', 'zodiacpress' ), __( '64', 'zodiacpress' ), __( '65', 'zodiacpress' ), __( '66', 'zodiacpress' ), __( '67', 'zodiacpress' ), __( '68', 'zodiacpress' ), __( '69', 'zodiacpress' ), __( '70', 'zodiacpress' ), __( '71', 'zodiacpress' ), __( '72', 'zodiacpress' ), __( '73', 'zodiacpress' ), __( '74', 'zodiacpress' ), __( '75', 'zodiacpress' ), __( '76', 'zodiacpress' ), __( '77', 'zodiacpress' ), __( '78', 'zodiacpress' ), __( '79', 'zodiacpress' ), __( '80', 'zodiacpress' ), __( '81', 'zodiacpress' ), __( '82', 'zodiacpress' ), __( '83', 'zodiacpress' ), __( '84', 'zodiacpress' ), __( '85', 'zodiacpress' ), __( '86', 'zodiacpress' ), __( '87', 'zodiacpress' ), __( '88', 'zodiacpress' ), __( '89', 'zodiacpress' ), __( '90', 'zodiacpress' ), __( '91', 'zodiacpress' ), __( '92', 'zodiacpress' ), __( '93', 'zodiacpress' ), __( '94', 'zodiacpress' ), __( '95', 'zodiacpress' ), __( '96', 'zodiacpress' ), __( '97', 'zodiacpress' ), __( '98', 'zodiacpress' ), __( '99', 'zodiacpress' ), __( '100', 'zodiacpress' ), __( '101', 'zodiacpress' ), __( '102', 'zodiacpress' ), __( '103', 'zodiacpress' ), __( '104', 'zodiacpress' ), __( '105', 'zodiacpress' ), __( '106', 'zodiacpress' ), __( '107', 'zodiacpress' ), __( '108', 'zodiacpress' ), __( '109', 'zodiacpress' ), __( '110', 'zodiacpress' ), __( '111', 'zodiacpress' ), __( '112', 'zodiacpress' ), __( '113', 'zodiacpress' ), __( '114', 'zodiacpress' ), __( '115', 'zodiacpress' ), __( '116', 'zodiacpress' ), __( '117', 'zodiacpress' ), __( '118', 'zodiacpress' ), __( '119', 'zodiacpress' ), __( '120', 'zodiacpress' ), __( '121', 'zodiacpress' ), __( '122', 'zodiacpress' ), __( '123', 'zodiacpress' ), __( '124', 'zodiacpress' ), __( '125', 'zodiacpress' ), __( '126', 'zodiacpress' ), __( '127', 'zodiacpress' ), __( '128', 'zodiacpress' ), __( '129', 'zodiacpress' ), __( '130', 'zodiacpress' ), __( '131', 'zodiacpress' ), __( '132', 'zodiacpress' ), __( '133', 'zodiacpress' ), __( '134', 'zodiacpress' ), __( '135', 'zodiacpress' ), __( '136', 'zodiacpress' ), __( '137', 'zodiacpress' ), __( '138', 'zodiacpress' ), __( '139', 'zodiacpress' ), __( '140', 'zodiacpress' ), __( '141', 'zodiacpress' ), __( '142', 'zodiacpress' ), __( '143', 'zodiacpress' ), __( '144', 'zodiacpress' ), __( '145', 'zodiacpress' ), __( '146', 'zodiacpress' ), __( '147', 'zodiacpress' ), __( '148', 'zodiacpress' ), __( '149', 'zodiacpress' ), __( '150', 'zodiacpress' ), __( '151', 'zodiacpress' ), __( '152', 'zodiacpress' ), __( '153', 'zodiacpress' ), __( '154', 'zodiacpress' ), __( '155', 'zodiacpress' ), __( '156', 'zodiacpress' ), __( '157', 'zodiacpress' ), __( '158', 'zodiacpress' ), __( '159', 'zodiacpress' ), __( '160', 'zodiacpress' ), __( '161', 'zodiacpress' ), __( '162', 'zodiacpress' ), __( '163', 'zodiacpress' ), __( '164', 'zodiacpress' ), __( '165', 'zodiacpress' ), __( '166', 'zodiacpress' ), __( '167', 'zodiacpress' ), __( '168', 'zodiacpress' ), __( '169', 'zodiacpress' ), __( '170', 'zodiacpress' ), __( '171', 'zodiacpress' ), __( '172', 'zodiacpress' ), __( '173', 'zodiacpress' ), __( '174', 'zodiacpress' ), __( '175', 'zodiacpress' ), __( '176', 'zodiacpress' ), __( '177', 'zodiacpress' ), __( '178', 'zodiacpress' ), __( '179', 'zodiacpress' ), __( '180', 'zodiacpress' )
 		);
-
 
 	// Prepend 0 to the 1-31 numbers array
 	$n = array_merge( array( __( '0', 'zodiacpress' ) ), zp_i18n_numbers() );
@@ -217,7 +184,6 @@ function zp_i18n_coordinates( $key = '' ) {
 
 	// if $key is passed, return only that number
 	return ( $key !== '' && isset( $n[ $key ] ) ) ? $n[ $key ] : $n;
-
 }
 
 /**
@@ -280,7 +246,6 @@ function zp_extract_degrees_parts( $decimal ) {
  * @return string $out In English, the same string but with leading zeros for minutes and seconds if less than 10. In other languages, the numbers will be transliterated.
  */
 function zp_transliterated_degrees_minutes_seconds( $dms ) {
-
 	$parts		= explode( chr( 176), $dms );
 	$deg 		= (int) trim( $parts[0] );
 	$min_sec	= explode( "'", $parts[1] );
@@ -306,30 +271,5 @@ function zp_transliterated_degrees_minutes_seconds( $dms ) {
 				zp_i18n_numbers_zeros( $sec ),
 				chr(34)
 		);
-
 	return $out;
-
-}
-
-/**
- * Attempts to find the closest timezone by coordinates using only PHP
- * @param $lat, latitude decimal
- * @param $long, longitude decimal
- * returns zone name according to PHP timezone identifiers
- */
-function zp_get_php_timezone( $lat, $long ) {
-    $diffs = array();
-    foreach ( DateTimeZone::listIdentifiers() as $timezone_id ) {
-	      $timezone = new DateTimeZone( $timezone_id );
-	      $location = $timezone->getLocation();
-	      $tLat = $location['latitude'];
-	      $tLng = $location['longitude'];
-	      $diffLat = abs( $lat - $tLat );
-	      $diffLng = abs( $long - $tLng );
-	      $diff = $diffLat + $diffLng;
-	      $diffs[ $timezone_id ] = $diff;
-    }
-			
-    $timezone = array_keys( $diffs, min( $diffs ) );// json array = "tid" => $timezone[0]
-	return $timezone[0];
 }
