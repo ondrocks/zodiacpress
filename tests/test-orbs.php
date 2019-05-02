@@ -346,7 +346,7 @@ class Test_Orbs extends WP_UnitTestCase {
 		$chart	= $this->charts[1];
 
 		// Get actual value of ZP_Birth_Report::enabled_aspects
-		$zp_object = new ZP_Birth_Report( $chart, array( 'unknown_time' => '' ) );		
+		$zp_object = new ZP_Birth_Report($chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));
 		$property = ZP_Helper::get_private_property( 'ZP_Birth_Report', 'enabled_aspects' );
  		$actual = $property->getValue( $zp_object );
 

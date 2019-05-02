@@ -65,7 +65,7 @@ class Test_Report extends WP_UnitTestCase {
 		update_option( 'zodiacpress_settings', $options );
 
 		// Get actual value of ZP_Birth_Report::get_cleared_planets()
-		$object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );
+		$object = new ZP_Birth_Report($this->chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));
 		$method = ZP_Helper::get_private_method( 'ZP_Birth_Report', 'get_cleared_planets' );
  		$actual = $method->invokeArgs( $object, array( $key ) );
 
@@ -114,7 +114,7 @@ class Test_Report extends WP_UnitTestCase {
 		update_option( 'zodiacpress_settings', $options );
 
 		// Get actual value of ZP_Birth_Report::get_cleared_planets()
-		$object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );
+		$object = new ZP_Birth_Report($this->chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));
 		$method = ZP_Helper::get_private_method( 'ZP_Birth_Report', 'get_cleared_planets' );
  		$actual = $method->invokeArgs( $object, array( $key ) );
 
@@ -168,7 +168,7 @@ class Test_Report extends WP_UnitTestCase {
 		update_option( 'zodiacpress_settings', $options );
 
 		// Get actual value of ZP_Birth_Report::get_cleared_planets()
-		$object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );
+		$object = new ZP_Birth_Report($this->chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));
 		$method = ZP_Helper::get_private_method( 'ZP_Birth_Report', 'get_cleared_planets' );
  		$actual = $method->invokeArgs( $object, array( $key ) );
 
@@ -187,7 +187,7 @@ class Test_Report extends WP_UnitTestCase {
 		$expected = array( 'sun', 'asc', 'moon', 'saturn', 'pof' );
 
 		// Get calculated planets_in_signs
-		$zp_object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );		
+		$zp_object = new ZP_Birth_Report($this->chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));		
 		$property = ZP_Helper::get_private_property( 'ZP_Birth_Report', 'enabled_planets_in_signs' );
  		$calculated_planets_in_signs = $property->getValue( $zp_object );
 
@@ -263,7 +263,7 @@ class Test_Report extends WP_UnitTestCase {
 		foreach ( $this->charts as $person => $chart ) {
 
 			// Get calculated planets_in_signs
-			$zp_object = new ZP_Birth_Report( $chart, array( 'unknown_time' => '' ) );
+			$zp_object = new ZP_Birth_Report( $chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));
 			$property = ZP_Helper::get_private_property( 'ZP_Birth_Report', 'enabled_planets_in_signs' );
 			$calculated_planets_in_signs = $property->getValue( $zp_object );
 
@@ -386,7 +386,7 @@ class Test_Report extends WP_UnitTestCase {
 			);
 
 		// Get actual value of ZP_Birth_Report::enabled_aspects
-		$zp_object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );		
+		$zp_object = new ZP_Birth_Report($this->chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));		
 		$property = ZP_Helper::get_private_property( 'ZP_Birth_Report', 'enabled_aspects' );
  		$actual = $property->getValue( $zp_object );
 
@@ -458,7 +458,7 @@ class Test_Report extends WP_UnitTestCase {
 		$expected = array( 'sun', 'moon', 'saturn', 'pof' );
 
 		// Get calculated planets_in_houses
-		$zp_object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );		
+		$zp_object = new ZP_Birth_Report($this->chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));		
 		$property = ZP_Helper::get_private_property( 'ZP_Birth_Report', 'enabled_planets_in_houses' );
 		$calculated_planets_in_houses = $property->getValue( $zp_object );
 
@@ -478,14 +478,13 @@ class Test_Report extends WP_UnitTestCase {
 	 * Test the ::planet_in_next_house() method
 	 */
 	public function test_planet_in_next_house() {
-
 		$planet	= array(
 				'id'	=> 'moon',
 				'label'	=> 'Moon'
 				);
 										
 		// Get private method ZP_Birth_Report::planet_in_next_house()
-		$object = new ZP_Birth_Report( $this->chart, array( 'unknown_time' => '' ) );
+		$object = new ZP_Birth_Report($this->chart, array('unknown_time' => '', 'zp-report-variation' => 'birthreport'));
 		$method = ZP_Helper::get_private_method( 'ZP_Birth_Report', 'planet_in_next_house' );
 
 		// For expected house 1
