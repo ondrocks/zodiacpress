@@ -23,15 +23,15 @@ class Test_Time extends WP_UnitTestCase {
 	 */
 	public function test_get_timezone_offset() {
 		$datetimes = array(
-			array( 'America/Los_Angeles',	'1955-02-24 19:15:00', 37.7749, -122.431297, '-8' ),
-			array( 'America/Chicago',		'1958-08-29 19:33', 41.881832, -87.623177, '-5' ),
-			array( 'America/Managua',		'1979-03-19 11:00', 12.136389, -86.251389, '-5' ),
-			array( 'Asia/Tokyo',			'1972-09-12 07:55', '35.652832', '‎139.839478', '9' ),
-			array( 'Europe/London',			'1980-11-03 12:00', 51.5, -0.116667, '0' ),
-			array( 'Europe/London',			'1980-06-03 12:00', 51.5, -0.116667, '1' )
+			array('America/Los_Angeles',	'1955-02-24 19:15:00', '-8'),
+			array('America/Chicago',		'1958-08-29 19:33', '-5'),
+			array('America/Managua',		'1979-03-19 11:00', '-5'),
+			array('Asia/Tokyo',				'1972-09-12 07:55', '9'),
+			array('Europe/London',			'1980-11-03 12:00', '0'),
+			array('Europe/London',			'1980-06-03 12:00', '1')
 		);
 		foreach ( $datetimes as $dt ) {
-			$this->assertEquals( $dt[4], zp_get_timezone_offset( $dt[0], $dt[1], $dt[2], $dt[3] ), 'Wrong timezone offset for ' . $dt[0] . ', ' . $dt[1] );
+			$this->assertEquals( $dt[2], zp_get_timezone_offset($dt[0], $dt[1]), 'Wrong timezone offset for ' . $dt[0] . ', ' . $dt[1] );
 		}
 	}
 

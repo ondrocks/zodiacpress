@@ -49,7 +49,7 @@ function zp_ajax_get_time_offset() {
 	$dtstamp = strftime("%Y-%m-%d %H:%M:%S", zp_mktime( $validated['hour'], $validated['minute'], $validated['month'], $validated['day'], $validated['year'] ));
 
 	// get time offset
-	$offset_geo = $validated['geo_timezone_id'] ? zp_get_timezone_offset( $validated['geo_timezone_id'], $dtstamp, $validated['zp_lat_decimal'], $validated['zp_long_decimal'] ) : null;
+	$offset_geo = $validated['geo_timezone_id'] ? zp_get_timezone_offset( $validated['geo_timezone_id'], $dtstamp ) : null;
 
 	echo json_encode( array( 'offset_geo' => $offset_geo ) );
 	wp_die();

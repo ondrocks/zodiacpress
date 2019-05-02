@@ -23,8 +23,6 @@ function zp_mktime($hour, $minute, $month, $day, $year ) {
  *
  * @param string $timezone_id Timezone name (or GeoNames timezone ID)
  * @param string $datetime Datetime string 'YYYY-MM-DD HH:MM'
- * @param int $lat The latitude decimal
- * @param int $long The longitude decimal
  * @return mixed int|bool Returns offset in hours, or FALSE in case of error.
  */
 function zp_get_timezone_offset( $timezone_id, $datetime ) {
