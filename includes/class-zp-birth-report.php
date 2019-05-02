@@ -60,12 +60,14 @@ class ZP_Birth_Report {
 	 * @param array $_form Form data submitted by user requesting report	 
 	 */
 	public function __construct( $_chart, $_form ) {
-		$this->zp_settings = get_option( 'zodiacpress_settings', array() );
-		$this->chart	= $_chart;
-		$this->form		= $_form;
-		$this->setup_in_signs();
-		$this->setup_in_houses();
-		$this->setup_aspects_list();
+		$this->chart = $_chart;
+		$this->form	 = $_form;
+		if ( 'birthreport' == $_form['zp-report-variation'] ) {
+			$this->zp_settings = get_option( 'zodiacpress_settings', array() );
+			$this->setup_in_signs();
+			$this->setup_in_houses();
+			$this->setup_aspects_list();
+		}
 	}
 
 	/**
