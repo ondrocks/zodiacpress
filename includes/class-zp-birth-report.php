@@ -62,7 +62,7 @@ class ZP_Birth_Report {
 	public function __construct( $_chart, $_form ) {
 		$this->chart = $_chart;
 		$this->form	 = $_form;
-		if ( 'birthreport' == $_form['zp-report-variation'] ) {
+		if ( 0 === strpos( $_form['zp-report-variation'], 'birthreport' ) ) {
 			$this->zp_settings = get_option( 'zodiacpress_settings', array() );
 			$this->setup_in_signs();
 			$this->setup_in_houses();
