@@ -3,7 +3,6 @@
  * Process the AJAX actions.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Handles ajax request to get cities from atlas database for autocomplete birth place field.
  */
@@ -31,7 +30,6 @@ function zp_atlas_get_cities() {
 }
 add_action( 'wp_ajax_zp_atlas_get_cities', 'zp_atlas_get_cities' );
 add_action( 'wp_ajax_nopriv_zp_atlas_get_cities', 'zp_atlas_get_cities' );
-
 /**
  * Handles ajax request to calculate timezone offset and send back to form fields
  */
@@ -53,14 +51,13 @@ function zp_ajax_get_time_offset() {
 }
 add_action( 'wp_ajax_zp_tz_offset', 'zp_ajax_get_time_offset' );
 add_action( 'wp_ajax_nopriv_zp_tz_offset', 'zp_ajax_get_time_offset' );
-
 /**
  * Handles ajax request to get the Birth Report upon form submission.
  */
 function zp_ajax_get_birthreport() {
 	$validated = zp_validate_form( $_POST );
 	$image = '';
-	if ( ! is_array( $validated )  ) {
+	if ( ! is_array( $validated ) ) {
 		echo json_encode( array( 'error' => $validated ) );
 		wp_die();
 	}
@@ -89,17 +86,14 @@ function zp_ajax_get_birthreport() {
 }
 add_action( 'wp_ajax_zp_birthreport', 'zp_ajax_get_birthreport' );
 add_action( 'wp_ajax_nopriv_zp_birthreport', 'zp_ajax_get_birthreport' );
-
 /**
  * Handles ajax request to get an updated chartwheel image for the live color preview for customizer.
  */
 function zp_ajax_get_customizer_image() {
 	$colors = array();
-
 	foreach( $_POST['post_data'] as $k => $color ) {
 		$colors[ $k ] = sanitize_hex_color( $color );
 	}
-
 	$image = zp_get_sample_chart_drawing( $colors );
 	echo json_encode( array( 'image' => $image ) );
 	wp_die();
