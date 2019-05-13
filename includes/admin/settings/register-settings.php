@@ -201,7 +201,7 @@ function zp_get_registered_settings() {
 					'atlas'	=> array(
 						'id'	=> 'atlas',
 						'name'	=> __( 'Choose Atlas', 'zodiacpress' ),
-						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="noopener">Help with this decision</a>)', 'zodiacpress' ), 'https://cosmicplugins.com/docs/choosing-an-atlas/' ),
+						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="noopener">Help with this decision</a>)', 'zodiacpress' ), 'https://isabelcastillo.com/docs/choose-atlas' ),
 						'type'	=> 'radio',
 						'options' => array(
 							'geonames' => __( 'Use GeoNames', 'zodiacpress' ),

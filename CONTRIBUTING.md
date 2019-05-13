@@ -6,7 +6,7 @@ There are various ways you can contribute:
 
 1. Report a bug by creating an [Issue](https://github.com/isabelc/zodiacpress/issues) on GitHub.
 2. Send us a Pull Request with your bug fixes and/or new features.
-3. Translate ZodiacPress into [different languages](https://cosmicplugins.com/docs/zodiacpress-language/).
+3. Translate ZodiacPress into [different languages](https://isabelcastillo.com/docs/zodiacpress-language).
 4. Provide feedback and suggestions on [enhancements](https://github.com/isabelc/zodiacpress/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
 
 
@@ -17,7 +17,7 @@ __Please Note:__ GitHub is for bug reports and contributions only - if you have 
 
 ## Reporting Bugs
 
-* __Do not report potential security vulnerabilities here. Report them privately on our [contact page](https://cosmicplugins.com/contact/)__
+* __Do not report potential security vulnerabilities here. Report them privately on our [contact page](https://isabelcastillo.com/email-isabel/)__
 * Before submitting an issue, please be sure to replicate the behavior with no other plugins active and on a base theme like Twenty Seventeen.
 * Submit a new issue, assuming one does not already exist for your issue.
   * Create a new Issue on our [Issue Tracker](https://github.com/isabelc/zodiacpress/issues)

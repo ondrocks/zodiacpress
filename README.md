@@ -7,7 +7,7 @@ Get more information or download the latest copy at its WordPress [plugin page](
 
 ## Installation ##
 
-For detailed setup instructions, visit the official [Documentation](https://cosmicplugins.com/docs/category/zodiacpress/) page.
+For detailed setup instructions, visit the official [Documentation](https://isabelcastillo.com/docs/category/zodiacpress) page.
 
 ## Support ##
 This is a developer's portal for ZodiacPress and should _not_ be used for support. Please visit the [support page](https://wordpress.org/support/plugin/zodiacpress) if you need to submit a request for support or customization.
@@ -19,6 +19,6 @@ There are various ways you can contribute:
 
 1. Report a bug by creating an [Issue](https://github.com/isabelc/zodiacpress/issues) on GitHub.
 2. Send us a Pull Request with your bug fixes and/or new features.
-3. Translate ZodiacPress into [different languages](https://cosmicplugins.com/docs/zodiacpress-language/).
+3. Translate ZodiacPress into [different languages](https://isabelcastillo.com/docs/zodiacpress-language).
 4. Provide feedback and suggestions on [enhancements](https://github.com/isabelc/zodiacpress/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
 

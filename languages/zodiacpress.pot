@@ -2666,7 +2666,7 @@ msgid "%1$s %2$s%3$s%4$s%5$s"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://cosmicplugins.com/downloads/zodiacpress/"
+msgid "https://isabelcastillo.com/free-plugins/zodiacpress"
 msgstr ""
 
 #. Description of the plugin/theme

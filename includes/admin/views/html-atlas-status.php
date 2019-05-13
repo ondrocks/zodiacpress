@@ -48,7 +48,7 @@ if ( ! ZP_Atlas_DB::is_installed() && ! ZP_Atlas_DB::is_separate_db() && ! $inst
 	?>
 	<div id="zp-atlas-installer">
 		<p><?php echo __( 'To create your atlas inside your WordPress database, run the Atlas Installer.', 'zodiacpress' ); ?>
-			<strong><?php printf( __( 'Skip this to use a <a href="%s" target="_blank" rel="noopener">separate database</a>.', 'zodiacpress' ), 'https://cosmicplugins.com/docs/atlas-separate/' ); ?></strong></p>
+			<strong><?php printf( __( 'Skip this to use a <a href="%s" target="_blank" rel="noopener">separate database</a>.', 'zodiacpress' ), 'https://isabelcastillo.com/docs/atlas-separate-database' ); ?></strong></p>
 		<p><button id="zp-atlas-install" class="button-primary"><?php _e( 'Run the Atlas Installer', 'zodiacpress' ); ?></button></p>
 	</div>
 <?php } ?>

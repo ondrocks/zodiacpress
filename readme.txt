@@ -63,7 +63,7 @@ Much effort has been made to internationalize even the digits (numbers, years, a
 
 = Languages =
 
-If you want to translate this plugin to your language, please see [ZodiacPress in Your Language](https://cosmicplugins.com/docs/zodiacpress-language/).
+If you want to translate this plugin to your language, please see [ZodiacPress in Your Language](https://isabelcastillo.com/docs/zodiacpress-language).
 
 = Contributing =
 
@@ -73,10 +73,10 @@ There are various ways you can contribute:
 
 1. Raise an [Issue](https://github.com/isabelc/zodiacpress/issues) on GitHub.
 2. Send us a Pull Request with your bug fixes and/or new features.
-3. Translate ZodiacPress into [different languages](https://cosmicplugins.com/docs/zodiacpress-language/).
+3. Translate ZodiacPress into [different languages](https://isabelcastillo.com/docs/zodiacpress-language).
 4. Provide feedback and suggestions on [enhancements](https://github.com/isabelc/zodiacpress/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
 
-See the full [ZodiacPress documentation](https://cosmicplugins.com/docs/category/zodiacpress/ "ZodiacPress documentation").
+See the full [ZodiacPress documentation](https://isabelcastillo.com/docs/category/zodiacpress "ZodiacPress documentation").
 
 == Installation ==
 
@@ -89,13 +89,13 @@ See the full [ZodiacPress documentation](https://cosmicplugins.com/docs/category
 
 **Quick Setup**
 
-The [Quick Start Guide](https://cosmicplugins.com/docs/quick-start-guide/) is the fastest to way to get the ZodiacPress birth report working on your site. This allows you to generate a basic report which lists the planets in the signs, planets in the houses, and aspects.
+The [Quick Start Guide](https://isabelcastillo.com/docs/quick-start-guide) is the fastest to way to get the ZodiacPress birth report working on your site. This allows you to generate a basic report which lists the planets in the signs, planets in the houses, and aspects.
 
-Interpretations will not be included in the report until you enter your own natal interpretations. To enter your interpretations, go to “ZodiacPress” in your dashboard menu. See the [Full Setup Guide](https://cosmicplugins.com/docs/full-setup-guide/ "ZodiacPress Documentation") for important options.
+Interpretations will not be included in the report until you enter your own natal interpretations. To enter your interpretations, go to “ZodiacPress” in your dashboard menu. See the [Full Setup Guide](https://isabelcastillo.com/docs/full-setup-guide "ZodiacPress Documentation") for important options.
 
 **If your website uses Windows hosting**
 
-If your website is running on a Windows operating system (i.e. using Windows hosting), then you'll need to use the [ZodiacPress Windows Server](https://cosmicplugins.com/downloads/zodiacpress-windows-server/) plugin to make the Ephemeris work on your server. This is because the ephemeris included in ZodiacPress will not run on Windows, by default. Just install and activate the “ZodiacPress Windows Server” plugin, and it will automatically solve this problem.
+If your website is running on a Windows operating system (i.e. using Windows hosting), then you'll need to use the [ZodiacPress Windows Server](https://isabelcastillo.com/free-plugins/zodiacpress-windows-server) plugin to make the Ephemeris work on your server. This is because the ephemeris included in ZodiacPress will not run on Windows, by default. Just install and activate the “ZodiacPress Windows Server” plugin, and it will automatically solve this problem.
 
 == Frequently Asked Questions ==
 
@@ -107,7 +107,7 @@ This plugin is provided as is. It is created, supported, and enhanced entirely t
 
 = Why is the birth report not working? =
 
-Please do the <a href="https://cosmicplugins.com/docs/pre-support-self-check/">Pre-Support Self-Check</a> to solve common issues. You can also browse these [troubleshooting articles](https://cosmicplugins.com/docs/category/zodiacpress/troubleshooting/ "Troubleshooting ZodiacPress").
+Please do the <a href="https://isabelcastillo.com/docs/pre-support-self-check">Pre-Support Self-Check</a> to solve common issues. You can also browse these [troubleshooting articles](https://isabelcastillo.com/docs/category/zodiacpress/troubleshooting-zodiacpress "Troubleshooting ZodiacPress").
 
 = Do I have to create a GeoNames account? =
 
@@ -115,7 +115,7 @@ You only have to create a GeoNames account if you choose GeoNames in the **Choos
 
 = How can I set the house system to be used for the "Planets in Houses" section of the report? =
 
-The Placidus House System is used by default. To change the house system, you can either use the [ZP House Systems](https://cosmicplugins.com/downloads/zodiacpress-house-systems/ "ZP House Systems") extension, or [set the house system](https://cosmicplugins.com/docs/choose-a-house-system/) directly in the shortcode.
+The Placidus House System is used by default. To change the house system, you can either use the [ZP House Systems](https://isabelcastillo.com/free-plugins/zodiacpress-house-systems "ZP House Systems") extension, or [set the house system](https://isabelcastillo.com/docs/choose-house-system) directly in the shortcode.
 
 = How can I give back? =
 
@@ -224,7 +224,7 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Tweak - Improved form button styles for themes that do not already add cursor:pointer style to submission buttons. Also, the submit button will appear grayed out while it's not ready to be submitted.
 
 = 1.5 =
-* New - You can add a chart wheel to the birth report, either above or below the report. See https://cosmicplugins.com/docs/add-chart-wheel-birth-report/. The chart wheel colors can be changed in the WordPress Customizer, with the ability to preview the color changes on a sample chart wheel image right in the customizer.
+* New - You can add a chart wheel to the birth report, either above or below the report. See https://isabelcastillo.com/docs/chart-wheel. The chart wheel colors can be changed in the WordPress Customizer, with the ability to preview the color changes on a sample chart wheel image right in the customizer.
 * New - Added CSS styles for the form input:focus to highlight the input field that is being entered. This makes for a better user experience while filling out the form.
 * New - Notify the user if JavaScript is disabled in their browser since the form will not work if Javascript is disabled.
 * New - Updated the birth report form to accept a date with the year 2018.
