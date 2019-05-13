@@ -32,7 +32,9 @@ function zp_birthreport_shortcode( $atts ) {
 		<?php if ( $report_atts[ 'form_title' ] ) { ?>
 			<h2><?php echo esc_html( $report_atts['form_title'] ); ?></h2>
 		<?php }
-		zp_form( 'birthreport', $report_atts ); ?>
+		zp_form( 'birthreport', $report_atts );
+		do_action( 'zp_form_after', $report_atts );
+		?>
 	</div><!-- #zp-form-wrap -->
 	<div id="zp-report-wrap" class="zp-report-<?php echo esc_attr( $report_atts['report'] ); ?>">
 		<?php
