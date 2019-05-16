@@ -30,11 +30,7 @@ function zp_register_scripts() {
 	// core script
 	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION );
 	wp_localize_script( 'zp', 'zp_ajax_object', zp_script_localization_data() );
-	// back compatibility @todo to be removed in future version
-	wp_register_script( 'zp-back-compat', ZODIACPRESS_URL . 'assets/js/back-compat' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION );
-	wp_localize_script( 'zp-back-compat', 'zp_ajax_object', zp_script_localization_data() );
 }
-	
 add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
 
 /**
