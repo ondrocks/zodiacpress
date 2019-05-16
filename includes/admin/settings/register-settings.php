@@ -364,10 +364,6 @@ function zp_get_settings_tabs() {
 		'drawing'	=> __( 'Only Chart Drawing Report', 'zodiacpress' ),
 		'misc'		=> __( 'Misc', 'zodiacpress' )
 	);
-	if( ! empty( $settings['licenses'] ) ) {
-		$tabs['licenses'] = __( 'Licenses', 'zodiacpress' );
-	}
-
 	return apply_filters( 'zp_settings_tabs', $tabs );
 }
 
@@ -410,7 +406,6 @@ function zp_get_registered_settings_sections() {
 		'drawing'		=> apply_filters( 'zp_settings_sections_drawing', array(
 			'main'		=>  __( '"Only Chart Drawing" Report Settings', 'zodiacpress' )
 		) ),
-		'licenses'	=> apply_filters( 'zp_settings_sections_licenses', array() ),
 		'misc'		=> apply_filters( 'zp_settings_sections_misc', array(
 			'main'		=>  __( 'Misc Settings', 'zodiacpress' )
 		) ),
