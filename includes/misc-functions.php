@@ -186,36 +186,6 @@ function zp_search_array( $value, $column, $array ) {
 }
 
 /**
- * Registers new cron schedule
- *
- * @param array $schedules
- * @return array
- */
-add_filter( 'cron_schedules', 'zp_add_cron_schedule' );
-
-function zp_add_cron_schedule( $schedules = array() ) {
-	// Adds once weekly to the existing schedules.
-	$schedules['weekly'] = array(
-		'interval' => 604800,
-		'display'  => __( 'Once Weekly', 'zodiacpress' )
-	);
-	return $schedules;
-}
-
-/**
- * Schedule weekly event to check ZP extension licenses
- *
- * @return void
- */
-add_action( 'wp', 'zp_weekly_events' );
-
-function zp_weekly_events() {
-	if ( ! wp_next_scheduled( 'zp_weekly_scheduled_events' ) ) {
-		wp_schedule_event( current_time( 'timestamp' ), 'weekly', 'zp_weekly_scheduled_events' );
-	}
-}
-
-/**
  * Returns a ZP message string
  * @since 1.8
  */
