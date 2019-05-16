@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 5.2
 Requires PHP: 5.4
-Stable tag: 1.8.5
+Stable tag: 1.9
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,19 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.9 =
+* New - The form accepts birth years up to 2020.
+* New - The 'Only Chart Wheel' form will now honor its own setting for "Allow unknown birth time." Previously, the "Only Chart Wheel" form was not honoring this setting.
+* New - Removed all license stuff for extension licenses, including removing license fields from the settings.
+* Fix - Get offset after unknown_time is checked on the order form. Previously, if they forgot to check the box for unknown time, and they checked it after the reminder appeared, then the form would freeze up. This is fixed.
+* Tweak - Update admin CSS styles, padding around boxes, to keep up with WP changes.
+* Build - Remove the remove `zp_report_header` filter.
+* Build - New hook on the form: `zp_form_after`.
+* Build - Report header is now passed to the `zp_{$report_var}_report` filter.
+* Build - Remove zp_get_php_timezone() because it is unnecessary.
+* Build - Minified the form validation function, `zp_validate_form()`.
+* Build - Removed back-compat.js legacy script.
 
 = 1.8.5 =
 * New - Use secure GeoNames api endpoint (https) for everyone, regardless of whether their site uses http or https, and regardless of whether they have a Premium GeoNames account or not. This renders the addon plugin "ZodiacPress Enhanced GeoNames" obsolete since this is now built in for everyone.
