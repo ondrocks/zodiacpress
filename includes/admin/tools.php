@@ -15,7 +15,7 @@ function zp_tools_page() {
 	$tabs = zp_get_tools_tabs();
 	$current_tab_name = $tabs[ $active_tab ];
 	?>
-	<div class="wrap">
+	<div id="zp-tools" class="wrap">
 	<?php zp_admin_links(); ?>
 	<nav class="nav-tab-wrapper clear">
 		<?php foreach( zp_get_tools_tabs() as $tab_id => $tab_name ) {

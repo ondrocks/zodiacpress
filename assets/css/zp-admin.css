@@ -7,6 +7,9 @@
 	margin: 0 0 12px;
 	
 }
+.zp-setting-atlas div {
+	margin-bottom:7px;
+}
 #tab_container .zp-setting-atlas input {
 	margin-right:8px;
 }
@@ -78,6 +81,14 @@
 	white-space: pre;
 	overflow: auto;
 	display: block;
+}
+#zp-tools .stuffbox .inside,
+#zp-atlas-status .inside {
+	padding: 0 10px;
+}
+#zp-tools-cleanup,
+#zp-atlas-status table {
+	margin-bottom: 10px;
 }
 .zp-tools-desc {vertical-align: bottom;padding-left:4px;}
 .toplevel_page_zodiacpress h2 {
