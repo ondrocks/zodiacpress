@@ -1,4 +1,7 @@
 <?php
+/**
+ * @todo deprecated This file will be removed in next update
+ */
 // uncomment this line for testing
 // set_site_transient( 'update_plugins', null );
 
@@ -63,7 +66,6 @@ class EDD_SL_Plugin_Updater {
 		remove_action( 'after_plugin_row_' . $this->name, 'wp_plugin_update_row', 10 );
 		add_action( 'after_plugin_row_' . $this->name, array( $this, 'show_update_notification' ), 10, 2 );
 		add_action( 'admin_init', array( $this, 'show_changelog' ) );
-
 	}
 
 	/**
@@ -93,22 +95,16 @@ class EDD_SL_Plugin_Updater {
 		if ( ! empty( $_transient_data->response ) && ! empty( $_transient_data->response[ $this->name ] ) && false === $this->wp_override ) {
 			return $_transient_data;
 		}
-		$version_info = $this->get_cached_version_info();
-
-		if ( false === $version_info ) {
-            $version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
-
-            $this->set_version_info_cache( $version_info );			
-		}
+        $version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
 
 		if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
 
 			if ( version_compare( $this->version, $version_info->new_version, '<' ) ) {
+				// add package to transient data
+				$version_info->package = $this->api_url . '/wp-content/uploads/edd/' . $this->slug . '.' . $version_info->new_version . '.zip';
 
 				$_transient_data->response[ $this->name ] = $version_info;
-
 			}
-
 			$_transient_data->last_checked           = current_time( 'timestamp' );
 			$_transient_data->checked[ $this->name ] = $this->version;
 
