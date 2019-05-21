@@ -9,9 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Validate and sanitize the form data
  * @param array $data The form data
  * @param bool $partial Whether only partial data has been sent (for 1st Ajax request for timezone offset)
+ * @param bool $skip_place Whether to skip validating the place
  * @return mixed|array|string Array of form values if all is valid, otherwise the error string
  */
-function zp_validate_form( $data, $partial = false ) {
+function zp_validate_form( $data, $partial = false, $skip_place = false ) {
 	$out = $data;
 	$out['month'] = ( isset( $data['month'] ) && is_numeric( trim( $data['month'] ) ) ) ? $data['month'] : '';
 	$out['day']	= ( isset( $data['day'] ) && is_numeric( trim( $data['day'] ) ) ) ? trim( $data['day'] ) : '';
@@ -67,7 +68,8 @@ function zp_validate_form( $data, $partial = false ) {
 	}
 
 	// Validate location.
-	if ( empty( $out['geo_timezone_id'] ) || empty( $out['place'] ) || "" == $out['zp_lat_decimal'] || "" == $out['zp_long_decimal'] ) {
+	if ( ( empty( $skip_place ) && ( empty( $out['geo_timezone_id'] ) || empty( $out['place'] ) ) )
+		|| "" == $out['zp_lat_decimal'] || "" == $out['zp_long_decimal'] ) {
 		return __( 'Please select a Birth City', 'zodiacpress' );
 	}
 
