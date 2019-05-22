@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R7BHLMCQ437SS
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth chart, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.2
+Tested up to: 5.2.1
 Requires PHP: 5.4
-Stable tag: 1.9
+Stable tag: 1.9.1
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -133,6 +133,10 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 1.9.1 =
+* Fix - Removed extra slash from URL for add-on updates.
+* Build - Add skip_place to zp_validate_form.
 
 = 1.9 =
 * New - The form accepts birth years up to 2020.
