@@ -101,7 +101,7 @@ class EDD_SL_Plugin_Updater {
 
 			if ( version_compare( $this->version, $version_info->new_version, '<' ) ) {
 				// add package to transient data
-				$version_info->package = $this->api_url . '/wp-content/uploads/edd/' . $this->slug . '.' . $version_info->new_version . '.zip';
+				$version_info->package = $this->api_url . 'wp-content/uploads/edd/' . $this->slug . '.' . $version_info->new_version . '.zip';
 
 				$_transient_data->response[ $this->name ] = $version_info;
 			}
