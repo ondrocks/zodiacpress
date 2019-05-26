@@ -10,9 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @param array $data The form data
  * @param bool $partial Whether only partial data has been sent (for 1st Ajax request for timezone offset)
  * @param bool $skip_place Whether to skip validating the place
+ * @param bool $force_name Whether to force validating of the name
  * @return mixed|array|string Array of form values if all is valid, otherwise the error string
  */
-function zp_validate_form( $data, $partial = false, $skip_place = false ) {
+function zp_validate_form( $data, $partial = false, $skip_place = false, $force_name = false ) {
 	$out = $data;
 	$out['month'] = ( isset( $data['month'] ) && is_numeric( trim( $data['month'] ) ) ) ? $data['month'] : '';
 	$out['day']	= ( isset( $data['day'] ) && is_numeric( trim( $data['day'] ) ) ) ? trim( $data['day'] ) : '';
@@ -79,14 +80,12 @@ function zp_validate_form( $data, $partial = false, $skip_place = false ) {
 	}
 
 	// Validate the remaining fields (on full final submission)
-
 	// Require name only if field is shown for this type of report.
-	if ( apply_filters( 'zp_form_show_name_field', true, $out['zp-report-variation'] ) ) {
+	if ( apply_filters( 'zp_form_show_name_field', true, $out['zp-report-variation'] ) || $force_name ) {
 		if ( empty( $data['name'] ) ) {
 			return __('Please enter a Name', 'zodiacpress');
 		}
 	}
-
 	$out['name'] = ! empty( $data['name'] ) ? sanitize_text_field( $data['name'] ) : '';
 
 	// Validate offset.
