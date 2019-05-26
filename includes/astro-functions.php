@@ -6,9 +6,7 @@
  *
  * @package     ZodiacPress
  */
-
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Returns a list of planets/points.
  *
@@ -204,7 +202,7 @@ function zp_get_zodiac_signs() {
 
 /**
 * Convert zodiac decimal longitude from 360 degrees notation into zodiac sign degrees, minutes, seconds
-* @param int $longitude zodiac decimal longitude in 360 degrees notation
+* @param string|double $longitude zodiac decimal longitude in 360 degrees notation
 * @return string zodiac sign degrees in 30 degrees notation, sign glyph, minutes, seconds
 */
 function zp_get_zodiac_sign_dms( $longitude ) {

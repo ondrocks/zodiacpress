@@ -877,7 +877,7 @@ function zpci_hex2rgb( $hex ) {
  * @param $p_1 string The id of the first point
  * @param $p_2 string The id of the second point
  *
- * @return int allowed orb in degrees
+ * @return int|double allowed orb in degrees
  */
 function zpci_get_allowed_orb( $asp, $p_1, $p_2 ) {
 	global $zpci_orbs;
@@ -893,6 +893,5 @@ function zpci_get_allowed_orb( $asp, $p_1, $p_2 ) {
 	$allowed_orb2	= is_numeric( $allowed_orb2 ) ? abs( $allowed_orb2 ) : 8;
 	
 	return min( $allowed_orb1, $allowed_orb2 );
-
 }
 ?>
