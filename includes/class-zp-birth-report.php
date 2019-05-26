@@ -7,52 +7,44 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * The class used to build and display the birth report.
  */
 class ZP_Birth_Report {
-
 	/**
 	 * The Chart object for this report.
 	 */
 	private $chart;
-
 	/**
 	 * The form that is submitted by user requesting report.
 	 *
 	 * @var array
 	 */
 	private $form;
-
 	/**
 	 * Planets/points in signs for this chart, limited to planets enabled in settings, and adjusted for missing birth time, if applicable.
 	 *
 	 * @var array
 	 */
 	private $enabled_planets_in_signs = array();
-
 	/**
 	 * Planets/points in houses for this chart, limited to planets enabled in settings, and adjusted for missing birth time, if applicable.
 	 *
 	 * @var array
 	 */
 	private $enabled_planets_in_houses = array();
-
 	/**
 	 * Aspects for this chart, limited to planets enabled in settings, and adjusted for missing birth time, if applicable.
 	 *
 	 * @var array
 	 */
 	private $enabled_aspects = array();
-
 	/**
 	 * The ZP settings.
 	 *
 	 * @var array
 	 */
 	private $zp_settings = array();
-
 	/**
 	 * Constructor.
 	 *
@@ -69,7 +61,6 @@ class ZP_Birth_Report {
 			$this->setup_aspects_list();
 		}
 	}
-
 	/**
 	 * Get the birth report header.
 	 * @return string $header Formatted chart data including birth time, zone, place, type of zodiac, and house system.
@@ -80,18 +71,15 @@ class ZP_Birth_Report {
 		$year = is_array( $year ) ? $this->form['year'] : $year;
 
 		// Local date
-
 		$birth_date = zp_i18n_numbers( $this->form['day'] ) . ' ' .
 						zp_get_i18n_months( $this->form['month'] ) . ' ' .
 						$year;
 
 		// Coordinates
-
 		$coordinates = zp_dd_to_dms( $this->form['zp_lat_decimal'], 'latitude' ) . ' ' .
 						zp_dd_to_dms( $this->form['zp_long_decimal'], 'longitude' );
 
 		// Local Time
-
 		if ( $this->chart->unknown_time ) {
 			$birth_time = __( 'unknown birth time', 'zodiacpress' );
 		} else {
@@ -186,7 +174,6 @@ class ZP_Birth_Report {
 		$header .= '</table>';
 		return $header;
 	}
-
 	/**
 	 * Get an Interpretations section of the report
 	 * @param string $section Which section of interpretations to get, whether planets_in_signs, planets_in_houses, or aspects.
@@ -305,7 +292,6 @@ class ZP_Birth_Report {
 		return $out;
 
 	}
-
 	/**
 	 * Filter enabled planets to omit moon and time-sensitive points if birth time is unknown.
 	 *
@@ -350,7 +336,6 @@ class ZP_Birth_Report {
 
 		return $cleared_planets;
 	}
-
 	/**
 	 * Set up the $enabled_planets_in_signs property
 	 *
@@ -379,7 +364,6 @@ class ZP_Birth_Report {
 				if ( $this->chart->unknown_time ) {
 					$ingress = zp_is_planet_ingress_today( $k, $this->chart->planets_longitude[ $k ], $this->form );
 				}
-
 				$planets_in_signs[] = array(
 							'id'			=> $planet['id'] . '_' . $signs[ $sign_num ]['id'],
 							'label'			=> sprintf( __( '%1$s in %2$s', 'zodiacpress' ), $planet['label'], $signs[ $sign_num ]['label'] ),
@@ -390,19 +374,14 @@ class ZP_Birth_Report {
 						);
 			}
 		}
-
 		$this->enabled_planets_in_signs = $planets_in_signs;
-
 	}
-
-
 	/**
 	 * Get the id and label for a planet in the next house, rather than in the its current house.
 	 * @param array $planet
 	 * @param int $house_num Current house number where planet resides
 	 */
 	private function planet_in_next_house( $planet, $house_num ) {
-
 		$next_num	= ( 12 == $house_num ) ? '1' : ( $house_num + 1 );
 		$next_id 	= $planet['id'] . '_' . $next_num;
 		/* translators: 1: Planet 2: Number order */
@@ -420,7 +399,6 @@ class ZP_Birth_Report {
 	 * Set up the planets and points in houses, limited to those enabled in the settings and omittimg moon and time-sensitive points if birth time is unknown.
 	 */
 	private function setup_in_houses() {
-
 		// If birthtime is not known, omit planets in houses
 		if ( $this->chart->unknown_time ) {
 			return;
@@ -457,7 +435,6 @@ class ZP_Birth_Report {
 
 		$this->enabled_planets_in_houses = $planets_in_houses;
 	}
-
 	/**
 	 * Set up the $enabled_aspects property
 	 *
@@ -548,7 +525,6 @@ class ZP_Birth_Report {
 
 		$this->enabled_aspects = $aspects_list;
 	}	
-
 	/**
 	 * Return all parts of the birth report.
 	 */

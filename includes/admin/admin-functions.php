@@ -5,7 +5,6 @@
  * @package     ZodiacPress
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Receive Heartbeat data and respond.
  *
@@ -36,23 +35,17 @@ function zp_atlas_receive_heartbeat( $response, $data ) {
 	} else {
 
 		$response['zpatlas_status_field'] = get_option( 'zp_atlas_db_pending' );
-
 		$admin_notice = get_option( 'zp_atlas_db_notice' );
 
 		// only send admin notice if it has changed
-
 		if ( $admin_notice && get_option( 'zp_atlas_db_previous_notice' ) !== $admin_notice ) {
-
 			$response['zpatlas_status_notice'] = $admin_notice;
-
 			update_option( 'zp_atlas_db_previous_notice', $admin_notice );
 		}
 	}
-
 	return $response;
 }
 add_filter( 'heartbeat_received', 'zp_atlas_receive_heartbeat', 10, 2 );
-
 /**
  * ZP Admin notices
  */
@@ -114,7 +107,6 @@ function zp_admin_notices() {
 	}
 }
 add_action( 'admin_notices', 'zp_admin_notices' );
-
 /**
  * Add admin notice when file permissions on ephemeris will not permit the plugin to work.
  */
@@ -125,7 +117,6 @@ function zp_admin_notices_chmod_failed() {
 		printf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', $msg );
 	}
 }
-
 /**
  * Add admin notice when swetest file is missing.
  */
@@ -135,7 +126,6 @@ function zp_admin_notices_missing_file() {
 		printf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', $msg );
 	}
 }
-
 /**
  * Erase Interpretations for Natal Planets in Signs when using ZP Cleanup Tools.
  */
@@ -158,7 +148,6 @@ function zp_erase_natal_in_signs() {
 	exit;
 }
 add_action( 'admin_post_erase_natal_in_signs', 'zp_erase_natal_in_signs' );
-
 /**
  * Erase Interpretations for Natal Planets in Houses when using ZP Cleanup Tools.
  */
@@ -181,7 +170,6 @@ function zp_erase_natal_in_houses() {
 	exit;
 }
 add_action( 'admin_post_erase_natal_in_houses', 'zp_erase_natal_in_houses' );
-
 /**
  * Erase Interpretations for Natal Aspects when using ZP Cleanup Tools.
  */
@@ -207,7 +195,6 @@ function zp_erase_natal_aspects() {
 	exit;
 }
 add_action( 'admin_post_erase_natal_aspects', 'zp_erase_natal_aspects' );
-
 /**
  * Custom admin menu icon
  */
@@ -224,7 +211,6 @@ function zp_custom_admin_menu_icon() {
   }#adminmenu .toplevel_page_zodiacpress .dashicons-universal-access-alt.dashicons-before::before {font-family: "zodiacpress" !important}#adminmenu .toplevel_page_zodiacpress div.dashicons-universal-access-alt::before{content:"\e90c"}</style>';
 }
 add_action('admin_head', 'zp_custom_admin_menu_icon');
-
 /**
  * Display links in the admin tor ZP docs, rating, and extensions.
  */
@@ -247,7 +233,6 @@ function zp_admin_links() {
 		echo '<a href="' . $link[2] . '" class="button-secondary zp-' . $link[0] . '-link alignright" target="_blank" rel="noopener">' . $link[1] . '</a>';
 	}
 }
-
 /**
  * Get size of the zp_atlas database table including the size of its index.
  *
