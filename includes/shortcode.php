@@ -13,7 +13,8 @@ function zp_birthreport_shortcode( $atts ) {
 		'form_title'	=> $default_title,
 		'sidereal'		=> false,
 		'house_system'	=> false,
-		'sell'			=> false
+		'sell'			=> false,
+		'shorten'		=> 0
 	), $atts, 'birthreport' );
 
 	wp_enqueue_style( 'zp' );

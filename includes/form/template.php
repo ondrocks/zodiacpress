@@ -112,6 +112,9 @@ function zp_form( $report, $args = array() ) {
 			<?php }
 			if ( $args['house_system'] ) { ?>
 				<input type="hidden" name="zp_report_house_system" value="<?php echo $args['house_system']; ?>">
+			<?php }
+			if ( $args['shorten'] ) { ?>
+				<input type="hidden" name="shorten" value="1">
 			<?php } ?>
 			<input type="hidden" name="action" value="zp_<?php echo esc_attr( $report ); ?>">
 			<input type="button" id="zp-fetch-<?php echo esc_attr( $report ); ?>" class="zp-button" value="<?php echo apply_filters( 'zp_form_submit_text', __( 'Submit', 'zodiacpress' ), $args ); ?>" /></p>

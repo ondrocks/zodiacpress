@@ -117,5 +117,6 @@ function zp_validate_form( $data, $partial = false, $skip_place = false, $force_
 	if ( ! isset( zp_get_house_systems()[ $out['house_system'] ] ) ) {
 		$out['house_system'] = false;
 	}
+	$out['shorten'] = empty( $data['shorten'] ) ? 0 : sanitize_text_field( $data['shorten'] );
 	return $out;
 }
