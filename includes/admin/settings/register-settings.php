@@ -366,23 +366,19 @@ function zp_get_settings_tabs() {
 	);
 	return apply_filters( 'zp_settings_tabs', $tabs );
 }
-
 /**
  * Retrieve settings tab sections
  *
  * @return array $section
  */
 function zp_get_settings_tab_sections( $tab = false ) {
-	$tabs     = false;
+	$tabs     = array();
 	$sections = zp_get_registered_settings_sections();
-
 	if ( $tab && ! empty( $sections[ $tab ] ) ) {
 		$tabs = $sections[ $tab ];
 	}
-
 	return $tabs;
 }
-
 /**
  * Get the settings sections for each tab
  * Uses a static to avoid running the filters on every request to this function
