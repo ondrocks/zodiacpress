@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the ZodiacPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZodiacPress 1.9\n"
+"Project-Id-Version: ZodiacPress 2.0.alpha-3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zodiacpress\n"
-"POT-Creation-Date: 2019-05-16 23:05:17+00:00\n"
+"POT-Creation-Date: 2019-06-02 22:20:36+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,56 +35,40 @@ msgid "Error"
 msgstr ""
 
 #: includes/admin/admin-functions.php:25
-msgid "The atlas installation is complete. It is ready for use."
-msgstr ""
-
-#: includes/admin/admin-functions.php:32 includes/admin/admin-functions.php:33
-#: includes/admin/views/html-atlas-status.php:98
-#: includes/admin/views/html-atlas-status.php:111
-msgid "okay"
-msgstr ""
-
-#: includes/admin/admin-functions.php:32 includes/admin/admin-functions.php:33
-#: includes/admin/views/html-atlas-status.php:98
-#: includes/admin/views/html-atlas-status.php:111
-msgid "missing"
-msgstr ""
-
-#: includes/admin/admin-functions.php:75
 msgid "Interpretations for natal planets in signs were erased."
 msgstr ""
 
-#: includes/admin/admin-functions.php:78
+#: includes/admin/admin-functions.php:28
 msgid "Interpretations for natal planets in houses were erased."
 msgstr ""
 
-#: includes/admin/admin-functions.php:81
+#: includes/admin/admin-functions.php:31
 msgid "Interpretations for natal aspects were erased."
 msgstr ""
 
-#: includes/admin/admin-functions.php:84
+#: includes/admin/admin-functions.php:34
 msgid "Your ZodiacPress settings have been imported."
 msgstr ""
 
-#: includes/admin/admin-functions.php:87
+#: includes/admin/admin-functions.php:37
 msgid "Your ZodiacPress interpretations have been imported."
 msgstr ""
 
-#: includes/admin/admin-functions.php:102
+#: includes/admin/admin-functions.php:48
 msgid ""
 "The PHP exec() function is disabled on your server. ZodiacPress requires the "
 "exec() function in order to create astrology reports. Please ask your web "
 "host to enable the PHP exec() function."
 msgstr ""
 
-#: includes/admin/admin-functions.php:110
+#: includes/admin/admin-functions.php:54
 msgid ""
 "Your website server uses Windows hosting. For ZodiacPress to work on your "
 "server, you need the %1$sZP Windows Server%2$s plugin. See <a href=\"%3$s\" "
 "target=\"_blank\" rel=\"noopener\">this</a> for details."
 msgstr ""
 
-#: includes/admin/admin-functions.php:123
+#: includes/admin/admin-functions.php:66
 msgid ""
 "Your server did not allow ZodiacPress to set the necessary file permissions "
 "for the Ephemeris. ZodiacPress requires this in order to create astrology "
@@ -92,26 +76,26 @@ msgid ""
 "fix it."
 msgstr ""
 
-#: includes/admin/admin-functions.php:134
+#: includes/admin/admin-functions.php:76
 msgid ""
 "You are missing a file from ZodiacPress. This file is required in order to "
 "create astrology reports. <a href=\"%s\" target=\"_blank\" rel=\"noopener"
 "\">See this</a> for more information."
 msgstr ""
 
-#: includes/admin/admin-functions.php:235
+#: includes/admin/admin-functions.php:170
 msgid "ZodiacPress Extensions"
 msgstr ""
 
-#: includes/admin/admin-functions.php:239
+#: includes/admin/admin-functions.php:174
 msgid "Feedback"
 msgstr ""
 
-#: includes/admin/admin-functions.php:243
+#: includes/admin/admin-functions.php:178
 msgid "Documentation"
 msgstr ""
 
-#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 1.9)  #-#-#-#-#
+#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 2.0.alpha-3)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: includes/admin/admin-pages.php:12
 #: includes/admin/settings/display-interpretations.php:35
@@ -152,7 +136,7 @@ msgstr ""
 
 #. translators: 1: Planet 2: Zodiac sign
 #: includes/admin/settings/register-interpretations.php:156
-#: includes/class-zp-birth-report.php:385
+#: includes/class-zp-birth-report.php:369
 msgid "%1$s in %2$s"
 msgstr ""
 
@@ -174,8 +158,8 @@ msgid "In Houses"
 msgstr ""
 
 #: includes/admin/settings/register-interpretations.php:289
-#: includes/admin/settings/register-settings.php:401
-#: includes/class-zp-birth-report.php:289
+#: includes/admin/settings/register-settings.php:367
+#: includes/class-zp-birth-report.php:276
 msgid "Aspects"
 msgstr ""
 
@@ -298,98 +282,74 @@ msgid "Atlas"
 msgstr ""
 
 #: includes/admin/settings/register-settings.php:203
-msgid "Choose Atlas"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:204
-msgid ""
-"You need an atlas to get city coordinates and timezones. Do you want to use "
-"GeoNames.org or create your own atlas database? (<a href=\"%1$s\" target="
-"\"_blank\" rel=\"noopener\">Help with this decision</a>)"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:207
-msgid "Use GeoNames"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:208
-msgid "Use my own atlas database"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:215
 msgid "GeoNames Username"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:216
+#: includes/admin/settings/register-settings.php:204
 msgid ""
 "Your username from GeoNames.org is needed to get timezone info from their "
 "webservice. (%1$screate free account%2$s)"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:224
-#: includes/admin/views/html-atlas-status.php:58
-msgid "Atlas Status"
-msgstr ""
-
-#: includes/admin/settings/register-settings.php:230
+#: includes/admin/settings/register-settings.php:211
 msgid "Uninstall"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:236
+#: includes/admin/settings/register-settings.php:217
 msgid "Remove Data on Uninstall"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:238
+#: includes/admin/settings/register-settings.php:219
 msgid ""
 "Check this box if you would like ZP to completely remove all of its data "
 "(INCLUDING INTERPRETATIONS TEXT) when the plugin is deleted."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:304
+#: includes/admin/settings/register-settings.php:285
 msgid "Settings updated."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:363
+#: includes/admin/settings/register-settings.php:333
 msgid "Natal Report"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:364
+#: includes/admin/settings/register-settings.php:334
 msgid "Only Chart Drawing Report"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:365
+#: includes/admin/settings/register-settings.php:335
 msgid "Misc"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:400
+#: includes/admin/settings/register-settings.php:366
 msgid "Planets and Points"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:402
+#: includes/admin/settings/register-settings.php:368
 msgid "Orbs"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:403
+#: includes/admin/settings/register-settings.php:369
 msgid "Display"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:404
+#: includes/admin/settings/register-settings.php:370
 msgid "Technical"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:407
+#: includes/admin/settings/register-settings.php:373
 msgid "\"Only Chart Drawing\" Report Settings"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:410
+#: includes/admin/settings/register-settings.php:376
 msgid "Misc Settings"
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:532
+#: includes/admin/settings/register-settings.php:479
 msgid "The callback function used for the %s setting is missing."
 msgstr ""
 
-#: includes/admin/settings/register-settings.php:637
+#: includes/admin/settings/register-settings.php:543
 msgid ""
 "For each aspect, set the orb to use for each planet. If blank, the default "
 "(8) will be used."
@@ -510,54 +470,6 @@ msgstr ""
 msgid "Please upload a valid ZodiacPress interpretations file"
 msgstr ""
 
-#: includes/admin/views/html-atlas-status.php:14
-msgid "error"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:21
-#: includes/admin/views/html-atlas-status.php:25
-msgid "none"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:28
-msgid "not in use"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:50
-msgid ""
-"To create your atlas inside your WordPress database, run the Atlas Installer."
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:51
-msgid ""
-"Skip this to use a <a href=\"%s\" target=\"_blank\" rel=\"noopener"
-"\">separate database</a>."
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:52
-msgid "Run the Atlas Installer"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:62
-msgid "Status"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:71
-msgid "City records count"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:82
-msgid "Database table size"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:93
-msgid "Database table primary key"
-msgstr ""
-
-#: includes/admin/views/html-atlas-status.php:106
-msgid "Database table index"
-msgstr ""
-
 #: includes/admin/views/html-notice-install.php:9
 msgid "Welcome to ZodiacPress"
 msgstr ""
@@ -567,7 +479,7 @@ msgid "You&lsquo;re almost ready to generate reports."
 msgstr ""
 
 #: includes/admin/views/html-notice-install.php:11
-msgid "Go to Atlas Setup"
+msgid "Go to Setup"
 msgstr ""
 
 #: includes/admin/views/html-notice-install.php:11
@@ -586,238 +498,222 @@ msgid ""
 "info does not reveal your website name or URL.)"
 msgstr ""
 
-#: includes/ajax-functions.php:66
+#: includes/ajax-functions.php:39
 msgid "Something went wrong."
 msgstr ""
 
-#: includes/astro-functions.php:24
+#: includes/astro-functions.php:22
 msgid "Sun"
 msgstr ""
 
-#: includes/astro-functions.php:29
+#: includes/astro-functions.php:27
 msgid "Moon"
 msgstr ""
 
-#: includes/astro-functions.php:34
+#: includes/astro-functions.php:32
 msgid "Mercury"
 msgstr ""
 
-#: includes/astro-functions.php:39
+#: includes/astro-functions.php:37
 msgid "Venus"
 msgstr ""
 
-#: includes/astro-functions.php:44
+#: includes/astro-functions.php:42
 msgid "Mars"
 msgstr ""
 
-#: includes/astro-functions.php:49
+#: includes/astro-functions.php:47
 msgid "Jupiter"
 msgstr ""
 
-#: includes/astro-functions.php:54
+#: includes/astro-functions.php:52
 msgid "Saturn"
 msgstr ""
 
-#: includes/astro-functions.php:59
+#: includes/astro-functions.php:57
 msgid "Uranus"
 msgstr ""
 
-#: includes/astro-functions.php:64
+#: includes/astro-functions.php:62
 msgid "Neptune"
 msgstr ""
 
-#: includes/astro-functions.php:69
+#: includes/astro-functions.php:67
 msgid "Pluto"
 msgstr ""
 
-#: includes/astro-functions.php:74
+#: includes/astro-functions.php:72
 msgid "Chiron"
 msgstr ""
 
-#: includes/astro-functions.php:79
+#: includes/astro-functions.php:77
 msgid "Black Moon Lilith"
 msgstr ""
 
-#: includes/astro-functions.php:84
+#: includes/astro-functions.php:82
 msgid "North Node"
 msgstr ""
 
-#: includes/astro-functions.php:89
+#: includes/astro-functions.php:87
 msgid "Part of Fortune"
 msgstr ""
 
-#: includes/astro-functions.php:94
+#: includes/astro-functions.php:92
 msgid "Vertex"
 msgstr ""
 
-#: includes/astro-functions.php:99
+#: includes/astro-functions.php:97
 msgid "Ascendant"
 msgstr ""
 
-#: includes/astro-functions.php:104
+#: includes/astro-functions.php:102
 msgid "Midheaven"
 msgstr ""
 
-#: includes/astro-functions.php:134
+#: includes/astro-functions.php:132
 msgid "Conjunction"
 msgstr ""
 
-#: includes/astro-functions.php:138
+#: includes/astro-functions.php:136
 msgid "Sextile"
 msgstr ""
 
-#: includes/astro-functions.php:142
+#: includes/astro-functions.php:140
 msgid "Square"
 msgstr ""
 
-#: includes/astro-functions.php:146
+#: includes/astro-functions.php:144
 msgid "Trine"
 msgstr ""
 
-#: includes/astro-functions.php:150
+#: includes/astro-functions.php:148
 msgid "Quincunx"
 msgstr ""
 
-#: includes/astro-functions.php:154
+#: includes/astro-functions.php:152
 msgid "Opposition"
 msgstr ""
 
-#: includes/astro-functions.php:167
+#: includes/astro-functions.php:165
 msgid "Aries"
 msgstr ""
 
-#: includes/astro-functions.php:170
+#: includes/astro-functions.php:168
 msgid "Taurus"
 msgstr ""
 
-#: includes/astro-functions.php:173
+#: includes/astro-functions.php:171
 msgid "Gemini"
 msgstr ""
 
-#: includes/astro-functions.php:176
+#: includes/astro-functions.php:174
 msgid "Cancer"
 msgstr ""
 
-#: includes/astro-functions.php:179
+#: includes/astro-functions.php:177
 msgid "Leo"
 msgstr ""
 
-#: includes/astro-functions.php:182
+#: includes/astro-functions.php:180
 msgid "Virgo"
 msgstr ""
 
-#: includes/astro-functions.php:185
+#: includes/astro-functions.php:183
 msgid "Libra"
 msgstr ""
 
-#: includes/astro-functions.php:188
+#: includes/astro-functions.php:186
 msgid "Scorpio"
 msgstr ""
 
-#: includes/astro-functions.php:191
+#: includes/astro-functions.php:189
 msgid "Sagittarius"
 msgstr ""
 
-#: includes/astro-functions.php:194
+#: includes/astro-functions.php:192
 msgid "Capricorn"
 msgstr ""
 
-#: includes/astro-functions.php:197
+#: includes/astro-functions.php:195
 msgid "Aquarius"
 msgstr ""
 
-#: includes/astro-functions.php:200
+#: includes/astro-functions.php:198
 msgid "Pisces"
 msgstr ""
 
 #. translators: Attention RTL languages. 6 placeholders are zodiac sign
 #. degrees, zodiac sign glyph, minutes, minutes symbol, seconds, seconds
 #. symbol.
-#: includes/astro-functions.php:260
+#: includes/astro-functions.php:258
 msgid "%1$s %2$s %3$s%4$s %5$s%6$s"
 msgstr ""
 
-#: includes/astro-functions.php:503
+#: includes/astro-functions.php:501
 msgid "Alcabitius"
 msgstr ""
 
-#: includes/astro-functions.php:504
+#: includes/astro-functions.php:502
 msgid "Campanus"
 msgstr ""
 
-#: includes/astro-functions.php:505
+#: includes/astro-functions.php:503
 msgid "Equal"
 msgstr ""
 
-#: includes/astro-functions.php:506
+#: includes/astro-functions.php:504
 msgid "Koch"
 msgstr ""
 
-#: includes/astro-functions.php:507
+#: includes/astro-functions.php:505
 msgid "Meridian"
 msgstr ""
 
-#: includes/astro-functions.php:508
+#: includes/astro-functions.php:506
 msgid "Morinus"
 msgstr ""
 
-#: includes/astro-functions.php:509
+#: includes/astro-functions.php:507
 msgid "Placidus"
 msgstr ""
 
-#: includes/astro-functions.php:510
+#: includes/astro-functions.php:508
 msgid "Porphyry"
 msgstr ""
 
-#: includes/astro-functions.php:511
+#: includes/astro-functions.php:509
 msgid "Regiomontanus"
 msgstr ""
 
-#: includes/astro-functions.php:512
+#: includes/astro-functions.php:510
 msgid "Topocentric"
 msgstr ""
 
-#: includes/astro-functions.php:513
+#: includes/astro-functions.php:511
 msgid "Vehlow"
 msgstr ""
 
-#: includes/astro-functions.php:514
+#: includes/astro-functions.php:512
 msgid "Whole Sign"
 msgstr ""
 
-#: includes/astro-functions.php:526
+#: includes/astro-functions.php:524
 msgid "Fagan/Bradley"
 msgstr ""
 
-#: includes/astro-functions.php:528
+#: includes/astro-functions.php:526
 msgid "Lahiri"
 msgstr ""
 
-#: includes/astro-functions.php:530
+#: includes/astro-functions.php:528
 msgid "Raman"
 msgstr ""
 
-#: includes/astro-functions.php:532
+#: includes/astro-functions.php:530
 msgid "Krishnamurti"
 msgstr ""
 
-#: includes/atlas/async/async-tasks.php:29
-msgid "Cannot find a writable temp directory."
-msgstr ""
-
-#: includes/atlas/async/async-tasks.php:43
-msgid "Cities data file could not be downloaded."
-msgstr ""
-
-#: includes/atlas/async/async-tasks.php:92
-msgid "ERROR: zp_atlas table does not exist"
-msgstr ""
-
-#: includes/atlas/async/async-tasks.php:133
-msgid "Failed to insert cities data into database table."
-msgstr ""
-
-#: includes/back-compat.php:31
+#: includes/back-compat.php:22
 msgid "Once Weekly"
 msgstr ""
 
@@ -837,81 +733,81 @@ msgstr ""
 msgid "These settings are for the \"Only a Chart Drawing\" report"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:96
+#: includes/class-zp-birth-report.php:84
 msgid "unknown birth time"
 msgstr ""
 
 #. translators: 1: Time 2: Timezone offset in hours
-#: includes/class-zp-birth-report.php:110
+#: includes/class-zp-birth-report.php:98
 msgid "%1$s <span class=\"zp-mobile-wrap\">(time zone = UTC %2$s)</span>"
 msgstr ""
 
 #. translators: 1: Birth date 2: Birth time
-#: includes/class-zp-birth-report.php:116
+#: includes/class-zp-birth-report.php:104
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:142
+#: includes/class-zp-birth-report.php:130
 msgid "Tropical Zodiac"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:144
+#: includes/class-zp-birth-report.php:132
 msgid "Sidereal Zodiac,"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:149
+#: includes/class-zp-birth-report.php:137
 msgid "ayanamsa = %1$s <span class=\"zp-mobile-wrap\">(%2$s)</span>"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:157
+#: includes/class-zp-birth-report.php:145
 msgid "Chart Data For %s"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:164
+#: includes/class-zp-birth-report.php:152
 msgid "Universal Time:"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:180
+#: includes/class-zp-birth-report.php:168
 msgid "%s Houses"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:227
+#: includes/class-zp-birth-report.php:214
 msgid ""
 "NOTE: %1$s changed signs the day you were born. It moved from %2$s to %3$s. "
 "Therefore, you will need your exact time of birth to know which of these two "
 "signs your %1$s is in."
 msgstr ""
 
-#: includes/class-zp-birth-report.php:261
+#: includes/class-zp-birth-report.php:248
 msgid ""
 "NOTE: Since %s is very close to the next house cusp, the next item is also "
 "relevant."
 msgstr ""
 
-#: includes/class-zp-birth-report.php:283
+#: includes/class-zp-birth-report.php:270
 msgid "Planets and Points in The Signs"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:286
+#: includes/class-zp-birth-report.php:273
 msgid "Planets and Points in The Houses"
 msgstr ""
 
 #. translators: 1: Planet 2: Number order
-#: includes/class-zp-birth-report.php:409
-#: includes/class-zp-birth-report.php:447
+#: includes/class-zp-birth-report.php:388
+#: includes/class-zp-birth-report.php:425
 msgid "%1$s in %2$s House"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:520
-#: includes/class-zp-birth-report.php:535
+#: includes/class-zp-birth-report.php:497
+#: includes/class-zp-birth-report.php:512
 msgid "orb"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:573
+#: includes/class-zp-birth-report.php:549
 msgid "Introduction"
 msgstr ""
 
-#: includes/class-zp-birth-report.php:584
+#: includes/class-zp-birth-report.php:560
 msgid "Closing"
 msgstr ""
 
@@ -1085,56 +981,56 @@ msgstr ""
 msgid "UTC time offset"
 msgstr ""
 
-#: includes/form/template.php:117
+#: includes/form/template.php:120
 msgid "Submit"
 msgstr ""
 
-#: includes/form/template.php:119
+#: includes/form/template.php:122
 msgid ""
 "Tip: Make sure the <strong>UTC time offset</strong> is correct. If it's "
 "wrong, you can change it."
 msgstr ""
 
-#: includes/form/template.php:129
+#: includes/form/template.php:132
 msgid ""
 "<strong>* NOTE: </strong> If birth time is unknown, the report will not "
 "include positions or aspects for the Moon, Ascendant, Midheaven, Vertex, or "
 "Part of Fortune, nor will it include House positions for any planets."
 msgstr ""
 
-#: includes/form/validation.php:30
+#: includes/form/validation.php:32
 msgid "Please select a Birth Date"
 msgstr ""
 
-#: includes/form/validation.php:33
+#: includes/form/validation.php:35
 msgid "Birth Date is not valid"
 msgstr ""
 
-#: includes/form/validation.php:54
+#: includes/form/validation.php:56
 msgid "Please select a Birth Time"
 msgstr ""
 
-#: includes/form/validation.php:56
+#: includes/form/validation.php:58
 msgid "Please select a Birth Time or check the box for unknown time"
 msgstr ""
 
-#: includes/form/validation.php:62
+#: includes/form/validation.php:64
 msgid "Select a valid birth hour."
 msgstr ""
 
-#: includes/form/validation.php:65
+#: includes/form/validation.php:67
 msgid "Select a birth minute between 0 and 59."
 msgstr ""
 
-#: includes/form/validation.php:71
+#: includes/form/validation.php:74
 msgid "Please select a Birth City"
 msgstr ""
 
-#: includes/form/validation.php:84
+#: includes/form/validation.php:86
 msgid "Please enter a Name"
 msgstr ""
 
-#: includes/form/validation.php:104
+#: includes/form/validation.php:105
 msgid ""
 "UTC time offset must be a number (like 5). Include a negative sign or "
 "decimal point if needed (like -9.5). If you want the offset to be calculated "
@@ -1193,44 +1089,7 @@ msgstr ""
 msgid "Twelfth"
 msgstr ""
 
-#: includes/misc-functions.php:194
-msgid "Active"
-msgstr ""
-
-#: includes/misc-functions.php:195
-msgid "Creating table keys..."
-msgstr ""
-
-#: includes/misc-functions.php:196
-msgid "Failed to create table key(s):"
-msgstr ""
-
-#: includes/misc-functions.php:197
-msgid "Inserting cities data into database..."
-msgstr ""
-
-#: includes/misc-functions.php:198
-msgid "installing..."
-msgstr ""
-
-#: includes/misc-functions.php:199
-msgid ""
-"The atlas is being installed in the background. This will take a few minutes."
-msgstr ""
-
-#: includes/scripts.php:50
-msgid "Check the status."
-msgstr ""
-
-#: includes/scripts.php:52
-msgid "Dismiss this notice."
-msgstr ""
-
-#: includes/scripts.php:58
-msgid "ZodiacPress Status Message"
-msgstr ""
-
-#: includes/scripts.php:83
+#: includes/scripts.php:46
 msgid "UTC time offset:"
 msgstr ""
 
@@ -1238,7 +1097,7 @@ msgstr ""
 msgid "Get An Astrology Birth Report"
 msgstr ""
 
-#: includes/shortcode.php:44
+#: includes/shortcode.php:45
 msgid "Start Over"
 msgstr ""
 
