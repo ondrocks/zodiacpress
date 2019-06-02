@@ -6,15 +6,6 @@
  * @since       1.8
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
-/**
- * Deprecated: Get data for wp_localize_script
- * @todo To be removed in NEXT update
- */
-function zp_get_script_localization_data() {
-	// Temporarily add old data for back compatibility with addons
-	return array_merge( zp_script_localization_data(), zp_geonames_js_strings() );
-}
 /**
  * Registers new cron schedule
  * @todo deprecated. will be removed in NEXT update, after event using this schedule is removed first.
