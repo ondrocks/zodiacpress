@@ -3,7 +3,7 @@
 Plugin Name: ZodiacPress
 Plugin URI: https://isabelcastillo.com/free-plugins/zodiacpress
 Description: Generate astrology birth reports with your custom interpretations.
-Version: 2.0.alpha-3
+Version: 2.0.alpha-4
 Author: Isabel Castillo
 Author URI: https://isabelcastillo.com
 License: GNU GPLv2
@@ -90,7 +90,6 @@ final class ZodiacPress {
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-birth-report.php';
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-chart.php';
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-ephemeris.php';
-		include_once ZODIACPRESS_PATH . 'includes/class-zp-license.php';
 		include_once ZODIACPRESS_PATH . 'includes/misc-functions.php';
 		include_once ZODIACPRESS_PATH . 'includes/scripts.php';
 		include_once ZODIACPRESS_PATH . 'includes/time-functions.php';

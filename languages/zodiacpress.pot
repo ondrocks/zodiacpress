@@ -2,37 +2,15 @@
 # This file is distributed under the same license as the ZodiacPress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: ZodiacPress 2.0.alpha-3\n"
+"Project-Id-Version: ZodiacPress 2.0.alpha-4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zodiacpress\n"
-"POT-Creation-Date: 2019-06-02 22:20:36+00:00\n"
+"POT-Creation-Date: 2019-06-02 23:16:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-
-#: includes/EDD_SL_Plugin_Updater.php:193
-msgid ""
-"There is a new version of %1$s available. %2$sView version %3$s details%4$s."
-msgstr ""
-
-#: includes/EDD_SL_Plugin_Updater.php:201
-msgid ""
-"There is a new version of %1$s available. %2$sView version %3$s details%4$s "
-"or %5$supdate now%6$s."
-msgstr ""
-
-#: includes/EDD_SL_Plugin_Updater.php:378
-msgid "You do not have permission to install plugin updates"
-msgstr ""
-
-#: includes/EDD_SL_Plugin_Updater.php:378 includes/admin/tools.php:236
-#: includes/admin/tools.php:240 includes/admin/tools.php:245
-#: includes/admin/tools.php:303 includes/admin/tools.php:307
-#: includes/admin/tools.php:312
-msgid "Error"
-msgstr ""
 
 #: includes/admin/admin-functions.php:25
 msgid "Interpretations for natal planets in signs were erased."
@@ -95,7 +73,7 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 2.0.alpha-3)  #-#-#-#-#
+#. #-#-#-#-#  zodiacpress.pot (ZodiacPress 2.0.alpha-4)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: includes/admin/admin-pages.php:12
 #: includes/admin/settings/display-interpretations.php:35
@@ -458,6 +436,12 @@ msgstr ""
 msgid "Please upload a valid .json file"
 msgstr ""
 
+#: includes/admin/tools.php:236 includes/admin/tools.php:240
+#: includes/admin/tools.php:245 includes/admin/tools.php:303
+#: includes/admin/tools.php:307 includes/admin/tools.php:312
+msgid "Error"
+msgstr ""
+
 #: includes/admin/tools.php:240
 msgid "Please upload a valid ZodiacPress zp-settings-export file"
 msgstr ""
@@ -711,10 +695,6 @@ msgstr ""
 
 #: includes/astro-functions.php:530
 msgid "Krishnamurti"
-msgstr ""
-
-#: includes/back-compat.php:22
-msgid "Once Weekly"
 msgstr ""
 
 #: includes/chart-drawing.php:15
