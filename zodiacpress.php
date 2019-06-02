@@ -101,7 +101,6 @@ final class ZodiacPress {
 		include_once ZODIACPRESS_PATH . 'includes/time-functions.php';
 		include_once ZODIACPRESS_PATH . 'includes/form/template-functions.php';
 		include_once ZODIACPRESS_PATH . 'includes/form/template.php';
-		include_once ZODIACPRESS_PATH . 'includes/back-compat.php';
 		include_once ZODIACPRESS_PATH . 'includes/shortcode.php';
 
 		// anything that handles ajax scripts must be loaded both in front and back.
@@ -208,5 +207,8 @@ function zp() {
 }
 // Get ZP Running.
 zp();
-
 register_activation_hook( __FILE__, array( 'ZodiacPress', 'activate' ) );
+function zp_deactivate() {
+    delete_option( 'zp_cleanup_deprecated_options_v19' );
+}
+register_deactivation_hook( __FILE__, 'zp_deactivate' );
