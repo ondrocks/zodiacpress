@@ -7,23 +7,6 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
- * Registers new cron schedule
- * @todo deprecated. will be removed in NEXT update, after event using this schedule is removed first.
- *
- * @param array $schedules
- * @return array
- */
-add_filter( 'cron_schedules', 'zp_add_cron_schedule' );
-// @todo deprecated. will be removed in next update
-function zp_add_cron_schedule( $schedules = array() ) {
-	// Adds once weekly to the existing schedules.
-	$schedules['weekly'] = array(
-		'interval' => 604800,
-		'display'  => __( 'Once Weekly', 'zodiacpress' )
-	);
-	return $schedules;
-}
-/**
  * Delete deprecated options
  * @todo remove in next update, and delete option zp_cleanup_deprecated_options_v19
  * @since 1.9
