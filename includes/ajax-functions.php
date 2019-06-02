@@ -4,33 +4,6 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
- * Handles ajax request to get cities from atlas database for autocomplete birth place field.
- */
-function zp_atlas_get_cities() {
-	if ( empty( $_GET['c'] ) ) {
-		return;	
-	}
-	global $zpdb;
-	$a_json = array();
-	$term = sanitize_text_field( $_GET['c'] );
-	$term = $zpdb->esc_like( $term ) . '%';
-	$sql = $zpdb->prepare( 'SELECT name,admin1,country,latitude,longitude,timezone FROM ' . $zpdb->prefix . 'zp_atlas WHERE name LIKE %s ORDER BY country DESC, name', $term );
-	if ( $results = $zpdb->get_results( $sql ) ) {
-		foreach ( $results as $row ) {
-			$a_json[] = array(
-				'value'	=> ( $row->name . ( $row->admin1 ? ', ' . $row->admin1 : '' ) .', '.$row->country ),
-				'lat'	=> $row->latitude,
-				'long'	=> $row->longitude,
-				'tz'	=> $row->timezone
-			);
-		}
-	}
-	echo json_encode( $a_json );
-	wp_die();
-}
-add_action( 'wp_ajax_zp_atlas_get_cities', 'zp_atlas_get_cities' );
-add_action( 'wp_ajax_nopriv_zp_atlas_get_cities', 'zp_atlas_get_cities' );
-/**
  * Handles ajax request to calculate timezone offset and send back to form fields
  */
 function zp_ajax_get_time_offset() {
