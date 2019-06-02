@@ -184,19 +184,3 @@ function zp_search_array( $value, $column, $array ) {
    }
    return null;
 }
-
-/**
- * Returns a ZP message string
- * @since 1.8
- */
-function zp_string( $id = '' ) {
-	$strings = array(
-		'active'		=> __( 'Active', 'zodiacpress' ),
-		'creating'		=> __( 'Creating table keys...', 'zodiacpress' ),
-		'failed_keys'	=> __( 'Failed to create table key(s):', 'zodiacpress' ),
-		'inserting'		=> __( 'Inserting cities data into database...', 'zodiacpress' ),
-		'installing'	=> __( 'installing...', 'zodiacpress' ),
-		'installing_notice' => __( 'The atlas is being installed in the background. This will take a few minutes.', 'zodiacpress' )
-	);
-	return $strings[ $id ];
-}
