@@ -111,7 +111,9 @@ Please do the <a href="https://isabelcastillo.com/docs/pre-support-self-check">P
 
 = Do I have to create a GeoNames account? =
 
-You only have to create a GeoNames account if you choose GeoNames in the **Choose Atlas** setting. If you choose to use your own atlas database, then you don't need a GeoNames account.
+When your visitor enters a birth city into the report form, the plugin will get the latitude/longitude coordinates of that birth city from GeoNames. GeoNames provides this as a free web service. GeoNames requires you to have an account on their site in order to use their web service.
+
+You do **NOT** have to create a GeoNames account if you use your own atlas database, which the [ZP Atlas](https://isabelcastillo.com/free-plugins/zpatlas) plugin helps you to do.
 
 = How can I set the house system to be used for the "Planets in Houses" section of the report? =
 
@@ -133,6 +135,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 2.0 = 
+* New - Exported the Atlas database option to a new plugin. If you use your own Atlas Database instead of GeoNames, then you must install the ZP Atlas plugin BEFORE updating to ZodiacPress 2.0. See the [release post](@todo) for more information.
 
 = 1.9.1 =
 * Fix - Removed extra slash from URL for add-on updates.
@@ -286,6 +291,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 2.0 = 
+NOTE: If you use your own Atlas Database instead of GeoNames, read changelog BEFORE updating.
 
 = 1.8.5 =
 New - Use secure GeoNames api endpoint (https) for everyone.
