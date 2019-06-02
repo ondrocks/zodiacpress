@@ -9,7 +9,7 @@
 			zpRemoveError();
 			$.ajax({
 				url: 'https://secure.geonames.org/searchJSON',
-				dataType: 'jsonp',
+				dataType: 'json',
 				type: 'GET',
 				data: {
 					featureClass: "P",
