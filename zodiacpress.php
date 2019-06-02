@@ -29,20 +29,17 @@ You should have received a copy of the GNU General Public License
 along with ZodiacPress. If not, see <http://www.gnu.org/licenses/>.
 */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 if ( ! class_exists( 'ZodiacPress' ) ) {
 /**
  * Main ZodiacPress Class.
  */
 final class ZodiacPress {
-
 	/**
 	 * Instance of this class.
 	 *
 	 * @var object
 	 */
 	private static $instance;
-
 	/**
 	 * Main ZodiacPress Instance.
 	 *
@@ -61,7 +58,6 @@ final class ZodiacPress {
 		}
 		return self::$instance;
 	}
-
 	/**
 	 * Setup plugin constants.
 	 *
@@ -79,7 +75,6 @@ final class ZodiacPress {
 			define( 'ZODIACPRESS_PATH', plugin_dir_path( __FILE__ ) );
 		}
 	}
-
 	/**
 	 * Include required files.
 	 *
@@ -102,24 +97,19 @@ final class ZodiacPress {
 		include_once ZODIACPRESS_PATH . 'includes/form/template-functions.php';
 		include_once ZODIACPRESS_PATH . 'includes/form/template.php';
 		include_once ZODIACPRESS_PATH . 'includes/shortcode.php';
-
 		// anything that handles ajax scripts must be loaded both in front and back.
 		include_once ZODIACPRESS_PATH . 'includes/form/validation.php';
 		include_once ZODIACPRESS_PATH . 'includes/chart-drawing.php';
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-customize.php';
-
 		if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-
 			include_once ZODIACPRESS_PATH . 'includes/admin/settings/register-interpretations.php';
 			include_once ZODIACPRESS_PATH . 'includes/admin/settings/display-interpretations.php';
 			include_once ZODIACPRESS_PATH . 'includes/admin/settings/display-settings.php';
 			include_once ZODIACPRESS_PATH . 'includes/admin/admin-functions.php';
 			include_once ZODIACPRESS_PATH . 'includes/admin/admin-pages.php';
 			include_once ZODIACPRESS_PATH . 'includes/admin/tools.php';
-
 		}
 	}
-
 	/**
 	 * Load plugin language files
 	 *
@@ -129,7 +119,6 @@ final class ZodiacPress {
 	public function languages() {
 		load_plugin_textdomain( 'zodiacpress', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 	}
-
 	/**
 	 * Set necessary file permissions.
 	 *
@@ -139,7 +128,6 @@ final class ZodiacPress {
 	public function plugin_loaded() {
 		zp_is_sweph_executable();
 	}
-
 	/**
 	 * Fired when the plugin is activated.
 	 *
@@ -157,16 +145,13 @@ final class ZodiacPress {
 			self::single_activate();
 		}
 	}
-
 	/**
 	 * Fired for each blog when the plugin is activated.
 	 */
 	private static function single_activate() {
 		// If no existing settings, set up default ones.
 		if ( false == get_option( 'zodiacpress_settings' ) ) {
-
 			$options = array();
-
 			foreach( zp_get_registered_settings() as $tab => $sections ) {	
 				foreach( $sections as $section => $settings) {
 					foreach ( $settings as $option ) {
@@ -176,10 +161,8 @@ final class ZodiacPress {
 					}
 				}
 			}
-		
 			update_option( 'zodiacpress_settings', $options );
 		}
-
 		// Add plugin caps
 		$admin = get_role( 'administrator' );
 		if ( null != $admin ) {
@@ -189,9 +172,7 @@ final class ZodiacPress {
 		set_transient( 'zodiacpress_activating', true, 5 );
 	}
 }
-
 } // End class_exists check.
-
 /**
  * The main function that returns ZodiacPress
  *
