@@ -43,15 +43,6 @@ swetest file:             <?php echo ( file_exists( ZODIACPRESS_PATH . 'sweph/sw
 
 Ephemeris permissions:    <?php echo ( zp_is_sweph_executable() ? 'okay' : 'Not executable!' ); ?>
 
-Atlas:                    <?php if ( ZP_Atlas_DB::is_separate_db() ) {
-	echo 'separate database';
-} elseif ( ZP_Atlas_DB::use_db() ) {
-	echo 'WordPress database';
-} else {
-	echo 'GeoNames';
-} ?>
-
-
 -- WordPress Info
 
 WP Version:               <?php echo get_bloginfo('version'); ?>
