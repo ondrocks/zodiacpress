@@ -17,12 +17,10 @@
 	overflow: auto;
 	display: block;
 }
-#zp-tools .stuffbox .inside,
-#zp-atlas-status .inside {
+#zp-tools .stuffbox .inside {
 	padding: 0 10px;
 }
-#zp-tools-cleanup,
-#zp-atlas-status table {
+#zp-tools-cleanup {
 	margin-bottom: 10px;
 }
 .zp-tools-desc {vertical-align: bottom;padding-left:4px;}
