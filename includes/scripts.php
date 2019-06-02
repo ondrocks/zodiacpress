@@ -10,22 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function zp_register_scripts() {
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	
-	/* If atlas db option is selected and if the atlas is installed, use autocomplete-db.js instead of the regular autocomplete.js. */
-
-	if ( ZP_Atlas_DB::use_db() ) {
-		$autocomplete_js = 'zp-autocomplete-db';
-		$strings = array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) );
-	} else {
-		$autocomplete_js = 'zp-autocomplete';
-		$strings = zp_geonames_js_strings();
-	}
 	wp_register_style( 'zp', ZODIACPRESS_URL . 'assets/css/zp' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	// for RTL languages
 	wp_register_style( 'zp-rtl', ZODIACPRESS_URL . 'assets/css/zp-rtl' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	// autocomplete script
-	wp_register_script( 'zp-autocomplete', ZODIACPRESS_URL . 'assets/js/' . $autocomplete_js . $suffix . '.js', array( 'jquery-ui-autocomplete', 'jquery' ), ZODIACPRESS_VERSION );
-	wp_localize_script( 'zp-autocomplete', 'zp_js_strings', $strings );	
+	wp_register_script( 'zp-autocomplete', ZODIACPRESS_URL . 'assets/js/zp-autocomplete' . $suffix . '.js', array( 'jquery-ui-autocomplete', 'jquery' ), ZODIACPRESS_VERSION );
+	wp_localize_script( 'zp-autocomplete', 'zp_js_strings', zp_geonames_js_strings() );
 	// core script
 	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION );
 	wp_localize_script( 'zp', 'zp_ajax_object', zp_script_localization_data() );
