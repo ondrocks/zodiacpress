@@ -4,11 +4,9 @@
  *
  * @package     ZodiacPress
  */
-
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
-
 if ( is_multisite() ) {
 	global $wpdb;
 	$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A );
@@ -19,11 +17,9 @@ if ( is_multisite() ) {
 			restore_current_blog();
 		}
 	}
-}
-else {
+} else {
 	zp_uninstall();
 }
-
 /**
  * Uninstall function.
  *
@@ -33,26 +29,12 @@ else {
  * @return void
  */
 function zp_uninstall() {
-
 	$options = get_option( 'zodiacpress_settings' );
-
 	// Make sure that the user wants to remove all the data.
 	if ( isset( $options['remove_data'] ) && '1' == $options['remove_data'] ) {
-
-		global $wpdb;// only delete atlas table from wpdb, not a custom database ($zpdb)
-
 		// Delete options
-
-		$option_keys = array(
-			'zodiacpress_settings',
-			'zp_atlas_db_installing',
-			'zp_atlas_db_notice',
-			'zp_atlas_db_pending',
-			'zp_atlas_db_previous_notice',
-			'zp_atlas_db_version'
-		);
-
-		$interpretations = array(
+		$keys = array(
+			'zodiacpress_settings'
 			'zp_natal_planets_in_signs',
 			'zp_natal_planets_in_houses',
 			'zp_natal_aspects_main',
@@ -72,22 +54,13 @@ function zp_uninstall() {
 			'zp_natal_aspects_vertex',
 			'zp_natal_aspects_asc',
 			'zp_natal_aspects_mc'
-			);
-
-		$keys = array_merge( $option_keys, $interpretations );
-
+		);
 		foreach ( $keys as $key ) {
 			delete_option( $key );
 		}
-		
 		zp_remove_caps();
-
-		// Delete the zp_atlas database table
-		$wpdb->query( "DROP TABLE IF EXISTS " . $wpdb->prefix . "zp_atlas" );
-
 	}
 }
-
 /**
  * Remove zodiacpress capabilities
  */
