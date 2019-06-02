@@ -17,13 +17,11 @@ function zp_atlas_receive_heartbeat( $response, $data ) {
 	if ( empty( $data['zpatlas_status'] ) ) {
 		return $response;
 	}
-
 	// If atlas install in complete, Show "Atlas is Ready" admin notice once
 	if ( get_transient( 'zp_atlas_ready_once' ) ) {
 		delete_transient( 'zp_atlas_ready_once' );
 		$response['zpatlas_status_notice'] = __( 'The atlas installation is complete. It is ready for use.', 'zodiacpress' );
 		$response['zpatlas_status_field'] = zp_string( 'active' );
-
 		// send DB row count, size, and keys
 		$response['zpatlas_status_db'] = array(
 			'rows'	=> number_format( ZP_Atlas_DB::row_count() ),
@@ -31,9 +29,7 @@ function zp_atlas_receive_heartbeat( $response, $data ) {
 			'key'	=> ZP_Atlas_DB::key_exists( 'PRIMARY' ) ? __( 'okay', 'zodiacpress' ) : __( 'missing', 'zodiacpress' ),
 			'index'	=> ZP_Atlas_DB::key_exists( 'ix_name_country' ) ? __( 'okay', 'zodiacpress' ) : __( 'missing', 'zodiacpress' ),
 		);
-		
 	} else {
-
 		$response['zpatlas_status_field'] = get_option( 'zp_atlas_db_pending' );
 		$admin_notice = get_option( 'zp_atlas_db_notice' );
 
@@ -51,7 +47,6 @@ add_filter( 'heartbeat_received', 'zp_atlas_receive_heartbeat', 10, 2 );
  */
 function zp_admin_notices() {
 	global $zodiacpress_options;
-
 	// On activation, adds admin notice to inform that Atlas must be set up.
 	if ( get_transient( 'zodiacpress_activating' ) ) {
 		delete_transient( 'zodiacpress_activating' );
@@ -60,7 +55,6 @@ function zp_admin_notices() {
 			include ZODIACPRESS_PATH . 'includes/admin/views/html-notice-install.php';
 		}
 	}
-
 	// Success notices for ZP Tools.
 	if ( isset( $_GET['zp-done'] ) ) {
 		switch( $_GET['zp-done'] ) {
@@ -80,25 +74,19 @@ function zp_admin_notices() {
 				$success = __( 'Your ZodiacPress interpretations have been imported.', 'zodiacpress' );
 				break;				
 		}
-
 		if ( isset( $success ) ) {
 			printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $success );
 		}
 	}
-	
 	// Notify when plugin cannot work
-
 	if ( zp_is_admin_page() ) {
-
 		if ( ! zp_is_func_enabled( 'exec' ) ) {
 			echo '<div class="notice notice-error is-dismissible"><p>' .
 			__( 'The PHP exec() function is disabled on your server. ZodiacPress requires the exec() function in order to create astrology reports. Please ask your web host to enable the PHP exec() function.', 'zodiacpress' ) .
 			'</p></div>';
 		}
-
 		if ( zp_is_server_windows() ) {
 			if ( ! defined( 'ZP_WINDOWS_SERVER_PATH' ) ) {
-
 				echo '<div class="notice notice-error is-dismissible"><p>' .
 				sprintf( __( 'Your website server uses Windows hosting. For ZodiacPress to work on your server, you need the %1$sZP Windows Server%2$s plugin. See <a href="%3$s" target="_blank" rel="noopener">this</a> for details.', 'zodiacpress' ), '<strong>', '</strong>', 'https://isabelcastillo.com/docs/windows-hosting' ) .
 				'</p></div>';
@@ -159,7 +147,6 @@ function zp_erase_natal_in_houses() {
 		return;
 	}
 	delete_option( 'zp_natal_planets_in_houses' );
-
 	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
@@ -184,7 +171,6 @@ function zp_erase_natal_aspects() {
 		$p = ( 'sun' == $planet['id'] ) ? 'main' : $planet['id'];
 		delete_option( 'zp_natal_aspects_' . $p );
 	}
-
 	$url = esc_url_raw( add_query_arg( array(
 		'page'	=> 'zodiacpress-tools',
 		'tab'	=> 'cleanup',
@@ -232,27 +218,4 @@ function zp_admin_links() {
 	foreach ( $links as $link ) {
 		echo '<a href="' . $link[2] . '" class="button-secondary zp-' . $link[0] . '-link alignright" target="_blank" rel="noopener">' . $link[1] . '</a>';
 	}
-}
-/**
- * Get size of the zp_atlas database table including the size of its index.
- *
- * @return int $size in bytes
- */
-function zp_atlas_get_size() {
-	static $size;
-	if ( isset( $size ) ) {
-		return $size;
-	}
-	global $zpdb;
-	$size = 0;
-    $results = $zpdb->get_results( 'SHOW TABLE STATUS', ARRAY_A );
-	if ( $results ) {
-		foreach ( $results as $table ) {
-			if ( "{$zpdb->prefix}zp_atlas" != $table['Name'] ) {
-				continue;
-			}
-		    $size += $table['Data_length'] + $table['Index_length'];
-		}
-	}
-	return $size;
 }

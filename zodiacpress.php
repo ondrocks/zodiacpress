@@ -3,7 +3,7 @@
 Plugin Name: ZodiacPress
 Plugin URI: https://isabelcastillo.com/free-plugins/zodiacpress
 Description: Generate astrology birth reports with your custom interpretations.
-Version: 2.0.alpha-1
+Version: 2.0.alpha-2
 Author: Isabel Castillo
 Author URI: https://isabelcastillo.com
 License: GNU GPLv2
@@ -98,8 +98,6 @@ final class ZodiacPress {
 		include_once ZODIACPRESS_PATH . 'includes/class-zp-license.php';
 		include_once ZODIACPRESS_PATH . 'includes/misc-functions.php';
 		include_once ZODIACPRESS_PATH . 'includes/scripts.php';
-		include_once ZODIACPRESS_PATH . 'includes/atlas/class-zp-atlas-db.php';
-		include_once ZODIACPRESS_PATH . 'includes/atlas/atlas-functions.php';
 		include_once ZODIACPRESS_PATH . 'includes/atlas/async/async-tasks.php';
 		include_once ZODIACPRESS_PATH . 'includes/atlas/async/class-zp-atlas-import.php';
 		include_once ZODIACPRESS_PATH . 'includes/atlas/async/class-zp-atlas-insert-db.php';

@@ -198,32 +198,13 @@ function zp_get_registered_settings() {
 						'type'	=> 'header',
 						'desc'	=> '<hr />'
 					),
-					'atlas'	=> array(
-						'id'	=> 'atlas',
-						'name'	=> __( 'Choose Atlas', 'zodiacpress' ),
-						'desc'	=> sprintf( __( 'You need an atlas to get city coordinates and timezones. Do you want to use GeoNames.org or create your own atlas database? (<a href="%1$s" target="_blank" rel="noopener">Help with this decision</a>)', 'zodiacpress' ), 'https://isabelcastillo.com/docs/choose-atlas' ),
-						'type'	=> 'radio',
-						'options' => array(
-							'geonames' => __( 'Use GeoNames', 'zodiacpress' ),
-							'db' => __( 'Use my own atlas database', 'zodiacpress' ),
-						),
-						'std'	=> 'geonames',
-						'class' => 'zp-setting-atlas'
-					),
 					'geonames_user'	=> array(
 						'id'	=> 'geonames_user',
 						'name'	=> __( 'GeoNames Username', 'zodiacpress' ),
 						'desc'	=> sprintf( __( 'Your username from GeoNames.org is needed to get timezone info from their webservice. (%1$screate free account%2$s)', 'zodiacpress' ), '<a href="http://www.geonames.org/login" target="_blank" rel="noopener">', '</a>' ),
-						'type'	=> 'subtext',
+						'type'	=> 'text',
 						'size'	=> 'medium',
-						'std'	=> '',
-						'class' => 'zp-setting-geonames_user'
-					),
-					'atlas_status'	=> array(
-						'id'	=> 'atlas_status',
-						'name'	=> __( 'Atlas Status', 'zodiacpress' ),
-						'type'	=> 'atlas',
-						'class' => 'zp-setting-atlas-status'
+						'std'	=> ''
 					),
 					'uninstall_header' => array(
 						'id'	=> 'uninstall_header',
@@ -321,20 +302,9 @@ function zp_sanitize_text_field( $input, $key ) {
 			return abs( $input );// not negative
 		}
 	}
-	return trim( $input );
-}
-add_filter( 'zp_settings_sanitize_text', 'zp_sanitize_text_field', 10, 2 );
-
-/**
- * Sanitize subtext fields
- *
- * @param string $input The field value
- * @return string $input Sanitizied value
- */
-function zp_sanitize_subtext_field( $input, $key ) {
 	return sanitize_text_field( $input );
 }
-add_filter( 'zp_settings_sanitize_subtext', 'zp_sanitize_subtext_field', 10, 2 );
+add_filter( 'zp_settings_sanitize_text', 'zp_sanitize_text_field', 10, 2 );
 
 /**
  * Sanitize multicheck fields
@@ -413,7 +383,7 @@ function zp_get_registered_settings_sections() {
 }
 
 /**
- * Callback function that renders the header field
+ * Callback that renders the header field
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -423,7 +393,7 @@ function zp_header_callback( $args ) {
 }
 
 /**
- * Callback function that renders checkbox setting
+ * Callback that renders checkbox setting
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -438,7 +408,7 @@ function zp_checkbox_callback( $args ) {
 }
 
 /**
- * Callback function that renders multicheck setting
+ * Callback that renders multicheck setting
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -476,9 +446,8 @@ function zp_multicheck_callback( $args ) {
 		endforeach;
 	}
 }
-
 /**
- * Callback function that renders text settings.
+ * Callback that renders text settings.
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -491,30 +460,12 @@ function zp_text_callback( $args ) {
 	} else {
 		$value = isset( $args['std'] ) ? $args['std'] : '';
 	}
-
 	$name = 'name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']"';
-
 	$size     = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
 	$html     = '<input type="text" class="' . esc_attr( $size ) . '-text" id="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '" />';
 	$html    .= '<label for="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
-
 	echo $html;
 }
-
-/**
- * Callback function that renders alternate text settings.
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
-function zp_subtext_callback( $args ) {
-	$name = isset( $args['name'] ) ? $args['name'] : '';
-	?>
-	<div class="zp-flex-container stuffbox"><div><strong><?php echo $name; ?></strong></div>
-	<div><?php zp_text_callback( $args ); ?></div></div>
-	<?php
-}
-
 /**
  * Missing Callback
  *
@@ -529,9 +480,8 @@ function zp_missing_callback($args) {
 		'<strong>' . esc_attr( $args['id'] ) . '</strong>'
 	);
 }
-
 /**
- * Callback function that renders select field
+ * Callback that renders select field
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -556,9 +506,8 @@ function zp_select_callback( $args ) {
 
 	echo $html;
 }
-
 /**
- * Callback function that renders textarea setting
+ * Callback that renders textarea setting
  *
  * @param array $args Arguments passed by the setting
  * @return void
@@ -572,44 +521,6 @@ function zp_textarea_callback( $args ) {
 
 	echo $html;
 }
-
-/**
- * Callback function that renders radio input setting
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
-function zp_radio_callback( $args ) {
-	$options = get_option( 'zodiacpress_settings' );
-
-	if ( isset( $options[ $args['id'] ] ) ) {
-		$value = $options[ $args['id'] ];
-	} else {
-		$value = isset( $args['std'] ) ? $args['std'] : '';
-	}
-
-	$html = '<label for="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']"> ' . wp_kses_post( $args['desc'] ) . '</label>';
-
-	foreach ( $args['options'] as $option => $name ) {
-		$checked = ( $option === $value ) ? ' checked' : '';
-
-		$html .= '<div><input type="radio" name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" id="zodiacpress_settings_' . esc_attr( $args['id'] ) . '_' . esc_attr( $option ) . '" value="' . esc_attr( $option ) . '"' . $checked . '>' . esc_html( $name ) . '</div>';
-	}
-
-	echo $html;
-}
-
-
-/**
- * Callback function that renders Atlas status box
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
-function zp_atlas_callback( $args ) {
-	include ZODIACPRESS_PATH . 'includes/admin/views/html-atlas-status.php';
-}
-
 /**
  * Set manage_zodiacpress_settings as the cap required to save ZP settings
  *
@@ -619,7 +530,6 @@ function zp_set_settings_cap( $cap ) {
 	return 'manage_zodiacpress_settings';
 }
 add_filter( 'option_page_capability_zodiacpress_settings', 'zp_set_settings_cap' );
-
 /**
  * Display help text at the top of the Orbs settings
  *
@@ -633,7 +543,6 @@ function zp_orbs_settings_help_text() {
 	echo '<p class="clear zp-helptext">' . __( 'For each aspect, set the orb to use for each planet. If blank, the default (8) will be used.', 'zodiacpress' ) . '</p>';
 	$done_ran = true;
 }
-
 /**
  * Add granular Orbs settings
  */
@@ -664,6 +573,5 @@ function zp_orbs_add_orb_settings( $settings ) {
 	}
 	return $settings;
 }
-
 add_action( 'zodiacpress_settings_tab_top_natal_orbs', 'zp_orbs_settings_help_text' );
 add_action( 'zp_settings_natal', 'zp_orbs_add_orb_settings' );
