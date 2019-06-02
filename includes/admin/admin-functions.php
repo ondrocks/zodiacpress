@@ -47,11 +47,11 @@ add_filter( 'heartbeat_received', 'zp_atlas_receive_heartbeat', 10, 2 );
  */
 function zp_admin_notices() {
 	global $zodiacpress_options;
-	// On activation, adds admin notice to inform that Atlas must be set up.
+	// On activation, show admin notice to inform that GeoNames username must be set up.
 	if ( get_transient( 'zodiacpress_activating' ) ) {
 		delete_transient( 'zodiacpress_activating' );
-		// Only show notice if atlas db is not in use and a geonames username is not set
-		if ( ! ZP_Atlas_DB::use_db() && empty( $zodiacpress_options['geonames_user'] ) ) {
+		// Only show notice if geonames username is not set
+		if ( empty( $zodiacpress_options['geonames_user'] ) ) {
 			include ZODIACPRESS_PATH . 'includes/admin/views/html-notice-install.php';
 		}
 	}
