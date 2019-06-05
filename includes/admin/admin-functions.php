@@ -174,6 +174,6 @@ function zp_admin_links() {
 			'https://isabelcastillo.com/docs/category/zodiacpress' )
 	);
 	foreach ( $links as $link ) {
-		echo '<a href="' . $link[2] . '" class="button-secondary zp-' . $link[0] . '-link alignright" target="_blank" rel="noopener">' . $link[1] . '</a>';
+		echo '<a href="' . $link[2] . '" class="zp-' . $link[0] . '-link alignright" target="_blank" rel="noopener">' . $link[1] . '</a>';
 	}
 }

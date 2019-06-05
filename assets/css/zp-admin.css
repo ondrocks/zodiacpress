@@ -28,18 +28,13 @@
 	clear:both;
 	padding-top:1em;
 }
-.button-secondary.zp-docs-link,
-.button-secondary.zp-feedback-link {
+.zp-docs-link,
+.zp-feedback-link{
 	margin-right:10px;
 }
-.button-secondary.zp-extend-link,
-.button-secondary.zp-feedback-link {
+.zp-extend-link,
+.zp-feedback-link {
 	margin-bottom:10px;
-}
-.zp-extend-link::before {
-	font-family: "zodiacpress" !important;
-	content: "\e90c";
-	padding: 0 10px 0 0;
 }
 .zp-helptext{
 	padding-top:2em;
