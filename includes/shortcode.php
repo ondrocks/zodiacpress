@@ -5,12 +5,9 @@ add_shortcode( 'birthreport', 'zp_birthreport_shortcode' );
  * The form displayed by the birth report shortcode.
  */
 function zp_birthreport_shortcode( $atts ) {
-	// Allow addons to have different default titles
-	$default_title = apply_filters( 'zp_shortcode_default_form_title', __( 'Get An Astrology Birth Report', 'zodiacpress' ), $atts );
-
 	$report_atts = shortcode_atts( array(
 		'report'		=> 'birthreport',
-		'form_title'	=> $default_title,
+		'form_title'	=> '',// @todo DEPRECATED remove in next update
 		'sidereal'		=> false,
 		'house_system'	=> false,
 		'sell'			=> false,
@@ -26,9 +23,7 @@ function zp_birthreport_shortcode( $atts ) {
 	ob_start();
 	?>
 	<div id="zp-form-wrap">
-		<?php if ( $report_atts[ 'form_title' ] ) { ?>
-			<h2><?php echo esc_html( $report_atts['form_title'] ); ?></h2>
-		<?php }
+		<?php
 		zp_form( 'birthreport', $report_atts );
 		do_action( 'zp_form_after', $report_atts );
 		?>

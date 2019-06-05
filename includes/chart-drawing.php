@@ -94,16 +94,6 @@ function zp_get_sample_chart_drawing( $colors = false ) {
 	return zp_get_chart_drawing( $chart, $colors );
 }
 /**
- * Set the default form title for the "Only" Chart Drawing Report form.
- */
-function zp_only_drawing_form_title( $title, $atts ) {
-	if ( isset( $atts['report'] ) && 'drawing' == $atts['report'] ) {
-		$title = __( 'Get Your Birth Chart Wheel', 'zodiacpress' );
-	}
-	return $title;
-}
-add_filter( 'zp_shortcode_default_form_title', 'zp_only_drawing_form_title', 10, 2 );
-/**
  * Allow unknown birth time for 'Only Chart Wheel' ONLY if set in settings
  */
 function zp_drawing_allow_unknown_time( $prefix, $args ) {
