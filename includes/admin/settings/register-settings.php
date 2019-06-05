@@ -392,25 +392,20 @@ function zp_multicheck_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
 	if ( ! empty( $args['options'] ) ) {
 		echo '<p class="description">' . wp_kses_post( $args['desc'] ) . '</p>';
-		/* Reformat options array as alternative to using array_column() to support PHP < 5.5 */
 		$enabled_options = array();
 		if ( is_array( $options ) ) {
 			$plucked_keys	= array();
 			$plucked_values	= array();
 			foreach ( $options as $k => $v ) {
 				if ( is_array( $v ) && isset( $v[0]['id'] ) ) {
-					$plucked_keys[] 	= $k;
-					$plucked_values[]	= wp_list_pluck( $v, 'id', 'id' );
+					$plucked_keys[] = $k;
+					$plucked_values[] = array_column( $v, 'id', 'id' );
 				}
 			}
 			$enabled_options = array_combine( $plucked_keys, $plucked_values );
 		}
 		foreach( $args['options'] as $option ):
-			if ( isset( $enabled_options[$args['id']][ $option['id'] ] ) ) {
-				$enabled = $option['id'];
-			} else {
-				$enabled = NULL;
-			}
+			$enabled = isset( $enabled_options[$args['id']][ $option['id'] ] ) ? $option['id'] : NULL;
 			echo '<input name="zodiacpress_settings[' . esc_attr( $args['id'] ) . '][' . $option['id'] . ']" id="zodiacpress_settings[' . esc_attr( $args['id'] ) . '][' . $option['id'] . ']" type="checkbox" value="' . esc_attr( $option['label'] ) . '" ' . checked($option['id'], $enabled, false) . '/>&nbsp;';
 			echo '<label for="zodiacpress_settings[' . esc_attr( $args['id'] ) . '][' . $option['id'] . ']">' . wp_kses_post( $option['label'] ) . '</label><br/>';
 		endforeach;
