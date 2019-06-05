@@ -1,11 +1,5 @@
 <?php
-/**
- * Form Template
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Display the form to generate an astrology report
  *

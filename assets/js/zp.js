@@ -181,9 +181,6 @@ function zpFieldsFilled() {
 	return true;
 }
 
-/**
- * Remove form error notices
- */
 function zpRemoveError() {
 	var el = document.querySelector( '.ui-state-error' );
 	if ( el !== null ) { el.parentNode.removeChild( el ); }

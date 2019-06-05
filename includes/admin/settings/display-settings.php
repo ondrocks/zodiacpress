@@ -1,17 +1,6 @@
 <?php
-/**
- * Admin Settings Page
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-/**
- * Settings Page
- *
- * Renders the settings page contents.
- *
- * @return void
- */
+// Renders the ZP settings page
 function zp_options_page() {
 	$settings_tabs = zp_get_settings_tabs();
 	$settings_tabs = empty( $settings_tabs ) ? array() : $settings_tabs;

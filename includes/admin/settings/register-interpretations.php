@@ -1,11 +1,8 @@
 <?php
 /**
  * Register Interpretations
- *
- * @package     ZodiacPress
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Get the name of an option for an Interpretations tab section.
  * 
@@ -18,7 +15,6 @@ function zp_get_interps_option_name( $tab, $section ) {
 		return false;
 	}
 	$name = 'zp_' . $tab;
-		
 	// Large Interps Tabs that get a separate option per section due to large size
 	$large_tabs = apply_filters( 'zp_large_tabs_separate_options', array( 'natal_aspects' ) );
 
@@ -28,7 +24,6 @@ function zp_get_interps_option_name( $tab, $section ) {
 	}
 	return $name;	
 }
-
 /**
  * Get the section title for an Interpretations section.
  * 
@@ -40,38 +35,30 @@ function zp_get_interps_section_title( $tab, $section ) {
 	if ( empty( $tab ) || empty( $section ) ) {
 		return false;
 	}
-
 	$planet_key	= ( 'main' == $section ) ? 'sun' : $section;
 	$planet		= '';
-
 	// get planet label
 	foreach ( zp_get_planets() as $p ) {
 		if ( $planet_key == $p['id'] ) {
 			$planet = $p['label'];
 		}
 	}
-
 	switch ( $tab ) {
 		case 'natal_planets_in_signs':
 			$title = sprintf( __( 'Interpretations For Natal %1$s in The Signs', 'zodiacpress' ), $planet );
 			break;
-
 		case 'natal_planets_in_houses':
 			$title = sprintf( __( 'Interpretations For Natal %1$s in The Houses', 'zodiacpress' ), $planet );
 			break;
-
 		case 'natal_aspects':
 			$title = sprintf( __( 'Interpretations For Aspects of Natal %1$s', 'zodiacpress' ), $planet );
 			break;
-
 		default:
 			$title = __( 'Natal Interpretations', 'zodiacpress' );
 			break;
 	}
-
 	return $title;	
 }
-
 /**
  * Register all enabled interpretations sections and fields
  *
@@ -233,7 +220,7 @@ function zp_get_enabled_interps() {
 /**
  * Interpretations Sanitization
  *
- * Adds a settings error (for the updated message)
+ * Adds a settings updated notice
  *
  * @param array $input The value inputted in the field
  *
@@ -276,12 +263,6 @@ function zp_interps_sanitize( $input = array() ) {
 
 	return $output;
 }
-
-/**
- * Retrieve Interpretations tabs
- *
- * @return array $tabs
- */
 function zp_get_interps_tabs() {
 	$tabs = array(
 		'natal_planets_in_signs' 	=> __( 'In Signs', 'zodiacpress' ),
@@ -290,12 +271,6 @@ function zp_get_interps_tabs() {
 	);
 	return $tabs;
 }
-
-/**
- * Retrieve interpretations tab sections
- *
- * @return array $section
- */
 function zp_get_interps_tab_sections( $tab = false ) {
 	$sections	= false;
 	$interps	= zp_get_enabled_interps_sections();
@@ -305,10 +280,8 @@ function zp_get_interps_tab_sections( $tab = false ) {
 	} elseif ( $tab ) {
 		$sections = false;
 	}
-
 	return $sections;
 }
-
 /**
  * Get the enabled interpretations sections for each tab
  *
@@ -364,20 +337,11 @@ function zp_get_enabled_interps_sections() {
 
 	return $sections;
 }
-
-/**
- * Interpretations Textarea Callback
- *
- * Renders textarea fields for interpretations.
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// Renders textarea fields for interpretations
 function zp_interps_textarea_callback( $args ) {
 	if ( ! isset( $args['tab'] ) ) {
 		return;
 	}
-
 	// get the Interps option for this setting
 	$option_name = zp_get_interps_option_name( $args['tab'], $args['section'] );
 	$option = get_option( $option_name );

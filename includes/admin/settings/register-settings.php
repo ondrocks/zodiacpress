@@ -1,11 +1,5 @@
 <?php
-/**
- * Register Settings
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Add all settings sections and fields
  *
@@ -50,7 +44,6 @@ function zp_register_settings() {
 		}
 
 	}
-
 	register_setting( 'zodiacpress_settings', 'zodiacpress_settings', 'zp_settings_sanitize' );
 }
 add_action( 'admin_init', 'zp_register_settings' );
@@ -229,7 +222,7 @@ function zp_get_registered_settings() {
 /**
  * Settings Sanitization
  *
- * Adds a settings error (for the updated message)
+ * Adds a settings updated notice
  *
  * @param array $input The value inputted in the field
  *
@@ -279,7 +272,7 @@ function zp_settings_sanitize( $input = array() ) {
 		}
 	}
 
-	// Merge our new settings with the existing
+	// Merge new settings with the existing
 	$output = array_merge( $zodiacpress_options, $input );
 
 	add_settings_error( 'zp-notices', '', __( 'Settings updated.', 'zodiacpress' ), 'updated' );
@@ -291,6 +284,7 @@ function zp_settings_sanitize( $input = array() ) {
  * Sanitize text fields
  *
  * @param string $input The field value
+ * @param string $key The field id
  * @return string $input Sanitizied value
  */
 function zp_sanitize_text_field( $input, $key ) {
@@ -381,45 +375,23 @@ function zp_get_registered_settings_sections() {
 
 	return $sections;
 }
-
-/**
- * Callback that renders the header field
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// renders the header field
 function zp_header_callback( $args ) {
 	echo empty( $args['desc'] ) ? '' : $args['desc'];
 }
-
-/**
- * Callback that renders checkbox setting
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// renders checkbox setting
 function zp_checkbox_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
 	$checked = isset( $options[ $args['id'] ] ) ? checked( 1, $options[ $args['id'] ], false ) : '';
 	$html = '<input type="checkbox" id="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" value="1" ' . $checked . '/>';
 	$html .= '<label for="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
-
 	echo $html;
 }
-
-/**
- * Callback that renders multicheck setting
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// renders multicheck setting
 function zp_multicheck_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
-
 	if ( ! empty( $args['options'] ) ) {
-
 		echo '<p class="description">' . wp_kses_post( $args['desc'] ) . '</p>';
-
 		/* Reformat options array as alternative to using array_column() to support PHP < 5.5 */
 		$enabled_options = array();
 		if ( is_array( $options ) ) {
@@ -433,9 +405,7 @@ function zp_multicheck_callback( $args ) {
 			}
 			$enabled_options = array_combine( $plucked_keys, $plucked_values );
 		}
-
 		foreach( $args['options'] as $option ):
-
 			if ( isset( $enabled_options[$args['id']][ $option['id'] ] ) ) {
 				$enabled = $option['id'];
 			} else {
@@ -446,12 +416,7 @@ function zp_multicheck_callback( $args ) {
 		endforeach;
 	}
 }
-/**
- * Callback that renders text settings.
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// renders text settings
 function zp_text_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
 
@@ -466,26 +431,14 @@ function zp_text_callback( $args ) {
 	$html    .= '<label for="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 	echo $html;
 }
-/**
- * Missing Callback
- *
- * If a function is missing for settings callbacks alert the user.
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// alert if a callback is missing for a setting
 function zp_missing_callback($args) {
 	printf(
 		__( 'The callback function used for the %s setting is missing.', 'zodiacpress' ),
 		'<strong>' . esc_attr( $args['id'] ) . '</strong>'
 	);
 }
-/**
- * Callback that renders select field
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// renders select field
 function zp_select_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
 	if ( isset( $options[ $args['id'] ] ) ) {
@@ -493,37 +446,25 @@ function zp_select_callback( $args ) {
 	} else {
 		$value = isset( $args['std'] ) ? $args['std'] : '';
 	}
-
 	$html = '<select id="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" />';
-
 	foreach ( $args['options'] as $option => $name ) {
 		$selected = ( $option === $value ) ? ' selected' : '';
 		$html .= '<option value="' . esc_attr( $option ) . '"' . $selected . '>' . esc_html( $name ) . '</option>';
 	}
-
 	$html .= '</select>';
 	$html .= '<label for="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']"> ' . wp_kses_post( $args['desc'] ) . '</label>';
-
 	echo $html;
 }
-/**
- * Callback that renders textarea setting
- *
- * @param array $args Arguments passed by the setting
- * @return void
- */
+// renders textarea setting
 function zp_textarea_callback( $args ) {
 	$options = get_option( 'zodiacpress_settings' );
 	$value = isset( $options[ $args['id'] ] ) ? $options[ $args['id'] ] : '';
-	
 	$html = '<p class="description">' . wp_kses_post( $args['desc'] ) . '</p>';
 	$html .= '<textarea class="large-text" cols="50" rows="5" id="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']" name="zodiacpress_settings[' . esc_attr( $args['id'] ) . ']">' . esc_textarea( stripslashes( $value ) ) . '</textarea>';
-
 	echo $html;
 }
 /**
  * Set manage_zodiacpress_settings as the cap required to save ZP settings
- *
  * @return string capability required
  */
 function zp_set_settings_cap( $cap ) {
@@ -532,8 +473,6 @@ function zp_set_settings_cap( $cap ) {
 add_filter( 'option_page_capability_zodiacpress_settings', 'zp_set_settings_cap' );
 /**
  * Display help text at the top of the Orbs settings
- *
- * @return  void
  */
 function zp_orbs_settings_help_text() {
 	static $done_ran;

@@ -1,14 +1,7 @@
 <?php
-/**
- * Helper Functions for the Form Template
- *
- * @package 	ZodiacPress
- * @since 		1.7
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
- * Render the HTML for the Name form field.
+ * Renders the HTML for the Name form field.
  */
 function zp_name_form_field() {
 	?>
@@ -30,7 +23,6 @@ function zp_month_select_options() {
 	}
 
 }
-
 /**
  * Renders the HTML select options for the Day form field.
  */
@@ -44,7 +36,6 @@ function zp_day_select_options() {
 		<?php
 	}
 }
-
 /**
  * Renders the HTML select options for the Year form field.
  * @todo must update $accepted_yrs annually to avoid mismatch of key=>value with i18n year. Update it both here and in zp_i18n_years() so that the final year is 1 year into the future.
@@ -71,7 +62,6 @@ function zp_year_select_options() {
  * Renders the HTML select options for the Hour form field.
  */
 function zp_hour_select_options() {
-
 	$hours = array_slice( zp_i18n_numbers_zeros(), 0, 24, true );
 	?>
 	<option value=""><?php _e( 'Hour', 'zodiacpress' ); ?></option>
@@ -96,7 +86,6 @@ function zp_minute_select_options() {
 
 	<?php }
 }
-
 /**
  * Render the Month form field
  */
@@ -107,7 +96,6 @@ function zp_month_form_field() {
 	<select id="month" name="month" required><?php zp_month_select_options(); ?></select>
 	<?php
 }
-
 /**
  * Render the Day form field
  */

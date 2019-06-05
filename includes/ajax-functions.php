@@ -1,7 +1,4 @@
 <?php
-/**
- * Process the AJAX actions.
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Handles ajax request to calculate timezone offset and send back to form fields

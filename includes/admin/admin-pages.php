@@ -1,12 +1,7 @@
 <?php
-/**
- * Admin Pages
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
- * Creates the ZodiacPress admin pages
+ * Creates the ZP admin pages
  */
 function zp_add_admin_pages() {
 	add_menu_page( __( 'ZodiacPress', 'zodiacpress' ), __( 'ZodiacPress', 'zodiacpress' ), 'manage_zodiacpress_interps', 'zodiacpress', 'zp_interpretations_page', 'dashicons-universal-access-alt', '21.9' );

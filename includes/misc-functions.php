@@ -1,11 +1,5 @@
 <?php
-/**
- * Misc Functions
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Returns an orderinal word for a number, or a list of number ordinal words
  * @param int $key the number of word to return
@@ -76,7 +70,6 @@ function zp_object_to_array( $data ) {
 	}
 	return $data;
 }
-
 /**
  * Returns a list of all possible Interpretations db option names, not just enabled ones.
  *
@@ -136,21 +129,15 @@ function zp_get_enabled_interps_options_names() {
 function zp_is_sweph_executable() {
 	$out			= true;
 	$file			= ZODIACPRESS_PATH . 'sweph/swetest';
-
 	if ( ! file_exists( $file ) ) {
 		add_action( 'admin_notices', 'zp_admin_notices_missing_file' );
 		return false;
 	}
-
 	$permissions	= substr( sprintf( '%o', fileperms( $file ) ), -4 );
-
 	if ( '0755' !== $permissions ) {
-
 		if ( zp_is_func_enabled( 'chmod' ) ) {
-
 			// Attempt to change permission.
 			$change = chmod( $file, 0755 );
-			
 			if ( ! $change ) {
 				$out = false;
 				add_action( 'admin_notices', 'zp_admin_notices_chmod_failed' );
@@ -160,17 +147,14 @@ function zp_is_sweph_executable() {
 			add_action( 'admin_notices', 'zp_admin_notices_chmod_failed' );
 		}
 	}
-
 	return $out;
 }
-
 /**
  * Check if web server operating system is Windows
  */
 function zp_is_server_windows() {
 	return ( strtolower( PHP_SHLIB_SUFFIX ) === 'dll' ) ? true : false;
 }
-
 /**
  * Search a column of a multidimentsional array for a specific value and return the key.
  *

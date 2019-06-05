@@ -1,11 +1,5 @@
 <?php
-/**
- * Astro Functions
- *
- * Functions related to astrological points and things.
- *
- * @package     ZodiacPress
- */
+// Functions related to astrological points and things.
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Returns a list of planets/points.
@@ -102,9 +96,7 @@ function zp_get_planets( $houses = '', $include = '' ) {
 			'label'		=> __( 'Midheaven', 'zodiacpress' ),
 			'supports'	=> array( 'birth_time_required' )
 		)// 16
-
 	) );
-
 	if ( $houses ) {
 		foreach ( $planets as $p ) {
 			if ( ! empty( $p['supports'] ) && in_array( 'houses', $p['supports'] ) ) {
@@ -113,18 +105,13 @@ function zp_get_planets( $houses = '', $include = '' ) {
 		}
 		$planets = $house_planets;
 	}
-
 	if ( $include ) {
 		$include = (int) $include;
 		$planets = array_slice( $planets, 0, $include );
 	}
-
 	return $planets;
 }
-
-/**
- * Return a list of available aspects.
- */
+// Return a list of all available aspects
 function zp_get_aspects() {
 	$aspects = array(
 		array(
@@ -152,12 +139,8 @@ function zp_get_aspects() {
 			'label'		=> __( 'Opposition', 'zodiacpress' ),
 			'numerical'	=> 180 ),
 	);
-	
 	return apply_filters( 'zp_get_aspects', $aspects );
 }
-/**
- * Return an array of the zodiac signs
- */
 function zp_get_zodiac_signs() {
 	$signs = array(
 			array(
@@ -199,7 +182,6 @@ function zp_get_zodiac_signs() {
 	);
 	return $signs;
 }
-
 /**
 * Convert zodiac decimal longitude from 360 degrees notation into zodiac sign degrees, minutes, seconds
 * @param string|double $longitude zodiac decimal longitude in 360 degrees notation
@@ -513,7 +495,6 @@ function zp_get_house_systems( $key = '' ) {
 	);
 	return ( $key && isset( $house_systems[ $key ] ) ) ? $house_systems[ $key ] : $house_systems;
 }
-
 /**
  * Returns all available sidereal methods
  * @return array $sidereal_methods

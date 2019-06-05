@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 add_shortcode( 'birthreport', 'zp_birthreport_shortcode' );
 /**
- * Birth report shortcode.
+ * The form displayed by the birth report shortcode.
  */
 function zp_birthreport_shortcode( $atts ) {
 	// Allow addons to have different default titles

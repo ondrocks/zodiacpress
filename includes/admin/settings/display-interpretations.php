@@ -1,17 +1,6 @@
 <?php
-/**
- * Admin Interpretations Page
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-/**
- * Interpretations Page
- *
- * Renders the Natal Interpretations page contents.
- *
- * @return void
- */
+// Renders the Natal Interpretations page
 function zp_interpretations_page() {
 	$interps_tabs = zp_get_interps_tabs();
 	$interps_tabs = empty($interps_tabs) ? array() : $interps_tabs;

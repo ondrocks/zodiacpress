@@ -1,12 +1,7 @@
 <?php
-/**
- * Scripts
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
- * Register styles and scripts
+ * Register font-end styles and scripts
  */
 function zp_register_scripts() {
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
@@ -22,7 +17,7 @@ function zp_register_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
 /**
- * Load admin-specific scripts and styles.
+ * Register admin-specific scripts and styles.
  */
 function zp_admin_scripts() {
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
@@ -35,7 +30,7 @@ function zp_admin_scripts() {
 }
 add_action( 'admin_enqueue_scripts', 'zp_admin_scripts', 100 );
 /**
- * Get data strings for the ZP core script.
+ * Get strings for the ZP core script.
  * @since 1.8
  */
 function zp_script_localization_data() {

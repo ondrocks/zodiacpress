@@ -3,7 +3,7 @@
 Plugin Name: ZodiacPress
 Plugin URI: https://isabelcastillo.com/free-plugins/zodiacpress
 Description: Generate astrology birth reports with your custom interpretations.
-Version: 2.0.alpha-4
+Version: 2.0.alpha-5
 Author: Isabel Castillo
 Author URI: https://isabelcastillo.com
 License: GNU GPLv2
@@ -30,15 +30,7 @@ along with ZodiacPress. If not, see <http://www.gnu.org/licenses/>.
 */
 if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! class_exists( 'ZodiacPress' ) ) {
-/**
- * Main ZodiacPress Class.
- */
 final class ZodiacPress {
-	/**
-	 * Instance of this class.
-	 *
-	 * @var object
-	 */
 	private static $instance;
 	/**
 	 * Main ZodiacPress Instance.
@@ -58,12 +50,6 @@ final class ZodiacPress {
 		}
 		return self::$instance;
 	}
-	/**
-	 * Setup plugin constants.
-	 *
-	 * @access private
-	 * @return void
-	 */
 	private function setup_constants() {
 		if ( ! defined( 'ZODIACPRESS_VERSION' ) ) {
 			define( 'ZODIACPRESS_VERSION', '1.9.1' );// @todo update
@@ -75,12 +61,6 @@ final class ZodiacPress {
 			define( 'ZODIACPRESS_PATH', plugin_dir_path( __FILE__ ) );
 		}
 	}
-	/**
-	 * Include required files.
-	 *
-	 * @access private
-	 * @return void
-	 */
 	private function includes() {
 		global $zodiacpress_options;
 		include_once ZODIACPRESS_PATH . 'includes/admin/settings/register-settings.php';
@@ -109,23 +89,11 @@ final class ZodiacPress {
 			include_once ZODIACPRESS_PATH . 'includes/admin/tools.php';
 		}
 	}
-	/**
-	 * Load plugin language files
-	 *
-	 * @access public
-	 * @return void
-	 */
 	public function languages() {
 		load_plugin_textdomain( 'zodiacpress', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 	}
-	/**
-	 * Set necessary file permissions.
-	 *
-	 * @access public
-	 * @return void
-	 */
 	public function plugin_loaded() {
-		zp_is_sweph_executable();
+		zp_is_sweph_executable();// Set necessary file permissions
 	}
 	/**
 	 * Fired when the plugin is activated.
@@ -162,7 +130,6 @@ final class ZodiacPress {
 			}
 			update_option( 'zodiacpress_settings', $options );
 		}
-		// Add plugin caps
 		$admin = get_role( 'administrator' );
 		if ( null != $admin ) {
 			$admin->add_cap( 'manage_zodiacpress_settings' );
@@ -172,21 +139,7 @@ final class ZodiacPress {
 	}
 }
 } // End class_exists check.
-/**
- * The main function that returns ZodiacPress
- *
- * Use this function like you would a global variable, except without needing
- * to declare the global.
- *
- * Example: <?php $zp = zp(); ?>
- *
- * @return object|ZodiacPress The one true ZodiacPress Instance.
- */
-function zp() {
-	return ZodiacPress::instance();
-}
-// Get ZP Running.
-zp();
+ZodiacPress::instance();
 register_activation_hook( __FILE__, array( 'ZodiacPress', 'activate' ) );
 function zp_deactivate() {
     delete_option( 'zp_cleanup_deprecated_options_v19' );

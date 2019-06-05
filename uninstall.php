@@ -1,9 +1,4 @@
 <?php
-/**
- * Fired when the plugin is uninstalled.
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
@@ -20,19 +15,10 @@ if ( is_multisite() ) {
 } else {
 	zp_uninstall();
 }
-/**
- * Uninstall function.
- *
- * The uninstall function will only proceed if
- * the user explicitly asks for all data to be removed.
- *
- * @return void
- */
 function zp_uninstall() {
 	$options = get_option( 'zodiacpress_settings' );
 	// Make sure that the user wants to remove all the data.
 	if ( isset( $options['remove_data'] ) && '1' == $options['remove_data'] ) {
-		// Delete options
 		$keys = array(
 			'zodiacpress_settings'
 			'zp_natal_planets_in_signs',
@@ -61,9 +47,6 @@ function zp_uninstall() {
 		zp_remove_caps();
 	}
 }
-/**
- * Remove zodiacpress capabilities
- */
 function zp_remove_caps() {
 	global $wp_roles;
 	if ( class_exists( 'WP_Roles' ) ) {

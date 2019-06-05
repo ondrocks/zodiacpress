@@ -1,17 +1,9 @@
 <?php
-/**
- * ZP_Ephemeris class
- *
- * @package     ZodiacPress
- * @since       1.3
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * The class used to query the Swiss Ephemeris
  */
 class ZP_Ephemeris {
-
 	/**
 	 * Planets and points to query for. Not needed when querying for only house cusps.
 	 * @var string $planets Planet selection letters
@@ -43,14 +35,12 @@ class ZP_Ephemeris {
 	 */
 	private $ut_time;
 
-
 	/**
 	 * Constructor.
 	 *
 	 * @param array $args Options for the ephemeris query
 	 */
 	public function __construct( $args = array() ) {
-
 		$default = array(
 			'planets'		=> '',
 			'format'		=> '',
@@ -123,11 +113,8 @@ class ZP_Ephemeris {
 		$sweph = apply_filters( 'zp_sweph_dir', ZODIACPRESS_PATH . 'sweph' );
 		putenv( 'PATH=$PATH:' . "$sweph" );
 		$swetest = apply_filters( 'zp_sweph_file', 'swetest' );
-
 		// Query the ephemeris
 		exec( "$swetest -edir$sweph -b{$this->ut_date} {$this->ut_time} -p{$this->planets} {$this->house} -eswe {$this->format} {$this->options} -g, -head", $out);
-
 		return $out;
-		
 	}
 }

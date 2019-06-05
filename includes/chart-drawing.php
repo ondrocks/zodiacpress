@@ -1,11 +1,5 @@
 <?php
-/**
- * Functions related to the chart drawing
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * Returns the chart drawing image element
  */

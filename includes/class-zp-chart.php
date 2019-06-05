@@ -1,98 +1,75 @@
 <?php
-/**
- * ZP_Chart class
- *
- * @package     ZodiacPress
- * @since       1.0
- */
-
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 /**
  * The class used to generate astrological data for a given moment in time.
  */
 final class ZP_Chart {
-
 	/**
 	 * The Unix Epoch time for this chart.
 	 */
 	public $unix_timestamp;
-
 	/**
 	 * Universal Date for this chart
 	 */
 	public $ut_date;
-
 	/**
 	 * Universal Time for this chart
 	 */
 	public $ut_time;
-
 	/**
 	 * Latitude decimal of the location for this chart
 	 */
 	public $latitude;
-
 	/**
 	 * Longitude decimal of the location for this chart
 	 */
 	public $longitude;
-
 	/**
 	 * The chart's house cusps in logitude decimal.
 	 *
 	 * @var array
 	 */
 	public $cusps = array();
-
 	/**
 	 * The positions of the planets and points in logitude decimal.
 	 *
 	 * @var array
 	 */
 	public $planets_longitude = array();
-
 	/**
 	 * The house position number of the planets and points in houses.
 	 *
 	 * @var array
 	 */
 	public $planets_house_numbers = array();
-
 	/**
 	 * Planets list showing whether each planet is conjunct the next house cusp.
 	 *
 	 * @var array
 	 */
 	public $conjunct_next_cusp = array();
-
 	/**
 	 * The speed of the planets and points in longitude decimal degrees per day
 	 *
 	 * @var array
 	 */
 	public $planets_speed = array();
-
 	/**
 	 * The house system used for this chart's house cusps and planets in houses.
 	 */
 	public $house_system;
-
 	/**
 	 * The sidereal method for this chart, if this is a sidereal chart.
 	 */
 	public $sidereal;
-
 	/**
 	 * The calculated Ayanamsa, if this is a sidereal chart.
 	 */
 	public $ayanamsa;
-
 	/**
 	 * Whether this chart is for an unknown birth time.
 	 */
 	public $unknown_time = false;
-
 	/**
 	 * Retrieve ZP_Chart instance.
 	 *
@@ -280,7 +257,6 @@ final class ZP_Chart {
 	 * @return string The POF position in longitude decimal
 	 */
 	private function calculate_pof( $asc = 0, $sun = 0, $moon = 0 ) {
-
 		$desc = zp_calculate_descendant( $asc );
 
 		// Is this a day chart or a night chart?
@@ -321,11 +297,8 @@ final class ZP_Chart {
 	 * Set up the conjunct_next_cusp property.
 	 */
 	private function setup_conjunct_next_cusp() {
-
 		foreach ( $this->planets_longitude as $key => $p_long ) {
-
 			if ( isset( $this->planets_house_numbers[ $key ] ) ) {
-
 				$this->conjunct_next_cusp[ $key ] = zp_conjunct_next_cusp( $key, $p_long, $this->planets_house_numbers[ $key ], $this->cusps );
 			}
 		}

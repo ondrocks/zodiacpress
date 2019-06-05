@@ -1,13 +1,8 @@
 <?php
 /**
  * Functions that are needed only in admin
- *
- * @package     ZodiacPress
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-/**
- * ZP Admin notices
- */
 function zp_admin_notices() {
 	global $zodiacpress_options;
 	// On activation, show admin notice to inform that GeoNames username must be set up.
@@ -161,7 +156,7 @@ function zp_custom_admin_menu_icon() {
 }
 add_action('admin_head', 'zp_custom_admin_menu_icon');
 /**
- * Display links in the admin tor ZP docs, rating, and extensions.
+ * Display links in the admin for ZP docs, rating, and extensions.
  */
 function zp_admin_links() {
 	$links = array(

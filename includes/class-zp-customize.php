@@ -4,9 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Adds a ZodiacPress chart wheel color editor to the Customizer.
  */
 class ZP_Customize {
-	/**
-	 * Get default colors
-	 */
 	private static function default_colors() {
 		$defaults = array(
 		'outer_bg_color'			=> array( '#e9e9e9',
@@ -52,7 +49,6 @@ class ZP_Customize {
 		'water_sign_color'			=> array( '#4169e1',
 											__( 'Water Sign Color', 'zodiacpress' ) ),
 		);
-
 		return $defaults;	
 	}
 

@@ -1,11 +1,4 @@
 <?php
-/**
- * ZP_Birth_Report class
- *
- * @package     ZodiacPress
- * @since       1.0
- */
-
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * The class used to build and display the birth report.
@@ -39,11 +32,6 @@ class ZP_Birth_Report {
 	 * @var array
 	 */
 	private $enabled_aspects = array();
-	/**
-	 * The ZP settings.
-	 *
-	 * @var array
-	 */
 	private $zp_settings = array();
 	/**
 	 * Constructor.

@@ -1,14 +1,7 @@
 <?php
-/**
- * Tools: all functions for displaying ZP tools such as the export/import system.
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Shows the tools panel which contains ZP-specific tools.
- *
- * @return      void
  */
 function zp_tools_page() {
 	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'cleanup';
@@ -21,7 +14,6 @@ function zp_tools_page() {
 		<?php foreach( zp_get_tools_tabs() as $tab_id => $tab_name ) {
 			$active = $active_tab == $tab_id ? ' nav-tab-active' : '';
 			$tab_url = add_query_arg( array( 'tab' => $tab_id ) );
-
 			// Remove the arg that triggers the admin notice
 			$tab_url = remove_query_arg( 'zp-done', $tab_url );
 
@@ -36,12 +28,6 @@ function zp_tools_page() {
 	</div>
 	<?php
 }
-
-/**
- * Retrieve tools tabs
- *
- * @return      array
- */
 function zp_get_tools_tabs() {
 	$tabs = array(
 		'cleanup' 		=> __( 'Clean up', 'zodiacpress' ),
@@ -61,12 +47,6 @@ function zp_tool_link( $tool ) {
 	$args['_nonce']	= wp_create_nonce( 'zp_' . $tool );
 	return esc_url( add_query_arg( $args, admin_url( 'admin-post.php' ) ) );
 }
-
-/**
- * Retrieve Cleanup tools
- *
- * @return      array
- */
 function zp_get_cleanup_tools() {
 	$tools = array(
 		'natal_in_signs'	=> array(
@@ -84,7 +64,6 @@ function zp_get_cleanup_tools() {
 	);
 	return apply_filters( 'zp_cleanup_tools', $tools );
 }
-
 /**
  * Display Cleanup Tools tab
  */
@@ -111,7 +90,6 @@ function zp_tools_cleanup_display() {
 	<?php
 }
 add_action( 'zp_tools_tab_cleanup', 'zp_tools_cleanup_display' );
-
 /**
  * Display System info Tools tab.
  */
@@ -119,11 +97,8 @@ function zp_tools_sysinfo_display() {
 	include ZODIACPRESS_PATH . 'includes/admin/views/html-tools-systeminfo.php';
 }
 add_action( 'zp_tools_tab_sysinfo', 'zp_tools_sysinfo_display' );
-
 /**
  * Display the tools export/import tab
- *
- * @return      void
  */
 function zp_tools_import_export_display() {
 	?>
@@ -140,7 +115,6 @@ function zp_tools_import_export_display() {
 			</form>
 		</div>
 	</div>
-
 	<div class="stuffbox">
 		<div class="inside">
 			<h2><?php _e( 'Import Interpretations', 'zodiacpress' ); ?></h2>
@@ -158,7 +132,6 @@ function zp_tools_import_export_display() {
 			</form>
 		</div>
 	</div>
-
 	<div class="stuffbox">
 		<div class="inside">
 			<h2><?php _e( 'Export Settings', 'zodiacpress' ); ?></h2>
@@ -172,7 +145,6 @@ function zp_tools_import_export_display() {
 			</form>
 		</div>
 	</div>
-
 	<div class="stuffbox">
 		<div class="inside">
 			<h2><?php _e( 'Import Settings', 'zodiacpress' ); ?></h2>

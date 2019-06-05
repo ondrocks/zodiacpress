@@ -1,9 +1,4 @@
 <?php
-/**
- * Time Functions
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * A wrapper for mktime().
@@ -199,9 +194,7 @@ function zp_dd_to_dms( $decimal, $line = '' ) {
 	$dm = zp_extract_degrees_parts( $decimal );
 	$d = $dm[0];
 	$m = $dm[1];
-	
 	if ( $line ) {
-
 		// This is a coordinate, not an orb, so add cardinal direction
 		if ( 'longitude' == $line ) {
 			$direction = ( ( $decimal > 0 ) ? 'E' : 'W' );
@@ -209,20 +202,17 @@ function zp_dd_to_dms( $decimal, $line = '' ) {
 			$direction = ( ( $decimal > 0 ) ? 'N' : 'S' );
 		}
 	}
-
 	if ( is_rtl() ) {
 		$degrees = '&#176;' . zp_i18n_coordinates( $d );
 	} else {
 		$degrees = zp_i18n_coordinates( $d ) . '&#176;';
 	}
-
 	/* translators: Attention RTL languages. 3 placeholders are degrees, cardinal direction, minutes for coordinates. */
 	$out = sprintf( __( '%1$s%2$s%3$s\'', 'zodiacpress' ),
 			$degrees,
 			$direction,
 			zp_i18n_coordinates( $m )
 	);	
-
 	return $out;
 }
 

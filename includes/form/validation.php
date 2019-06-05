@@ -1,9 +1,4 @@
 <?php
-/**
- * Form Validation Function
- *
- * @package     ZodiacPress
- */
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Validate and sanitize the form data
