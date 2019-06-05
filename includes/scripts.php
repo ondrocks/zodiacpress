@@ -8,11 +8,8 @@ function zp_register_scripts() {
 	wp_register_style( 'zp', ZODIACPRESS_URL . 'assets/css/zp' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	// for RTL languages
 	wp_register_style( 'zp-rtl', ZODIACPRESS_URL . 'assets/css/zp-rtl' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
-	// autocomplete script
-	wp_register_script( 'zp-autocomplete', ZODIACPRESS_URL . 'assets/js/zp-autocomplete' . $suffix . '.js', array( 'jquery-ui-autocomplete', 'jquery' ), ZODIACPRESS_VERSION );
-	wp_localize_script( 'zp-autocomplete', 'zp_js_strings', zp_geonames_js_strings() );
 	// core script
-	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array( 'jquery' ), ZODIACPRESS_VERSION );
+	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array( 'jquery-ui-autocomplete', 'jquery' ), ZODIACPRESS_VERSION );
 	wp_localize_script( 'zp', 'zp_ajax_object', zp_script_localization_data() );
 }
 add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
@@ -35,8 +32,15 @@ add_action( 'admin_enqueue_scripts', 'zp_admin_scripts', 100 );
  */
 function zp_script_localization_data() {
 	global $zodiacpress_options;
+	// If language is other than English, get lang code to tranlsate Autocomplete cities.
+	$wplang = get_locale();
+	$langcode = substr( $wplang, 0, 2 );
+	$city_list_lang = ( 'en' != $langcode ) ? $langcode : '';
+	$geonames_username = empty( $zodiacpress_options[ 'geonames_user' ] ) ? 'demo' : trim( $zodiacpress_options[ 'geonames_user' ] );	
 	$draw = isset( $zodiacpress_options['add_drawing_to_birthreport'] ) ? $zodiacpress_options['add_drawing_to_birthreport'] : '';
 	$data = array(
+		'lang'			=> $city_list_lang,
+		'geonames_user'	=> $geonames_username,		
 		'ajaxurl'	=> admin_url( 'admin-ajax.php' ),
 		'utc'		=> __( 'UTC time offset:', 'zodiacpress' ),
 		'draw'		=> $draw
@@ -45,6 +49,8 @@ function zp_script_localization_data() {
 }
 /**
  * Get data strings for the zp-autocomplete.js script.
+ * @todo deprecated Remove in very next update
+ * @deprecated 
  */
 function zp_geonames_js_strings() {
 	global $zodiacpress_options;

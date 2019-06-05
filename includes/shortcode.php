@@ -21,12 +21,8 @@ function zp_birthreport_shortcode( $atts ) {
 	if ( is_rtl() ) {
 		wp_enqueue_style( 'zp-rtl' );
 	}
-
-	wp_enqueue_script( 'zp-autocomplete' );
 	wp_enqueue_script( 'zp' );
-	
 	do_action( 'zp_report_shortcode_before', $report_atts );// This hook can be used by addons to swap out the .js
-
 	ob_start();
 	?>
 	<div id="zp-form-wrap">
@@ -46,7 +42,6 @@ function zp_birthreport_shortcode( $atts ) {
 			</p>
 		<?php
 		}
-
 		do_action( 'zp_birthreport_content_before', array( 'report' => $report_atts['report'] ) );
 		?>
 		<div id="zp-report-content"></div><!-- will be filled by ajax -->
