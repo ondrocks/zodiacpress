@@ -391,7 +391,7 @@ class Test_Report extends WP_UnitTestCase {
  		$actual = $property->getValue( $zp_object );
 
 		$this->assertInternalType( 'array', $actual );
-		$actual_aspects_list = wp_list_pluck( $actual, 'id' );
+		$actual_aspects_list = array_column( $actual, 'id' );
 		foreach ( $expected as $expect ) {
 			$this->assertContains( $expect, $actual_aspects_list );
 		}
@@ -444,7 +444,7 @@ class Test_Report extends WP_UnitTestCase {
 		$this->assertInternalType( 'array', $actual );
 		$this->assertCount( 3, $actual );
 
-		$actual_aspects_list = wp_list_pluck( $actual, 'id' );
+		$actual_aspects_list = array_column( $actual, 'id' );
 		foreach ( $expected as $expect ) {
 			$this->assertContains( $expect, $actual_aspects_list );
 		}

@@ -350,7 +350,7 @@ class Test_Orbs extends WP_UnitTestCase {
 		$property = ZP_Helper::get_private_property( 'ZP_Birth_Report', 'enabled_aspects' );
  		$actual = $property->getValue( $zp_object );
 
- 		$actual_aspects_list = wp_list_pluck( $actual, 'id' );
+ 		$actual_aspects_list = array_column( $actual, 'id' );
 
 		$this->assertInternalType( 'array', $actual );
 
