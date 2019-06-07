@@ -50,7 +50,8 @@
 }
 #zp-form-wrap h2,
 #zp-form-wrap .zp-form {
-    max-width: 500px;
+    width: 500px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
