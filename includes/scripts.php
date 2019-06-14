@@ -45,7 +45,7 @@ function zp_script_localization_data() {
 		'utc'		=> __( 'UTC time offset:', 'zodiacpress' ),
 		'draw'		=> $draw
 	);
-	return $data;
+	return apply_filters( 'zp_localize_script', $data );
 }
 /**
  * Get data strings for the zp-autocomplete.js script.
