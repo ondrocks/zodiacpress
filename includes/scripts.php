@@ -36,7 +36,7 @@ function zp_script_localization_data() {
 	$wplang = get_locale();
 	$langcode = substr( $wplang, 0, 2 );
 	$city_list_lang = ( 'en' != $langcode ) ? $langcode : '';
-	$geonames_username = empty( $zodiacpress_options['geonames_user'] ) ? 'demo' : trim( $zodiacpress_options['geonames_user'] );	
+	$geonames_username = empty( $zodiacpress_options['geonames_user'] ) ? '' : trim( $zodiacpress_options['geonames_user'] );	
 	$draw = isset( $zodiacpress_options['add_drawing_to_birthreport'] ) ? $zodiacpress_options['add_drawing_to_birthreport'] : '';
 	$data = array(
 		'lang'		=> $city_list_lang,
@@ -58,7 +58,7 @@ function zp_geonames_js_strings() {
 	$wplang = get_locale();
 	$langcode = substr( $wplang, 0, 2 );
 	$city_list_lang = ( 'en' != $langcode ) ? $langcode : '';
-	$geonames_username = empty( $zodiacpress_options['geonames_user'] ) ? 'demo' : trim( $zodiacpress_options['geonames_user'] );
+	$geonames_username = empty( $zodiacpress_options['geonames_user'] ) ? '' : trim( $zodiacpress_options['geonames_user'] );
 	$data = array(
 		'lang'			=> $city_list_lang,
 		'geonames_user'	=> $geonames_username
