@@ -15,7 +15,7 @@
 					featureClass: "P",
 					style: "full",
 					maxRows: 20,
-					username: zp_strings.geonames_user,
+					username: zp_strings.u,
 					name_startsWith: request.term,
 					lang: zp_strings.lang
 				},

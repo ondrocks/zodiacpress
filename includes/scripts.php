@@ -39,8 +39,8 @@ function zp_script_localization_data() {
 	$geonames_username = empty( $zodiacpress_options[ 'geonames_user' ] ) ? 'demo' : trim( $zodiacpress_options[ 'geonames_user' ] );	
 	$draw = isset( $zodiacpress_options['add_drawing_to_birthreport'] ) ? $zodiacpress_options['add_drawing_to_birthreport'] : '';
 	$data = array(
-		'lang'			=> $city_list_lang,
-		'geonames_user'	=> $geonames_username,		
+		'lang'		=> $city_list_lang,
+		'u'			=> $geonames_username,		
 		'ajaxurl'	=> admin_url( 'admin-ajax.php' ),
 		'utc'		=> __( 'UTC time offset:', 'zodiacpress' ),
 		'draw'		=> $draw
