@@ -15,9 +15,9 @@
 					featureClass: "P",
 					style: "full",
 					maxRows: 20,
-					username: zp_ajax_object.geonames_user,
+					username: zp_strings.geonames_user,
 					name_startsWith: request.term,
-					lang: zp_ajax_object.lang
+					lang: zp_strings.lang
 				},
 				success: function( data ) {
 
@@ -81,7 +81,7 @@ zpSubmit.setAttribute( 'disabled', true );
 function zpGetOffset() {
 	const zpFormData = jQuery( '#zp-ajax-birth-data :input' ).serialize() + '&action=zp_tz_offset';
 	const xhr = new XMLHttpRequest();
-	xhr.open( 'POST', zp_ajax_object.ajaxurl );
+	xhr.open( 'POST', zp_strings.ajaxurl );
 	xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	xhr.responseType = 'json';
 		
@@ -109,7 +109,7 @@ function zpGetOffset() {
 								
 					/* Display offset. */
 					document.getElementById( 'zp-offset-wrap' ).style.display = 'block';
-					document.getElementById( 'zp-offset-label' ).textContent = zp_ajax_object.utc + ' ';
+					document.getElementById( 'zp-offset-label' ).textContent = zp_strings.utc + ' ';
 					document.getElementById( 'zp_offset_geo' ).value = xhr.response.offset_geo;
 					document.getElementById( 'zp-form-tip' ).style.display = 'block';
 
@@ -132,7 +132,7 @@ function zpGetOffset() {
 
 		$( '#zp-fetch-birthreport' ).click(function() {
 			$.ajax({
-				url: zp_ajax_object.ajaxurl,
+				url: zp_strings.ajaxurl,
 				type: "POST",
 				data: $( '#zp-birthreport-form' ).serialize(),
 				dataType: "json",
@@ -161,7 +161,7 @@ function zpGetOffset() {
 							$( '#zp-form-wrap' ).hide();
 
 							/* Insert the chart image. */
-							switch ( zp_ajax_object.draw ) {
+							switch ( zp_strings.draw ) {
 								case 'top':
 
 									/* Show image at top */
