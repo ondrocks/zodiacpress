@@ -1,75 +1,93 @@
-(function( $ ) {
-	
-	/* Autocomplete city field from GeoNames webservice */
+/* Autocomplete city field from GeoNames webservice */
 
-	$( '#place' ).autocomplete({
-		source: function( request, response ) {
+// autoComplete.js 6.0 by Tarek Raafat
+var a,b;a=this,b=function(){"use strict";function s(e,t){for(var n=0;n<t.length;n++){var s=t[n];s.enumerable=s.enumerable||!1,s.configurable=!0,"value"in s&&(s.writable=!0),Object.defineProperty(e,s.key,s)}}function l(e){return"string"==typeof e?document.querySelector(e):e()}function a(e){return e.innerHTML=""}function e(e,t){t=t||{bubbles:!1,cancelable:!1,detail:void 0};var n=document.createEvent("CustomEvent");return n.initCustomEvent(e,t.bubbles,t.cancelable,t.detail),n}var u="data-result",n="autoComplete_results_list",c="autoComplete_result",t="autoComplete_highlighted",o=l,i=function(e){var t=document.createElement(e.element);return t.setAttribute("id",n),e.container&&e.container(t),e.destination.insertAdjacentElement(e.position,t),t},h=function(e){return"<span class=".concat(t,">").concat(e,"</span>")},r=function(i,r,o){r.forEach(function(e,t){var n=document.createElement(o.element),s=r[t].value[e.key]||r[t].value;n.setAttribute(u,s),n.setAttribute("class",c),n.setAttribute("tabindex","1"),o.content?o.content(e,n):n.innerHTML=e.match||e,i.appendChild(n)})},d=function(e,n){var s=l(e),i=n.firstChild;document.onkeydown=function(e){var t=document.activeElement;switch(e.keyCode){case 38:t!==i&&t!==s?t.previousSibling.focus():t===i&&s.focus();break;case 40:t===s&&0<n.childNodes.length?i.focus():t!==n.lastChild&&t.nextSibling.focus()}}},f=a,m=function(n,s,i,r){var o=s.querySelectorAll(".".concat(c));Object.keys(o).forEach(function(t){["mousedown","keydown"].forEach(function(e){o[t].addEventListener(e,function(t){"mousedown"!==e&&13!==t.keyCode&&39!==t.keyCode||(i({event:t,query:l(n)instanceof HTMLInputElement?l(n).value:l(n).innerHTML,matches:r.matches,results:r.list.map(function(e){return e.value}),selection:r.list.find(function(e){return(e.value[e.key]||e.value)===t.target.closest(".".concat(c)).getAttribute(u)})}),a(s))})})})};e.prototype=window.Event.prototype;var p={CustomEventWrapper:"function"==typeof window.CustomEvent&&window.CustomEvent||e,initElementClosestPolyfill:function(){Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector),Element.prototype.closest||(Element.prototype.closest=function(e){var t=this;do{if(t.matches(e))return t;t=t.parentElement||t.parentNode}while(null!==t&&1===t.nodeType);return null})}};return function(){function t(e){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t),this.selector=e.selector||"#autoComplete",this.data={src:function(){return"function"==typeof e.data.src?e.data.src():e.data.src},key:e.data.key,cache:void 0===e.data.cache||e.data.cache},this.query=e.query,this.searchEngine="loose"===e.searchEngine?"loose":"strict",this.threshold=e.threshold||0,this.debounce=e.debounce||0,this.resultsList={render:!(!e.resultsList||!e.resultsList.render)&&e.resultsList.render,view:e.resultsList&&e.resultsList.render?i({container:!(!e.resultsList||!e.resultsList.container)&&e.resultsList.container,destination:e.resultsList&&e.resultsList.destination?e.resultsList.destination:o(this.selector),position:e.resultsList&&e.resultsList.position?e.resultsList.position:"afterend",element:e.resultsList&&e.resultsList.element?e.resultsList.element:"ul"}):null},this.sort=e.sort||!1,this.placeHolder=e.placeHolder,this.maxResults=e.maxResults||5,this.resultItem={content:!(!e.resultItem||!e.resultItem.content)&&e.resultItem.content,element:e.resultItem&&e.resultItem.element?e.resultItem.element:"li"},this.noResults=e.noResults,this.highlight=e.highlight||!1,this.onSelection=e.onSelection,this.dataSrc,this.init()}return function(e,t,n){t&&s(e.prototype,t),n&&s(e,n)}(t,[{key:"search",value:function(e,t){var n=this.highlight,s=t.toLowerCase();if("loose"===this.searchEngine){e=e.replace(/ /g,"");for(var i=[],r=0,o=0;o<s.length;o++){var l=t[o];r<e.length&&s[o]===e[r]&&(l=n?h(l):l,r++),i.push(l)}return r===e.length&&i.join("")}if(s.includes(e))return e=new RegExp("".concat(e),"i").exec(t),n?t.replace(e,h(e)):t}},{key:"listMatchedResults",value:function(n){var u=this;return new Promise(function(e){var a=[];n.filter(function(n,s){function e(e){var t=u.search(u.queryValue,n[e]||n);t&&e?a.push({key:e,index:s,match:t,value:n}):t&&!e&&a.push({index:s,match:t,value:n})}if(u.data.key){var t=!0,i=!1,r=void 0;try{for(var o,l=u.data.key[Symbol.iterator]();!(t=(o=l.next()).done);t=!0){e(o.value)}}catch(e){i=!0,r=e}finally{try{t||null==l.return||l.return()}finally{if(i)throw r}}}else e()});var t=u.sort?a.sort(u.sort).slice(0,u.maxResults):a.slice(0,u.maxResults);return u.resultsList.render&&(r(u.resultsList.view,t,u.resultItem),d(u.selector,u.resultsList.view)),e({matches:a.length,list:t})})}},{key:"ignite",value:function(){var a=this,u=this.selector,c=o(u),h=this.query,e=this.placeHolder;e&&c.setAttribute("placeholder",e);function n(t){function n(e,t){c.dispatchEvent(new p.CustomEventWrapper("autoComplete",{bubbles:!0,detail:{event:e,input:s,query:i,matches:t?t.matches:null,results:t?t.list:null},cancelable:!0}))}var s=c instanceof HTMLInputElement?c.value.toLowerCase():c.innerHTML.toLowerCase(),i=a.queryValue=h&&h.manipulate?h.manipulate(s):s,e=a.resultsList.render,r=i.length>a.threshold&&i.replace(/ /g,"").length;if(e){var o=a.onSelection,l=a.resultsList.view;f(l);r?a.listMatchedResults(a.dataSrc).then(function(e){n(t,e),0===e.list.length&&a.noResults&&a.resultsList.render?a.noResults():o&&m(u,l,o,e)}):n(t)}else!e&&r?a.listMatchedResults(a.dataSrc).then(function(e){n(t,e)}):n(t)}var s,i,r;c.addEventListener("keyup",(s=function(t){if(a.data.cache)n(t);else{var e=a.data.src();e instanceof Promise?e.then(function(e){a.dataSrc=e,n(t)}):(a.dataSrc=e,n(t))}},i=this.debounce,function(){var e=this,t=arguments;clearTimeout(r),r=setTimeout(function(){return s.apply(e,t)},i)}))}},{key:"init",value:function(){var t=this,e=this.data.src();e instanceof Promise?e.then(function(e){t.dataSrc=e,t.ignite()}):(this.dataSrc=e,this.ignite()),p.initElementClosestPolyfill()}}]),t}()},"object"==typeof exports&&"undefined"!=typeof module?module.exports=b():"function"==typeof define&&define.amd?define(b):a.autoComplete=b();
 
-			/* Hide the geonames error message, if any, in case they are trying again */
-			zpRemoveError();
-			$.ajax({
-				url: 'https://secure.geonames.org/searchJSON',
-				dataType: 'json',
-				type: 'GET',
-				data: {
-					featureClass: "P",
-					style: "full",
-					maxRows: 20,
-					username: zp_strings.u,
-					name_startsWith: request.term,
-					lang: zp_strings.lang
-				},
-				success: function( data ) {
+var cityIn = document.getElementById('placein');
+const autoCompletejs = new autoComplete({
+	data: {
+		src: async function() {
+			if (cityIn.value.length < 2) {
+				return;
+			} else {
+				const token = zp_strings.u;
 
-					/* check for GeoNames exceptions */
-					if ( data.status !== undefined ) {
-						var msg = $( '<span />' );
-						msg.attr( 'class', 'ui-state-error' );
-						msg.text( 'ERROR ' + data.status.value + ' - ' + data.status.message );
-						$( '#zp-ajax-birth-data' ).append( msg );
+				const query = cityIn.value;// User search query
+
+				const lang = zp_strings.lang;
+
+				// Fetch External Data Source
+				const source = await fetch(`https://secure.geonames.org/searchJSON?name_startsWith=${query}&featureClass=P&style=full&maxRows=20&username=${token}&lang=${lang}`);
+
+				const data = await source.json();
+				var arr = [];
+				/* Hide the geonames error message, if any, in case it is a 2nd try */
+				zpRemoveError();
+				/* check for GeoNames exceptions */
+				if ( data.status !== undefined ) {			
+					/* show new error */
+					zpShowError('ERROR ' + data.status.value + ' - ' + data.status.message);
+				} else {
+
+					// Grab only the geonames fields that i need 
+					for (var i = 0; i<data.geonames.length; i++) {
+					  arr[i] = {
+					  			name: data.geonames[i].name + ', ' + ( data.geonames[i].adminName1 ? data.geonames[i].adminName1 + ', ' : '' ) + data.geonames[i].countryName,
+					  			lat: data.geonames[i].lat,
+					  			lng: data.geonames[i].lng,
+					  			zone: data.geonames[i].timezone.timeZoneId
+					  		}
 					}
-						
-					response( $.map( data.geonames, function( item ) {
-						return {
-							value: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName, 
-							label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-							lngdeci: item.lng,
-							latdeci: item.lat,
-							timezoneid: item.timezone.timeZoneId
-						}
-					}));
+
 				}
-			});
+
+				// Return Fetched data
+				return arr;
+
+			}
 		},
-		minLength: 2,
-		select: function( event, ui ) {
+		key: ['name'],
+		cache: false,
+	},
+	selector: "#placein",
+	threshold: 1,// Minimum characters length before engine starts rendering results
+	searchEngine: "loose",// Search Engine Type/Mode default strict
+	maxResults: 20,
+	resultsList: {
+		render: true,
+		container: function(source) {
+		      source.setAttribute("id", "autoComplete_results_list");
+		},
+		destination: cityIn,
+		position: "afterend",
+		element: "ul",
+	},
+	resultItem: {
+	    content: function(data, source) {
+	      source.innerHTML = data.match;
+	    },
+	    element: "li",
+	},
+	onSelection: function(feedback) {
+		// Clear Input			
+		cityIn.value = '';
 
-			/* Insert hidden input with timezone ID and birthplace coordinates */
-			var hiddenInputs = {
-				'geo_timezone_id': ui.item.timezoneid,
-				'zp_lat_decimal': ui.item.latdeci,
-				'zp_long_decimal': ui.item.lngdeci
-			}
-			for ( var elID in hiddenInputs ) {
-				/* Remove any previous in case they're changing the city */
-				var exists = document.getElementById( elID );
-				if ( null !== exists ) {
-					exists.remove();
-				}
-				/* Insert hidden inputs */
-				elInput = document.createElement( 'input' );
-			    elInput.type = 'hidden';
-			    elInput.id = elID;
-				elInput.name = elID;
-				elInput.value = hiddenInputs[ elID ];
-				document.getElementById( 'zp-timezone-id' ).appendChild( elInput );
-			}
+		// Change placeholder with the selected value
+		cityIn.setAttribute("placeholder", feedback.selection.value.name);
 
-			zpGetOffset();
+		/* Update values for hidden inputs for timezone ID and birthplace coordinates */
+		var hiddenInputs = {
+			'place': feedback.selection.value.name,
+			'geo_timezone_id': feedback.selection.value.zone,
+			'zp_lat_decimal': feedback.selection.value.lat,
+			'zp_long_decimal': feedback.selection.value.lng
 		}
-	});
-	
-})( jQuery );
+		for ( var elID in hiddenInputs ) {
+			document.getElementById( elID ).value = hiddenInputs[ elID ];
+		}
+		zpGetOffset();
+	},
+});
 
 /* Disable Submit button until form is filled */
 var zpSubmit = document.getElementById( 'zp-fetch-birthreport' );
@@ -94,10 +112,7 @@ function zpGetOffset() {
 				zpRemoveError();
 					
 				/* show new error */
-				var span = document.createElement( 'span' );
-				span.setAttribute( 'class', 'ui-state-error' );
-				span.textContent = xhr.response.error;
-				document.getElementById( 'zp-ajax-birth-data' ).appendChild( span );
+				zpShowError( xhr.response.error );
 
 			} else {
 
@@ -141,11 +156,7 @@ function zpGetOffset() {
 					if ( reportData.error ) {
 						/* remove previous errors if any */
 						zpRemoveError();
-						var span = $( '<span />' );
-						span.attr( 'class', 'ui-state-error' );
-						span.text( reportData.error );
-						$( '#zp-offset-wrap' ).after( span );
-
+						zpShowError( reportData.error, 'zp-offset-wrap' );
 					} else {
 
 						/* if neither null, blank, nor false */
@@ -198,7 +209,6 @@ function zpGetOffset() {
 		});
 
 		/* Reset the Offset if date or time is changed. */
-
 		$( '#month, #day, #year, #hour, #minute' ).on( 'change', function () {
 			var changed = ! this.options[this.selectedIndex].defaultSelected;
 			if ( changed ) {
@@ -257,4 +267,11 @@ function zpFieldsFilled() {
 function zpRemoveError() {
 	var el = document.querySelector( '.ui-state-error' );
 	if ( el !== null ) { el.parentNode.removeChild( el ); }
+}
+
+function zpShowError( msg, appendTo = 'zp-ajax-birth-data' ) {
+	var span = document.createElement( 'span' );
+	span.setAttribute( 'class', 'ui-state-error' );
+	span.textContent = msg;
+	document.getElementById( appendTo ).appendChild( span );
 }

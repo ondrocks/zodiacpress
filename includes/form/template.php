@@ -81,15 +81,13 @@ function zp_form( $report, $args = array() ) {
 			</fieldset>
 			<p class="zp-birthplace">
 				<label for="place" class="zp-form-label"><?php _e( 'Birth City', 'zodiacpress' ); ?></label>
-				<span class="ui-widget zp-input-text-wrap">
-					<input id="place" name="place" value="" class="zp-input-text" />
+				<span class="zp-input-text-wrap">
+					<input id="placein" type="text" class="zp-input-text" value="">
 				</span>
 			</p>
-			
-			<span id="zp-timezone-id"></span>
 
 			<?php do_action( 'zp_form_below_person_one_ajax', $report, $args ); ?>
-			<input type="hidden" name="zp-report-variation" value="<?php echo $args['report']; ?>">
+			<input type="hidden" name="zp-report-variation" value="<?php echo $args['report']; ?>"><input type="hidden" id="place" name="place" value=""><input type="hidden" id="geo_timezone_id" name="geo_timezone_id" value=""><input type="hidden" id="zp_lat_decimal" name="zp_lat_decimal" value=""><input type="hidden" id="zp_long_decimal" name="zp_long_decimal" value="">
 			
 		</div><!-- end # zp-ajax-birth-data -->
 

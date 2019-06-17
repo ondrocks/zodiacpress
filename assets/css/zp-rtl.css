@@ -4,7 +4,6 @@
 
 /* Form
 -------------------------------------------------------------- */
-
 .zp-form #hour,
 .zp-form #minute,
 .zp-form #month,
@@ -47,30 +46,6 @@
 }
 .zp-zodiacal-dms {
 	padding-right:1em;
-}
-
-/* Layout helpers
-----------------------------------*/
-.ui-helper-zfix {
-	left: auto;
-	right: 0;
-}
-/* Overlays */
-.ui-widget-overlay {
-	left: auto;
-	right: 0;
-}
-.ui-autocomplete {
-	left: auto;
-	right: 0;
-}
-.ui-selectmenu-menu {
-	left: auto;
-	right: 0;
-}
-.ui-selectmenu-button span.ui-selectmenu-text {
-	text-align: right;
-	padding: 0.4em 1em 0.4em 2.1em;
 }
 
 @media screen and ( max-width: 727px ) {
