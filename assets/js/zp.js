@@ -75,18 +75,14 @@ const autoCompletejs = new autoComplete({
 		cityIn.value = '';
 
 		// Change placeholder with the selected value
-		cityIn.setAttribute("placeholder", feedback.selection.value.name);
+		cityIn.setAttribute( 'placeholder', feedback.selection.value.name );
 
 		/* Update values for hidden inputs for timezone ID and birthplace coordinates */
-		var hiddenInputs = {
-			'place': feedback.selection.value.name,
-			'geo_timezone_id': feedback.selection.value.zone,
-			'zp_lat_decimal': feedback.selection.value.lat,
-			'zp_long_decimal': feedback.selection.value.lng
-		}
-		for ( var elID in hiddenInputs ) {
-			document.getElementById( elID ).value = hiddenInputs[ elID ];
-		}
+		document.getElementById( 'place' ).value = feedback.selection.value.name;
+		document.getElementById( 'geo_timezone_id' ).value = feedback.selection.value.zone;
+		document.getElementById( 'zp_lat_decimal' ).value = feedback.selection.value.lat;
+		document.getElementById( 'zp_long_decimal' ).value = feedback.selection.value.lng;
+
 		zpGetOffset();
 	},
 });
@@ -99,8 +95,7 @@ zpSubmit.setAttribute( 'disabled', true );
  * Ajax request to get time offset
  */
 function zpGetOffset() {
-	const form = document.getElementById( 'zp-birthreport-form' );
-	const formData = (Array.from(new FormData(form), e => e.map(encodeURIComponent).join('=')).join('&')) + '&action=zp_tz_offset';
+	const form = (Array.from(new FormData(zpForm), e => e.map(encodeURIComponent).join('=')).join('&')) + '&action=zp_tz_offset';
 	const xhr = new XMLHttpRequest();
 	xhr.open( 'POST', zp_strings.ajaxurl );
 	xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
@@ -141,17 +136,14 @@ function zpGetOffset() {
 		}
 	};
 
-	xhr.send( formData );
+	xhr.send( form );
 }
 
 /* Fetch birth report upon clicking submit */
 
 zpSubmit.addEventListener( 'click', function( e ) {
-
 	e.preventDefault();
-
-	const form = document.getElementById( 'zp-birthreport-form' );
-	const formData = Array.from(new FormData(form), e => e.map(encodeURIComponent).join('=')).join('&');
+	const form = Array.from(new FormData(zpForm), e => e.map(encodeURIComponent).join('=')).join('&');
 	const xhr = new XMLHttpRequest();
 	xhr.open( 'POST', zp_strings.ajaxurl );
 	xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
@@ -206,8 +198,7 @@ zpSubmit.addEventListener( 'click', function( e ) {
 		}
 	};
 
-	xhr.send( formData );			
-			
+	xhr.send( form );
 });
 
 // Redo the Offset if date or time is changed.
