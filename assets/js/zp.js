@@ -1,3 +1,5 @@
+const zpForm = document.getElementById( 'zp-birthreport-form' );
+
 /* Autocomplete city field from GeoNames webservice */
 
 // autoComplete.js 6.0 by Tarek Raafat
@@ -210,34 +212,38 @@ zpSubmit.addEventListener( 'click', function( e ) {
 
 // Redo the Offset if date or time is changed.
 
-document.getElementById( 'month' ).addEventListener( 'change', redoOffset );
-document.getElementById( 'day' ).addEventListener( 'change', redoOffset );
-document.getElementById( 'year' ).addEventListener( 'change', redoOffset );
-document.getElementById( 'hour' ).addEventListener( 'change', redoOffset );
-document.getElementById( 'minute' ).addEventListener( 'change', redoOffset );
+zpForm.addEventListener( 'change', redoOffset );
 
-function redoOffset() {
-	var changed = ! this.options[this.selectedIndex].defaultSelected;
-	if ( changed ) {
+function redoOffset( e ) {
+	// Get offset after unknown_time checkbox is checked after notice of missing time
+	if ( e.target.id === 'unknown_time' ) {
 
-		// Only do ajax (get offset) if (partial) required fields are entered.
-		if ( zpFieldsFilled() ) {
-			zpGetOffset();
+		if ( e.target.checked ) {
+			// Only do ajax (get offset) if (partial) required fields are entered.
+			if ( zpFieldsFilled() ) {
+				zpGetOffset();
+			}
+		}
+
+	} else {
+
+		// Redo the Offset if date or time is changed.
+
+		var selects = ['month', 'day', 'year', 'hour', 'minute'];
+
+		// If the changed element doesn't have the right selector, bail
+		if ( ! selects.includes( e.target.id ) ) return;
+
+		var changed = ! e.target.options[e.target.selectedIndex].defaultSelected;
+		if ( changed ) {
+
+			// Only do ajax (get offset) if (partial) required fields are entered.
+			if ( zpFieldsFilled() ) {
+				zpGetOffset();
+			}
 		}
 	}
 }
-
-// Get offset after unknown_time checkbox is checked
-document.getElementById( 'unknown_time' ).addEventListener( 'change', function() {
-	if ( this.checked ) {
-
-		// Only do ajax (get offset) if (partial) required fields are entered.
-		if ( zpFieldsFilled() ) {
-			zpGetOffset();
-		}
-
-	}
-} );
 
 /**
  * Check that the fields required to get offset are entered.
@@ -250,7 +256,6 @@ function zpFieldsFilled() {
 		var el = document.getElementById( i );
 
 		if ( null === el ) {
-
 			return false;
 		}
 
