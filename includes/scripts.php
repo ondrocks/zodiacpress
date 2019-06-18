@@ -9,8 +9,7 @@ function zp_register_scripts() {
 	// for RTL languages
 	wp_register_style( 'zp-rtl', ZODIACPRESS_URL . 'assets/css/zp-rtl' . $suffix . '.css', array(), ZODIACPRESS_VERSION );
 	// core script
-	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array('jquery'), ZODIACPRESS_VERSION );
-
+	wp_register_script( 'zp', ZODIACPRESS_URL . 'assets/js/zp' . $suffix . '.js', array(), ZODIACPRESS_VERSION );
 	wp_localize_script( 'zp', 'zp_strings', zp_script_localization_data() );
 }
 add_action( 'wp_enqueue_scripts', 'zp_register_scripts' );
