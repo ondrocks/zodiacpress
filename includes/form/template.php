@@ -30,67 +30,64 @@ function zp_form( $report, $args = array() ) {
 		}
 		?>
 
-		<div id="zp-ajax-birth-data">
-			<fieldset class="zp-birthdate">
-    			<legend><?php _e( 'Birth Date', 'zodiacpress' ); ?></legend>
-				<?php 
-				if ( zp_is_month_before_day() ) {
-					zp_month_form_field();
-					zp_day_form_field();
-				} else {
-					zp_day_form_field();
-					zp_month_form_field();
+		<fieldset class="zp-birthdate">
+   			<legend><?php _e( 'Birth Date', 'zodiacpress' ); ?></legend>
+			<?php 
+			if ( zp_is_month_before_day() ) {
+				zp_month_form_field();
+				zp_day_form_field();
+			} else {
+				zp_day_form_field();
+				zp_month_form_field();
+			}
+			?>
+
+			<label for="year" class="screen-reader-text">
+				<?php _e( 'Birth Year', 'zodiacpress' ); ?></label>
+			<select id="year" name="year" required><?php zp_year_select_options(); ?></select>
+		</fieldset>
+
+		<fieldset class="zp-birthtime">
+   			<legend><?php _e( 'Exact Birth Time', 'zodiacpress' ); ?></legend>
+			<label for="hour" class="screen-reader-text">
+				<?php _e( 'Birth Hour', 'zodiacpress' ); ?></label>
+			<select id="hour" name="hour"><?php zp_hour_select_options(); ?></select>
+			<label for="minute" class="screen-reader-text">
+				<?php _e( 'Birth Minute', 'zodiacpress' ); ?></label>
+			<select id="minute" name="minute"><?php zp_minute_select_options(); ?></select>
+			<?php
+			// Show the unknown time checkbox, but not for reports that require a birth time
+			if ( ! in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
+				// ...only if unkown time is allowed in settings
+				if ( $allow_unknown_bt ) {
+					?>
+					<p class="zp-unknown-time-field zp-small">
+						<label for="unknown_time" class="screen-reader-text"><?php _e( 'Unknown Birth Time', 'zodiacpress' ); ?></label>
+						<input type="checkbox" id="unknown_time" name="unknown_time" /> <?php echo apply_filters( 'zp_unknown_birth_time_checkbox', __( 'If birth time is unknown, check this box.', 'zodiacpress' ) ); ?><strong>*</strong></p>
+					<?php
 				}
-				?>
 
-				<label for="year" class="screen-reader-text">
-					<?php _e( 'Birth Year', 'zodiacpress' ); ?></label>
-				<select id="year" name="year" required><?php zp_year_select_options(); ?></select>
-			</fieldset>
+			} else {
 
-			<fieldset class="zp-birthtime">
-    			<legend><?php _e( 'Exact Birth Time', 'zodiacpress' ); ?></legend>
-				<label for="hour" class="screen-reader-text">
-					<?php _e( 'Birth Hour', 'zodiacpress' ); ?></label>
-				<select id="hour" name="hour"><?php zp_hour_select_options(); ?></select>
-				<label for="minute" class="screen-reader-text">
-					<?php _e( 'Birth Minute', 'zodiacpress' ); ?></label>
-				<select id="minute" name="minute"><?php zp_minute_select_options(); ?></select>
-				<?php
-				// Show the unknown time checkbox, but not for reports that require a birth time
-				if ( ! in_array( $args['report'], apply_filters( 'zp_reports_require_birthtime', array() ) ) ) {
-					// ...only if unkown time is allowed in settings
-					if ( $allow_unknown_bt ) {
-						?>
-						<p class="zp-unknown-time-field zp-small">
-							<label for="unknown_time" class="screen-reader-text"><?php _e( 'Unknown Birth Time', 'zodiacpress' ); ?></label>
-							<input type="checkbox" id="unknown_time" name="unknown_time" /> <?php echo apply_filters( 'zp_unknown_birth_time_checkbox', __( 'If birth time is unknown, check this box.', 'zodiacpress' ) ); ?><strong>*</strong></p>
-						<?php
-					}
-
-				} else {
-
-					echo apply_filters( 'zp_birth_time_required',
-						'<p class="zp-unknown-time-field zp-small">* ' .
-						__( 'Birth time is required for this type of report.', 'zodiacpress' ) .
-						'</p>',
-						$args );
+				echo apply_filters( 'zp_birth_time_required',
+					'<p class="zp-unknown-time-field zp-small">* ' .
+					__( 'Birth time is required for this type of report.', 'zodiacpress' ) .
+					'</p>',
+					$args );
 	
-				}
-				?>
-			</fieldset>
-			<p id="zp-birthplace">
-				<label for="place" class="zp-form-label"><?php _e( 'Birth City', 'zodiacpress' ); ?></label>
-				<span class="zp-input-text-wrap">
-					<input id="placein" type="text" class="zp-input-text" value="">
-				</span>
-			</p>
+			}
+			?>
+		</fieldset>
+		<p id="zp-birthplace">
+			<label for="place" class="zp-form-label"><?php _e( 'Birth City', 'zodiacpress' ); ?></label>
+			<span class="zp-input-text-wrap">
+				<input id="placein" type="text" class="zp-input-text" value="">
+			</span>
+		</p>
 
-			<?php do_action( 'zp_form_below_person_one_ajax', $report, $args ); ?>
-			<input type="hidden" name="zp-report-variation" value="<?php echo $args['report']; ?>"><input type="hidden" id="place" name="place" value=""><input type="hidden" id="geo_timezone_id" name="geo_timezone_id" value=""><input type="hidden" id="zp_lat_decimal" name="zp_lat_decimal" value=""><input type="hidden" id="zp_long_decimal" name="zp_long_decimal" value="">
+		<?php do_action( 'zp_form_below_person_one_ajax', $report, $args ); ?>
+		<input type="hidden" name="zp-report-variation" value="<?php echo $args['report']; ?>"><input type="hidden" id="place" name="place" value=""><input type="hidden" id="geo_timezone_id" name="geo_timezone_id" value=""><input type="hidden" id="zp_lat_decimal" name="zp_lat_decimal" value=""><input type="hidden" id="zp_long_decimal" name="zp_long_decimal" value="">
 			
-		</div><!-- end # zp-ajax-birth-data -->
-
 		<label for="zp_offset_geo" class="screen-reader-text" aria-label="<?php _e( 'UTC time offset', 'zodiacpress' ); ?>"></label>
 		<p id="zp-offset-wrap" class="zp-clear">
 			<span id="zp-offset-label"></span>

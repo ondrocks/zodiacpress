@@ -13,9 +13,7 @@ const autoCompletejs = new autoComplete({
 				return;
 			} else {
 				const token = zp_strings.u;
-
 				const query = cityIn.value;// User search query
-
 				const lang = zp_strings.lang;
 
 				// Fetch External Data Source
@@ -28,7 +26,7 @@ const autoCompletejs = new autoComplete({
 				/* check for GeoNames exceptions */
 				if ( data.status !== undefined ) {			
 					/* show new error */
-					zpShowError('ERROR ' + data.status.value + ' - ' + data.status.message);
+					zpShowError( 'ERROR ' + data.status.value + ' - ' + data.status.message );
 				} else {
 
 					// Grab only the geonames fields that i need 
@@ -156,7 +154,7 @@ zpSubmit.addEventListener( 'click', function( e ) {
 				zpRemoveError();
 							
 				/* show new error */
-				zpShowError( xhr.response.error, 'zp-offset-wrap' );
+				zpShowError( xhr.response.error );
 
 			} else {
 
@@ -270,9 +268,9 @@ function zpRemoveError() {
 	if ( el !== null ) { el.parentNode.removeChild( el ); }
 }
 
-function zpShowError( msg, appendTo = 'zp-ajax-birth-data' ) {
+function zpShowError( msg ) {
 	var span = document.createElement( 'span' );
 	span.setAttribute( 'class', 'ui-state-error' );
 	span.textContent = msg;
-	document.getElementById( appendTo ).appendChild( span );
+	document.getElementById( 'zp-birthplace' ).appendChild( span );
 }
