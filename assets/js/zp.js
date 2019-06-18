@@ -97,7 +97,8 @@ zpSubmit.setAttribute( 'disabled', true );
  * Ajax request to get time offset
  */
 function zpGetOffset() {
-	const zpFormData = jQuery( '#zp-ajax-birth-data :input' ).serialize() + '&action=zp_tz_offset';
+	const form = document.getElementById( 'zp-birthreport-form' );
+	const formData = (Array.from(new FormData(form), e => e.map(encodeURIComponent).join('=')).join('&')) + '&action=zp_tz_offset';
 	const xhr = new XMLHttpRequest();
 	xhr.open( 'POST', zp_strings.ajaxurl );
 	xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
@@ -138,101 +139,105 @@ function zpGetOffset() {
 		}
 	};
 
-	xhr.send( zpFormData );
+	xhr.send( formData );
 }
 
-(function( $ ) {
-	
-		/* Fetch birth report upon clicking submit */
+/* Fetch birth report upon clicking submit */
 
-		$( '#zp-fetch-birthreport' ).click(function() {
-			$.ajax({
-				url: zp_strings.ajaxurl,
-				type: "POST",
-				data: $( '#zp-birthreport-form' ).serialize(),
-				dataType: "json",
-				success: function( reportData ) {
+zpSubmit.addEventListener( 'click', function( e ) {
 
-					if ( reportData.error ) {
-						/* remove previous errors if any */
-						zpRemoveError();
-						zpShowError( reportData.error, 'zp-offset-wrap' );
-					} else {
+	e.preventDefault();
 
-						/* if neither null, blank, nor false */
-						var zpReport = reportData.report.trim();
-						if ( zpReport && 'false' != zpReport ) {
+	const form = document.getElementById( 'zp-birthreport-form' );
+	const formData = Array.from(new FormData(form), e => e.map(encodeURIComponent).join('=')).join('&');
+	const xhr = new XMLHttpRequest();
+	xhr.open( 'POST', zp_strings.ajaxurl );
+	xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	xhr.responseType = 'json';
+	xhr.onload = function() {
+		if (xhr.status === 200 && xhr.response) {
+			if ( xhr.response.error ) {
+
+				/* remove previous errors if any */
+				zpRemoveError();
 							
-							/* remove previous errors if any */
-							zpRemoveError();
+				/* show new error */
+				zpShowError( xhr.response.error, 'zp-offset-wrap' );
 
-							/* Display report. */
-							$( '#zp-report-wrap' ).show();
-							$( '#zp-report-content' ).append(reportData.report);
-							$( '#zp-form-wrap' ).hide();
+			} else {
 
-							/* Insert the chart image. */
-							switch ( zp_strings.draw ) {
-								case 'top':
+				/* if neither null, blank, nor false */
+				var zpReport = xhr.response.report.trim();
+				if ( zpReport && 'false' != zpReport ) {
+					var content = document.getElementById( 'zp-report-content' ),
+						wrap = document.getElementById( 'zp-report-wrap' );
 
-									/* Show image at top */
+					/* remove previous errors if any */
+					zpRemoveError();
 
-									if ( $( '.zp-report-header' ).length ) {
-										$( '.zp-report-header' ).after( reportData.image );
-									} else {
-										$( '#zp-report-content' ).prepend( reportData.image );
-									}
+					/* Display report. */
+					wrap.style.display = 'block'; 
+					content.insertAdjacentHTML( 'afterbegin', xhr.response.report );
+					document.getElementById( 'zp-form-wrap' ).style.display = 'none';
 
-								break;
-								case 'bottom':
+					/* Insert the chart image. */
+					switch ( zp_strings.draw ) {
+						case 'top':
 
-									/* show image at end of report */
+							/* Show image at top */
+							document.querySelector( '.zp-report-header' ).insertAdjacentHTML( 'afterend', xhr.response.image );
+						break;
+						case 'bottom':
 
-									$( '#zp-report-content' ).append( reportData.image );
+							/* show image at end of report */
+							content.insertAdjacentHTML( 'beforeend', xhr.response.image );
+						break;
+					}
 
-								break;
-
-							}
-
-							/* Scroll to top of report */
-							var distance = $('#zp-report-wrap').offset().top - 70;
-							$( 'html,body' ).animate({
-								scrollTop: distance
-							}, 'slow');
-						}
-					
-					}					
+					/* Scroll to top of report */
+					window.scrollTo({ top: wrap.offsetTop + 70, behavior: 'smooth' });// @test on safari
 
 				}
-			});
-			return false;
-		});
 
-		/* Reset the Offset if date or time is changed. */
-		$( '#month, #day, #year, #hour, #minute' ).on( 'change', function () {
-			var changed = ! this.options[this.selectedIndex].defaultSelected;
-			if ( changed ) {
-
-				/* Only do ajax (get offset) if (partial) required fields are entered. */
-				
-				if ( zpFieldsFilled() ) {
-					zpGetOffset();
-				}
 			}
-		} );
 
-		// Get offset after unknown_time checkbox is checked
-		$( '#unknown_time' ).on( 'change', function () {
-			if ( $( this ).is( ":checked" ) ) {
+		}
+	};
 
-				/* Only do ajax (get offset) if (partial) required fields are entered. */
-				if ( zpFieldsFilled() ) {
-					zpGetOffset();
-				}
-			}
-		} );
+	xhr.send( formData );			
 			
-})( jQuery );
+});
+
+// Redo the Offset if date or time is changed.
+
+document.getElementById( 'month' ).addEventListener( 'change', redoOffset );
+document.getElementById( 'day' ).addEventListener( 'change', redoOffset );
+document.getElementById( 'year' ).addEventListener( 'change', redoOffset );
+document.getElementById( 'hour' ).addEventListener( 'change', redoOffset );
+document.getElementById( 'minute' ).addEventListener( 'change', redoOffset );
+
+function redoOffset() {
+	var changed = ! this.options[this.selectedIndex].defaultSelected;
+	if ( changed ) {
+
+		// Only do ajax (get offset) if (partial) required fields are entered.
+		if ( zpFieldsFilled() ) {
+			zpGetOffset();
+		}
+	}
+}
+
+// Get offset after unknown_time checkbox is checked
+document.getElementById( 'unknown_time' ).addEventListener( 'change', function() {
+	if ( this.checked ) {
+
+		// Only do ajax (get offset) if (partial) required fields are entered.
+		if ( zpFieldsFilled() ) {
+			zpGetOffset();
+		}
+
+	}
+} );
 
 /**
  * Check that the fields required to get offset are entered.
@@ -245,6 +250,7 @@ function zpFieldsFilled() {
 		var el = document.getElementById( i );
 
 		if ( null === el ) {
+
 			return false;
 		}
 
@@ -260,7 +266,6 @@ function zpFieldsFilled() {
         	return false;
         }
 	}
-
 	return true;
 }
 
