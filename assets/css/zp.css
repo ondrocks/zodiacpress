@@ -14,7 +14,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 #zp-form-wrap,
 #zp-report-wrap {
 	display: block;
@@ -25,27 +24,22 @@
 	line-height: 1.62em;
 	font-family: Arial,Helvetica,sans-serif;	
 }
-
 .zp-small {
 	font-size: 0.9em;
 }
 
 /* Form
 -------------------------------------------------------------- */
-
 #zp-form-wrap input,
 #zp-form-wrap select{
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 1em;
 }
-#zp-birthreport-form select:focus{
+#zp-birthreport-form .zp-input-text:focus,
+#zp-birthreport-form select:focus {
  border:1px solid #009bff;
  outline:0;
  transition:.2s ease-in
-}
-#zp-birthreport-form .zp-input-text:focus {
- border:1px solid #009bff;
- outline:0;
 }
 #zp-form-wrap h2,
 #zp-form-wrap .zp-form {
@@ -61,6 +55,7 @@
 }
 #zp-birthreport-form .zp-input-text {
  	width: 100%;
+ 	max-width: 100%;
 }
 #zp-birthreport-form fieldset,
 #zp-birthplace {
@@ -113,26 +108,23 @@ form .zp-button {
 	border-radius: 2px;
 	color: #fff;
 	font-weight: 700;
-	letter-spacing: 0.046875em;
+	letter-spacing: 0.05em;
 	line-height: 1;
-	padding: 0.84375em 0.875em 0.78125em;
+	padding: 0.6em 0.8em;
 	text-transform: uppercase;
 	box-sizing: border-box;
 }
 form .zp-button:hover, .zp-button:focus{
 	background-color: #339933;
 }
-
 #zp-submit-wrap {
 	margin-top: 32px;
 }
-
 #zp-fetch-birthreport {
 	margin: 3px 0 36px;
 	width: 100%;
 	cursor: pointer;
 }
-
 #zp-fetch-birthreport[disabled],
 #zp-fetch-birthreport[disabled]:hover {
 	cursor: default;
@@ -142,10 +134,8 @@ form .zp-button:hover, .zp-button:focus{
     border-color: #333;
 }
 
-
 /* Autocomplete
 -------------------------------------------------------------- */		
-
 #autoComplete_results_list {
 	cursor: default; 
 	padding: 0;
@@ -159,7 +149,6 @@ form .zp-button:hover, .zp-button:focus{
     overflow-y: auto;
     overflow-x: hidden
 }
-
 #autoComplete_results_list .autoComplete_result {
 	list-style: none;
 	padding: 2px 6px;
@@ -168,7 +157,6 @@ form .zp-button:hover, .zp-button:focus{
 	border-bottom:0;
 	display: block;
 }
-
 .autoComplete_result:hover,
 .autoComplete_result:focus {
 	background: #ededed;
@@ -178,13 +166,11 @@ form .zp-button:hover, .zp-button:focus{
 
 /* Ajax
 -------------------------------------------------------------- */
-
 #zp-report-wrap,
 #zp-offset-wrap,
 #zp-form-tip {
 	display: none;
 }
-
 #zp-offset-label,
 #zp-offset-wrap #zp_offset_geo {
 	background-color:transparent;
@@ -352,11 +338,15 @@ h3.zp-report-section-title{
     width: 1px;
     word-wrap: normal !important;
 }
-
 .zp-clear:after {
   content: "";
   display: table;
   clear: both;
+}
+#zp-form-wrap .ui-state-highlight {
+	border: 1px solid #dad55e;
+	background: #fffa90;
+	color: #777620;
 }
 
 @media screen and ( max-width: 727px ) {
