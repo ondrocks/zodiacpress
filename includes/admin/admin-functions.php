@@ -177,3 +177,34 @@ function zp_admin_links() {
 		echo '<a href="' . $link[2] . '" class="zp-' . $link[0] . '-link alignright" target="_blank" rel="noopener">' . $link[1] . '</a>';
 	}
 }
+function zp_add_debug_info( $debug_info ) {
+	$debug_info['zodiacpress'] = array(
+		'label'    => 'ZodiacPress',
+		'fields'   => array(
+			'swetest_exists' => array(
+				'label'	=> 'swetest file',
+				'value'	=> file_exists( ZODIACPRESS_PATH . 'sweph/swetest' ) ? 'okay' : 'Missing!',
+			),
+			'swetest_permission' => array(
+				'label'	=> 'Ephemeris permissions',
+				'value'	=> zp_is_sweph_executable() ? 'okay' : 'Not executable!',
+			),
+			'exec' => array(
+				'label'	=> 'exec()',
+				'value'	=> zp_is_func_enabled( 'exec' ) ? 'okay' : 'Disabled!',
+
+			),
+			'chmod' => array(
+				'label'	=> 'chmod()',
+				'value'	=> zp_is_func_enabled( 'chmod' ) ? 'okay' : 'Disabled!',
+
+			),
+			'php_shlib_suffix' => array(
+				'label'	=> 'PHP_SHLIB_SUFFIX',
+				'value'	=> PHP_SHLIB_SUFFIX
+			),
+		),
+	);
+	return $debug_info;
+}
+add_filter( 'debug_information', 'zp_add_debug_info' );

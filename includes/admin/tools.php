@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Shows the tools panel which contains ZP-specific tools.
  */
 function zp_tools_page() {
-	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'cleanup';
+	$active_tab = ! empty( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'cleanup';
 	$tabs = zp_get_tools_tabs();
 	$current_tab_name = $tabs[ $active_tab ];
 	?>
@@ -31,7 +31,6 @@ function zp_tools_page() {
 function zp_get_tools_tabs() {
 	$tabs = array(
 		'cleanup' 		=> __( 'Clean up', 'zodiacpress' ),
-		'sysinfo' 		=> __( 'System info', 'zodiacpress' ),
 		'import_export' => __( 'Export/Import', 'zodiacpress' )
 	);
 	return apply_filters( 'zp_tools_tabs', $tabs );
@@ -90,13 +89,7 @@ function zp_tools_cleanup_display() {
 	<?php
 }
 add_action( 'zp_tools_tab_cleanup', 'zp_tools_cleanup_display' );
-/**
- * Display System info Tools tab.
- */
-function zp_tools_sysinfo_display() {
-	include ZODIACPRESS_PATH . 'includes/admin/views/html-tools-systeminfo.php';
-}
-add_action( 'zp_tools_tab_sysinfo', 'zp_tools_sysinfo_display' );
+
 /**
  * Display the tools export/import tab
  */
