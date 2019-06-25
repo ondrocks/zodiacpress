@@ -90,7 +90,7 @@ function zp_form( $report, $args = array() ) {
 			
 		<label for="zp_offset_geo" class="screen-reader-text" aria-label="<?php _e( 'UTC time offset', 'zodiacpress' ); ?>"></label>
 		<p id="zp-offset-wrap" class="zp-clear">
-			<span id="zp-offset-label"></span>
+			<span id="zp-offset-label"><?php _e( 'UTC time offset:', 'zodiacpress' ); ?></span>
 			<input id="zp_offset_geo" name="zp_offset_geo" size="47" type="text" tabindex="-1" />
 		</p>
 		<?php do_action( 'zp_form_below_person_one_offset', $report, $args ); ?>

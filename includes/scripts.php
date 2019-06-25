@@ -42,7 +42,6 @@ function zp_script_localization_data() {
 		'lang'		=> $city_list_lang,
 		'u'			=> $geonames_username,		
 		'ajaxurl'	=> admin_url( 'admin-ajax.php' ),
-		'utc'		=> __( 'UTC time offset:', 'zodiacpress' ),
 		'draw'		=> $draw
 	);
 	return apply_filters( 'zp_localize_script', $data );

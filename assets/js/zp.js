@@ -120,7 +120,6 @@ function zpGetOffset() {
 								
 					/* Display offset. */
 					document.getElementById( 'zp-offset-wrap' ).style.display = 'block';
-					document.getElementById( 'zp-offset-label' ).textContent = zp_strings.utc + ' ';
 					document.getElementById( 'zp_offset_geo' ).value = xhr.response.offset_geo;
 					document.getElementById( 'zp-form-tip' ).style.display = 'block';
 
