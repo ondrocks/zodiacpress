@@ -79,7 +79,7 @@ function zp_form( $report, $args = array() ) {
 			?>
 		</fieldset>
 		<p id="zp-birthplace">
-			<label for="place" class="zp-form-label"><?php _e( 'Birth City', 'zodiacpress' ); ?></label>
+			<label for="placein" class="zp-form-label"><?php _e( 'Birth City', 'zodiacpress' ); ?></label>
 			<span class="zp-input-text-wrap">
 				<input id="placein" type="text" class="zp-input-text" value="">
 			</span>
