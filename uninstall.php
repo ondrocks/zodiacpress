@@ -20,7 +20,7 @@ function zp_uninstall() {
 	// Make sure that the user wants to remove all the data.
 	if ( isset( $options['remove_data'] ) && '1' == $options['remove_data'] ) {
 		$keys = array(
-			'zodiacpress_settings'
+			'zodiacpress_settings',
 			'zp_natal_planets_in_signs',
 			'zp_natal_planets_in_houses',
 			'zp_natal_aspects_main',
