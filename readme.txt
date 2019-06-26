@@ -3,9 +3,9 @@ Contributors: isabel104
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R7BHLMCQ437SS
 Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, birth chart, astrology reports, sidereal
 Requires at least: 4.7
-Tested up to: 5.2.1
-Requires PHP: 5.4
-Stable tag: 1.9.1
+Tested up to: 5.3
+Requires PHP: 5.6
+Stable tag: 2.0
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -136,8 +136,22 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
-= 2.0 = 
-* New - Exported the Atlas database option to a new plugin. If you use your own Atlas Database instead of GeoNames, then you must install the ZP Atlas plugin BEFORE updating to ZodiacPress 2.0. See the [release post](@todo) for more information.
+= 2.0 =
+* New - Several possibly breaking changes, so please read the [release notes](https://isabelcastillo.com/zp-release-2) before updating.
+* New - The minimum required version of PHP is now 5.6.
+* New - Exported the Atlas database option to a new plugin. If you use your own Atlas Database instead of GeoNames, then you must install the ZP Atlas plugin BEFORE updating to ZodiacPress 2.0. See the [release notes](https://isabelcastillo.com/zp-release-2) for details and steps.
+* New - Removed all front end jquery dependency, including jquery-autocomplete for a much, much, much lighter footprint!
+* New - Removed the form title, which is the title that is displayed to the user above the birth report form. 
+* New - Removed the zp_shortcode_default_form_title filter.
+* New - Moved the ZP System Info from the ZP Tools page to the new WordPress Site Health Info page.
+* New - Synced both JavaScript files into 1, just zp.js. There is no longer an additional zp-autocomplete.js.
+* Tweak - Fixed the max width on the birth report form so that it fits much better on mobile phones and small devices.
+* Tweak - Changed the ZP admin buttons on the top-right corner into regular links.
+* Build - Added a shorten option to the shortcode. This will allow developers to provide short previews of the report instead of the full interpretations.
+* Build - Removed zp_add_cron_schedule filter.
+* Build - Removed deprecated functions and the file back-compat.php.
+* Build - Removed the old plugin Updater and licensing functions and files, and license settings.
+* Build - For the GeoNames search request, changed dataType: jsonp to json.
 
 = 1.9.1 =
 * Fix - Removed extra slash from URL for add-on updates.
@@ -293,7 +307,7 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 == Upgrade Notice ==
 
 = 2.0 = 
-NOTE: If you use your own Atlas Database instead of GeoNames, read changelog BEFORE updating.
+NOTE - Read the changelog BEFORE updating because 2.0 brings important changes.
 
 = 1.8.5 =
 New - Use secure GeoNames api endpoint (https) for everyone.
