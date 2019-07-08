@@ -6,11 +6,8 @@
 -------------------------------------------------------------- */
 @font-face {
 	font-family: "zodiacpress";
-	src:    url("../fonts/zodiacpress.eot?fr7qsr");
-	src:    url("../fonts/zodiacpress.eot?fr7qsr#iefix") format("embedded-opentype"),
-		url("../fonts/zodiacpress.ttf?fr7qsr") format("truetype"),
-		url("../fonts/zodiacpress.woff?fr7qsr") format("woff"),
-		url("../fonts/zodiacpress.svg?fr7qsr#zodiacpress") format("svg");
+	src:local('zodiacpress'),
+	url("../fonts/zodiacpress.woff?fr7qsr") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
