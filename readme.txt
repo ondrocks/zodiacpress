@@ -136,6 +136,13 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
  
 == Changelog ==
 
+= 2.0.1 =
+* New - Remove obsolete fonts file types. This has the added benefit of reducing the overall size of the plugin.
+* Tweak - Better scrollTo distance when the report appears.
+* Tweak - The Submit button text is no longer uppercase by default.
+* Build - removed the deprecated form_title arg from the shortcode arguments.
+* Build - Removed the deprecated function zp_geonames_js_strings.
+
 = 2.0 =
 * New - Several possibly breaking changes, so please read the [release notes](https://isabelcastillo.com/zp-release-2) before updating.
 * New - The minimum required version of PHP is now 5.6.
@@ -305,6 +312,9 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 2.0.1 = 
+If upgrading from 2.0, this is a safe minor release. If upgrading from 1.x, read 2.0 changelog BEFORE upgrading.
 
 = 2.0 = 
 NOTE - Read the changelog BEFORE updating because 2.0 brings important changes.
