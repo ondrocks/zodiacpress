@@ -1,6 +1,6 @@
 <?php
 /**
- * Interect directly with the ephemeris, not via the Ephemeris class.
+ * Interact directly with the ephemeris, not via the Ephemeris class.
  */
 class Test_Ephemeris_Direct extends WP_UnitTestCase {
 
