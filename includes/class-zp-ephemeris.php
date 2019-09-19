@@ -24,17 +24,8 @@ class ZP_Ephemeris {
 	 * Additional options for the ephemeris query
 	 */
 	private $options;
-
-	/**
-	 * Universal Date for this chart
-	 */
 	private $ut_date;
-
-	/**
-	 * Universal Time for this chart
-	 */
 	private $ut_time;
-
 	/**
 	 * Constructor.
 	 *
@@ -51,32 +42,20 @@ class ZP_Ephemeris {
 			'ut_time'		=> '',
 			'options'		=> ''
 		);
-
 		$params = wp_parse_args( $args, $default );
-
 		$this->ut_date	= $params['ut_date'];
 		$this->planets	= $params['planets'];
-
 		// Optional options
 		$this->format	= $params['format'] ? ( '-f' . $params['format'] ) : '';
 		$this->ut_time	= $params['ut_time'] ? ( '-ut' . $params['ut_time'] ) : '';
 		$this->options	= $params['options'];
-
 		$this->setup_house( $params['house_system'], $params['latitude'], $params['longitude'] );
-
 	}
-
 	/**
 	 * Setup up the house option
 	 */
 	private function setup_house( $house_system, $latitude, $longitude ) {
-
-		if (
-			( ! empty( $house_system ) ) &&
-			( ! empty( $latitude ) ) &&
-			( ! empty( $longitude ) )
-		) {
-
+		if (( ! empty( $house_system )) && (! empty( $latitude )) && (! empty( $longitude ))) {
 			/**
 			* Adjust latitude/longitude coordinates for precision, to match astro.com's calculations since those are more widely accepted among the astrological community. 
 			* For example, GeoNames' latitude for Miami = 25.77427, whereas astro.com's is 25.766666666667.
@@ -89,24 +68,17 @@ class ZP_Ephemeris {
 			$lat_dm = zp_extract_degrees_parts( $latitude );
 			$latitude_degree	= $lat_dm[0];
 			$latitude_minute	= $lat_dm[1];
-
 			$east_west		= ( $longitude >= 0 ) ? '1' : '-1';
 			$north_south	= ( $latitude >= 0 ) ? '1' : '-1';
-
 			$longitude		= $east_west * ( $longitude_degree + ( $longitude_minute/ 60 ) );
 			$latitude		= $north_south * ( $latitude_degree + ( $latitude_minute / 60 ) );
-
 			$this->house = '-house' . $longitude . ',' . $latitude . ',' . $house_system;
-
 		} else {
 			$this->house = '';
 		}
-
 	}
-
 	/**
 	 * Query the Ephemeris.
-	 *
 	 */
 	public function query() {
 		// Set up Swiss Ephemeris path
@@ -114,7 +86,7 @@ class ZP_Ephemeris {
 		putenv( 'PATH=$PATH:' . "$sweph" );
 		$swetest = apply_filters( 'zp_sweph_file', 'swetest' );
 		// Query the ephemeris
-		exec( "$swetest -edir$sweph -b{$this->ut_date} {$this->ut_time} -p{$this->planets} {$this->house} -eswe {$this->format} {$this->options} -g, -head", $out);
+		exec("$swetest -edir$sweph -b{$this->ut_date} {$this->ut_time} -p{$this->planets} {$this->house} -eswe {$this->format} {$this->options} -g, -head", $out);
 		return $out;
 	}
 }
