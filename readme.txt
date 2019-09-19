@@ -5,7 +5,7 @@ Tags: zodiacpress, zodiac, astrology, horoscope, natal report, birth report, bir
 Requires at least: 4.7
 Tested up to: 5.2.3
 Requires PHP: 5.6
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GNU GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,10 @@ Please [rate](https://wordpress.org/support/plugin/zodiacpress/reviews/) the plu
 8. The form to generate a birth report. The month and day fields will switch places according to your local date settings.
  
 == Changelog ==
+
+= 2.0.2 =
+* Tweak - Allow asterisk to be removed with Unknown Birth Time Note on the form, by including the asterisk in the zp_unknown_birth_time_checkbox filter.
+* Tweak - Pass the report variation to the zp_setup_chart action.
 
 = 2.0.1 =
 * New - Remove obsolete fonts file types. This has the added benefit of reducing the overall size of the plugin.
