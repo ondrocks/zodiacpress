@@ -104,7 +104,7 @@ final class ZP_Chart {
 		$this->house_system	= $moment['house_system'] ?
 							$moment['house_system'] :
 							apply_filters( 'zp_default_house_system', 'P' );
-		$this->setup_chart();
+		$this->setup_chart( $moment['zp-report-variation'] );
 
 	}
 
@@ -142,7 +142,7 @@ final class ZP_Chart {
 	/**
 	 * Set up the chart data.
 	 */
-	private function setup_chart() {
+	private function setup_chart( $var ) {
 
 		// Ephemeris gives wrong calculations for Whole Sign houses, so query it as Placidus, then calculate Whole Sign houses manually.
 		$final_house_system = ( 'W' == $this->house_system ) ? 'P' : $this->house_system;
@@ -171,7 +171,6 @@ final class ZP_Chart {
 			// Set the sidereal flag for the chart query
 			$args['options'] = '-sid' . zp_get_sidereal_methods()[ $this->sidereal ]['id'];
 		}
-
 		$ephemeris	= new ZP_Ephemeris( $args );
 		$chart		= $ephemeris->query();
 
@@ -242,11 +241,9 @@ final class ZP_Chart {
 		// Set up house number position for planets
 		for ( $x = 0; $x <= 14; $x++ ) {
 			$this->planets_house_numbers[ $x ] = zp_get_planet_house_num( $this->planets_longitude[ $x ], $this->cusps );
-	
 		}
-		
 		$this->setup_conjunct_next_cusp();
-		do_action( 'zp_setup_chart', $this );
+		do_action( 'zp_setup_chart', $this, $var );
 	}
 
 	/**
