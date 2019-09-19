@@ -192,7 +192,6 @@ function zp_get_zodiac_sign_dms( $longitude ) {
 	if ( $longitude >= 360 ) {
 		return 'ERROR 360: undefined';
 	}
-
 	$signs			= zp_get_zodiac_signs();
 	$sign_num		= floor( $longitude / 30 );
 	$pos_in_sign	= $longitude - ( $sign_num * 30 );
@@ -387,7 +386,6 @@ function zp_is_planet_near_ingress( $planet, $longitude ) {
 	if ( $pos_in_sign <= $limits[ $planet ][0] ||  $pos_in_sign >= $limits[ $planet ][1] ) {
 		return true;
 	}
-
 	return false;
 }
 
@@ -406,9 +404,7 @@ function zp_is_planet_ingress_today( $planet, $longitude, $form ) {
 	if ( ! empty( $planets[ $planet ]['supports'] ) && in_array( 'birth_time_required', $planets[ $planet ]['supports'] ) ) {
 			return false;
 	}
-
 	$ingress = false;
-
 	// Avoid querying ephemeris for every planet unless it's near ingress
 	if ( zp_is_planet_near_ingress( $planet, $longitude ) ) {
 
